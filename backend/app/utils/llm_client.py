@@ -1,18 +1,28 @@
-# Anthropic claude-sonnet-4-20250514 wrapper — sync JSON/text calls with retry and structured logging
+# OpenRouter LLM client — OpenAI-compatible API, sync JSON/text calls with retry and structured logging
 from __future__ import annotations
 
 import json
 import logging
+import os
 import re
 import time
 from typing import Any
 
-import anthropic
+import openai
 
 logger = logging.getLogger(__name__)
 
-MODEL = "claude-sonnet-4-20250514"
-_RETRY_DELAYS = [1, 2, 4]   # exponential backoff seconds between attempts
+OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+
+# Per-agent model assignments — update when selecting models for later agents
+AGENT1_MODEL = "anthropic/claude-sonnet-4-5"   # Query Planner
+AGENT3_MODEL = "anthropic/claude-sonnet-4-5"   # Fact Extractor       [update later]
+AGENT5_MODEL = "anthropic/claude-sonnet-4-5"   # Contradiction Writer [update later]
+AGENT6_MODEL = "anthropic/claude-sonnet-4-5"   # Narrative Synthesizer[update later]
+AGENT7_MODEL = "anthropic/claude-sonnet-4-5"   # Watch List Builder   [update later]
+AGENT8_MODEL = "anthropic/claude-sonnet-4-5"   # Analyst Chat         [update later]
+
+_RETRY_DELAYS = [1, 2, 4]   # seconds between retry attempts
 
 
 def _extract_json(text: str) -> str:
@@ -25,8 +35,14 @@ def _extract_json(text: str) -> str:
 
 
 class LLMClient:
-    def __init__(self, api_key: str) -> None:
-        self._client = anthropic.Anthropic(api_key=api_key)
+    def __init__(self, api_key: str | None = None) -> None:
+        key = api_key or os.getenv("OPENROUTER_API_KEY")
+        if not key:
+            raise ValueError("OPENROUTER_API_KEY is required — set it in .env or pass api_key=")
+        self._client = openai.OpenAI(
+            base_url=OPENROUTER_BASE_URL,
+            api_key=key,
+        )
 
     # ------------------------------------------------------------------
     # Public interface
@@ -36,17 +52,18 @@ class LLMClient:
         self,
         system: str,
         user: str,
+        model: str = AGENT1_MODEL,
         max_tokens: int = 4096,
         max_retries: int = 3,
     ) -> Any:
         """
-        Call Claude and return parsed JSON. Retries on API error or JSON parse failure.
+        Call the model and return parsed JSON. Retries on API error or JSON parse failure.
         Raises RuntimeError after all attempts are exhausted.
         """
         last_error: Exception | None = None
         for attempt in range(max_retries):
             try:
-                raw = self._call(system, user, max_tokens)
+                raw = self._call(system, user, model, max_tokens)
                 text = _extract_json(raw)
                 result = json.loads(text)
                 logger.debug("call_json OK (attempt %d, %d chars)", attempt + 1, len(text))
@@ -57,10 +74,10 @@ class LLMClient:
                     "JSON parse failure attempt %d/%d: %s — preview: %.120s",
                     attempt + 1, max_retries, exc, raw[:200] if "raw" in dir() else "",
                 )
-            except anthropic.APIStatusError as exc:
+            except openai.APIStatusError as exc:
                 last_error = exc
                 logger.warning("API error attempt %d/%d: %s %s", attempt + 1, max_retries, exc.status_code, exc.message)
-            except anthropic.APIConnectionError as exc:
+            except openai.APIConnectionError as exc:
                 last_error = exc
                 logger.warning("Connection error attempt %d/%d: %s", attempt + 1, max_retries, exc)
 
@@ -75,17 +92,18 @@ class LLMClient:
         self,
         system: str,
         user: str,
+        model: str = AGENT1_MODEL,
         max_tokens: int = 2048,
         max_retries: int = 3,
     ) -> str:
-        """Call Claude and return the raw text response with retry."""
+        """Call the model and return the raw text response with retry."""
         last_error: Exception | None = None
         for attempt in range(max_retries):
             try:
-                result = self._call(system, user, max_tokens)
+                result = self._call(system, user, model, max_tokens)
                 logger.debug("call_text OK (attempt %d, %d chars)", attempt + 1, len(result))
                 return result
-            except (anthropic.APIStatusError, anthropic.APIConnectionError) as exc:
+            except (openai.APIStatusError, openai.APIConnectionError) as exc:
                 last_error = exc
                 logger.warning("API error attempt %d/%d: %s", attempt + 1, max_retries, exc)
                 if attempt < max_retries - 1:
@@ -97,11 +115,13 @@ class LLMClient:
     # Internal
     # ------------------------------------------------------------------
 
-    def _call(self, system: str, user: str, max_tokens: int) -> str:
-        msg = self._client.messages.create(
-            model=MODEL,
+    def _call(self, system: str, user: str, model: str, max_tokens: int) -> str:
+        response = self._client.chat.completions.create(
+            model=model,
             max_tokens=max_tokens,
-            system=system,
-            messages=[{"role": "user", "content": user}],
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": user},
+            ],
         )
-        return msg.content[0].text
+        return response.choices[0].message.content

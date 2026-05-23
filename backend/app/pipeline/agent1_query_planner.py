@@ -274,9 +274,9 @@ if __name__ == "__main__":
     )
     load_dotenv()
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    api_key = os.environ.get("OPENROUTER_API_KEY")
     if not api_key:
-        print("ERROR: ANTHROPIC_API_KEY not set in environment / .env", file=sys.stderr)
+        print("ERROR: OPENROUTER_API_KEY not set in environment / .env", file=sys.stderr)
         sys.exit(1)
 
     companies = [c.name for c in COMPANIES]
