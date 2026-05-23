@@ -58,6 +58,8 @@ class FactObject(BaseModel):
     sentiment: str
     sentiment_score: float
     confidence: float
+    atomic_claims: Optional[List[str]] = None   # SAFE-verified atomic sub-claims
+    safe_verified: bool = False                  # True after SAFE atomic verification passes
 
 
 class VerifiedClaim(BaseModel):
@@ -71,6 +73,7 @@ class VerifiedClaim(BaseModel):
     weighted_sentiment: float
     recency_score: float
     final_confidence: float
+    factscore: float = 0.0              # FActScore atomic precision (arXiv:2305.14251)
     is_contradicted: bool
     contradiction_note: Optional[str]
 
