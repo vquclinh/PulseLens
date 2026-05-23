@@ -1,6 +1,12 @@
 /* Global styles — Tailwind base, CSS custom properties for PulseLens design tokens */
 @import "tailwindcss";
 
+.font-logo {
+  font-family: 'Changa One', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
 :root {
   --pulse-heating: #16a34a;
   --pulse-stable: #2563eb;
