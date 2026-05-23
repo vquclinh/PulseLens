@@ -1,0 +1,19 @@
+/* Global styles — Tailwind base, CSS custom properties for PulseLens design tokens */
+@import "tailwindcss";
+
+:root {
+  --pulse-heating: #16a34a;
+  --pulse-stable: #2563eb;
+  --pulse-cooling: #dc2626;
+  --pulse-volatile: #d97706;
+  --pulse-risk: #9333ea;
+
+  --tier-1: #1e40af;
+  --tier-2: #0369a1;
+  --tier-3: #0f766e;
+  --tier-4: #64748b;
+
+  --sentiment-positive: #16a34a;
+  --sentiment-negative: #dc2626;
+  --sentiment-neutral: #64748b;
+}
