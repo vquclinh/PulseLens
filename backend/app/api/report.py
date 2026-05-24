@@ -1,5 +1,5 @@
 # Report API — POST /api/run triggers pipeline, GET /api/report/{id} returns report JSON
-from fastapi import APIRouter, BackgroundTasks, HTTPException
+from fastapi import APIRouter
 from app.schemas.models import MarketPulseReport
 
 router = APIRouter(prefix="/api")

@@ -259,8 +259,9 @@ class QueryPlanner:
                 "Hard stop — do not call run() again."
             )
 
-        is_expansion = bool(low_signal_types and expansion_round > 0)
-        signal_types = low_signal_types if is_expansion else _ALL_SIGNAL_TYPES
+        expansion_signal_types = low_signal_types or []
+        is_expansion = expansion_round > 0 and bool(expansion_signal_types)
+        signal_types = expansion_signal_types if is_expansion else _ALL_SIGNAL_TYPES
         target_count = "5 to 10" if is_expansion else "24 to 32"
         min_queries = MIN_EXPANSION_QUERIES if is_expansion else MIN_QUERIES
         required_signal_types = set(signal_types)
@@ -298,7 +299,7 @@ class QueryPlanner:
         if is_expansion:
             expansion_note = (
                 f"\n⚠ EXPANSION ROUND {expansion_round}: Generate gap-filling queries ONLY.\n"
-                f"Low-coverage signal types to target: {', '.join(low_signal_types)}\n"
+                f"Low-coverage signal types to target: {', '.join(expansion_signal_types)}\n"
                 "Do NOT generate queries for other signal types."
             )
 

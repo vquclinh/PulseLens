@@ -1,8 +1,6 @@
 # Chat API — POST /api/chat runs RAG over stored facts and returns grounded response
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from app.schemas.models import ChatRequest, ChatResponse
-from app.db.database import get_db
-from app.utils.llm_client import LLMClient
 
 router = APIRouter(prefix="/api")
 

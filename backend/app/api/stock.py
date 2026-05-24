@@ -1,7 +1,6 @@
 # Stock API — GET /api/stock/{ticker} returns Alpha Vantage price context with 4-hour cache
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from app.schemas.models import StockContext
-from app.utils.alphavantage_client import AlphaVantageClient
 
 router = APIRouter(prefix="/api")
 
