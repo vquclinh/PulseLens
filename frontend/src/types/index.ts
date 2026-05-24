@@ -34,7 +34,7 @@ export interface RawDocument {
   fetched_at: string
   source_tier: 1 | 2 | 3 | 4
   collection_query: string
-  signal_type_hint: string | null
+  signal_type_hint: SignalType | null
 }
 
 export interface FactObject {

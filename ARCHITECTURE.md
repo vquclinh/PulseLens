@@ -270,7 +270,7 @@ query generation begins.
 
 ---
 
-#### [PAPER 2] Multi-HyDE (Multiple Hypothetical Document Embeddings)
+#### [PAPER 2] Multi-HyDE-inspired query fan-out (adapted from arXiv:2509.16369)
 ```
 Authors:  Srinivasan et al., IIT Madras
 Venue:    EMNLP 2025
@@ -278,23 +278,30 @@ Citation: arXiv:2509.16369
 Results:  +11.2% accuracy, -15% hallucination on financial QA benchmarks
 ```
 
-**What it does:**
-Instead of generating 1 query per topic, Multi-HyDE generates N
-non-equivalent hypothetical queries per signal dimension. Each query
-hypothesizes what a relevant document would look like if the signal
-were confirmed. The system then retrieves documents matching each
-hypothesis, dramatically increasing signal coverage.
+**What the paper does (full algorithm):**
+Multi-HyDE generates N non-equivalent hypothetical queries, synthesizes a
+hypothetical document for each, embeds those documents, retrieves real
+documents by vector similarity, concatenates results, and reranks with
+a cross-encoder.
+
+**What PulseLens implements (adapted):**
+Step 1 only — diverse, non-equivalent query generation per signal dimension.
+Steps 2–5 (hypothetical document synthesis, embedding, vector retrieval,
+reranking) are not implemented because PulseLens uses Bright Data web
+collection, not a vector store. The core insight — generate queries that
+would each retrieve *different* hypothetical documents — still applies and
+improves signal coverage vs. single-query generation.
 
 **Why it matters here:**
 A single query "Nvidia AI hardware news" returns generic articles.
-Multi-HyDE generates: "Nvidia AI infrastructure job postings Q2 2025",
+The adapted fan-out generates: "Nvidia AI infrastructure job postings Q2 2025",
 "Nvidia data center engineering headcount expansion", "Nvidia GPU compute
 workforce site:linkedin.com" — each targeting a different facet of the
-same signal, collectively recovering evidence that no single query would find.
+same signal, collectively recovering evidence that no single query finds.
 
 **Applied at:**
-Main query generation loop. Every `(company, signal_type, source_type)`
-triple spawns 2–3 non-equivalent queries.
+Main query generation loop in `agent1_query_planner.py`. Every
+`(company, signal_type, source_type)` triple spawns 2–3 non-equivalent queries.
 
 ---
 
@@ -1306,14 +1313,16 @@ Applied:  Agent 1 — Query Planner (first reasoning step before query generatio
 
 ---
 
-### [2] Multi-HyDE
+### [2] Multi-HyDE (adapted — query generation step only)
 ```
 Title:    Enhancing Financial RAG with Agentic AI and Multi-HyDE
 Authors:  Srinivasan et al., IIT Madras
 Venue:    EMNLP 2025
 Link:     https://arxiv.org/abs/2509.16369
 Results:  +11.2% accuracy, -15% hallucination on financial QA
-Applied:  Agent 1 — Query Planner (main query decomposition loop)
+Applied:  Agent 1 — Query Planner (diverse non-equivalent query fan-out only;
+          hypothetical document synthesis, embedding, retrieval, and reranking
+          steps are not implemented — web collection replaces vector retrieval)
 ```
 
 ---

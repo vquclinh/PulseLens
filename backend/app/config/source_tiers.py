@@ -2,18 +2,14 @@
 from typing import Literal
 from urllib.parse import urlparse
 
+from app.config.companies import COMPANIES
 
-TIER_1_DOMAINS: set[str] = {
-    "sec.gov",
-    "ir.nvidia.com",
-    "ir.amd.com",
-    "investor.intel.com",
-    "investors.broadcom.com",
-    "ir.supermicro.com",
-    "ir.dell.com",
-    "investor.hpe.com",
-    "investor.micron.com",
-}
+# Tier 1: SEC (always) + each company's IR domain derived from companies.py ir_url.
+# Keeping this derived avoids having to update two files when IR URLs change.
+TIER_1_DOMAINS: set[str] = (
+    {urlparse(c.ir_url).netloc.lstrip("www.") for c in COMPANIES if c.ir_url}
+    | {"sec.gov"}
+)
 
 TIER_2_DOMAINS: set[str] = {
     "reuters.com",

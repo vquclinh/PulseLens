@@ -10,6 +10,10 @@ from typing import Literal
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import END, START, StateGraph
 
+from app.config.companies import COMPANIES
+from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
+from app.config.quality_gates import MAX_EXPANSION_ROUNDS
+from app.pipeline.agent1_query_planner import QueryPlanner
 from app.pipeline.state import PipelineState
 
 logger = logging.getLogger(__name__)
@@ -23,9 +27,21 @@ os.makedirs(os.path.dirname(_DB_PATH), exist_ok=True)
 # Each returns an empty dict (no state changes) until wired to a real agent.
 
 def query_planner(state: PipelineState) -> dict:
-    """Agent 1 — Query Planner (Step-Back + Multi-HyDE)"""
-    logger.info("node: query_planner")
-    return {}
+    """Agent 1 — Query Planner (Step-Back + Multi-HyDE-inspired fan-out)"""
+    expansion_round = state.get("query_expansion_rounds", 0)
+    logger.info("node: query_planner (round=%d)", expansion_round)
+    planner = QueryPlanner()
+    low_signal_types = state.get("low_signal_types") or None
+    companies = state.get("companies") or [c.name for c in COMPANIES]
+    queries = planner.run(
+        market=state.get("market", DEFAULT_MARKET),
+        companies=companies,
+        time_window=state.get("time_window", DEFAULT_TIME_WINDOW),
+        expansion_round=expansion_round,
+        low_signal_types=low_signal_types,
+    )
+    existing = list(state.get("queries") or [])
+    return {"queries": existing + queries}   # counter owned by quality_gate
 
 
 def web_worker(state: PipelineState) -> dict:
@@ -59,8 +75,26 @@ def finbert_scorer(state: PipelineState) -> dict:
 
 
 def quality_gate(state: PipelineState) -> dict:
-    """Node — Quality Gate: checks fact count and signal coverage, updates control fields"""
+    """Node — Quality Gate: checks signal coverage, owns query_expansion_rounds counter"""
     logger.info("node: quality_gate")
+    scored_facts = state.get("scored_facts") or []
+    expansion_rounds = state.get("query_expansion_rounds", 0)
+
+    # Short-circuit: no scored facts yet (upstream nodes are stubs) → pass
+    if not scored_facts:
+        return {"quality_passed": True}
+
+    # Real check: signal coverage gate (TODO: tune thresholds with real data)
+    covered = {f["signal_type"] for f in scored_facts if isinstance(f, dict)}
+    if len(covered) < 4 and expansion_rounds < MAX_EXPANSION_ROUNDS:
+        from app.schemas.models import SignalType
+        all_signal_types = {st.value for st in SignalType}
+        return {
+            "quality_passed": False,
+            "query_expansion_rounds": expansion_rounds + 1,
+            "low_signal_types": sorted(all_signal_types - covered),
+        }
+
     return {"quality_passed": True}
 
 

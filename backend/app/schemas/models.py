@@ -40,9 +40,9 @@ class RawDocument(BaseModel):
     content: str
     published_date: Optional[str]
     fetched_at: str
-    source_tier: int
+    source_tier: Literal[1, 2, 3, 4]
     collection_query: str
-    signal_type_hint: Optional[str]
+    signal_type_hint: Optional[SignalType]
 
 
 class FactObject(BaseModel):
@@ -53,9 +53,9 @@ class FactObject(BaseModel):
     claim: str
     evidence_quote: str
     source_url: str
-    source_tier: int
+    source_tier: Literal[1, 2, 3, 4]
     published_date: Optional[str]
-    sentiment: str
+    sentiment: Literal["positive", "negative", "neutral"]
     sentiment_score: float
     confidence: float
     atomic_claims: Optional[List[str]] = None   # SAFE-verified atomic sub-claims
@@ -80,7 +80,7 @@ class VerifiedClaim(BaseModel):
 
 class AnomalyFlag(BaseModel):
     description: str
-    signal_types_involved: List[str]
+    signal_types_involved: List[SignalType]
     implication: str
     fact_ids: List[str]
 
@@ -90,18 +90,18 @@ class WatchItem(BaseModel):
     rationale: str
     trigger: str
     signals_pointing_there: List[str]
-    urgency: str
+    urgency: Literal["this_week", "next_2_weeks", "this_month"]
 
 
 class CompanyNarrative(BaseModel):
     company: str
     ticker: str
     momentum: MomentumLabel
-    momentum_score: float
+    momentum_score: int
     narrative: str
     key_events: List[str]
     key_drivers: List[str]
-    competitive_position: str
+    competitive_position: Literal["gaining", "holding", "losing"]
     supporting_claim_ids: List[str]
     evidence_count: int
     price_current: Optional[float]

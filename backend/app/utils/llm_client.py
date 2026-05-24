@@ -14,13 +14,17 @@ logger = logging.getLogger(__name__)
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
-# Per-agent model assignments — update when selecting models for later agents
-AGENT1_MODEL = "anthropic/claude-sonnet-4-5"   # Query Planner
-AGENT3_MODEL = "anthropic/claude-sonnet-4-5"   # Fact Extractor       [update later]
-AGENT5_MODEL = "anthropic/claude-sonnet-4-5"   # Contradiction Writer [update later]
-AGENT6_MODEL = "anthropic/claude-sonnet-4-5"   # Narrative Synthesizer[update later]
-AGENT7_MODEL = "anthropic/claude-sonnet-4-5"   # Watch List Builder   [update later]
-AGENT8_MODEL = "anthropic/claude-sonnet-4-5"   # Analyst Chat         [update later]
+_DEFAULT_MODEL = "google/gemini-2.5-flash"
+
+# Per-agent model assignments — override via env vars (e.g. AGENT1_MODEL=anthropic/claude-sonnet-4-5)
+AGENT_MODELS: dict[str, str] = {
+    "agent1": os.getenv("AGENT1_MODEL", _DEFAULT_MODEL),   # Query Planner
+    "agent3": os.getenv("AGENT3_MODEL", _DEFAULT_MODEL),   # Fact Extractor
+    "agent5": os.getenv("AGENT5_MODEL", _DEFAULT_MODEL),   # Contradiction Writer
+    "agent6": os.getenv("AGENT6_MODEL", _DEFAULT_MODEL),   # Narrative Synthesizer
+    "agent7": os.getenv("AGENT7_MODEL", _DEFAULT_MODEL),   # Watch List Builder
+    "agent8": os.getenv("AGENT8_MODEL", _DEFAULT_MODEL),   # Analyst Chat
+}
 
 _RETRY_DELAYS = [1, 2, 4]   # seconds between retry attempts
 
@@ -35,7 +39,7 @@ def _extract_json(text: str) -> str:
 
 
 class LLMClient:
-    def __init__(self, api_key: str | None = None) -> None:
+    def __init__(self, api_key: str | None = None, agent_name: str = "agent1") -> None:
         key = api_key or os.getenv("OPENROUTER_API_KEY")
         if not key:
             raise ValueError("OPENROUTER_API_KEY is required — set it in .env or pass api_key=")
@@ -43,6 +47,7 @@ class LLMClient:
             base_url=OPENROUTER_BASE_URL,
             api_key=key,
         )
+        self._model = AGENT_MODELS.get(agent_name, AGENT_MODELS["agent1"])
 
     # ------------------------------------------------------------------
     # Public interface
@@ -52,7 +57,7 @@ class LLMClient:
         self,
         system: str,
         user: str,
-        model: str = AGENT1_MODEL,
+        model: str | None = None,
         max_tokens: int = 4096,
         max_retries: int = 3,
     ) -> Any:
@@ -60,10 +65,11 @@ class LLMClient:
         Call the model and return parsed JSON. Retries on API error or JSON parse failure.
         Raises RuntimeError after all attempts are exhausted.
         """
+        resolved_model = model or self._model
         last_error: Exception | None = None
         for attempt in range(max_retries):
             try:
-                raw = self._call(system, user, model, max_tokens)
+                raw = self._call(system, user, resolved_model, max_tokens)
                 text = _extract_json(raw)
                 result = json.loads(text)
                 logger.debug("call_json OK (attempt %d, %d chars)", attempt + 1, len(text))
@@ -92,15 +98,16 @@ class LLMClient:
         self,
         system: str,
         user: str,
-        model: str = AGENT1_MODEL,
+        model: str | None = None,
         max_tokens: int = 2048,
         max_retries: int = 3,
     ) -> str:
         """Call the model and return the raw text response with retry."""
+        resolved_model = model or self._model
         last_error: Exception | None = None
         for attempt in range(max_retries):
             try:
-                result = self._call(system, user, model, max_tokens)
+                result = self._call(system, user, resolved_model, max_tokens)
                 logger.debug("call_text OK (attempt %d, %d chars)", attempt + 1, len(result))
                 return result
             except (openai.APIStatusError, openai.APIConnectionError) as exc:
