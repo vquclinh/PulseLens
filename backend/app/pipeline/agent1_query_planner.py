@@ -120,8 +120,9 @@ Return ONLY a valid JSON array. Each element must have exactly these fields:
 
 
 class QueryPlanner:
-    def __init__(self, api_key: str) -> None:
+    def __init__(self, api_key: str | None = None) -> None:
         self._llm = LLMClient(api_key=api_key)
+        self.last_step_back_output: str = ""
 
     def run(
         self,
@@ -164,6 +165,7 @@ class QueryPlanner:
             system=step_back_system,
             user=f"Identify the abstract signal patterns for {market} ({time_window}).",
         )
+        self.last_step_back_output = abstract_principles   # stored for inspection/reporting
         logger.info("Step-Back complete (%d chars)", len(abstract_principles))
 
         # ── Phase 2: Multi-HyDE decomposition (arXiv:2509.16369) ──────────────
