@@ -36,11 +36,10 @@ def _resolve_cache_dir() -> Path:
     return path if path.is_absolute() else _BACKEND_DIR / path
 
 
-CACHE_DIR = _resolve_cache_dir()
 MIN_CONTENT_CHARS = int(os.getenv("BRIGHTDATA_MIN_CONTENT_CHARS", "120"))
 MAX_CONTENT_CHARS = int(os.getenv("BRIGHTDATA_MAX_CONTENT_CHARS", "200000"))
 
-_cache = diskcache.Cache(str(CACHE_DIR))
+_cache: diskcache.Cache | None = None
 _url_locks: dict[str, asyncio.Lock] = {}
 _collection_semaphore = asyncio.Semaphore(MAX_CONCURRENT_BATCHES)
 
@@ -66,7 +65,12 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
 
 async def collect_documents_for_query(query: SearchQuery) -> list[RawDocument]:
     async with _collection_semaphore:
-        client = BrightDataClient.from_env()
+        try:
+            client = BrightDataClient.from_env()
+        except ValueError as exc:
+            logger.error("Agent 2 Bright Data configuration error: %s", exc)
+            return []
+
         candidates = await _discover_candidate_urls(client, query)
         docs: list[RawDocument] = []
 
@@ -76,7 +80,7 @@ async def collect_documents_for_query(query: SearchQuery) -> list[RawDocument]:
                 continue
             try:
                 payload = await _fetch_page_with_cache(client, url, query.source_type)
-            except BrightDataError as exc:
+            except Exception as exc:
                 logger.warning("Agent 2 skipped %s for query %s: %s", url, query.query_id, exc)
                 continue
 
@@ -114,7 +118,7 @@ async def _discover_candidate_urls(client: BrightDataClient, query: SearchQuery)
 
     try:
         return await client.serp_search(query.query_text, num_results=NUM_RESULTS_PER_QUERY)
-    except BrightDataError as exc:
+    except Exception as exc:
         logger.warning("Agent 2 SERP discovery failed for query %s: %s", query.query_id, exc)
         return []
 
@@ -123,12 +127,13 @@ async def _fetch_page_with_cache(client: BrightDataClient, url: str, source_type
     key = _cache_key(url)
     lock = _url_locks.setdefault(key, asyncio.Lock())
     async with lock:
-        cached = _cache.get(key)
+        cache = _get_cache()
+        cached = cache.get(key)
         if isinstance(cached, dict):
             return cached
 
         payload = await _scrape_by_source_type(client, url, source_type)
-        _cache.set(key, payload, expire=CACHE_TTL_SECONDS)
+        cache.set(key, payload, expire=CACHE_TTL_SECONDS)
         return payload
 
 
@@ -145,6 +150,13 @@ async def _scrape_by_source_type(client: BrightDataClient, url: str, source_type
 def _cache_key(url: str) -> str:
     date_key = datetime.now(timezone.utc).date().isoformat()
     return f"{_normalize_url(url)}:{date_key}"
+
+
+def _get_cache() -> diskcache.Cache:
+    global _cache
+    if _cache is None:
+        _cache = diskcache.Cache(str(_resolve_cache_dir()))
+    return _cache
 
 
 def _extract_direct_url(query_text: str) -> str | None:

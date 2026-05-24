@@ -1,5 +1,5 @@
-# Pipeline LangGraph StateGraph — all nodes, edges, quality-gate conditional, SQLite checkpointer
-# Node implementations are placeholders; real agents wired in subsequent tasks.
+# Pipeline LangGraph StateGraph — nodes, Send fan-out, quality-gate conditional, SQLite checkpointer
+# Agent 1 and Agent 2 are implemented; downstream agents are wired as placeholders.
 from __future__ import annotations
 
 import logging
