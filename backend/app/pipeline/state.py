@@ -1,6 +1,8 @@
 # PipelineState — LangGraph TypedDict shared across all pipeline nodes
 from __future__ import annotations
-from typing import TypedDict, List, Dict, Any, Optional
+
+import operator
+from typing import Annotated, TypedDict, List, Dict, Any, Optional
 
 from app.schemas.models import (
     SearchQuery,
@@ -14,7 +16,7 @@ from app.schemas.models import (
 )
 
 
-class PipelineState(TypedDict):
+class PipelineState(TypedDict, total=False):
     # Input
     market: str
     companies: List[str]
@@ -24,7 +26,8 @@ class PipelineState(TypedDict):
     queries: List[SearchQuery]
 
     # Agent 2 output
-    raw_documents: List[RawDocument]
+    agent2_query: Optional[SearchQuery]     # Send fan-out payload for one web_worker
+    raw_documents: Annotated[List[RawDocument], operator.add]
 
     # Agent 3 output (pre-validation)
     raw_facts: List[FactObject]

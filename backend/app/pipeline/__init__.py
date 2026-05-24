@@ -1,1 +1,1 @@
-# Pipeline package — 6 modules: query intelligence through intelligence output
+# Pipeline package — agent-based modules wired by graph.py.

@@ -13,6 +13,7 @@ build/
 *.env.local
 
 # Backend runtime data
+backend/cache/
 backend/data/cache/
 backend/data/reports/
 backend/data/pulselens.db

@@ -9,11 +9,13 @@ from typing import Literal
 
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import END, START, StateGraph
+from langgraph.types import Send
 
 from app.config.companies import COMPANIES
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
 from app.config.quality_gates import MAX_EXPANSION_ROUNDS
 from app.pipeline.agent1_query_planner import QueryPlanner
+from app.pipeline.agent2_web_workers import collect_documents, collect_documents_for_query
 from app.pipeline.state import PipelineState
 
 logger = logging.getLogger(__name__)
@@ -23,8 +25,8 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 _DB_PATH = os.path.normpath(os.path.join(_HERE, "..", "..", "data", "pulselens.db"))
 os.makedirs(os.path.dirname(_DB_PATH), exist_ok=True)
 
-# ── Placeholder node functions ─────────────────────────────────────────────────
-# Each returns an empty dict (no state changes) until wired to a real agent.
+# ── Node functions ─────────────────────────────────────────────────────────────
+# Agent 1 and Agent 2 are implemented; later-stage nodes remain placeholders.
 
 def query_planner(state: PipelineState) -> dict:
     """Agent 1 — Query Planner (Step-Back + Multi-HyDE-inspired fan-out)"""
@@ -44,10 +46,17 @@ def query_planner(state: PipelineState) -> dict:
     return {"queries": existing + queries}   # counter owned by quality_gate
 
 
-def web_worker(state: PipelineState) -> dict:
+async def web_worker(state: PipelineState) -> dict:
     """Agent 2 — Web Collection Workers (Bright Data, parallel fan-out via Send)"""
-    logger.info("node: web_worker")
-    return {}
+    query = state.get("agent2_query")
+    if query is not None:
+        logger.info("node: web_worker query_id=%s", query.query_id)
+        return {"raw_documents": await collect_documents_for_query(query)}
+
+    # Fallback path for direct node testing without Send.
+    queries = state.get("queries") or []
+    logger.info("node: web_worker fallback batch size=%d", len(queries))
+    return {"raw_documents": await collect_documents(queries)}
 
 
 def fact_extractor(state: PipelineState) -> dict:
@@ -136,6 +145,13 @@ def report_assembler(state: PipelineState) -> dict:
 
 # ── Quality gate router ────────────────────────────────────────────────────────
 
+def _fanout_web_workers(state: PipelineState) -> list[Send]:
+    queries = state.get("queries") or []
+    if not queries:
+        return [Send("web_worker", {"agent2_query": None})]
+    return [Send("web_worker", {"agent2_query": query}) for query in queries]
+
+
 def _quality_gate_router(state: PipelineState) -> Literal["expand_queries", "proceed"]:
     """
     Routes after quality_gate node.
@@ -167,7 +183,7 @@ _builder.add_node("report_assembler",    report_assembler)
 
 # Main pipeline edges (matching DAG in ARCHITECTURE.md §2)
 _builder.add_edge(START,               "query_planner")
-_builder.add_edge("query_planner",     "web_worker")
+_builder.add_conditional_edges("query_planner", _fanout_web_workers)
 _builder.add_edge("web_worker",        "fact_extractor")
 _builder.add_edge("fact_extractor",    "validate_fact")
 _builder.add_edge("validate_fact",     "validate_and_split")
