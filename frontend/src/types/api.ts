@@ -1,5 +1,7 @@
-// API call functions — all model types are imported from ./index
-// Do NOT add model/interface definitions here; add them to index.ts instead
+// API call functions — all model types are defined in ./index and re-exported here
+// because the app imports both API helpers and shared types from @/types/api.
+
+export type * from './index'
 
 import type {
   MarketPulseReport,

@@ -18,7 +18,7 @@ COMPANIES: List[Company] = [
         name="Nvidia",
         ticker="NVDA",
         domain="nvidia.com",
-        ir_url="https://ir.nvidia.com",
+        ir_url="https://investor.nvidia.com",
         careers_url="https://nvidia.com/en-us/about-nvidia/careers/",
         known_aliases=["nvidia", "nvidia corporation", "NVDA"],
     ),

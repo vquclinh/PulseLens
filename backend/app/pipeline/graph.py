@@ -1,6 +1,5 @@
 # Pipeline LangGraph StateGraph — nodes, quality-gate conditional, full DAG
-# Implemented: Agent 1–4, validate_fact, SAFE, quality_gate, M4 triangulator
-# Stubs: Agent 5, M5, Agent 6, Agent 7, report_assembler
+# Implemented: Agent 1–7, validate_fact, SAFE, quality_gate, M4 triangulator, M5 signal scorer, report assembler
 from __future__ import annotations
 
 import logging
@@ -14,6 +13,11 @@ from app.pipeline.agent2_web_workers import collect_documents, collect_documents
 from app.pipeline.agent3_fact_extractors import extract_facts_from_documents
 from app.pipeline.agent4_finbert_scorer import run_finbert_scorer
 from app.pipeline.node_quality_gate import quality_gate_router, run_quality_gate
+from app.pipeline.agent5_contradiction_writer import write_contradiction_notes
+from app.pipeline.agent6_narrative_synthesizer import run_narrative_synthesizer
+from app.pipeline.agent7_watch_list_builder import run_watch_list_builder
+from app.pipeline.node_report_assembler import report_assembler as run_report_assembler
+from app.pipeline.node_signal_scorer import run_signal_scorer
 from app.pipeline.node_triangulator import triangulate
 from app.pipeline.node_validate_and_split import run_safe_verification, validate_facts
 from app.pipeline.state import PipelineState
@@ -134,32 +138,59 @@ async def triangulator(state: PipelineState) -> dict:
 
 async def contradiction_writer(state: PipelineState) -> dict:
     """Agent 5 — Contradiction Writers (parallel fan-out per contradicted pair)"""
-    logger.info("node: contradiction_writer")
-    return {}
+    flags = state.get("contradictions") or []
+    scored_facts = state.get("scored_facts") or []
+    verified_claims = state.get("verified_claims") or []
+    logger.info("node: contradiction_writer flags=%d", len(flags))
+    updated_flags, updated_claims = await write_contradiction_notes(flags, scored_facts, verified_claims)
+    logger.info("node: contradiction_writer wrote %d notes", len(updated_flags))
+    return {"contradictions": updated_flags, "verified_claims": updated_claims}
 
 
 async def signal_scorer(state: PipelineState) -> dict:
     """Node — M5 Signal Scorer (weighted formula: tier × recency × factscore)"""
-    logger.info("node: signal_scorer")
-    return {}
+    verified_claims = state.get("verified_claims") or []
+    logger.info("node: signal_scorer claims=%d", len(verified_claims))
+    scores = run_signal_scorer(verified_claims)
+    logger.info(
+        "node: signal_scorer pulse_score=%.1f status=%s",
+        scores["pulse_score"], scores["pulse_status"].value,
+    )
+    return {"signal_scores": scores}
 
 
 async def narrative_synthesizer(state: PipelineState) -> dict:
     """Agent 6 — Narrative Synthesizer (STORM multi-perspective, arXiv:2402.14207)"""
-    logger.info("node: narrative_synthesizer")
-    return {}
+    verified_claims = state.get("verified_claims") or []
+    signal_scores = state.get("signal_scores") or {}
+    logger.info("node: narrative_synthesizer claims=%d", len(verified_claims))
+    narrative = await run_narrative_synthesizer(verified_claims, signal_scores)
+    logger.info(
+        "node: narrative_synthesizer headline=%r anomalies=%d",
+        narrative.narrative_headline[:80],
+        len(narrative.anomalies),
+    )
+    return {"market_narrative": narrative}
 
 
 async def watch_list_builder(state: PipelineState) -> dict:
     """Agent 7 — Watch List Builder (forward indicators from unresolved signals)"""
-    logger.info("node: watch_list_builder")
-    return {}
+    narrative = state.get("market_narrative")
+    verified_claims = state.get("verified_claims") or []
+    logger.info("node: watch_list_builder claims=%d", len(verified_claims))
+    updated_narrative = await run_watch_list_builder(narrative, verified_claims)
+    logger.info("node: watch_list_builder items=%d", len(updated_narrative.watch_list))
+    return {"market_narrative": updated_narrative}
 
 
 async def report_assembler(state: PipelineState) -> dict:
     """Node — Report Assembler: assembles MarketPulseReport, saves to SQLite"""
     logger.info("node: report_assembler")
-    return {}
+    result = await run_report_assembler(state)
+    report = result.get("report")
+    if report is not None:
+        logger.info("node: report_assembler saved report_id=%s", report.report_id)
+    return result
 
 
 # ── Quality gate router ────────────────────────────────────────────────────────

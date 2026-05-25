@@ -17,6 +17,7 @@ from app.config.source_tiers import assign_tier
 from app.schemas.models import RawDocument, SearchQuery
 from app.utils.brightdata_client import BrightDataClient, BrightDataError, DEFAULT_NUM_RESULTS
 from app.utils.helpers import extract_domain, generate_uuid, now_iso
+from app.utils.url_scorer import URLScorer
 
 logger = logging.getLogger(__name__)
 
@@ -74,10 +75,12 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
     if not queries:
         return []
 
+    scorer = URLScorer()  # one instance per pipeline run — error memory shared across all queries
+
     batches = [queries[i : i + QUERIES_PER_BATCH] for i in range(0, len(queries), QUERIES_PER_BATCH)]
     results: list[RawDocument] = []
     for batch in batches:
-        batch_results = await asyncio.gather(*(collect_documents_for_query(query) for query in batch))
+        batch_results = await asyncio.gather(*(collect_documents_for_query(query, scorer=scorer) for query in batch))
         for docs in batch_results:
             results.extend(docs)
     all_docs = _dedupe_documents(results)
@@ -90,7 +93,10 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
     return useful
 
 
-async def collect_documents_for_query(query: SearchQuery) -> list[RawDocument]:
+async def collect_documents_for_query(
+    query: SearchQuery,
+    scorer: URLScorer | None = None,
+) -> list[RawDocument]:
     async with _collection_semaphore:
         try:
             client = BrightDataClient.from_env()
@@ -99,6 +105,17 @@ async def collect_documents_for_query(query: SearchQuery) -> list[RawDocument]:
             return []
 
         candidates = await _discover_candidate_urls(client, query)
+
+        if scorer is not None and candidates:
+            pre_filter = len(candidates)
+            candidates = [c for c in candidates if scorer.should_fetch(c, query)]
+            skipped = pre_filter - len(candidates)
+            if skipped > 0:
+                logger.info(
+                    "Agent 2 skipped %d/%d SERP results for query %s — below relevance threshold",
+                    skipped, pre_filter, query.query_id,
+                )
+
         docs: list[RawDocument] = []
 
         for candidate in candidates:
@@ -107,6 +124,11 @@ async def collect_documents_for_query(query: SearchQuery) -> list[RawDocument]:
                 continue
             try:
                 payload = await _fetch_page_with_cache(client, url, query.source_type)
+            except BrightDataError as exc:
+                if scorer is not None:
+                    scorer.record_http_result(url, exc.status_code or 0)
+                logger.warning("Agent 2 skipped %s for query %s: %s", url, query.query_id, exc)
+                continue
             except Exception as exc:
                 logger.warning("Agent 2 skipped %s for query %s: %s", url, query.query_id, exc)
                 continue
@@ -157,7 +179,7 @@ async def _discover_candidate_urls(client: BrightDataClient, query: SearchQuery)
 
 
 async def _fetch_page_with_cache(client: BrightDataClient, url: str, source_type: str) -> dict[str, Any]:
-    key = _cache_key(url)
+    key = _cache_key(url, source_type)
     lock = _url_locks.setdefault(key, asyncio.Lock())
     async with lock:
         cache = _get_cache()
@@ -180,9 +202,10 @@ async def _scrape_by_source_type(client: BrightDataClient, url: str, source_type
     return await client.scrape_page(url)
 
 
-def _cache_key(url: str) -> str:
+def _cache_key(url: str, source_type: str = "") -> str:
     date_key = datetime.now(timezone.utc).date().isoformat()
-    return f"{_normalize_url(url)}:{date_key}"
+    parts = [_normalize_url(url), source_type, date_key] if source_type else [_normalize_url(url), date_key]
+    return ":".join(parts)
 
 
 def _get_cache() -> diskcache.Cache:

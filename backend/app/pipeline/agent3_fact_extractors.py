@@ -8,7 +8,7 @@ import logging
 import os
 from typing import Optional
 
-from app.config.companies import KNOWN_ENTITIES
+from app.config.companies import COMPANIES
 from app.schemas.models import FactObject, RawDocument, SignalType
 from app.utils.helpers import generate_uuid
 from app.utils.llm_client import LLMClient
@@ -17,6 +17,17 @@ logger = logging.getLogger(__name__)
 
 MAX_FACTS_PER_DOCUMENT = int(os.getenv("MAX_FACTS_PER_DOCUMENT", "10"))
 _MAX_CONCURRENT = 10  # asyncio.to_thread slots for LLM calls
+
+ENTITY_ALIASES: dict[str, str] = {"market": "market"}
+for _company in COMPANIES:
+    ENTITY_ALIASES[_company.name.lower()] = _company.name
+    ENTITY_ALIASES[_company.ticker.lower()] = _company.name
+    for _alias in _company.known_aliases:
+        ENTITY_ALIASES[_alias.lower()] = _company.name
+
+
+def normalize_entity(raw: str) -> str:
+    return ENTITY_ALIASES.get(raw.lower().strip(), raw.strip())
 
 # ── Prompts ────────────────────────────────────────────────────────────────────
 
@@ -119,7 +130,7 @@ def _build_fact(item: dict, doc: RawDocument) -> Optional[FactObject]:
     except ValueError:
         return None
 
-    entity = str(item.get("entity", "")).strip()
+    entity = normalize_entity(str(item.get("entity", "")))
     claim = str(item.get("claim", "")).strip()
     evidence_quote = str(item.get("evidence_quote", "")).strip()
 

@@ -80,8 +80,8 @@ Each paper applied here solves a specific failure mode:
                          │
 ┌────────────────────────▼────────────────────────────────────────────┐
 │  EXTERNAL SERVICES                                                  │
-│  Bright Data  ·  Anthropic API  ·  HuggingFace  ·  Alpha Vantage  │
-│  SQLite  (LangGraph checkpoints + reports + facts + chat history)  │
+│  Bright Data  ·  OpenRouter API  ·  HuggingFace  ·  Alpha Vantage │
+│  SQLite  (reports + facts + chat history; checkpoints planned)     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -94,14 +94,14 @@ LangChain handles this poorly. LangGraph handles it natively.
 | Requirement | LangGraph capability |
 |---|---|
 | Parallel M2/M3 fan-out (25+ URLs simultaneously) | `Send` API — true parallel node execution |
-| Resume after failure without restarting | Built-in checkpointing to SQLite |
+| Resume after failure without restarting | Built-in checkpointing; SQLite persistence is planned |
 | Re-query when signal coverage is low | Conditional edges with cycle support |
 | Persistent chat conversation history | StateGraph with thread-level state |
 | Streaming chat tokens to frontend | First-class token streaming |
 | Typed state shared across all nodes | `TypedDict` — enforced at every node boundary |
 
 **Critical:** LangGraph does not require LangChain abstractions.
-Every LLM call in PulseLens uses the **Anthropic SDK directly**.
+Every LLM call in PulseLens uses the **OpenRouter API via `LLMClient`**.
 LangGraph is only the graph wiring — not the LLM interface.
 
 ---
@@ -113,11 +113,11 @@ START
   │
   ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Agent 1 — Query Planner                  [LLM: Claude]  │
+│  Agent 1 — Query Planner              [LLM: OpenRouter]  │
 │  Step-Back Prompting + Multi-HyDE                        │
 │  arXiv:2310.06117 + arXiv:2509.16369                     │
 └──────────────────────────┬───────────────────────────────┘
-                           │ 15–25 SearchQuery[]
+                           │ 40–50 SearchQuery[]
                            │ LangGraph Send API (fan-out)
           ┌────────────────┼────────────────┐
           ▼                ▼                ▼
@@ -151,7 +151,7 @@ START
                            │
                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Node — SAFE Atomic Verification          [LLM: Claude]  │
+│  Node — SAFE Atomic Verification     [LLM: OpenRouter]  │
 │  SAFE: Search-Augmented Factuality Evaluator             │
 │  arXiv:2403.18802  (Google DeepMind, 2024)               │
 │  Decompose claim → atomic sub-claims                     │
@@ -191,7 +191,7 @@ START
                                │  Agent 5     │  │  Agent 5     │  │ Agent 5  │
                                │  Contradiction│  │  Contradiction│ │  ...     │
                                │  Writer      │  │  Writer      │ │          │
-                               │  [LLM:Claude]│  │  [LLM:Claude]│ │          │
+                               │ [OpenRouter] │  │ [OpenRouter] │ │          │
                                └──────┬───────┘  └──────┬───────┘ └────┬─────┘
                                       └──────────────────┴──────────────┘
                                                          │ VerifiedClaim[]
@@ -208,7 +208,7 @@ START
                                                              ▼
                                   ┌──────────────────────────────────────────┐
                                   │  Agent 6 — Narrative Synthesizer         │
-                                  │                          [LLM: Claude]   │
+                                  │                      [LLM: OpenRouter]   │
                                   │  STORM: Multi-perspective synthesis       │
                                   │  arXiv:2402.14207  (Stanford, 2024)      │
                                   │  Output: MarketNarrative (Layer 3)       │
@@ -217,7 +217,7 @@ START
                                                              ▼
                                   ┌──────────────────────────────────────────┐
                                   │  Agent 7 — Watch List Builder            │
-                                  │                          [LLM: Claude]   │
+                                  │                      [LLM: OpenRouter]   │
                                   │  Forward indicators from unresolved       │
                                   │  developing signals                       │
                                   │  Output: WatchItem[] (Layer 4)           │
@@ -238,7 +238,7 @@ START
 ## 3. Agent 1 — Query Planner
 
 **File:** `app/pipeline/agent1_query_planner.py`  
-**Type:** LLM — Claude (`claude-sonnet-4-20250514`)  
+**Type:** LLM — OpenRouter via `LLMClient` (`google/gemini-2.5-flash` default)  
 **LangGraph node:** `query_planner`
 
 ### Research methods applied
@@ -335,8 +335,8 @@ Return ONLY valid JSON: List[SearchQuery]. No prose.
 ### Quality constraints
 
 ```python
-MIN_QUERIES          = 15
-MIN_SIGNAL_TYPES     = 5      # must cover at least 5 of 7 signal types
+MIN_QUERIES          = 40
+MIN_SIGNAL_TYPES     = 7      # must cover all 7 signal types
 MAX_EXPANSION_ROUNDS = 2      # hard stop to prevent infinite loops
 ```
 
@@ -402,7 +402,7 @@ fetched twice in a single pipeline run.
 ## 5. Agent 3 — Fact Extractors
 
 **File:** `app/pipeline/agent3_fact_extractors.py`  
-**Type:** LLM — Claude  
+**Type:** LLM — OpenRouter via `LLMClient`  
 **LangGraph node:** `fact_extractor` (fanned out via `Send` — 20 concurrent)  
 **Research methods applied:** RASG-inspired schema extraction
 
@@ -503,7 +503,7 @@ the rest of the pipeline. No downstream component ever sees a hallucinated fact.
 ## 6. Node — SAFE Atomic Verification
 
 **File:** `app/pipeline/node_validate_and_split.py`  
-**Type:** LLM call (Claude) + pure Python logic  
+**Type:** LLM call via `LLMClient` + pure Python logic  
 **LangGraph node:** `validate_and_split`
 
 ### [PAPER 4] SAFE — Search-Augmented Factuality Evaluator
@@ -599,7 +599,7 @@ BERT model fine-tuned on financial corpora: earnings call transcripts,
 analyst reports, financial news articles. Outputs sentiment classification
 (positive / negative / neutral) + confidence score per claim.
 
-**Why not use Claude for sentiment:**
+**Why not use a general LLM for sentiment:**
 - FinBERT is faster: <1ms per claim on CPU vs ~500ms per LLM call
 - FinBERT is free: no API cost
 - FinBERT is more accurate on financial jargon: understands domain-specific
@@ -840,7 +840,7 @@ own judgment. Blending contradictory signals is a form of misinformation.
 ## 10. Agent 5 — Contradiction Writers
 
 **File:** `app/pipeline/agent5_contradiction_writer.py`  
-**Type:** LLM — Claude  
+**Type:** LLM — OpenRouter via `LLMClient`  
 **LangGraph node:** `contradiction_writer` (parallel, one per flagged pair)  
 **Research methods applied:** None — requires LLM judgment
 
@@ -952,7 +952,7 @@ def classify_pulse_status(
 ## 12. Agent 6 — Narrative Synthesizer
 
 **File:** `app/pipeline/agent6_narrative_synthesizer.py`  
-**Type:** LLM — Claude  
+**Type:** LLM — OpenRouter via `LLMClient`  
 **LangGraph node:** `narrative_synthesizer`
 
 ### [PAPER 9] STORM — Synthesis Through Outline, Research, and Multi-perspective
@@ -1041,7 +1041,7 @@ def validate_narrative(
 ## 13. Agent 7 — Watch List Builder
 
 **File:** `app/pipeline/agent7_watch_list_builder.py`  
-**Type:** LLM — Claude  
+**Type:** LLM — OpenRouter via `LLMClient`  
 **LangGraph node:** `watch_list_builder`  
 **Research methods applied:** None — forward-looking synthesis
 
@@ -1079,7 +1079,8 @@ Verified claims:   {verified_claims_json}
 **Research methods applied:** None
 
 Assembles all pipeline outputs into a single `MarketPulseReport` object
-and saves it to SQLite. LangGraph checkpoint is also saved here.
+and saves it to SQLite. LangGraph currently uses `MemorySaver`; SQLite
+checkpoint persistence is still a follow-up.
 
 ```python
 def assemble_report(state: PipelineState) -> MarketPulseReport:

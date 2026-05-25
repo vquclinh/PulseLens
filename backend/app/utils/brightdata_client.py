@@ -26,8 +26,15 @@ DEFAULT_TIMEOUT_SECONDS = 15.0
 DEFAULT_RETRY_DELAYS = (1.0, 2.0, 4.0)
 
 
+_NON_RETRYABLE_CODES: frozenset[int] = frozenset({400, 401, 403, 404, 410})
+
+
 class BrightDataError(RuntimeError):
     """Raised when Bright Data cannot return a usable response."""
+
+    def __init__(self, message: str, status_code: int | None = None) -> None:
+        super().__init__(message)
+        self.status_code = status_code
 
 
 class BrightDataClient:
@@ -115,6 +122,7 @@ class BrightDataClient:
 
         headers = {"Authorization": f"Bearer {self.api_key}"}
         last_error: Exception | None = None
+        last_status_code: int | None = None
         for attempt in range(len(self.retry_delays) + 1):
             try:
                 async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
@@ -123,6 +131,15 @@ class BrightDataClient:
                     return self._decode_response(response)
             except (httpx.HTTPError, ValueError) as exc:
                 last_error = exc
+                if isinstance(exc, httpx.HTTPStatusError):
+                    last_status_code = exc.response.status_code
+                    if last_status_code in _NON_RETRYABLE_CODES:
+                        logger.warning(
+                            "Bright Data permanent error %d for %s — not retrying",
+                            last_status_code,
+                            url,
+                        )
+                        break
                 if attempt >= len(self.retry_delays):
                     break
                 delay = self.retry_delays[attempt]
@@ -136,7 +153,10 @@ class BrightDataClient:
                 )
                 await asyncio.sleep(delay)
 
-        raise BrightDataError(f"Bright Data request failed for {url}: {last_error}")
+        raise BrightDataError(
+            f"Bright Data request failed for {url}: {last_error}",
+            status_code=last_status_code,
+        )
 
     @staticmethod
     def _decode_response(response: httpx.Response) -> Any:

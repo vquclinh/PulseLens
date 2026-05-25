@@ -1,6 +1,6 @@
 """
-Pipeline quality regression test — run as:
-  python -m app.pipeline.test_pipeline_quality
+Pipeline quality regression test — run from backend/ as:
+  python -m tests.test_pipeline_quality
 
 Runs Agent 1 → Agent 2 → Agent 3 → validate_fact → SAFE → FinBERT on 5 live queries,
 prints a before/after comparison against the baseline from the first pipeline run,
@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 # ── Bootstrap ────────────────────────────────────────────────────────────────
-_BACKEND = Path(__file__).resolve().parents[2]
+_BACKEND = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(_BACKEND))
 
 from dotenv import load_dotenv

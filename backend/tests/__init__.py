@@ -1,1 +1,1 @@
-# Test suite for pipeline modules
+# Backend test package.
