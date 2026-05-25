@@ -1,6 +1,6 @@
-# Agent 3 — RASG schema-constrained fact extraction (arXiv:2405.20245)
-# Frames extraction as a tool-use task: LLM fills JSON schema fields,
-# cannot generate text outside the schema.
+# Agent 3 — RASG-inspired schema extraction (arXiv:2405.20245)
+# Uses prompt-enforced JSON schema to constrain extraction output.
+# Not true function/tool calling; applies RASG's schema-constraint insight via prompting.
 from __future__ import annotations
 
 import asyncio
@@ -23,27 +23,42 @@ _MAX_CONCURRENT = 10  # asyncio.to_thread slots for LLM calls
 _SYSTEM = """\
 You are a financial market intelligence extraction system.
 
-Method: RASG — schema-constrained extraction (arXiv:2405.20245)
-Frame this as a tool-use task: fill the schema fields exactly.
+Method: RASG-inspired schema extraction (arXiv:2405.20245)
+Fill the schema fields exactly — return only valid JSON matching the schema below.
 Extract ONLY facts EXPLICITLY STATED in the provided text.
 Do NOT infer, interpret, or add information not present in the text.
 Return ONLY a valid JSON array. If no relevant facts exist, return [].
+
+TIME WINDOW: Only extract facts that are current or recent.
+Discard any fact referencing data, events, or figures from before January 2024.
+If a document only contains historical data older than 2024, return [].
 
 Schema for each fact object:
 {
   "entity":         "Company name (Nvidia|AMD|Intel|Broadcom|Supermicro|Dell|HPE|Micron) or 'market'",
   "signal_type":    "one of: hiring_momentum | product_launch | pricing_pressure | strategic_messaging | investor_signal | news_sentiment | supplier_risk",
-  "claim":          "1 factual sentence, max 150 chars, no interpretation",
+  "claim":          "1 complete declarative sentence, max 150 chars, no interpretation",
   "evidence_quote": "EXACT verbatim substring copied from the Text below — must appear word-for-word",
   "published_date": "ISO 8601 date string (YYYY-MM-DD) or null",
-  "confidence":     0.0
+  "confidence":     0.0 to 1.0 (float between 0 and 1)
 }
 
 Rules:
 - evidence_quote MUST be an exact substring of the Text — no paraphrasing
 - claim must not exceed 150 characters
-- confidence: 0.9+ for explicit statements, 0.7-0.9 for clear implications, 0.6-0.7 for weak signals
-- Skip facts with confidence < 0.6\
+- claim must be a complete declarative sentence with subject, verb, and object.
+  Do NOT copy headlines verbatim. Do NOT start with "News from..." or "According to...".
+  Restate the fact in plain financial analyst style.
+- TIME WINDOW: Discard any fact referencing data or events from before January 2024.
+- confidence calibration — how explicitly and precisely is this fact stated?
+  1.0 = exact numbers/dates/names quoted verbatim from an official source
+  0.9 = clearly stated fact with specific detail (named metric, named date)
+  0.8 = fact stated but without specific numbers or dates
+  0.7 = fact implied strongly but not stated with full precision
+  Below 0.7 = do not include this fact
+  Examples: "Revenue was $44.1B in Q1 2025" from earnings release → 1.0
+            "Revenue increased significantly this quarter" → 0.8
+            "Revenue growth may continue next year" → do not include\
 """
 
 _USER = """\
@@ -111,9 +126,11 @@ def _build_fact(item: dict, doc: RawDocument) -> Optional[FactObject]:
     if not entity or not claim or not evidence_quote:
         return None
 
-    # Enforce schema length constraints before validation
-    claim = claim[:150]
-    evidence_quote = evidence_quote[:200]
+    # Reject overlong fields — truncating hides bad LLM output, rejecting surfaces it
+    if len(claim) > 150:
+        return None
+    if len(evidence_quote) > 200:
+        return None
 
     try:
         confidence = max(0.0, min(1.0, float(item.get("confidence", 0.0))))

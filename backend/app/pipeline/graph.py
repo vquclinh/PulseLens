@@ -1,19 +1,20 @@
-# Pipeline LangGraph StateGraph — nodes, Agent 2 batch collection, quality-gate conditional
-# Agent 1 and Agent 2 are implemented; downstream agents are wired as placeholders.
+# Pipeline LangGraph StateGraph — nodes, quality-gate conditional, full DAG
+# Implemented: Agent 1–4, validate_fact, SAFE, quality_gate, M4 triangulator
+# Stubs: Agent 5, M5, Agent 6, Agent 7, report_assembler
 from __future__ import annotations
 
 import logging
 import os
-from typing import Literal
-
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from app.config.companies import COMPANIES
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
-from app.config.quality_gates import MAX_EXPANSION_ROUNDS
 from app.pipeline.agent1_query_planner import QueryPlanner
 from app.pipeline.agent2_web_workers import collect_documents, collect_documents_for_query
 from app.pipeline.agent3_fact_extractors import extract_facts_from_documents
+from app.pipeline.agent4_finbert_scorer import run_finbert_scorer
+from app.pipeline.node_quality_gate import quality_gate_router, run_quality_gate
+from app.pipeline.node_triangulator import triangulate
 from app.pipeline.node_validate_and_split import run_safe_verification, validate_facts
 from app.pipeline.state import PipelineState
 
@@ -25,7 +26,6 @@ _DB_PATH = os.path.normpath(os.path.join(_HERE, "..", "..", "data", "pulselens.d
 os.makedirs(os.path.dirname(_DB_PATH), exist_ok=True)
 
 # ── Node functions ─────────────────────────────────────────────────────────────
-# Agent 1 and Agent 2 are implemented; later-stage nodes remain placeholders.
 
 async def query_planner(state: PipelineState) -> dict:
     """Agent 1 — Query Planner (Step-Back + Multi-HyDE-inspired fan-out)"""
@@ -100,51 +100,36 @@ async def validate_and_split(state: PipelineState) -> dict:
         len(safe_facts),
         len(validated_facts) - len(safe_facts),
     )
-    # Agent 4 will replace sentiment fields later; until then these are the
-    # SAFE-passed facts available to the quality gate and downstream stubs.
     return {"scored_facts": safe_facts}
 
 
 async def finbert_scorer(state: PipelineState) -> dict:
     """Agent 4 — FinBERT Scorer (ProsusAI/finbert, batch sentiment)"""
-    logger.info("node: finbert_scorer")
-    return {}
+    safe_facts = state.get("scored_facts") or []
+    logger.info("node: finbert_scorer facts=%d", len(safe_facts))
+    scored, errors = await run_finbert_scorer(safe_facts)
+    logger.info("node: finbert_scorer completed %d facts scored errors=%d", len(scored), len(errors))
+    result: dict = {"scored_facts": scored}
+    if errors:
+        result["errors"] = list(state.get("errors") or []) + errors
+    return result
 
 
 async def quality_gate(state: PipelineState) -> dict:
-    """Node — Quality Gate: checks signal coverage, owns query_expansion_rounds counter"""
-    logger.info("node: quality_gate")
-    scored_facts = state.get("scored_facts") or []
-    expansion_rounds = state.get("query_expansion_rounds", 0)
-
-    # Short-circuit: no scored facts yet (upstream nodes are stubs) → pass
-    if not scored_facts:
-        return {"quality_passed": True}
-
-    # Real check: signal coverage gate (TODO: tune thresholds with real data)
-    covered: set[str] = set()
-    for fact in scored_facts:
-        signal_type = fact.get("signal_type") if isinstance(fact, dict) else getattr(fact, "signal_type", None)
-        if hasattr(signal_type, "value"):
-            signal_type = signal_type.value
-        if signal_type:
-            covered.add(str(signal_type))
-    if len(covered) < 4 and expansion_rounds < MAX_EXPANSION_ROUNDS:
-        from app.schemas.models import SignalType
-        all_signal_types = {st.value for st in SignalType}
-        return {
-            "quality_passed": False,
-            "query_expansion_rounds": expansion_rounds + 1,
-            "low_signal_types": sorted(all_signal_types - covered),
-        }
-
-    return {"quality_passed": True}
+    """Node — Quality Gate: fact count + signal coverage, delegates to node_quality_gate"""
+    return run_quality_gate(state)
 
 
 async def triangulator(state: PipelineState) -> dict:
     """Node — M4 Triangulator (ClaimCheck + MiniCheck + FActScore)"""
-    logger.info("node: triangulator")
-    return {}
+    scored_facts = state.get("scored_facts") or []
+    logger.info("node: triangulator facts=%d", len(scored_facts))
+    verified_claims, contradiction_flags = triangulate(scored_facts)
+    logger.info(
+        "node: triangulator verified_claims=%d contradictions=%d",
+        len(verified_claims), len(contradiction_flags),
+    )
+    return {"verified_claims": verified_claims, "contradictions": contradiction_flags}
 
 
 async def contradiction_writer(state: PipelineState) -> dict:
@@ -178,15 +163,7 @@ async def report_assembler(state: PipelineState) -> dict:
 
 
 # ── Quality gate router ────────────────────────────────────────────────────────
-
-def _quality_gate_router(state: PipelineState) -> Literal["expand_queries", "proceed"]:
-    """
-    Routes after quality_gate node.
-    placeholder: always proceeds; real logic lives in node_quality_gate.py.
-    """
-    if not state.get("quality_passed", True):
-        return "expand_queries"
-    return "proceed"
+# Real routing logic lives in node_quality_gate.py; imported as quality_gate_router.
 
 
 # ── Build and compile graph ────────────────────────────────────────────────────
@@ -220,7 +197,7 @@ _builder.add_edge("finbert_scorer",    "quality_gate")
 # Conditional edge: quality_gate → expand_queries (loop back) or proceed
 _builder.add_conditional_edges(
     "quality_gate",
-    _quality_gate_router,
+    quality_gate_router,
     {
         "expand_queries": "query_planner",   # loop back — round 2 with gap-filling queries
         "proceed":        "triangulator",    # sufficient signal coverage — continue

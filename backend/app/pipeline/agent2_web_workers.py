@@ -40,6 +40,25 @@ def _resolve_cache_dir() -> Path:
 MIN_CONTENT_CHARS = int(os.getenv("BRIGHTDATA_MIN_CONTENT_CHARS", "120"))
 MAX_CONTENT_CHARS = int(os.getenv("BRIGHTDATA_MAX_CONTENT_CHARS", "200000"))
 
+# Keywords that identify EDGAR index pages — they list filing metadata, not filing content.
+_EDGAR_INDEX_MARKERS = ("13F-HR", "13F-NT", "filed by", "Accession Number", "Filing Date", "Form Type")
+
+
+def is_useful_document(doc: RawDocument) -> bool:
+    """
+    Pre-extraction content quality filter.
+
+    Returns False for documents that contain filing metadata lists rather than
+    actionable content: EDGAR index pages produce zero-signal facts like
+    "Institutional managers filed quarterly reports on Feb 11, 2026."
+    """
+    content = doc.content.strip()
+    if len(content) < 500:
+        return False
+    if "sec.gov" in doc.domain and any(marker in content for marker in _EDGAR_INDEX_MARKERS):
+        return False
+    return True
+
 _cache: diskcache.Cache | None = None
 _url_locks: dict[str, asyncio.Lock] = {}
 _collection_semaphore = asyncio.Semaphore(MAX_CONCURRENT_BATCHES)
@@ -61,7 +80,14 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
         batch_results = await asyncio.gather(*(collect_documents_for_query(query) for query in batch))
         for docs in batch_results:
             results.extend(docs)
-    return _dedupe_documents(results)
+    all_docs = _dedupe_documents(results)
+    useful = [d for d in all_docs if is_useful_document(d)]
+    if len(useful) < len(all_docs):
+        logger.info(
+            "Agent 2 filtered %d/%d documents as low-quality before extraction",
+            len(all_docs) - len(useful), len(all_docs),
+        )
+    return useful
 
 
 async def collect_documents_for_query(query: SearchQuery) -> list[RawDocument]:

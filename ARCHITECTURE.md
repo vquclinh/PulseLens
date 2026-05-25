@@ -404,7 +404,7 @@ fetched twice in a single pipeline run.
 **File:** `app/pipeline/agent3_fact_extractors.py`  
 **Type:** LLM — Claude  
 **LangGraph node:** `fact_extractor` (fanned out via `Send` — 20 concurrent)  
-**Research methods applied:** RASG
+**Research methods applied:** RASG-inspired schema extraction
 
 ### [PAPER 3] RASG — Retrieval Augmented Structured Generation
 ```
@@ -421,16 +421,25 @@ This eliminates the primary failure mode of free-form extraction:
 vague, unauditable, inconsistently structured summaries that are hard
 to validate downstream.
 
+**What PulseLens implements (RASG-inspired):**
+Prompt-enforced JSON schema extraction — the system prompt instructs the LLM
+to return only schema-valid JSON matching the FactObject fields. This is not
+true function/tool calling (which enforces schema at the API level and
+prevents non-JSON output entirely). It applies RASG's schema-constraint
+insight via prompt engineering. The output format is structurally equivalent;
+the enforcement mechanism is softer.
+
 **Why it matters here:**
-Without RASG: LLM writes "Nvidia seems to be expanding its AI workforce
-significantly" — no quote, no date, no confidence, no entity structure.
-With RASG: LLM fills `{entity: "Nvidia", signal_type: "hiring_momentum",
+Without RASG-inspired extraction: LLM writes "Nvidia seems to be expanding
+its AI workforce significantly" — no quote, no date, no confidence, no entity
+structure. With RASG-inspired extraction: LLM fills
+`{entity: "Nvidia", signal_type: "hiring_momentum",
 claim: "Nvidia opened 23 AI infra roles this week",
 evidence_quote: "Nvidia has opened more than 20 positions...",
 confidence: 0.91}` — fully structured, auditable, downstream-ready.
 
 **Applied at:**
-Extraction system prompt and output schema definition.
+Extraction system prompt and output schema definition in `agent3_fact_extractors.py`.
 
 ---
 
@@ -440,7 +449,7 @@ Extraction system prompt and output schema definition.
 SYSTEM_PROMPT = """
 You are a financial market intelligence extraction system.
 
-Method: RASG — schema-constrained extraction (arXiv:2405.20245)
+Method: RASG-inspired schema extraction (arXiv:2405.20245)
 Extract ONLY facts EXPLICITLY STATED in the provided text.
 Do NOT infer, interpret, or add information not in the text.
 Return ONLY a valid JSON array. If no relevant facts, return [].
