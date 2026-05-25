@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -48,8 +49,8 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
     """
     Collect documents for a batch of SearchQuery objects.
 
-    This function is also used by tests and fallback non-Send execution. In the
-    LangGraph pipeline, graph.py fans out each query to collect_documents_for_query().
+    This function is also used by tests and the LangGraph Agent 2 node. It
+    performs internal async batching while Agent 2 is the active build target.
     """
     if not queries:
         return []
@@ -116,11 +117,17 @@ async def _discover_candidate_urls(client: BrightDataClient, query: SearchQuery)
     if direct_url:
         return [{"url": direct_url, "title": "", "snippet": "", "published_date": None}]
 
-    try:
-        return await client.serp_search(query.query_text, num_results=NUM_RESULTS_PER_QUERY)
-    except Exception as exc:
-        logger.warning("Agent 2 SERP discovery failed for query %s: %s", query.query_id, exc)
-        return []
+    for search_query in _query_fallbacks(query.query_text):
+        try:
+            results = await client.serp_search(search_query, num_results=NUM_RESULTS_PER_QUERY)
+        except Exception as exc:
+            logger.warning("Agent 2 SERP discovery failed for query %s: %s", query.query_id, exc)
+            continue
+        if results:
+            if search_query != query.query_text:
+                logger.info("Agent 2 SERP fallback succeeded for query %s", query.query_id)
+            return results
+    return []
 
 
 async def _fetch_page_with_cache(client: BrightDataClient, url: str, source_type: str) -> dict[str, Any]:
@@ -166,6 +173,14 @@ def _extract_direct_url(query_text: str) -> str | None:
         if cleaned.startswith(("http://", "https://")):
             return _normalize_url(cleaned)
     return None
+
+
+def _query_fallbacks(query_text: str) -> list[str]:
+    fallbacks = [query_text]
+    without_site = re.sub(r"\s*site:\S+", "", query_text).strip()
+    if without_site and without_site != query_text:
+        fallbacks.append(without_site)
+    return fallbacks
 
 
 def _normalize_url(url: str) -> str:

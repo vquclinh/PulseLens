@@ -6,14 +6,19 @@ import html
 import logging
 import os
 import re
+from pathlib import Path
 from typing import Any
 from urllib.parse import quote_plus
 
 import httpx
+from dotenv import load_dotenv
 
 from app.utils.helpers import clean_html, extract_domain
 
 logger = logging.getLogger(__name__)
+
+_BACKEND_ENV = Path(__file__).resolve().parents[2] / ".env"
+load_dotenv(_BACKEND_ENV)
 
 DEFAULT_BRIGHTDATA_API_URL = "https://api.brightdata.com/request"
 DEFAULT_NUM_RESULTS = 5
@@ -135,14 +140,26 @@ class BrightDataClient:
 
     @staticmethod
     def _decode_response(response: httpx.Response) -> Any:
+        import json as _json
         content_type = response.headers.get("content-type", "").lower()
-        text = response.text
         if "json" in content_type:
-            return response.json()
-        try:
-            return response.json()
-        except ValueError:
-            return text
+            data = response.json()
+        else:
+            try:
+                data = response.json()
+            except ValueError:
+                return response.text
+
+        # Unwrap BrightData envelope: {"status_code": N, "headers": {...}, "body": "..."}
+        if isinstance(data, dict) and "body" in data and "status_code" in data:
+            body = data["body"]
+            if isinstance(body, str):
+                try:
+                    return _json.loads(body)
+                except (ValueError, _json.JSONDecodeError):
+                    return body
+            return body
+        return data
 
     @staticmethod
     def _normalize_serp_results(payload: Any) -> list[dict[str, Any]]:

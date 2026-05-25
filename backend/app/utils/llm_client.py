@@ -6,11 +6,16 @@ import logging
 import os
 import re
 import time
+from pathlib import Path
 from typing import Any
 
 import openai
+from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
+
+_BACKEND_ENV = Path(__file__).resolve().parents[2] / ".env"
+load_dotenv(_BACKEND_ENV)
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 

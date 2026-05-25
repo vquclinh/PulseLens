@@ -26,7 +26,7 @@ class PipelineState(TypedDict, total=False):
     queries: List[SearchQuery]
 
     # Agent 2 output
-    agent2_query: Optional[SearchQuery]     # Send fan-out payload for one web_worker
+    agent2_query: Optional[SearchQuery]     # optional single-query payload for direct Agent 2 tests
     raw_documents: Annotated[List[RawDocument], operator.add]
 
     # Agent 3 output (pre-validation)

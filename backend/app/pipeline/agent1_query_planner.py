@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import re
 from collections import defaultdict
 from datetime import datetime
 from typing import List, Optional
@@ -31,6 +32,16 @@ class _CoverageValidationError(ValueError):
         self.zero_coverage = zero_coverage
 
 
+class _InvestorSignalCoverageValidationError(ValueError):
+    """Raised when priority companies have no investor_signal query."""
+    def __init__(self, missing_companies: list[str]) -> None:
+        super().__init__(
+            "Quality gate FAIL: missing investor_signal coverage for priority companies. "
+            f"Missing: {missing_companies}"
+        )
+        self.missing_companies = missing_companies
+
+
 # ── Valid values for LLM output validation ───────────────────────────────────
 _ALL_SIGNAL_TYPES = [st.value for st in SignalType]
 _VALID_SIGNAL_TYPES = set(_ALL_SIGNAL_TYPES)
@@ -38,6 +49,12 @@ _VALID_SOURCE_TYPES = set(TOOL_MAPPING.keys())
 _VALID_ENTITIES = {c.name for c in COMPANIES} | {"market"}
 _VALID_TIERS = {1, 2, 3, 4}
 _VALID_PRIORITIES = {1, 2, 3}
+PRIORITY_COMPANIES = ["Nvidia", "AMD", "Intel", "Dell", "HPE", "Micron"]
+_PRIORITY_INVESTOR_COMPANIES = set(PRIORITY_COMPANIES)
+_TIME_ANCHOR_RE = re.compile(
+    r"(\b(?:2025|2026)\b|\blast\s+7\s+days\b|\bQ[12]\b)",
+    re.IGNORECASE,
+)
 _NORMAL_SIGNAL_QUERY_MINIMUMS = {
     SignalType.investor_signal.value: 5,
     SignalType.news_sentiment.value: 4,
@@ -211,6 +228,7 @@ RULES — READ CAREFULLY:
   ✓ Use the abstract patterns from Step-Back to guide query hypotheses
   ✓ Normal mode MUST cover every one of the 8 companies and every one of the 7 signal types
   ✓ Normal mode MUST satisfy the signal minimums in the playbook
+  ✓ Normal mode MUST include at least 1 investor_signal query for each priority company: Nvidia, AMD, Intel, Dell, HPE, Micron
   ✓ Use target_entity="market" only for broad sector queries; company-specific queries must name one company
   ✓ Do not introduce untracked companies as target_entity; competitors/suppliers may appear only inside query_text context
   ✗ Do NOT generate paraphrases of the same query
@@ -262,7 +280,7 @@ class QueryPlanner:
         expansion_signal_types = low_signal_types or []
         is_expansion = expansion_round > 0 and bool(expansion_signal_types)
         signal_types = expansion_signal_types if is_expansion else _ALL_SIGNAL_TYPES
-        target_count = "5 to 10" if is_expansion else "24 to 32"
+        target_count = "5 to 10" if is_expansion else "40 to 50"
         min_queries = MIN_EXPANSION_QUERIES if is_expansion else MIN_QUERIES
         required_signal_types = set(signal_types)
         require_all_companies = not is_expansion
@@ -344,6 +362,7 @@ class QueryPlanner:
                     allowed_signal_types=required_signal_types if is_expansion else _VALID_SIGNAL_TYPES,
                     require_all_companies=require_all_companies,
                     require_market_query=not is_expansion,
+                    require_priority_investor_signals=not is_expansion,
                     signal_minimums=None if is_expansion else _NORMAL_SIGNAL_QUERY_MINIMUMS,
                 )
                 break
@@ -351,6 +370,20 @@ class QueryPlanner:
                 if _attempt == 0:
                     low_coverage_companies = sorted(exc.zero_coverage)
                     logger.warning("Company coverage retry: 0-query companies: %s", low_coverage_companies)
+                    continue
+                raise
+            except _InvestorSignalCoverageValidationError as exc:
+                if _attempt == 0:
+                    low_coverage_companies = exc.missing_companies
+                    quality_retry_note = (
+                        "\n⚠ INVESTOR SIGNAL RETRY: These priority companies had no "
+                        "investor_signal query. Generate at least 1 query for each with "
+                        f'signal_type="investor_signal": {", ".join(low_coverage_companies)}'
+                    )
+                    logger.warning(
+                        "Investor-signal coverage retry: missing priority companies: %s",
+                        low_coverage_companies,
+                    )
                     continue
                 raise
             except ValueError as exc:
@@ -419,6 +452,7 @@ class QueryPlanner:
         allowed_signal_types: Optional[set[str]] = None,
         require_all_companies: bool = True,
         require_market_query: bool = False,
+        require_priority_investor_signals: bool = False,
         signal_minimums: Optional[dict[str, int]] = None,
     ) -> List[SearchQuery]:
         if not isinstance(raw, list):
@@ -460,6 +494,10 @@ class QueryPlanner:
                     skipped += 1
                     continue
                 if not q.query_text:
+                    skipped += 1
+                    continue
+                if not _has_time_anchor(q.query_text):
+                    logger.debug("Skipping query %d: missing time anchor '%s'", i, q.query_text)
                     skipped += 1
                     continue
                 parsed.append(q)
@@ -528,7 +566,22 @@ class QueryPlanner:
             if zero_coverage:
                 raise _CoverageValidationError(zero_coverage)
 
+        if require_priority_investor_signals:
+            investor_entities = {
+                q.target_entity
+                for q in queries
+                if q.signal_type == SignalType.investor_signal
+            }
+            expected_priority = _PRIORITY_INVESTOR_COMPANIES & set(expected_companies)
+            missing_investor = sorted(expected_priority - investor_entities)
+            if missing_investor:
+                raise _InvestorSignalCoverageValidationError(missing_investor)
+
         return queries
+
+
+def _has_time_anchor(query_text: str) -> bool:
+    return bool(_TIME_ANCHOR_RE.search(query_text))
 
 
 # ── Standalone test ───────────────────────────────────────────────────────────
