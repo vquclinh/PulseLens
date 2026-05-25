@@ -8,7 +8,7 @@ import logging
 import re
 from typing import Any
 
-from app.schemas.models import AnomalyFlag, MarketNarrative, VerifiedClaim
+from app.schemas.models import AnomalyFlag, CompanyNarrative, MarketNarrative, VerifiedClaim
 from app.utils.llm_client import LLMClient
 
 logger = logging.getLogger(__name__)
@@ -61,7 +61,8 @@ Return ONLY valid JSON matching this schema:
 
 Verified claims:  {verified_claims_json}
 Signal scores:    {signal_scores_json}
-Company rankings: {company_rankings_json}\
+Company rankings: {company_rankings_json}
+Company narratives: {company_narratives_json}\
 """
 
 
@@ -119,6 +120,7 @@ def _parse_narrative(raw: object) -> MarketNarrative:
 def _synthesize_sync(
     claims: list[VerifiedClaim],
     signal_scores: dict[str, Any],
+    company_narratives: list[CompanyNarrative] | None = None,
     retry_note: str = "",
 ) -> MarketNarrative:
     llm = LLMClient(agent_name="agent6")
@@ -126,6 +128,7 @@ def _synthesize_sync(
         verified_claims_json=json.dumps([_jsonable(c) for c in claims], ensure_ascii=False),
         signal_scores_json=json.dumps(signal_scores, ensure_ascii=False, default=str),
         company_rankings_json=json.dumps(_company_rankings(signal_scores), ensure_ascii=False, default=str),
+        company_narratives_json=json.dumps([_jsonable(n) for n in (company_narratives or [])], ensure_ascii=False),
     )
     user = retry_note or "Write the market narrative now. Return only JSON."
     raw = llm.call_json(system=system, user=user, max_tokens=4096)
@@ -135,13 +138,14 @@ def _synthesize_sync(
 async def run_narrative_synthesizer(
     claims: list[VerifiedClaim],
     signal_scores: dict[str, Any],
+    company_narratives: list[CompanyNarrative] | None = None,
 ) -> MarketNarrative:
     if not claims:
         return _fallback_narrative(claims)
 
     valid_claim_ids = {claim.claim_id for claim in claims}
     try:
-        narrative = await asyncio.to_thread(_synthesize_sync, claims, signal_scores)
+        narrative = await asyncio.to_thread(_synthesize_sync, claims, signal_scores, company_narratives)
         errors = _validate_citations(narrative, valid_claim_ids)
         if not errors:
             return narrative
@@ -150,7 +154,13 @@ async def run_narrative_synthesizer(
             + "\n".join(f"- {error}" for error in errors)
             + "\nRewrite the narrative using only valid [claim_id] citations."
         )
-        narrative = await asyncio.to_thread(_synthesize_sync, claims, signal_scores, retry_note)
+        narrative = await asyncio.to_thread(
+            _synthesize_sync,
+            claims,
+            signal_scores,
+            company_narratives,
+            retry_note,
+        )
         errors = _validate_citations(narrative, valid_claim_ids)
         if errors:
             return _fallback_narrative(claims, "; ".join(errors))

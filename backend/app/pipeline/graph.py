@@ -16,6 +16,7 @@ from app.pipeline.node_quality_gate import quality_gate_router, run_quality_gate
 from app.pipeline.agent5_contradiction_writer import write_contradiction_notes
 from app.pipeline.agent6_narrative_synthesizer import run_narrative_synthesizer
 from app.pipeline.agent7_watch_list_builder import run_watch_list_builder
+from app.pipeline.node_company_narratives import build_company_narratives
 from app.pipeline.node_report_assembler import report_assembler as run_report_assembler
 from app.pipeline.node_signal_scorer import run_signal_scorer
 from app.pipeline.node_triangulator import triangulate
@@ -159,12 +160,28 @@ async def signal_scorer(state: PipelineState) -> dict:
     return {"signal_scores": scores}
 
 
+async def company_narratives(state: PipelineState) -> dict:
+    """Node — Company Narratives: Layer 2 company cards for dashboard tabs"""
+    verified_claims = state.get("verified_claims") or []
+    signal_scores = state.get("signal_scores") or {}
+    companies = state.get("companies") or [company.name for company in COMPANIES]
+    logger.info(
+        "node: company_narratives companies=%d claims=%d",
+        len(companies),
+        len(verified_claims),
+    )
+    narratives = await build_company_narratives(verified_claims, signal_scores, companies)
+    logger.info("node: company_narratives built=%d", len(narratives))
+    return {"company_narratives": narratives}
+
+
 async def narrative_synthesizer(state: PipelineState) -> dict:
     """Agent 6 — Narrative Synthesizer (STORM multi-perspective, arXiv:2402.14207)"""
     verified_claims = state.get("verified_claims") or []
     signal_scores = state.get("signal_scores") or {}
+    narratives = state.get("company_narratives") or []
     logger.info("node: narrative_synthesizer claims=%d", len(verified_claims))
-    narrative = await run_narrative_synthesizer(verified_claims, signal_scores)
+    narrative = await run_narrative_synthesizer(verified_claims, signal_scores, narratives)
     logger.info(
         "node: narrative_synthesizer headline=%r anomalies=%d",
         narrative.narrative_headline[:80],
@@ -212,6 +229,7 @@ _builder.add_node("quality_gate",        quality_gate)
 _builder.add_node("triangulator",        triangulator)
 _builder.add_node("contradiction_writer",contradiction_writer)
 _builder.add_node("signal_scorer",       signal_scorer)
+_builder.add_node("company_narratives",  company_narratives)
 _builder.add_node("narrative_synthesizer",narrative_synthesizer)
 _builder.add_node("watch_list_builder",  watch_list_builder)
 _builder.add_node("report_assembler",    report_assembler)
@@ -237,7 +255,8 @@ _builder.add_conditional_edges(
 
 _builder.add_edge("triangulator",          "contradiction_writer")
 _builder.add_edge("contradiction_writer",  "signal_scorer")
-_builder.add_edge("signal_scorer",         "narrative_synthesizer")
+_builder.add_edge("signal_scorer",         "company_narratives")
+_builder.add_edge("company_narratives",    "narrative_synthesizer")
 _builder.add_edge("narrative_synthesizer", "watch_list_builder")
 _builder.add_edge("watch_list_builder",    "report_assembler")
 _builder.add_edge("report_assembler",      END)

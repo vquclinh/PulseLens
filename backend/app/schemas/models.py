@@ -208,6 +208,7 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     query: str
     report_id: str
+    session_id: Optional[str] = None
     history: Optional[List[ChatMessage]]
 
 

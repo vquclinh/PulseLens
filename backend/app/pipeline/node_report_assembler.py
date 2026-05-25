@@ -144,5 +144,5 @@ async def report_assembler(state: PipelineState) -> dict:
         signal_breakdown=_signal_breakdown(scores),
     )
 
-    await save_report(report, facts)
+    await save_report(report, facts, claims)
     return {"report": report}
