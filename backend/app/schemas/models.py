@@ -1,7 +1,7 @@
 # All Pydantic v2 data models — RawDocument, FactObject, VerifiedClaim, MarketPulseReport, etc.
 from __future__ import annotations
 from typing import Optional, List, Dict, Literal
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from enum import Enum
 
 
@@ -32,6 +32,12 @@ class MomentumLabel(str, Enum):
     elevated_risk = "elevated_risk"
 
 
+class QualityStatus(str, Enum):
+    PASS = "PASS"
+    PARTIAL_PASS = "PARTIAL_PASS"
+    FAIL_EXPAND = "FAIL_EXPAND"
+
+
 class RawDocument(BaseModel):
     doc_id: str
     url: str
@@ -41,6 +47,7 @@ class RawDocument(BaseModel):
     published_date: Optional[str]
     fetched_at: str
     source_tier: Literal[1, 2, 3, 4]
+    content_quality: Literal["full_text", "metadata_only", "snippet_only"] = "full_text"
     collection_query: str
     signal_type_hint: Optional[SignalType]
 
@@ -156,6 +163,18 @@ class ContradictionFlag(BaseModel):
     note: str
 
 
+class PipelineAuditSummary(BaseModel):
+    query_count: int = 0
+    accepted_doc_count: int = 0
+    failed_query_count: int = 0
+    zero_doc_query_count: int = 0
+    fetch_error_count: int = 0
+    covered_signal_types: List[SignalType] = Field(default_factory=list)
+    missing_signal_types: List[SignalType] = Field(default_factory=list)
+    source_count: int = 0
+    evidence_count: int = 0
+
+
 class MarketPulseReport(BaseModel):
     report_id: str
     market: str
@@ -174,6 +193,9 @@ class MarketPulseReport(BaseModel):
     evidence_count: int
     source_count: int
     signal_breakdown: Dict[str, float]
+    quality_status: QualityStatus = QualityStatus.PARTIAL_PASS
+    quality_reasons: List[str] = Field(default_factory=list)
+    audit_summary: PipelineAuditSummary = Field(default_factory=PipelineAuditSummary)
 
 
 class StockContext(BaseModel):

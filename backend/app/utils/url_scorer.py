@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING, Dict, FrozenSet, List
 from urllib.parse import urlparse
 
 from app.config.companies import COMPANIES
-from app.config.source_tiers import TIER_1_DOMAINS, TIER_WEIGHTS, assign_tier
+from app.config.source_tiers import TIER_1_DOMAINS, TIER_2_DOMAINS, TIER_3_DOMAINS, TIER_WEIGHTS, assign_tier
 from app.utils.helpers import extract_domain
 
 if TYPE_CHECKING:
@@ -46,6 +46,29 @@ SIGNAL_EVIDENCE_TERMS: Dict[str, List[str]] = {
         "foundry", "component",
     ],
 }
+
+MARKET_RELEVANCE_TERMS = [
+    "ai", "artificial intelligence", "gpu", "accelerator", "semiconductor",
+    "chip", "data center", "server", "hbm", "memory", "foundry", "hardware",
+]
+
+FORUM_MARKERS = [
+    "reddit.", "forum", "community", "stackoverflow", "quora", "hackernews",
+    "news.ycombinator", "discord", "telegram",
+]
+
+SOCIAL_MARKERS = [
+    "facebook.com", "twitter.com", "x.com/", "linkedin.com/pulse", "linkedin.com/posts",
+]
+
+TRACKING_MARKERS = [
+    "links.message.", "click.", "email.", "mailchi.mp", "utm_", "mkt_tok",
+    "trk=", "tracking", "redirect",
+]
+
+UNRELATED_VENDOR_TERMS = [
+    "symantec", "antivirus", "endpoint security", "cybersecurity", "cdw.com/product",
+]
 
 
 # ── Source-type affinity: derived from company config, not hardcoded ───────────
@@ -109,10 +132,14 @@ def _is_search_engine_result_url(url: str) -> bool:
     """
     try:
         parsed = urlparse(url)
+        host  = parsed.netloc.lower()
         path  = parsed.path.rstrip("/").lower()
         query = parsed.query.lower()
     except Exception:
         return False
+
+    if "googleusercontent.com" in host and "/search" in path:
+        return True
 
     # Search result pages: path=/search or /html with q= or p= param
     if path in ("/search", "/html") and re.search(r"(?:^|&)(?:q|p)=", query):
@@ -170,38 +197,75 @@ class URLScorer:
     def __init__(self) -> None:
         self.error_memory = DomainErrorMemory()
 
+    def _hard_rejection_reason(self, serp_result: dict, query: "SearchQuery") -> str | None:
+        url = serp_result.get("url") or serp_result.get("link", "")
+        title = serp_result.get("title", "")
+        description = serp_result.get("snippet") or serp_result.get("description", "")
+        source_type = getattr(query, "source_type", "") or ""
+        haystack = f"{url} {title} {description}".lower()
+        domain = extract_domain(url)
+
+        if not url:
+            return "missing_url"
+        if _is_search_engine_result_url(url) or domain in {"google.com", "bing.com", "yahoo.com"}:
+            return "search_engine_result_url"
+        if any(marker in haystack for marker in TRACKING_MARKERS):
+            return "tracking_or_email_redirect_url"
+
+        site = _extract_site_constraint(query.query_text)
+        if site and not _url_matches_site(url, site):
+            return "site_constraint_mismatch"
+
+        if any(marker in haystack for marker in FORUM_MARKERS) and source_type != "community_pages":
+            return "forum_or_community_source_not_allowed"
+        if any(marker in haystack for marker in SOCIAL_MARKERS):
+            return "social_or_low_signal_page_not_allowed"
+
+        if source_type == "ir_pages" and assign_tier(url) != 1:
+            return "ir_pages_requires_tier1_ir_or_sec_domain"
+
+        if source_type == "job_pages":
+            career_domains = _SOURCE_TYPE_AFFINITY.get("job_pages", frozenset())
+            host = urlparse(url).netloc.lower().lstrip("www.")
+            jobish = any(term in haystack for term in ("job", "jobs", "career", "careers", "linkedin.com/jobs"))
+            if host not in career_domains and not jobish:
+                return "job_pages_requires_careers_or_jobs_domain"
+
+        if source_type == "pricing_pages":
+            if any(term in haystack for term in UNRELATED_VENDOR_TERMS):
+                return "unrelated_vendor_product_page"
+            if not any(term in haystack for term in MARKET_RELEVANCE_TERMS + SIGNAL_EVIDENCE_TERMS["pricing_pressure"]):
+                return "pricing_page_lacks_market_relevance"
+
+        if source_type == "serp_news" and assign_tier(url) == 4:
+            trusted_news = domain in TIER_2_DOMAINS or domain in TIER_3_DOMAINS
+            sig_key = query.signal_type.value if hasattr(query.signal_type, "value") else str(query.signal_type)
+            relevance_terms = MARKET_RELEVANCE_TERMS + SIGNAL_EVIDENCE_TERMS.get(sig_key, [])
+            if not trusted_news and not any(term in haystack for term in relevance_terms):
+                return "serp_news_irrelevant_tier4_domain"
+
+        if self.error_memory.is_likely_unfetchable(url):
+            return "domain_repeated_permanent_failures"
+
+        return None
+
     def score(self, serp_result: dict, query: "SearchQuery") -> float:
         # Accept both "url"/"link" and "snippet"/"description" key conventions.
         url         = serp_result.get("url") or serp_result.get("link", "")
         title       = serp_result.get("title", "")
         description = serp_result.get("snippet") or serp_result.get("description", "")
 
-        if not url:
+        if self._hard_rejection_reason(serp_result, query):
             return 0.0
 
         source_type = getattr(query, "source_type", "") or ""
-
-        # ── Hard rules (cheap, evaluated first) ───────────────────────────────
-
-        # 1. Reject search-engine navigation URLs (structural, no domain names)
-        if _is_search_engine_result_url(url):
-            return 0.0
-
-        # 2. Enforce site: constraint from query text
-        site = _extract_site_constraint(query.query_text)
-        if site and not _url_matches_site(url, site):
-            return 0.0
-
-        # 3. ir_pages must be from Tier 1 (IR/SEC) — hard reject otherwise
-        if source_type == "ir_pages" and assign_tier(url) != 1:
-            return 0.0
 
         # ── Scoring components ─────────────────────────────────────────────────
 
         tier_score = TIER_WEIGHTS[assign_tier(url)]
 
         entity_terms   = get_entity_terms(query.target_entity)
-        snippet        = (title + " " + description).lower()
+        snippet        = (url + " " + title + " " + description).lower()
         matched_entity = any(_term_matches(t, snippet) for t in entity_terms)
         entity_score   = 1.0 if matched_entity else 0.0
 
@@ -233,14 +297,28 @@ class URLScorer:
         # ── More hard rules (after scoring) ───────────────────────────────────
 
         # Off-target entity: never fetch (unless querying for "market")
-        if query.target_entity != "market" and entity_score == 0.0:
-            return 0.0
-
-        # Domain has failed twice — permanently skip
-        if self.error_memory.is_likely_unfetchable(url):
+        if (
+            query.target_entity != "market"
+            and entity_score == 0.0
+            and not (source_type == "ir_pages" and assign_tier(url) == 1)
+        ):
             return 0.0
 
         return round(score, 3)
+
+    def rejection_reason(
+        self,
+        serp_result: dict,
+        query: "SearchQuery",
+        min_score: float = 0.3,
+    ) -> str | None:
+        hard_reason = self._hard_rejection_reason(serp_result, query)
+        if hard_reason:
+            return hard_reason
+        score = self.score(serp_result, query)
+        if score < min_score:
+            return f"below_relevance_threshold:{score:.3f}"
+        return None
 
     def should_fetch(
         self,
@@ -248,7 +326,7 @@ class URLScorer:
         query: "SearchQuery",
         min_score: float = 0.3,
     ) -> bool:
-        return self.score(serp_result, query) >= min_score
+        return self.rejection_reason(serp_result, query, min_score=min_score) is None
 
     def record_http_result(self, url: str, status_code: int) -> None:
         self.error_memory.record_failure(url, status_code)
@@ -340,7 +418,7 @@ if __name__ == "__main__":
     print("\n── Test 4: ir_pages source-type — Tier-1 only ──────────────")
     q_ir = _q("Nvidia", SignalType.investor_signal, source_type="ir_pages")
 
-    ir_tier1   = {"url": "https://ir.nvidia.com/sec-filings/annual-reports",
+    ir_tier1   = {"url": "https://investor.nvidia.com/sec-filings/annual-reports",
                   "title": "Nvidia Annual Reports", "snippet": "Nvidia investor relations annual report"}
     ir_tier2   = {"url": "https://reuters.com/nvidia-sec-annual-filing",
                   "title": "Nvidia annual SEC filing", "snippet": "Nvidia investor filing revenue"}

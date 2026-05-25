@@ -5,7 +5,13 @@ import type { ChatMessage } from '@/types/api'
 export function useChatMessages() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
 
-  function append(_message: ChatMessage) {}
+  function append(message: ChatMessage) {
+    setMessages((prev) => [...prev, message])
+  }
 
-  return { messages, append }
+  function clear() {
+    setMessages([])
+  }
+
+  return { messages, append, clear }
 }

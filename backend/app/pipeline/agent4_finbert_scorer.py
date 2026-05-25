@@ -1,6 +1,6 @@
-# Agent 4 — FinBERT Scorer (ProsusAI/finbert)
+# Agent 4 — FinBERT Scorer (model configured via FINBERT_MODEL)
 # Batch financial sentiment scoring — no LLM API cost, deterministic, fast on CPU.
-# Yang et al., 2020 — HuggingFace ProsusAI/finbert (arXiv: FinBERT)
+# Yang et al., 2020 — FinBERT-style financial sentiment classification.
 from __future__ import annotations
 
 import asyncio
@@ -8,13 +8,14 @@ import logging
 import os
 from typing import Optional
 
+from app.config.quality_gates import FINBERT_MODEL
 from app.schemas.models import FactObject
 
 logger = logging.getLogger(__name__)
 
 _BATCH_SIZE = int(os.getenv("FINBERT_BATCH_SIZE", "32"))
 _DEVICE     = os.getenv("FINBERT_DEVICE", "cpu")
-_MODEL_ID   = "ProsusAI/finbert"
+_MODEL_ID   = FINBERT_MODEL
 
 _finbert: Optional[object] = None
 

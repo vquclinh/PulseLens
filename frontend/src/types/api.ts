@@ -28,7 +28,7 @@ export function runPipeline(payload: {
   market?: string
   companies?: string[]
   time_window?: string
-}): Promise<{ report_id: string }> {
+}): Promise<{ report_id: string; pulse_score: number; pulse_status: string; quality_status: string }> {
   return _fetch('/api/run', { method: 'POST', body: JSON.stringify(payload) })
 }
 

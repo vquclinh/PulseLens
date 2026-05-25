@@ -1,0 +1,1514 @@
+[
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 378,
+    "category": "URL literal",
+    "value": "1. `https://www.reuters.com/technology/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 384,
+    "category": "URL literal",
+    "value": "2. `https://www.bloomberg.com/news/articles/2025-12-29/nvidia-samsung-and-lenovo-test-consumer-demand-for-ai-gadgets-at-ces`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 390,
+    "category": "URL literal",
+    "value": "3. `https://www.reuters.com/business/storage-stocks-jump-seagates-upbeat-forecast-fuels-confidence-ai-spending-2026-04-28/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 396,
+    "category": "URL literal",
+    "value": "4. `https://www.bloomberg.com/graphics/2026-investment-outlooks/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 400,
+    "category": "URL literal",
+    "value": "- first 300 chars: `@font-face{font-family:AvenirNextPForBBG;font-display:swap;font-weight:400;font-style:normal;src:url('https://assets.bwbx.io/s3/fontservice/fonts/AvenirNextPForBBG-Regular-eb3bb1b816.woff2') format('woff2'),url('https://assets.bwbx.io/s3/fontservice/fonts/AvenirNextPForBBG-Regular-093448f517.woff')`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 402,
+    "category": "URL literal",
+    "value": "5. `https://www.bloomberg.com/news/audio/2025-09-15/stock-movers-seagate-western-digital-corteva-podcast`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 406,
+    "category": "URL literal",
+    "value": "- first 300 chars: `Stock Movers : Seagate, Western Digital, Corteva - Bloomberg {\"@context\":\"http://schema.org\",\"@type\":\"NewsArticle\",\"author\":\"Bloomberg\",\"dateCreated\":\"2025-09-15T15:16:21.513Z\",\"datePublished\":\"2025-09-15T15:16:21.513Z\",\"description\":\"On this episode of Stock Movers:\\n\\nSeagate (STX; +7%) -- compute`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 414,
+    "category": "URL literal",
+    "value": "1. `https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2026`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 420,
+    "category": "URL literal",
+    "value": "2. `https://www.cnbc.com/2026/05/20/nvidia-nvda-earnings-report-q1-2027.html`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 426,
+    "category": "URL literal",
+    "value": "3. `https://www.kiplinger.com/investing/live/nvidia-earnings-live-updates-and-commentary-may-2026`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 432,
+    "category": "URL literal",
+    "value": "4. `https://www.investing.com/equities/nvidia-corp-earnings`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 438,
+    "category": "URL literal",
+    "value": "5. `https://www.spglobal.com/market-intelligence/en/news-insights/research/2025/05/nvidia-earnings-preview-fiscal-q1-2026`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 450,
+    "category": "URL literal",
+    "value": "1. `https://jobs.nvidia.com/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 456,
+    "category": "URL literal",
+    "value": "2. `https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 462,
+    "category": "URL literal",
+    "value": "3. `http://jobs.nvidia.com/careers/job/893392855558`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 466,
+    "category": "URL literal",
+    "value": "- first 300 chars: `window.COUNTRY_CODE = \"US\"; window.USER_LOCALE = window.i18nUtils?.getLocale() || 'en'; {\"@context\": \"http://schema.org\", \"@type\": \"JobPosting\", \"datePosted\": \"2026-01-19T00:00:00\", \"description\": \"NVIDIA has been transforming accelerated computing with innovation that\\u2019s fueled by great technol`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 468,
+    "category": "URL literal",
+    "value": "4. `https://www.nvidia.com/en-us/about-nvidia/careers/how-we-hire/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 474,
+    "category": "URL literal",
+    "value": "5. `https://jobs.nvidia.com/careers?filter_job_type=intern+%28fixed+term%29%2Cnew+college+graduate`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 486,
+    "category": "URL literal",
+    "value": "1. `https://www.uk.cdw.com/about/octo/insights/ai-platforms/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 492,
+    "category": "URL literal",
+    "value": "2. `https://www.cdw.com/product/nvidia-h100-gpu-computing-processor-nvidia-h100-tensor-core-80-gb/8268491`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 498,
+    "category": "URL literal",
+    "value": "3. `https://www.uk.cdw.com/about/octo/insights/hpe-discover-2024/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 504,
+    "category": "URL literal",
+    "value": "4. `https://www.cdw.com/product/nvidia-h100-nvl-gpu-computing-processor-nvidia-h100-nvl-tensor-core-9/8388278`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 510,
+    "category": "URL literal",
+    "value": "5. `https://www.uk.cdw.com/about/octo/insights/netapp-insight-2023/`",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 562,
+    "category": "URL literal",
+    "value": "\"link\": \"https://www.reuters.com/technology/\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 666,
+    "category": "Private threshold constant",
+    "value": "| Enforce 50% threshold | IMPLEMENTED | `_MIN_SUPPORT_RATIO = 0.5` at [node_validate_and_split.py](backend/app/pipeline/node_validate_and_split.py:19), checked at [node_validate_and_split.py](backend/app/pipeline/node_validate_and_split.py:138). |",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 690,
+    "category": "Company literal",
+    "value": "\"entity\": \"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 694,
+    "category": "URL literal",
+    "value": "\"source_url\": \"https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2026\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 710,
+    "category": "Company literal",
+    "value": "\"entity\": \"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "AGENT_QUALITY_REPORT.md",
+    "line": 714,
+    "category": "URL literal",
+    "value": "\"source_url\": \"https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2026\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 165,
+    "category": "FinBERT model literal",
+    "value": "│  FinBERT: ProsusAI/finbert                               │",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 241,
+    "category": "LLM model literal",
+    "value": "**Type:** LLM — OpenRouter via `LLMClient` (`google/gemini-2.5-flash` default)",
+    "note": "Should be env-overridable."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 436,
+    "category": "Company literal",
+    "value": "`{entity: \"Nvidia\", signal_type: \"hiring_momentum\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 594,
+    "category": "FinBERT model literal",
+    "value": "Source:   HuggingFace — ProsusAI/finbert",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 623,
+    "category": "FinBERT model literal",
+    "value": "model=\"ProsusAI/finbert\",",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 624,
+    "category": "FinBERT model literal",
+    "value": "tokenizer=\"ProsusAI/finbert\",",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1268,
+    "category": "FinBERT model literal",
+    "value": "FactObject[] (scored)  ← FinBERT financial sentiment (ProsusAI/finbert)",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1320,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2310.06117",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1331,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2509.16369",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1346,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2405.20245",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1358,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2403.18802",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1369,
+    "category": "URL literal",
+    "value": "Source:   https://huggingface.co/ProsusAI/finbert",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1391,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2404.10774",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1404,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2305.14251",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1418,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2402.14207",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1430,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2310.11511",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "ARCHITECTURE.md",
+    "line": 1442,
+    "category": "URL literal",
+    "value": "Link:     https://arxiv.org/abs/2305.06983",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "idea.md",
+    "line": 4,
+    "category": "Claude/stale model literal",
+    "value": "> **Purpose:** Full technical specification for building with Claude Code",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "idea.md",
+    "line": 279,
+    "category": "Claude/stale model literal",
+    "value": "│  Anthropic API (claude-sonnet-4-20250514)                            │",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "idea.md",
+    "line": 280,
+    "category": "FinBERT model literal",
+    "value": "│  HuggingFace (ProsusAI/finbert)                                      │",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "idea.md",
+    "line": 313,
+    "category": "Company literal",
+    "value": "entity: str                    # \"Nvidia\", \"AMD\", \"market\"",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "idea.md",
+    "line": 1053,
+    "category": "URL literal",
+    "value": "API_BASE = \"https://www.alphavantage.co/query\"",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "idea.md",
+    "line": 1072,
+    "category": "Claude/stale model literal",
+    "value": "LLM:        Anthropic claude-sonnet-4-20250514",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "idea.md",
+    "line": 1073,
+    "category": "FinBERT model literal",
+    "value": "Sentiment:  transformers + ProsusAI/finbert",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "idea.md",
+    "line": 1283,
+    "category": "FinBERT model literal",
+    "value": "| FinBERT | HuggingFace: ProsusAI/finbert | M3 — sentiment scoring |",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": ".pytest_cache/README.md",
+    "line": 8,
+    "category": "URL literal",
+    "value": "See [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/main.py",
+    "line": 10,
+    "category": "URL literal",
+    "value": "_cors_origins = [o.strip() for o in os.getenv(\"CORS_ORIGINS\", \"http://localhost:5173\").split(\",\")]",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/run_pipeline.py",
+    "line": 86,
+    "category": "/tmp output path",
+    "value": "out = Path(\"/tmp/pulselens_report_id.txt\")",
+    "note": "OK for tests/scripts, not runtime."
+  },
+  {
+    "file": "frontend/vite.config.ts",
+    "line": 17,
+    "category": "URL literal",
+    "value": "target: 'http://localhost:8000',",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "frontend/src/lib/api-client.ts",
+    "line": 4,
+    "category": "URL literal",
+    "value": "const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "frontend/src/types/api.ts",
+    "line": 13,
+    "category": "URL literal",
+    "value": "const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "frontend/src/modules/about/pages/about-page.tsx",
+    "line": 20,
+    "category": "Claude/stale model literal",
+    "value": "body: 'Raw documents are processed by Claude (claude-sonnet-4-20250514) using a schema-constrained extraction prompt. Every extracted fact must include an exact verbatim quote from the source. Any fact whose evidence_quote cannot be found in the source document is automatically discarded — this eliminates LLM hallucination at the extraction stage.',",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "backend/.pytest_cache/README.md",
+    "line": 8,
+    "category": "URL literal",
+    "value": "See [the docs](https://docs.pytest.org/en/stable/how-to/cache.html) for more information.",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 193,
+    "category": "LLM model literal",
+    "value": "(r\"google/gemini-[^\\\"'\\s]+\", \"LLM model literal\", \"Should be env-overridable.\"),",
+    "note": "Should be env-overridable."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 194,
+    "category": "Claude/stale model literal",
+    "value": "(r\"claude[^\\\"'\\s)]*\", \"Claude/stale model literal\", \"Likely stale if code uses OpenRouter/Gemini.\"),",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 195,
+    "category": "FinBERT model literal",
+    "value": "(r\"ProsusAI/finbert\", \"FinBERT model literal\", \"Consider FINBERT_MODEL env var.\"),",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 196,
+    "category": "Embedding model literal",
+    "value": "(r\"sentence-transformers/all-MiniLM-L6-v2\", \"Embedding model literal\", \"OK if env-overridable.\"),",
+    "note": "OK if env-overridable."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 219,
+    "category": "Claude/stale model literal",
+    "value": "if not stripped or stripped.startswith(\"#\") and \"Claude\" not in stripped:",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 245,
+    "category": "Claude/stale model literal",
+    "value": "if file.endswith(\"frontend/src/modules/about/pages/about-page.tsx\") and \"Claude\" in value:",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 248,
+    "category": "FinBERT model literal",
+    "value": "elif file.endswith(\"backend/app/pipeline/agent4_finbert_scorer.py\") and \"ProsusAI/finbert\" in value:",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "backend/scripts/full_pipeline_live_audit.py",
+    "line": 250,
+    "category": "FinBERT model literal",
+    "value": "recommendation = \"Move to FINBERT_MODEL env/config; keep ProsusAI/finbert as default.\"",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "backend/tests/test_pipeline_live.py",
+    "line": 70,
+    "category": "Company literal",
+    "value": "target_entity=\"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/tests/test_pipeline_live.py",
+    "line": 95,
+    "category": "URL literal",
+    "value": "query_text=\"https://ir.nvidia.com/news-events/press-releases\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/tests/test_pipeline_live.py",
+    "line": 96,
+    "category": "Company literal",
+    "value": "target_entity=\"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/tests/test_pipeline_live.py",
+    "line": 127,
+    "category": "Company literal",
+    "value": "\"companies\": [\"Nvidia\", \"AMD\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/tests/test_pipeline_quality.py",
+    "line": 31,
+    "category": "/tmp output path",
+    "value": "OUT = Path(\"/tmp/pipeline_test_v2\")",
+    "note": "OK for tests/scripts, not runtime."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 18,
+    "category": "Company literal",
+    "value": "name=\"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 21,
+    "category": "URL literal",
+    "value": "ir_url=\"https://investor.nvidia.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 22,
+    "category": "URL literal",
+    "value": "careers_url=\"https://nvidia.com/en-us/about-nvidia/careers/\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 23,
+    "category": "Company literal",
+    "value": "known_aliases=[\"nvidia\", \"nvidia corporation\", \"NVDA\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 26,
+    "category": "Company literal",
+    "value": "name=\"AMD\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 27,
+    "category": "Company literal",
+    "value": "ticker=\"AMD\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 29,
+    "category": "URL literal",
+    "value": "ir_url=\"https://ir.amd.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 30,
+    "category": "URL literal",
+    "value": "careers_url=\"https://careers.amd.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 31,
+    "category": "Company literal",
+    "value": "known_aliases=[\"amd\", \"advanced micro devices\", \"AMD\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 34,
+    "category": "Company literal",
+    "value": "name=\"Intel\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 37,
+    "category": "URL literal",
+    "value": "ir_url=\"https://investor.intel.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 38,
+    "category": "URL literal",
+    "value": "careers_url=\"https://jobs.intel.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 39,
+    "category": "Company literal",
+    "value": "known_aliases=[\"intel\", \"intel corporation\", \"INTC\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 42,
+    "category": "Company literal",
+    "value": "name=\"Broadcom\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 45,
+    "category": "URL literal",
+    "value": "ir_url=\"https://investors.broadcom.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 46,
+    "category": "URL literal",
+    "value": "careers_url=\"https://careers.broadcom.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 47,
+    "category": "Company literal",
+    "value": "known_aliases=[\"broadcom\", \"broadcom inc\", \"AVGO\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 50,
+    "category": "Company literal",
+    "value": "name=\"Supermicro\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 53,
+    "category": "URL literal",
+    "value": "ir_url=\"https://ir.supermicro.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 54,
+    "category": "URL literal",
+    "value": "careers_url=\"https://www.supermicro.com/en/jobs\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 55,
+    "category": "Company literal",
+    "value": "known_aliases=[\"supermicro\", \"super micro computer\", \"SMCI\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 58,
+    "category": "Company literal",
+    "value": "name=\"Dell\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 59,
+    "category": "Company literal",
+    "value": "ticker=\"DELL\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 61,
+    "category": "URL literal",
+    "value": "ir_url=\"https://ir.dell.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 62,
+    "category": "URL literal",
+    "value": "careers_url=\"https://jobs.dell.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 63,
+    "category": "Company literal",
+    "value": "known_aliases=[\"dell\", \"dell technologies\", \"DELL\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 66,
+    "category": "Company literal",
+    "value": "name=\"HPE\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 67,
+    "category": "Company literal",
+    "value": "ticker=\"HPE\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 69,
+    "category": "URL literal",
+    "value": "ir_url=\"https://investor.hpe.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 70,
+    "category": "URL literal",
+    "value": "careers_url=\"https://careers.hpe.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 71,
+    "category": "Company literal",
+    "value": "known_aliases=[\"hpe\", \"hewlett packard enterprise\", \"HPE\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 74,
+    "category": "Company literal",
+    "value": "name=\"Micron\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 77,
+    "category": "URL literal",
+    "value": "ir_url=\"https://investor.micron.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 78,
+    "category": "URL literal",
+    "value": "careers_url=\"https://micron.com/careers\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/config/companies.py",
+    "line": 79,
+    "category": "Company literal",
+    "value": "known_aliases=[\"micron\", \"micron technology\", \"MU\"],",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/config/markets.py",
+    "line": 2,
+    "category": "Default constant",
+    "value": "DEFAULT_MARKET = \"US AI Hardware / Semiconductor\"",
+    "note": "OK when env-overridable."
+  },
+  {
+    "file": "backend/app/config/markets.py",
+    "line": 3,
+    "category": "Default constant",
+    "value": "DEFAULT_TIME_WINDOW = \"last 7 days\"",
+    "note": "OK when env-overridable."
+  },
+  {
+    "file": "backend/app/pipeline/agent1_query_planner.py",
+    "line": 52,
+    "category": "Company literal",
+    "value": "PRIORITY_COMPANIES = [\"Nvidia\", \"AMD\", \"Intel\", \"Dell\", \"HPE\", \"Micron\"]",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent3_fact_extractors.py",
+    "line": 19,
+    "category": "Private threshold constant",
+    "value": "_MAX_CONCURRENT = 10  # asyncio.to_thread slots for LLM calls",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/agent3_fact_extractors.py",
+    "line": 224,
+    "category": "Company literal",
+    "value": "target_entity=\"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent3_fact_extractors.py",
+    "line": 233,
+    "category": "Company literal",
+    "value": "target_entity=\"AMD\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 17,
+    "category": "FinBERT model literal",
+    "value": "_MODEL_ID   = \"ProsusAI/finbert\"",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 120,
+    "category": "Company literal",
+    "value": "(\"Nvidia\",    SignalType.investor_signal,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 122,
+    "category": "Company literal",
+    "value": "(\"AMD\",       SignalType.product_launch,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 124,
+    "category": "Company literal",
+    "value": "(\"Intel\",     SignalType.investor_signal,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 127,
+    "category": "Company literal",
+    "value": "(\"AMD\",       SignalType.investor_signal,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 129,
+    "category": "Company literal",
+    "value": "(\"Intel\",     SignalType.hiring_momentum,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 131,
+    "category": "Company literal",
+    "value": "(\"Nvidia\",    SignalType.supplier_risk,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 136,
+    "category": "Company literal",
+    "value": "(\"Broadcom\",  SignalType.news_sentiment,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 138,
+    "category": "Company literal",
+    "value": "(\"Dell\",      SignalType.strategic_messaging,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 140,
+    "category": "Company literal",
+    "value": "(\"Micron\",    SignalType.strategic_messaging,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent4_finbert_scorer.py",
+    "line": 152,
+    "category": "URL literal",
+    "value": "source_url=\"https://example.com/test\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 2,
+    "category": "Claude/stale model literal",
+    "value": "# LLM (Claude) writes a symmetric analyst note for each contradicted (entity, signal_type) pair.",
+    "note": "Likely stale if code uses OpenRouter/Gemini."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 15,
+    "category": "Private threshold constant",
+    "value": "_MAX_CONCURRENT = 5",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 138,
+    "category": "Company literal",
+    "value": "fact_id=\"f001\", doc_id=\"d1\", entity=\"Nvidia\", signal_type=SignalType.hiring_momentum,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 140,
+    "category": "URL literal",
+    "value": "evidence_quote=\"3,200 new job openings\", source_url=\"https://careers.nvidia.com\", source_tier=1,",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 145,
+    "category": "Company literal",
+    "value": "fact_id=\"f002\", doc_id=\"d2\", entity=\"Nvidia\", signal_type=SignalType.hiring_momentum,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 147,
+    "category": "URL literal",
+    "value": "evidence_quote=\"cut 500 positions\", source_url=\"https://reuters.com/nvidia\", source_tier=2,",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 152,
+    "category": "Company literal",
+    "value": "fact_id=\"f003\", doc_id=\"d3\", entity=\"AMD\", signal_type=SignalType.pricing_pressure,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 154,
+    "category": "URL literal",
+    "value": "evidence_quote=\"reduced MI300X list prices by 12%\", source_url=\"https://amd.com/ir\", source_tier=1,",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 159,
+    "category": "Company literal",
+    "value": "fact_id=\"f004\", doc_id=\"d4\", entity=\"AMD\", signal_type=SignalType.pricing_pressure,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 161,
+    "category": "URL literal",
+    "value": "evidence_quote=\"raised MI300X enterprise pricing by $2,000\", source_url=\"https://bloomberg.com/amd\", source_tier=2,",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 169,
+    "category": "Company literal",
+    "value": "entity=\"Nvidia\", signal_type=SignalType.hiring_momentum,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 173,
+    "category": "Company literal",
+    "value": "entity=\"AMD\", signal_type=SignalType.pricing_pressure,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 180,
+    "category": "Company literal",
+    "value": "claim_id=\"vc1\", entity=\"Nvidia\", signal_type=SignalType.hiring_momentum,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/agent5_contradiction_writer.py",
+    "line": 187,
+    "category": "Company literal",
+    "value": "claim_id=\"vc2\", entity=\"AMD\", signal_type=SignalType.pricing_pressure,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/graph.py",
+    "line": 112,
+    "category": "FinBERT model literal",
+    "value": "\"\"\"Agent 4 — FinBERT Scorer (ProsusAI/finbert, batch sentiment)\"\"\"",
+    "note": "Consider FINBERT_MODEL env var."
+  },
+  {
+    "file": "backend/app/pipeline/node_quality_gate.py",
+    "line": 14,
+    "category": "Private threshold constant",
+    "value": "_MIN_FACTS        = 50",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/node_quality_gate.py",
+    "line": 15,
+    "category": "Private threshold constant",
+    "value": "_MIN_SIGNAL_TYPES = 4",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/node_quality_gate.py",
+    "line": 78,
+    "category": "Company literal",
+    "value": "entity=\"Nvidia\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_quality_gate.py",
+    "line": 82,
+    "category": "URL literal",
+    "value": "source_url=\"https://example.com\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 161,
+    "category": "Company literal",
+    "value": "_vc(\"vc1\", \"Nvidia\", SignalType.hiring_momentum,   +0.85, 0.92, 0.90, [1, 2]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 162,
+    "category": "Company literal",
+    "value": "_vc(\"vc2\", \"Nvidia\", SignalType.investor_signal,   +0.78, 0.95, 0.88, [1]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 163,
+    "category": "Company literal",
+    "value": "_vc(\"vc3\", \"Nvidia\", SignalType.product_launch,    +0.70, 0.88, 0.82, [2]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 164,
+    "category": "Company literal",
+    "value": "_vc(\"vc4\", \"Nvidia\", SignalType.news_sentiment,    +0.65, 0.85, 0.80, [2, 3]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 166,
+    "category": "Company literal",
+    "value": "_vc(\"vc5\", \"AMD\",    SignalType.pricing_pressure,  -0.40, 0.87, 0.78, [1, 2], contradicted=True),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 167,
+    "category": "Company literal",
+    "value": "_vc(\"vc6\", \"AMD\",    SignalType.hiring_momentum,   +0.50, 0.80, 0.75, [2, 3]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 168,
+    "category": "Company literal",
+    "value": "_vc(\"vc7\", \"AMD\",    SignalType.investor_signal,   +0.30, 0.82, 0.77, [1]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 170,
+    "category": "Company literal",
+    "value": "_vc(\"vc8\", \"Intel\",  SignalType.supplier_risk,     -0.60, 0.78, 0.72, [2, 3]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 171,
+    "category": "Company literal",
+    "value": "_vc(\"vc9\", \"Intel\",  SignalType.news_sentiment,    -0.50, 0.75, 0.70, [3]),",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 194,
+    "category": "Company literal",
+    "value": "assert \"Nvidia\" in result[\"breakdown\"][\"by_company\"], \"Nvidia missing from breakdown\"",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 195,
+    "category": "Company literal",
+    "value": "assert \"AMD\" in result[\"breakdown\"][\"by_company\"], \"AMD missing from breakdown\"",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 196,
+    "category": "Company literal",
+    "value": "assert \"Intel\" in result[\"breakdown\"][\"by_company\"], \"Intel missing from breakdown\"",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 199,
+    "category": "Company literal",
+    "value": "nvidia_score = result[\"breakdown\"][\"by_company\"][\"Nvidia\"][\"pulse_score\"]",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 200,
+    "category": "Company literal",
+    "value": "intel_score  = result[\"breakdown\"][\"by_company\"][\"Intel\"][\"pulse_score\"]",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_signal_scorer.py",
+    "line": 204,
+    "category": "Company literal",
+    "value": "intel_status = result[\"breakdown\"][\"by_company\"][\"Intel\"][\"pulse_status\"]",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 247,
+    "category": "Company literal",
+    "value": "f1a = _fact(\"f1a\", \"Nvidia\", SignalType.investor_signal, \"positive\", 0.85,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 248,
+    "category": "URL literal",
+    "value": "\"https://reuters.com/article/1\", source_tier=2)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 249,
+    "category": "Company literal",
+    "value": "f1b = _fact(\"f1b\", \"Nvidia\", SignalType.investor_signal, \"positive\", 0.80,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 250,
+    "category": "URL literal",
+    "value": "\"https://bloomberg.com/article/1\", source_tier=2)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 259,
+    "category": "Company literal",
+    "value": "f2 = _fact(\"f2a\", \"AMD\", SignalType.product_launch, \"positive\", 0.75,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 260,
+    "category": "URL literal",
+    "value": "\"https://techcrunch.com/article/1\", source_tier=3)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 267,
+    "category": "Company literal",
+    "value": "f3a = _fact(\"f3a\", \"Intel\", SignalType.investor_signal, \"positive\",  0.85,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 268,
+    "category": "URL literal",
+    "value": "\"https://reuters.com/article/2\", source_tier=2)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 269,
+    "category": "Company literal",
+    "value": "f3b = _fact(\"f3b\", \"Intel\", SignalType.investor_signal, \"negative\", -0.80,",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/node_triangulator.py",
+    "line": 270,
+    "category": "URL literal",
+    "value": "\"https://bloomberg.com/article/2\", source_tier=2)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/pipeline/node_validate_and_split.py",
+    "line": 18,
+    "category": "Private threshold constant",
+    "value": "_MIN_CONFIDENCE = 0.6",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/node_validate_and_split.py",
+    "line": 19,
+    "category": "Private threshold constant",
+    "value": "_MIN_SUPPORT_RATIO = 0.5   # SAFE threshold: discard if < 50% atomic claims supported",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/node_validate_and_split.py",
+    "line": 20,
+    "category": "Private threshold constant",
+    "value": "_MAX_CONCURRENT_SAFE = 5   # SAFE is expensive (2+ LLM calls per fact)",
+    "note": "Consider config if product behavior."
+  },
+  {
+    "file": "backend/app/pipeline/test_a2_a3.py",
+    "line": 37,
+    "category": "/tmp output path",
+    "value": "OUT = Path(\"/tmp/test_a2_a3\")",
+    "note": "OK for tests/scripts, not runtime."
+  },
+  {
+    "file": "backend/app/pipeline/test_a2_a3.py",
+    "line": 63,
+    "category": "Company literal",
+    "value": "\"Nvidia\", SignalType.investor_signal, \"ir_pages\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/test_a2_a3.py",
+    "line": 67,
+    "category": "Company literal",
+    "value": "\"AMD\", SignalType.investor_signal, \"ir_pages\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/test_a2_a3.py",
+    "line": 71,
+    "category": "Company literal",
+    "value": "\"Intel\", SignalType.hiring_momentum, \"job_pages\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/pipeline/test_a2_a3.py",
+    "line": 75,
+    "category": "Company literal",
+    "value": "\"Nvidia\", SignalType.pricing_pressure, \"serp_news\",",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/alphavantage_client.py",
+    "line": 19,
+    "category": "URL literal",
+    "value": "self.base_url = \"https://www.alphavantage.co/query\"",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/brightdata_client.py",
+    "line": 23,
+    "category": "URL literal",
+    "value": "DEFAULT_BRIGHTDATA_API_URL = \"https://api.brightdata.com/request\"",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/brightdata_client.py",
+    "line": 24,
+    "category": "Default constant",
+    "value": "DEFAULT_NUM_RESULTS = 5",
+    "note": "OK when env-overridable."
+  },
+  {
+    "file": "backend/app/utils/brightdata_client.py",
+    "line": 25,
+    "category": "Default constant",
+    "value": "DEFAULT_TIMEOUT_SECONDS = 15.0",
+    "note": "OK when env-overridable."
+  },
+  {
+    "file": "backend/app/utils/brightdata_client.py",
+    "line": 81,
+    "category": "URL literal",
+    "value": "search_url = f\"https://www.google.com/search?q={quote_plus(query)}&num={num_results}\"",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/embeddings.py",
+    "line": 15,
+    "category": "Embedding model literal",
+    "value": "\"sentence-transformers/all-MiniLM-L6-v2\",",
+    "note": "OK if env-overridable."
+  },
+  {
+    "file": "backend/app/utils/llm_client.py",
+    "line": 20,
+    "category": "URL literal",
+    "value": "OPENROUTER_BASE_URL = \"https://openrouter.ai/api/v1\"",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/llm_client.py",
+    "line": 22,
+    "category": "LLM model literal",
+    "value": "_DEFAULT_MODEL = \"google/gemini-2.5-flash\"",
+    "note": "Should be env-overridable."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 88,
+    "category": "Company literal",
+    "value": "company.domain.split(\".\")[0],   # \"nvidia\" from \"nvidia.com\"",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 285,
+    "category": "Company literal",
+    "value": "q = _q(\"Nvidia\", SignalType.investor_signal)",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 288,
+    "category": "URL literal",
+    "value": "(\"https://www.google.com/search?q=nvidia+earnings\",        True,  \"Google SERP\"),",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 289,
+    "category": "URL literal",
+    "value": "(\"https://www.bing.com/search?q=nvidia+earnings\",          True,  \"Bing SERP\"),",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 290,
+    "category": "URL literal",
+    "value": "(\"https://www.google.com/url?sa=t&url=https://ir.nvidia.com\", True, \"Google redirect\"),",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 291,
+    "category": "URL literal",
+    "value": "(\"https://webcache.googleusercontent.com/search?q=cache:ir.nvidia.com\", True, \"Google webcache\"),",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 292,
+    "category": "URL literal",
+    "value": "(\"https://ir.nvidia.com/news/q1-2026\",                     False, \"Nvidia IR (not search engine)\"),",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 293,
+    "category": "URL literal",
+    "value": "(\"https://reuters.com/technology/nvidia-earnings-2025\",    False, \"Reuters article\"),",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 303,
+    "category": "Company literal",
+    "value": "q_mu = _q(\"Micron\", SignalType.investor_signal)",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 304,
+    "category": "Company literal",
+    "value": "q_amd = _q(\"AMD\", SignalType.investor_signal)",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 307,
+    "category": "URL literal",
+    "value": "bad_mu  = {\"url\": \"https://reuters.com/x\", \"title\": \"communications investment\", \"snippet\": \"mutual fund activity\"}",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 308,
+    "category": "URL literal",
+    "value": "good_mu = {\"url\": \"https://investor.micron.com/x\", \"title\": \"Micron (MU) earnings\", \"snippet\": \"MU revenue Q1 2026\"}",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 309,
+    "category": "URL literal",
+    "value": "bad_amd = {\"url\": \"https://reuters.com/x\", \"title\": \"amended filing\", \"snippet\": \"command decision announced\"}",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 325,
+    "category": "Company literal",
+    "value": "q_site = _q(\"Nvidia\", SignalType.investor_signal, text=\"Nvidia 10-K annual report site:sec.gov\")",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 327,
+    "category": "URL literal",
+    "value": "in_site  = {\"url\": \"https://sec.gov/Archives/edgar/data/nvidia.htm\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 329,
+    "category": "URL literal",
+    "value": "off_site = {\"url\": \"https://reuters.com/nvidia-annual-report\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 341,
+    "category": "Company literal",
+    "value": "q_ir = _q(\"Nvidia\", SignalType.investor_signal, source_type=\"ir_pages\")",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 343,
+    "category": "URL literal",
+    "value": "ir_tier1   = {\"url\": \"https://ir.nvidia.com/sec-filings/annual-reports\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 345,
+    "category": "URL literal",
+    "value": "ir_tier2   = {\"url\": \"https://reuters.com/nvidia-sec-annual-filing\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 347,
+    "category": "URL literal",
+    "value": "ir_sec     = {\"url\": \"https://sec.gov/cgi-bin/browse-edgar?CIK=nvda\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 362,
+    "category": "Company literal",
+    "value": "q_jobs = _q(\"Intel\", SignalType.hiring_momentum, source_type=\"job_pages\")",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 364,
+    "category": "URL literal",
+    "value": "jobs_career = {\"url\": \"https://jobs.intel.com/software-engineer-ai\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 366,
+    "category": "URL literal",
+    "value": "jobs_news   = {\"url\": \"https://techcrunch.com/intel-layoffs-2025\",",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 381,
+    "category": "Company literal",
+    "value": "q6 = _q(\"Nvidia\", SignalType.investor_signal)",
+    "note": "Should usually derive from companies.py."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 382,
+    "category": "URL literal",
+    "value": "sc6.record_http_result(\"https://seekingalpha.com/x\", 403)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 383,
+    "category": "URL literal",
+    "value": "sc6.record_http_result(\"https://seekingalpha.com/y\", 403)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 384,
+    "category": "URL literal",
+    "value": "r6 = {\"url\": \"https://seekingalpha.com/nvidia-earnings\", \"title\": \"Nvidia earnings\", \"snippet\": \"Nvidia investor earnings revenue\"}",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 391,
+    "category": "URL literal",
+    "value": "sc7.record_http_result(\"https://seekingalpha.com/x\", 429)",
+    "note": "Check if this should be env/config."
+  },
+  {
+    "file": "backend/app/utils/url_scorer.py",
+    "line": 392,
+    "category": "URL literal",
+    "value": "sc7.record_http_result(\"https://seekingalpha.com/y\", 429)",
+    "note": "Check if this should be env/config."
+  }
+]

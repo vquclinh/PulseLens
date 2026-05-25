@@ -1,0 +1,1740 @@
+[
+  {
+    "call_id": "bd_0001",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Nvidia+13F+filings+institutional+ownership+changes+last+7+days+site%3Asec.gov&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.47,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0002",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Intel+8-K+filing+AI+strategy+last+7+days+site%3Asec.gov&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.95,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0003",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Dell+Technologies+analyst+upgrade+AI+server+demand+last+7+days+bloomberg.com+OR+reuters.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.97,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0004",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=HPE+earnings+call+transcript+AI+commentary+last+7+days+investor.hpe.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.01,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0005",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=AMD+Q2+2026+earnings+guidance+revision+investor.amd.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.72,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0006",
+    "zone": "pulselens_scraper",
+    "url": "https://es.tradingview.com/news/reuters.com,2025:newsml_L3N3VO0Q5:0-dell-gains-after-raising-long-term-earnings-outlook-on-strong-ai-server-demand/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.66,
+    "response_summary": {
+      "type": "str",
+      "chars": 199491,
+      "preview": "\n<!DOCTYPE html>\n<html lang=\"es\" dir=\"ltr\" class=\"is-not-authenticated is-not-pro  theme-light\"\n data-theme=\"light\">\n<head><meta charset=\"utf-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\">\t<script nonce=\"hoevCHLzlLTLCOP3gI5pIA==\">window.initData = {};</script><title>Dell gains after raising long-term earnings outlook on strong AI server demand — Noticias de TradingView</title>\n<!-- { block promo_footer_css_bundle } -->\n\t\t<!-- { render_css_bundle('promo_footer') } -->\n\t\t<link crossorigin=\"anonymous\" href=\"https://static.tradingview.com/static/bundles/9560.f6a917ea9b9f0bfa28ef.css\" rel=\"stylesheet\" type=\"text/css\"/>\n\t<!-- { endblock promo_footer_css_bundle } -->\n\n\t<!-- { block personal_css_bundle } -->\n\t\t<!-- render_css_bundle('base') -->\n\t\t\t<link crossorigin=\"anonymous\" href=\"https://static.tradingview.com/static/bundles/9387.ab3e5e0761086513c22d.css\" rel=\"stylesheet\" type=\"text/css\"/>\n<link crossorigin=\"anonymous\" href=\"https://static.tradingview.com/static/bundles/27429.b931f8e37855dbac0f29.css\" rel=\"stylesheet\" type=\"text/css\"/>\n<link crossorigin=\"anonymous\" href=\"https://static.tradingview.com/\n\n...[truncated 198291 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0007",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/business/dell-raises-long-term-annual-revenue-profit-growth-forecasts-strong-ai-server-2025-10-07/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.14,
+    "response_summary": {
+      "type": "str",
+      "chars": 457795,
+      "preview": "<!DOCTYPE html><html data-layout=\"regular-article\" data-rdr-ts=\"1779725872514\" data-site-lang=\"en\" lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"image\" imageSrcSet=\"https://www.reuters.com/resizer/v2/L5ZZYHZOHRNKHKUPFWYSUEJ6TU.jpg?auth=26805bffe1f8f3dfbc8c42bd132d812d5a8658d90155c8c17fd4540ba1e06f27&amp;width=480&amp;quality=80 480w,https://www.reuters.com/resizer/v2/L5ZZYHZOHRNKHKUPFWYSUEJ6TU.jpg?auth=26805bffe1f8f3dfbc8c42bd132d812d5a8658d90155c8c17fd4540ba1e06f27&amp;width=640&amp;quality=80 640w,https://www.reuters.com/resizer/v2/L5ZZYHZOHRNKHKUPFWYSUEJ6TU.jpg?auth=26805bffe1f8f3dfbc8c42bd132d812d5a8658d90155c8c17fd4540ba1e06f27&amp;width=720&amp;quality=80 720w,https://www.reuters.com/resizer/v2/L5ZZYHZOHRNKHKUPFWYSUEJ6TU.jpg?auth=26805bffe1f8f3dfbc8c42bd132d812d5a8658d90155c8c17fd4540ba1e06f27&amp;width=960&amp;quality=80 960w,https://www.reuters.com/resizer/v2/L5ZZYHZOHRNKHKUPFWYSUEJ6TU.jpg?auth=26805bffe1f8f3dfbc8c42bd132d812d5a8658d90155c8c17fd4540ba1e06f27&amp;width=1080&amp;quality=80 1080w,https://www.reuters.com/resizer/v2/L5ZZYHZOHRNKHKUPFWYSUEJ6TU.jpg?auth=26805bffe1f8f3dfbc8c42bd132d812d5a8658d90155c8c17\n\n...[truncated 456595 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0008",
+    "zone": "pulselens_scraper",
+    "url": "https://www.investing.com/news/stock-market-news/dell-shares-jump-as-ai-server-demand-boosts-results-forecasts-3595177",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.55,
+    "response_summary": {
+      "type": "str",
+      "chars": 1066495,
+      "preview": "<!DOCTYPE html><html lang=\"en\" dir=\"ltr\" class=\"html\"><head><meta charSet=\"utf-8\" data-next-head=\"\"/><meta name=\"viewport\" content=\"initial-scale=1.0,width=device-width\" data-next-head=\"\"/><link rel=\"amphtml\" href=\"https://m.investing.com/news/stock-market-news/dell-shares-jump-as-ai-server-demand-boosts-results-forecasts-3595177?ampMode=1\" data-next-head=\"\"/><link rel=\"canonical\" href=\"https://www.investing.com/news/stock-market-news/dell-shares-jump-as-ai-server-demand-boosts-results-forecasts-3595177\" data-next-head=\"\"/><link rel=\"alternate\" hrefLang=\"x-default\" href=\"https://www.investing.com/news/stock-market-news/dell-shares-jump-as-ai-server-demand-boosts-results-forecasts-3595177\" data-next-head=\"\"/><meta property=\"og:type\" content=\"article\" data-next-head=\"\"/><meta property=\"og:url\" content=\"https://www.investing.com/news/stock-market-news/dell-shares-jump-as-ai-server-demand-boosts-results-forecasts-3595177\" data-next-head=\"\"/><meta property=\"og:image\" content=\"https://i-invdn-com.investing.com/news/https://i-invdn-com.investing.com/trkd-images/LYNXMPEK7T0EI_L.jpg\" data-next-head=\"\"/><meta property=\"og:site_name\" content=\"Investing.com\" data-next-head=\"\"/><meta property=\"\n\n...[truncated 1065291 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0009",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=AMD+EPYC+MI300X+server+pricing+CDW+Insight+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.6,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0010",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Broadcom+AI+segment+performance+earnings+call+last+7+days+investors.broadcom.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.02,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0011",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Supermicro+investor+presentation+AI+roadmap+last+7+days+ir.supermicro.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.4,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0012",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Micron+Technology+13F+institutional+investors+HBM+last+7+days+site%3Asec.gov&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.71,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0013",
+    "zone": "pulselens_scraper",
+    "url": "https://ir.supermicro.com/news/default.aspx",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.87,
+    "response_summary": {
+      "type": "str",
+      "chars": 81492,
+      "preview": "<!DOCTYPE HTML>\n<html id=\"7c7674e34dcaf1d24ed2a670c1726976464d73fc\" class=\"StudioLegacy Legacy\" xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en-US\" xml:lang=\"en-US\">\n<head><title>\n\tSuper Micro Computer, Inc. - News\n</title><meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-type\" /><meta content=\"RevealTrans(Duration=0,Transition=0)\" http-equiv=\"Page-Enter\" /><meta content=\"IE=edge,chrome=1\" http-equiv=\"X-UA-Compatible\" /><meta content=\"width=device-width, initial-scale=1\" name=\"viewport\" /><meta content=\"REn5e5du7PeOMhBa2WsmqoBLd-f6O8HpPrkXxucA0EM\" name=\"google-site-verification\" /><!--[if lte IE 8]>\n<link id=\"respond-proxy\" rel=\"respond-proxy\" media=\"screen\" href=\"//s204.q4cdn.com/707617056/files/js/respond-proxy.html\" />\n<link id=\"respond-redirect\" rel=\"respond-redirect\" media=\"screen\" href=\"https://ir.supermicro.com/js/respond.proxy.gif\" />\n<![endif]-->\n\n<link type=\"text/css\" rel=\"stylesheet\" media=\"all\" href=\"https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,600\" />\n<link type=\"image/x-icon\" rel=\"icon\" media=\"\" href=\"//s204.q4cdn.com/707617056/files/favicon.ico\" />\n<link type=\"image/x-icon\" rel=\"shortcut icon\" media\n\n...[truncated 79084 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0014",
+    "zone": "pulselens_scraper",
+    "url": "https://www.koicomputers.com/products/gpu-servers/amd-instinct-mi300x-accelerator/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.05,
+    "response_summary": {
+      "type": "str",
+      "chars": 97521,
+      "preview": "\n<!doctype html>\n\n<!--[if lt IE 7]><html lang=\"en-US\" class=\"no-js lt-ie9 lt-ie8 lt-ie7\"><![endif]-->\n<!--[if (IE 7)&!(IEMobile)]><html lang=\"en-US\" class=\"no-js lt-ie9 lt-ie8\"><![endif]-->\n<!--[if (IE 8)&!(IEMobile)]><html lang=\"en-US\" class=\"no-js lt-ie9\"><![endif]-->\n<!--[if gt IE 8]><!--> <html lang=\"en-US\" class=\"no-js\"><!--<![endif]-->\n\n\t<head>\n\t\t<meta charset=\"utf-8\">\n<script>\nvar gform;gform||(document.addEventListener(\"gform_main_scripts_loaded\",function(){gform.scriptsLoaded=!0}),document.addEventListener(\"gform/theme/scripts_loaded\",function(){gform.themeScriptsLoaded=!0}),window.addEventListener(\"DOMContentLoaded\",function(){gform.domLoaded=!0}),gform={domLoaded:!1,scriptsLoaded:!1,themeScriptsLoaded:!1,isFormEditor:()=>\"function\"==typeof InitializeEditor,callIfLoaded:function(o){return!(!gform.domLoaded||!gform.scriptsLoaded||!gform.themeScriptsLoaded&&!gform.isFormEditor()||(gform.isFormEditor()&&console.warn(\"The use of gform.initializeOnLoaded() is deprecated in the form editor context and will be removed in Gravity Forms 3.1.\"),o(),0))},initializeOnLoaded:function(o){gform.callIfLoaded(o)||(document.addEventListener(\"gform_main_scripts_loaded\",()=>{gform.scriptsLoa\n\n...[truncated 96321 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0015",
+    "zone": "pulselens_scraper",
+    "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.72,
+    "response_summary": {
+      "type": "str",
+      "chars": 909037,
+      "preview": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"og: https://ogp.me/ns#\">\n  <head>\n    <meta charset=\"utf-8\" />\n<link rel=\"canonical\" href=\"https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial\" />\n<meta property=\"og:site_name\" content=\"Broadcom Inc.\" />\n<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:url\" content=\"https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial\" />\n<meta property=\"og:title\" content=\"Broadcom Inc. Announces First Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend | Broadcom Inc.\" />\n<meta property=\"og:description\" content=\"The Investor Relations website contains information about Broadcom Inc. &#039;s business for stockholders, potential investors, and financial analysts.\" />\n<meta name=\"Generator\" content=\"Drupal 10 (https://www.drupal.org)\" />\n<meta name=\"MobileOptimized\" content=\"width\" />\n<meta name=\"HandheldFriendly\" content=\"true\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<link rel=\"icon\" href=\"/sites/g/files/knoqqb13036/files/favicon-32x\n\n...[truncated 907815 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0016",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Nvidia+GTC+announcement+AI+chip+availability+last+7+days+nvidia.com%2Fnews&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.93,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0017",
+    "zone": "pulselens_scraper",
+    "url": "https://nvidianews.nvidia.com/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.77,
+    "error": "BrightDataError(\"Bright Data request failed for https://nvidianews.nvidia.com/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0018",
+    "zone": "pulselens_scraper",
+    "url": "https://nvidianews.nvidia.com/news/latest",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.79,
+    "error": "BrightDataError(\"Bright Data request failed for https://nvidianews.nvidia.com/news/latest: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0019",
+    "zone": "pulselens_scraper",
+    "url": "https://nvidianews.nvidia.com/news",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.76,
+    "error": "BrightDataError(\"Bright Data request failed for https://nvidianews.nvidia.com/news: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0020",
+    "zone": "pulselens_scraper",
+    "url": "https://www.sec.gov/ix?doc=/Archives/edgar/data/0000723125/000072312521000012/mu-20201203.htm",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.96,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0021",
+    "zone": "pulselens_scraper",
+    "url": "https://finance.yahoo.com/news/nvidia-prepares-triumphant-return-chinas-154554164.html",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.75,
+    "error": "BrightDataError(\"Bright Data request failed for https://finance.yahoo.com/news/nvidia-prepares-triumphant-return-chinas-154554164.html: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0022",
+    "zone": "pulselens_scraper",
+    "url": "https://www.investors.com/news/technology/nvidia-stock-nvda-gtc-2026-keynote/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.75,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.investors.com/news/technology/nvidia-stock-nvda-gtc-2026-keynote/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0023",
+    "zone": "pulselens_scraper",
+    "url": "https://www.amd.com/en/products/accelerators/instinct/mi300/platform.html",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 10.92,
+    "response_summary": {
+      "type": "str",
+      "chars": 179126,
+      "preview": "<!DOCTYPE HTML>\n\n<html lang=\"en\">\n    <head>\n    <meta charset=\"UTF-8\"/>\n    \n\t\n    <title>AMD Instinct™ MI300X Platform</title>\n    <meta name=\"description\" content=\"The AMD Instinct™ MI300X platform is designed to deliver exceptional performance for AI and HPC.\"/>\n    <meta property=\"og:title\" content=\"AMD Instinct™ MI300X Platform\"/>\n\t<meta property=\"og:description\" content=\"The AMD Instinct™ MI300X platform is designed to deliver exceptional performance for AI and HPC.\"/>\n\n\n\t<!-- Import map for external dependencies -->\n\t<script type=\"importmap\">\n\t\t{\n\t\t\t\t\"imports\": {\n\t\t\t\t\t\t\"datatables-library\": \"https://download.amd.com/js/datatables-library-1.0.0.js\",\n\t\t\t\t\t\t\"glide-library\": \"https://download.amd.com/js/glide-library-1.0.0.js\"\n\t\t\t\t}\n\t\t}\n\t</script>\n\t<!-- End import map for external dependencies -->\n\n\t<meta name=\"keywords\" content=\"Accelerators,Instinct,AI &amp; Machine Learning,High Performance Computing,Products\"/>\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/>\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n\t\n\t\n\n\t\n\t<meta property=\"og:image\" content=\"https://www.amd.com/content/dam/amd/en/images/products/data-centers/2325906-amd-instinct-pla\n\n...[truncated 174750 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0024",
+    "zone": "pulselens_scraper",
+    "url": "https://www.exxactcorp.com/category/AMD-Radeon-Instinct-Solutions",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.97,
+    "response_summary": {
+      "type": "str",
+      "chars": 782324,
+      "preview": "<!DOCTYPE html><html lang=\"en\"><head>\n        <title>AMD Instinct Solutions | MI300A, MI300X Servers | Exxact Corp.</title>\n\n        <base href=\"/\">\n\n        <meta charset=\"utf-8\">\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n        <meta name=\"og:type\" content=\"website\">\n        <meta name=\"facebook-domain-verification\" content=\"3twtcso1zd74zis0bvtd2pdyraco94\">\n        <meta name=\"format-detection\" content=\"telephone=no\">\n\n        <meta http-equiv=\"Cache-Control\" content=\"no-cache, no-store, must-revalidate\">\n        <meta http-equiv=\"pragma\" content=\"no-cache\">\n        <meta http-equiv=\"expires\" content=\"-1\">\n\n        <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n        <link rel=\"preload\" href=\"https://use.typekit.net/srb3tes.css\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\">\n        <noscript><link rel=\"stylesheet\" href=\"https://use.typekit.net/srb3tes.css\" /></noscript>\n        <link rel=\"preload\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" as=\"style\" onload=\"this.onload=null;this.rel='stylesheet'\">\n        <noscript><link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\n\n...[truncated 781124 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0025",
+    "zone": "pulselens_scraper",
+    "url": "http://www.sec.gov/ix?doc=/Archives/edgar/data/1282631/000155837024001626/nlst-20231230x10k.htm",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 13.95,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0026",
+    "zone": "pulselens_scraper",
+    "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 19.67,
+    "response_summary": {
+      "type": "str",
+      "chars": 1526957,
+      "preview": "<!DOCTYPE html>\n<html lang=\"en\" dir=\"ltr\" prefix=\"og: https://ogp.me/ns#\">\n  <head>\n    <meta charset=\"utf-8\" />\n<link rel=\"canonical\" href=\"https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025\" />\n<meta property=\"og:site_name\" content=\"Broadcom Inc.\" />\n<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:url\" content=\"https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025\" />\n<meta property=\"og:title\" content=\"Broadcom Inc. Announces Fourth Quarter and Fiscal Year 2025 Financial Results and Quarterly Dividend | Broadcom Inc.\" />\n<meta property=\"og:description\" content=\"The Investor Relations website contains information about Broadcom Inc. &#039;s business for stockholders, potential investors, and financial analysts.\" />\n<meta name=\"Generator\" content=\"Drupal 10 (https://www.drupal.org)\" />\n<meta name=\"MobileOptimized\" content=\"width\" />\n<meta name=\"HandheldFriendly\" content=\"true\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n<link rel=\"icon\" href=\"/sites/g/files/knoqqb13036/files/favicon-32x32.pn\n\n...[truncated 1525735 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0027",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reddit.com/r/Amd/comments/19cz2rb/amds_customers_begin_receiving_the_first_instinct/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.86,
+    "response_summary": {
+      "type": "str",
+      "chars": 520918,
+      "preview": "\n    <!DOCTYPE html>\n    <html lang=\"es-ES\" class=\"theme-beta\" dir=\"ltr\" device=\"desktop\">\n      <head prefix=\"og: https://ogp.me/ns#\">\n        <title>Reddit - el corazón de la conversación</title>\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">\n    <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n    <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black\">\n    <meta name=\"msapplication-navbutton-color\" content=\"#000000\">\n    <meta name=\"theme-color\" content=\"#000000\">\n        \n        \n        \n        <link rel=\"preconnect\" href=\"https://www.redditstatic.com/\" crossorigin=\"anonymous\">\n        <link rel=\"dns-prefetch\" href=\"https://www.redditstatic.com/\">\n      \n        \n        \n        \n    \n      <script nonce=\"ffS4hF+yiAba4mbeCfJKfQ==\">\n        window.CLIENT_EXPERIMENTS = {\"shreddit_ad_event_migration_cutoff_m1\":\"enabled\",\"shreddit_ad_event_migration_cutoff_m3\":\"enabled\",\"shreddit_ad_event_migration_m3\":\"enabled\",\"ads_in_related_posts_m1\":\"enabled\",\"shreddit_ads_off_reddit_opt_out\":\"enabled\",\"shreddit_age_settings\":\"enabled\",\"web_bermuda_remove_pm_ui\":\"enabled\",\"shreddit_cuj_pdp_new_timestamps\":\"enabled\",\"shre\n\n...[truncated 519718 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0028",
+    "zone": "pulselens_scraper",
+    "url": "https://sharonai.com/amd-instinct-mi300x/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.75,
+    "response_summary": {
+      "type": "str",
+      "chars": 1157069,
+      "preview": "<!doctype html>\n<html lang=\"en-US\" prefix=\"og: https://ogp.me/ns#\">\n<head><meta charset=\"UTF-8\"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\\/7\\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf(\"?\")==-1){if(href.indexOf(\"#\")==-1){document.location.href=href+\"?nowprocket=1\"}else{document.location.href=href.replace(\"#\",\"?nowprocket=1#\")}}else{if(href.indexOf(\"#\")==-1){document.location.href=href+\"&nowprocket=1\"}else{document.location.href=href.replace(\"#\",\"&nowprocket=1#\")}}}}</script><script>(()=>{class RocketLazyLoadScripts{constructor(){this.v=\"2.0.3\",this.userEvents=[\"keydown\",\"keyup\",\"mousedown\",\"mouseup\",\"mousemove\",\"mouseover\",\"mouseenter\",\"mouseout\",\"mouseleave\",\"touchmove\",\"touchstart\",\"touchend\",\"touchcancel\",\"wheel\",\"click\",\"dblclick\",\"input\",\"visibilitychange\"],this.attributeEvents=[\"onblur\",\"onclick\",\"oncontextmenu\",\"ondblclick\",\"onfocus\",\"onmousedown\",\"onmouseenter\",\"onmouseleave\",\"onmousemove\",\"onmouseout\",\"onmouseover\",\"onmouseup\",\"onmousewheel\",\"onscroll\",\"onsubmit\"]}async t(){this.i(),this.o(),/iP(ad|hone)/.test(navigator.userAgent)&&this.h(),this.u(),this.l(this),th\n\n...[truncated 1152131 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0029",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Intel+Gaudi+3+AI+accelerator+launch+reviews+anandtech.com+tomsshardware.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.13,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0030",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Supermicro+AI+server+pricing+trends+availability+dell.com+ibm.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.85,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0031",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=HPE+GreenLake+AI+initiatives+investor+day+last+7+days+investor.hpe.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.07,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0032",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Broadcom+CEO+comments+AI+strategy+investor+day+last+7+days+investors.broadcom.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.48,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic",
+        "perspectives",
+        "shorts"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0033",
+    "zone": "pulselens_scraper",
+    "url": "https://futurumgroup.com/insights/will-supermicros-legal-crisis-shift-server-market-share-to-new-dell-and-hpe-gpu-platforms/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 12.73,
+    "response_summary": {
+      "type": "str",
+      "chars": 341084,
+      "preview": "<!doctype html>\n<html lang=\"en-US\"><head>\n\t<meta charset=\"UTF-8\">\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t<link rel=\"profile\" href=\"https://gmpg.org/xfn/11\">\n\t\n<!-- Author Meta Tags by Molongui Authorship Pro, visit: https://www.molongui.com/wordpress-plugin-post-authors -->\n<meta name=\"author\" content=\"Brendan Burke\">\n<!-- /Molongui Authorship -->\n\n<meta name=\"robots\" content=\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n\n\t<!-- This site is optimized with the Yoast SEO Premium plugin v27.6 (Yoast SEO v27.6) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n\t<title>Will Supermicro's Crisis Shift to New Dell &amp; HPE GPU Platforms? - Futurum</title>\n<link data-rocket-prefetch=\"\" href=\"https://s.adroll.com\" rel=\"dns-prefetch\">\n<link data-rocket-prefetch=\"\" href=\"https://snap.licdn.com\" rel=\"dns-prefetch\">\n<link data-rocket-prefetch=\"\" href=\"https://js-na2.hscollectedforms.net\" rel=\"dns-prefetch\">\n<link data-rocket-prefetch=\"\" href=\"https://js-na2.hs-banner.com\" rel=\"dns-prefetch\">\n<link data-rocket-prefetch=\"\" href=\"https://js-na2.hubspot.com\" rel=\"dns-prefetch\">\n<link data-rocket-prefetch=\"\" href=\"https://j\n\n...[truncated 339884 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0034",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Dell+PowerEdge+AI+server+roadmap+update+last+7+days+dell.com%2Fproducts+OR+ir.dell.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 18.99,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "bottom_ads",
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0035",
+    "zone": "pulselens_scraper",
+    "url": "https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-expands-dell-ai-factory-new-poweredge-servers",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.79,
+    "error": "BrightDataError(\"Bright Data request failed for https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-expands-dell-ai-factory-new-poweredge-servers: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0036",
+    "zone": "pulselens_scraper",
+    "url": "https://www.dell.com/en-us/dt/corporate/newsroom/announcements/detailpage.press-releases~usa~2024~10~amd-advancing-ai.htm",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.92,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.dell.com/en-us/dt/corporate/newsroom/announcements/detailpage.press-releases~usa~2024~10~amd-advancing-ai.htm: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0037",
+    "zone": "pulselens_scraper",
+    "url": "https://www.youtube.com/watch?v=ivU7YOTYa5g",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 1.0,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.youtube.com/watch?v=ivU7YOTYa5g: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0038",
+    "zone": "pulselens_scraper",
+    "url": "https://www.datacenterdynamics.com/en/news/dell-updates-its-server-storage-and-networking-portfolios-to-support-ai-deployments-at-scale/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.76,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.datacenterdynamics.com/en/news/dell-updates-its-server-storage-and-networking-portfolios-to-support-ai-deployments-at-scale/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0039",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Broadcom+AI+accelerator+hiring+careers.broadcom.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.92,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0040",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Micron+HBM3e+supply+chain+news+reuters.com+bloomberg.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.05,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0041",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Nvidia+careers+AI+Hardware+Engineer+site%3Anvidia.com%2Fcareers+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.23,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0042",
+    "zone": "pulselens_scraper",
+    "url": "https://www.facebook.com/Reuters/posts/memory-chipmaker-micron-technology-said-on-wednesday-it-will-exit-its-consumer-b/1405808961409832/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.16,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0043",
+    "zone": "pulselens_scraper",
+    "url": "https://www.broadcom.com/company/careers",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.59,
+    "response_summary": {
+      "type": "str",
+      "chars": 36907,
+      "preview": "<!doctype html><html lang=\"en\"><head><script nomodule>window.location.href = '/browser-not-supported';</script> <title>Careers | Broadcom</title>\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\">\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" sizes=\"32x32\">\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon-48x48.png\" sizes=\"48x48\">\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon-96x96.png\" sizes=\"96x96\">\n\n\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n<meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"> \n<meta http-equiv=\"Last-Modified\" content=\"Mon, 25 May 2026 12:00:53 GMT\"> \n<meta property=\"og:title\" content=\"Careers | Broadcom\" />\n<meta name=\"description\" content=\"Broadcom is hiring. Search available jobs by role, location, and team. Apply to work at Broadcom today.\">\n<meta property=\"og:description\" content=\"Broadcom is hiring. Search available jobs by role, location, and team. Apply to work at Broadcom today.\" />\n<meta property=\"og:image\" content=\"https://www.broadcom.com/media/blt4ac44e0e6c6d8341/blt5648c85225e0687a/6633d67d4ede266e6d4b5a50/wwwHero_Careers_Home_Hero_Banner_Image.jpg\" />\n<meta name=\"k\n\n...[truncated 35707 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0044",
+    "zone": "pulselens_scraper",
+    "url": "https://broadcom.wd1.myworkdayjobs.com/External_Career",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.94,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0045",
+    "zone": "pulselens_scraper",
+    "url": "https://www.linkedin.com/jobs/broadcom-jobs",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.85,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0046",
+    "zone": "pulselens_scraper",
+    "url": "https://www.ziprecruiter.com/Jobs/Broadcom/-in-Sunnyvale,CA",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.99,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0047",
+    "zone": "pulselens_scraper",
+    "url": "https://www.facebook.com/BloombergTelevision/posts/microns-president-and-ceo-talked-about-the-ongoing-chip-shortage-and-how-his-com/1335569021775900/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.47,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0048",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=AMD+hiring+freeze+AI+division+news+last+7+days+wsj.com+OR+bloomberg.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 7.75,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0049",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/technology/artificial-intelligence/us-mulls-new-curbs-chinas-access-ai-memory-chips-bloomberg-news-says-2024-07-31/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.97,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0050",
+    "zone": "pulselens_scraper",
+    "url": "https://www.broadcom.com/company/careers/teams",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.08,
+    "response_summary": {
+      "type": "str",
+      "chars": 36999,
+      "preview": "<!doctype html><html lang=\"en\"><head><script nomodule>window.location.href = '/browser-not-supported';</script> <title>Careers | Teams | Broadcom</title>\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\">\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon.png\" sizes=\"32x32\">\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon-48x48.png\" sizes=\"48x48\">\n<link rel=\"icon\" type=\"image/png\" href=\"/favicon-96x96.png\" sizes=\"96x96\">\n\n\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\n<meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\"> \n<meta http-equiv=\"Last-Modified\" content=\"Mon, 25 May 2026 12:00:53 GMT\"> \n<meta property=\"og:title\" content=\"Careers | Teams | Broadcom\" />\n<meta name=\"description\" content=\"Broadcom has over 25 category-leading semiconductor and infrastructure software divisions. Search open jobs by team at Broadcom today.\">\n<meta property=\"og:description\" content=\"Broadcom has over 25 category-leading semiconductor and infrastructure software divisions. Search open jobs by team at Broadcom today.\" />\n<meta property=\"og:image\" content=\"https://www.broadcom.com/media/blt4ac44e0e6c6d8341/blt90765dd2c5b104e3/664fbf1\n\n...[truncated 35799 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0051",
+    "zone": "pulselens_scraper",
+    "url": "https://seekingalpha.com/article/4882771-micron-memory-downcycle-sooner-than-expected",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.38,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0052",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/commentary/breakingviews/why-its-too-late-jump-chip-bandwagon-2026-05-22/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.95,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0053",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Intel+GPU+architect+jobs+site%3Alinkedin.com%2Fjobs+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 19.02,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0054",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Dell+Technologies+data+center+AI+solutions+architect+jobs+site%3Ajobs.dell.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.84,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0055",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Supermicro+CUDA+developer+jobs+site%3Asupermicro.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.3,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0056",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=HPE+AI+engineering+layoffs+news+last+7+days+reuters.com+techcrunch.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.31,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0057",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Micron+AI+chip+demand+trends+bloomberg.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.85,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0058",
+    "zone": "pulselens_scraper",
+    "url": "https://www.bloomberg.com/news/articles/2025-09-23/micron-gives-strong-forecast-in-sign-ai-demand-is-lifting-sales",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.84,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0059",
+    "zone": "pulselens_scraper",
+    "url": "https://www.bloomberg.com/news/videos/2025-06-25/micron-gives-strong-forecast-video",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.6,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0060",
+    "zone": "pulselens_scraper",
+    "url": "https://jobs.supermicro.com/job/San-Jose-System-Engineer-Cali/1336975100/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.24,
+    "response_summary": {
+      "type": "str",
+      "chars": 50330,
+      "preview": "<!DOCTYPE html>\n<html class=\"html5\" xml:lang=\"en-US\" lang=\"en-US\" xmlns=\"http://www.w3.org/1999/xhtml\">\n\n        <head>\n            <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\" />\n            <meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\" />\n            <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n                        <link type=\"text/css\" class=\"keepscript\" rel=\"stylesheet\" href=\"https://jobs.supermicro.com/platform/bootstrap/3.4.8_NES/css/bootstrap.min.css\" />\n                            <link type=\"text/css\" rel=\"stylesheet\" href=\"/platform/css/j2w/min/bootstrapV3.global.responsive.min.css?h=c4edfb0a\" />\n                            <link type=\"text/css\" rel=\"stylesheet\" href=\"/platform/csb/css/navbar-fixed-top.css\" />\n                \n                <script type=\"text/javascript\" src=\"/platform/js/j2w/j2w.fallbacks.js\"></script>\n                \n                \n                <script type=\"text/javascript\" src=\"https://performancemanager4.successfactors.com/verp/vmod_v1/ui/extlib/jquery_3.5.1/jquery.js\" onerror=\"loadFallbacks\n\n...[truncated 49130 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0061",
+    "zone": "pulselens_scraper",
+    "url": "https://www.bloomberg.com/news/articles/2025-12-17/micron-gives-rosy-sales-forecast-after-ai-boom-spurs-demand",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.81,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0062",
+    "zone": "pulselens_scraper",
+    "url": "https://jobs.supermicro.com/job/San-Jose-Sr_-Network-EngineerRack-Solution-Cali/1336975300/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.22,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0063",
+    "zone": "pulselens_scraper",
+    "url": "https://jobs.supermicro.com/job/San-Jose-Sr_-Software-Engineer-System-Validation-Cali/1373303000/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.85,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0064",
+    "zone": "pulselens_scraper",
+    "url": "https://www.youtube.com/watch?v=sNcZ7hugRrY",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.26,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0065",
+    "zone": "pulselens_scraper",
+    "url": "https://www.bloomberg.com/news/articles/2026-03-18/micron-gives-upbeat-forecast-after-demand-soars-for-memory-chips",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.0,
+    "response_summary": {
+      "type": "str",
+      "chars": 346598,
+      "preview": "<!DOCTYPE html><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Micron (MU) Gives Upbeat Forecast After Demand Soars for Memory Chips - Bloomberg</title><link rel=\"icon\" type=\"image/png\" href=\"https://www.bloomberg.com/favicon-black.png\"/><link rel=\"canonical\" href=\"https://www.bloomberg.com/news/articles/2026-03-18/micron-gives-upbeat-forecast-after-demand-soars-for-memory-chips\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\"/><meta name=\"apple-itunes-app\" content=\"app-id=281941097\"/><meta name=\"robots\" content=\"max-image-preview:large\"/><meta name=\"description\" content=\"Micron Technology Inc. warned that it will need to spend heavily on production to meet burgeoning demand, overshadowing a generally upbeat forecast from the largest US maker of computer memory chips.\"/><meta property=\"og:description\" content=\"Micron Technology Inc. warned that it will need to spend heavily on production to meet burgeoning demand, overshadowing a generally upbeat forecast from the largest US maker of computer memory chips.\"/><meta property=\"og:image\" content=\"https://assets.bwbx.io/images/users/iqjWHBFd\n\n...[truncated 345398 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0066",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Nvidia+Blackwell+GPU+benchmark+results+anandtech.com+tomshardware.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 18.63,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0067",
+    "zone": "pulselens_scraper",
+    "url": "https://www.facebook.com/groups/372119787729533/posts/1206675767607260/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 15.77,
+    "response_summary": {
+      "type": "str",
+      "chars": 1184115,
+      "preview": "<!doctype html>\n<html id=\"facebook\" class=\"_9dls __fb-light-mode\" lang=\"en\" dir=\"ltr\"><head><link data-default-icon=\"https://static.xx.fbcdn.net/rsrc.php/y1/r/ay1hV6OlegS.ico\" data-badged-icon=\"https://static.xx.fbcdn.net/rsrc.php/yD/r/UJj0tgk-RrT.ico\" rel=\"shortcut icon\" href=\"https://static.xx.fbcdn.net/rsrc.php/y1/r/ay1hV6OlegS.ico\"><meta name=\"bingbot\" content=\"noarchive\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=2,shrink-to-fit=no\"><meta property=\"al:android:app_name\" content=\"Facebook\"><meta property=\"al:android:package\" content=\"com.facebook.katana\"><meta property=\"al:android:url\" content=\"fb://native_post/UzpfSTYxNTU2MjM1NzU5NTEwOlZLOjEyMDY2NzU3Njc2MDcyNjA=\"><meta property=\"al:ios:app_name\" content=\"Facebook\"><meta property=\"al:ios:app_store_id\" content=\"284882215\"><meta property=\"al:ios:url\" content=\"fb://story/?graphqlid=UzpfSTYxNTU2MjM1NzU5NTEwOlZLOjEyMDY2NzU3Njc2MDcyNjA=\"><meta name=\"apple-itunes-app\" content=\"app-id=284882215, app-argument=fb://story/?graphqlid=UzpfSTYxNTU2MjM1NzU5NTEwOlZLOjEyMDY2NzU3Njc2MDcyNjA%3D\"><meta name=\"application-name\" content=\"Facebook Groups\"><meta name=\"application-url\" content=\"https://www.facebook.co\n\n...[truncated 1182915 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0068",
+    "zone": "pulselens_scraper",
+    "url": "https://www.tomshardware.com/tag/nvidia-blackwell",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.73,
+    "response_summary": {
+      "type": "str",
+      "chars": 1313817,
+      "preview": "<!DOCTYPE html>\n<html lang=\"en\" data-locale=\"US\" dir=\"ltr\" class=\"tomshardware\">\n<head>\n<!-- [METATAGS - critical] -->\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">\n<title>Nvidia Blackwell Analysis and Benchmarking | Tom's Hardware</title>\n<meta name=\"description\" content=\"Nvidia Blackwell benchmarking, reviews and analysis from the experts at Tom's Hardware.\">\n<link rel=\"canonical\" href=\"https://www.tomshardware.com/tag/nvidia-blackwell\">\n<link rel=\"preconnect\" href=\"https://vanilla.futurecdn.net/tomshardware\" crossorigin>\n<link rel=\"preconnect\" href=\"https://bordeaux.futurecdn.net\">\n<link rel=\"preconnect\" href=\"https://cdn.mos.cms.futurecdn.net\">\n<link rel=\"preconnect\" href=\"https://vanilla.futurecdn.net\">\n<link rel=\"dns-prefetch\" href=\"https://bordeaux.futurecdn.net\">\n<link rel=\"dns-prefetch\" href=\"https://cdn.mos.cms.futurecdn.net\">\n<link rel=\"dns-prefetch\" href=\"https://vanilla.futurecdn.net\">\n<link rel=\"dns-prefetch\" href=\"https://slice.vanilla.futurecdn.net\">\n<link rel=\"dns-prefetch\" href=\"https://sommelier.futurehybrid.tech\">\n<link rel=\"dns-prefetch\" href=\"https://securepubads.g.doubleclick.net\">\n<link rel=\"dns-prefetch\" href=\"ht\n\n...[truncated 1312617 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0069",
+    "zone": "pulselens_scraper",
+    "url": "https://x.com/tomshardware/status/1953177382128631908",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 15.62,
+    "response_summary": {
+      "type": "str",
+      "chars": 336295,
+      "preview": "<!doctype html>\n<html dir=\"ltr\" lang=\"en\" style=\"overflow-y: scroll; overscroll-behavior-y: none; font-size: 15px; color-scheme: light;\"><head><style>input::placeholder { user-select: none; -webkit-user-select: none; } div div ::-webkit-input-placeholder { color: rgb(117, 117, 117) } iframe { color-scheme: auto; }button { text-align: inherit; font-size: inherit; font-family: inherit; color: inherit }</style><style>@font-face {\n  font-family: Vazirmatn;\n  src: url(https://abs.twimg.com/responsive-web/client-web/Vazirmatn-Light.a929468a.woff2) format('woff2');\n  font-weight: 300;\n  font-style: 'normal';\n  font-display: 'swap';\n}\n@font-face {\n  font-family: Vazirmatn;\n  src: url(https://abs.twimg.com/responsive-web/client-web/Vazirmatn-Regular.58c84f6a.woff2) format('woff2');\n  font-weight: 400;\n  font-style: 'normal';\n  font-display: 'swap';\n}\n@font-face {\n  font-family: Vazirmatn;\n  src: url(https://abs.twimg.com/responsive-web/client-web/Vazirmatn-Medium.bc7d8f1a.woff2) format('woff2');\n  font-weight: 500;\n  font-style: 'normal';\n  font-display: 'swap';\n}\n@font-face {\n  font-family: Vazirmatn;\n  src: url(https://abs.twimg.com/responsive-web/client-web/Vazirmatn-Bold.0d6a47ca.woff2)\n\n...[truncated 335095 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0070",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Market+AI+hardware+export+controls+commerce.gov+bloomberg.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.88,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0071",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Dell+Technologies+AI+market+share+news+wsj.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.65,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0072",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Broadcom+VMWare+AI+integration+news+reuters.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.49,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0073",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/company/vmware-llc/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.84,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0074",
+    "zone": "pulselens_scraper",
+    "url": "https://www.bloomberg.com/news/articles/2025-07-14/malaysia-to-require-permits-on-trade-of-high-end-us-ai-chips",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.68,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0075",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Supermicro+AI+server+lead+times+availability+last+7+days+supermicro.com+OR+techcrunch.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.64,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0076",
+    "zone": "pulselens_scraper",
+    "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.76,
+    "error": "BrightDataError(\"Bright Data request failed for https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0077",
+    "zone": "pulselens_scraper",
+    "url": "https://www.supermicro.com/en/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.77,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.supermicro.com/en/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0078",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reddit.com/r/sysadmin/comments/1pk1l3z/trying_to_buy_a_server_from_supermicrocom_why_did/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.78,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.reddit.com/r/sysadmin/comments/1pk1l3z/trying_to_buy_a_server_from_supermicrocom_why_did/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0079",
+    "zone": "pulselens_scraper",
+    "url": "https://www.instagram.com/reel/DPmQghvjZag/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.77,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.instagram.com/reel/DPmQghvjZag/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0080",
+    "zone": "pulselens_scraper",
+    "url": "https://www.facebook.com/Supermicro/posts/supermicro-was-one-of-the-first-to-unveil-a-context-memory-cmx-storage-server-as/1422217376617632/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.79,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.facebook.com/Supermicro/posts/supermicro-was-one-of-the-first-to-unveil-a-context-memory-cmx-storage-server-as/1422217376617632/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0081",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Intel+Foundry+Services+AI+strategy+investor.intel.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 17.38,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0082",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/markets/deals/broadcom-review-strategic-options-two-vmware-units-insider-2023-11-29/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 17.33,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0083",
+    "zone": "pulselens_scraper",
+    "url": "https://www.facebook.com/Reuters/posts/broadcom-said-on-monday-it-has-signed-a-long-term-agreement-with-google-to-devel/1513009840689743/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.81,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0084",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/video/watch/idRW259315042026RP1/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.86,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0085",
+    "zone": "pulselens_scraper",
+    "url": "https://news.broadcom.com/releases/vmware-explore-2025-vmware-cloud-foundation-ai-native",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.86,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0086",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/business/earnings/dell-technologies-raises-outlook-as-sales-rise-on-ai-demand-e4c2de1f",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 59.49,
+    "response_summary": {
+      "type": "str",
+      "chars": 609250,
+      "preview": "<!DOCTYPE html><html lang=\"en-US\" data-theme=\"WSJ_00-Base\"><head><meta charSet=\"utf-8\"/><link rel=\"canonical\" href=\"https://www.wsj.com/business/earnings/dell-technologies-raises-outlook-as-sales-rise-on-ai-demand-e4c2de1f\"/><title>Dell Technologies Raises Outlook as Sales Rise on AI Demand - WSJ</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0\"/><meta name=\"page.section\" content=\"Article\"/><meta name=\"page.content.type\" content=\"Article\"/><meta name=\"page.content.format\" content=\"responsive\"/><meta name=\"msnbot\" content=\"nocache, noarchive\"/><meta name=\"page.content.source\" content=\"WSJ Online\"/><meta name=\"google-signin-client_id\" content=\"61387583289.apps.googleusercontent.com\"/><meta name=\"servo-context\" content=\"servo:prod:virginia:wsj-nextjs-app:article\"/><meta name=\"branch:deeplink:target\" content=\"app\"/><meta name=\"twitter:title\" content=\"Dell Technologies Raises Outlook as Sales Rise on AI Demand\"/><meta name=\"twitter:description\" content=\"The maker of computers and software on Thursday said it now expects adjusted earnings per share of $9.40, up from its previous outlook for $9.30.\"/><meta name=\"twitter:imag\n\n...[truncated 608050 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0087",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-jones-earnings-05-31-2024/card/dell-stock-skids-after-ai-servers-drag-on-margins-iFxxGm5769TzVJPTmxOP",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.05,
+    "response_summary": {
+      "type": "str",
+      "chars": 504832,
+      "preview": "<!DOCTYPE html><html lang=\"en-US\" data-theme=\"WSJ_00-Base\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Dell Stock Skids After AI Servers Drag on Margins</title><link rel=\"icon\" href=\"/favicon.ico\"/><link rel=\"icon\" type=\"image/svg+xml\" href=\"https://s.wsj.net/img/meta/wsj_favicon.svg\"/><link rel=\"alternate icon\" href=\"https://www.wsj.com/favicon.ico\"/><link rel=\"apple-touch-icon\" href=\"https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png\"/><meta name=\"msnbot\" content=\"nocache, noarchive\"/><link rel=\"canonical\" href=\"https://www.wsj.com/livecoverage/stock-market-today-dow-jones-earnings-05-31-2024/card/dell-stock-skids-after-ai-servers-drag-on-margins-iFxxGm5769TzVJPTmxOP\"/><meta name=\"description\" content=\"Dell Technologies stock slid, despite the company reporting better-than-expected earnings and revenue, boosted by surging demand for AI-oriented servers.\nThe servers, while boosting sales, came at a cost for margins. Gross margin fell 2.5 percentage points in the first quarter, to 22.2% of revenue.\"/><meta name=\"keywords\" content=\"\"/><meta name=\"page.section\" content=\"live coverage\"/><meta name=\"page.subsection\" content=\"Livecoverag\n\n...[truncated 503632 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0088",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-10-07-2025/card/dell-stock-jumps-after-computer-maker-says-ai-will-turbocharge-growth-YzLzmJwcy7mBouy8e6zb",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.49,
+    "response_summary": {
+      "type": "str",
+      "chars": 491209,
+      "preview": "<!DOCTYPE html><html lang=\"en-US\" data-theme=\"WSJ_00-Base\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width\"/><title>Dell Stock Moves Higher After CEO Says AI Will Turbocharge Growth</title><link rel=\"icon\" href=\"/favicon.ico\"/><link rel=\"icon\" type=\"image/svg+xml\" href=\"https://s.wsj.net/img/meta/wsj_favicon.svg\"/><link rel=\"alternate icon\" href=\"https://www.wsj.com/favicon.ico\"/><link rel=\"apple-touch-icon\" href=\"https://s.wsj.net/media/wsj_apple-touch-icon-180x180.png\"/><meta name=\"msnbot\" content=\"nocache, noarchive\"/><link rel=\"canonical\" href=\"https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-10-07-2025/card/dell-stock-jumps-after-computer-maker-says-ai-will-turbocharge-growth-YzLzmJwcy7mBouy8e6zb\"/><meta name=\"description\" content=\"Shares in Dell pared gains after jumping as much as 6.1% in morning trading. The maker of servers for artificial intelligence-related applications sharply increased its long-term growth targets earlier today.\nDell now expects 7% to 9% annual sales growth, up from 3% to 4%.\nIt is targeting growi\"/><meta name=\"keywords\" content=\"\"/><meta name=\"page.section\" content=\"live coverage\"/><meta name=\"page.s\n\n...[truncated 490009 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0089",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/market-data/quotes/DELL",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.75,
+    "response_summary": {
+      "type": "str",
+      "chars": 768918,
+      "preview": "\n  <!doctype html><!--GRAND CANYON PREBID -->\n  <html lang=en>\n    <head>\n      <meta charSet='utf-8' />\n      <meta name=\"description\" content=\"View the latest Dell Technologies Inc. Cl C (DELL) stock price, news, historical charts, analyst ratings and financial information from WSJ.\"/>\n    <meta name=\"keywords\" content=\"\" />\n    <meta name=\"page.section\" content=\"Market Data Center\" />\n    <meta name=\"page.subsection\" content=\"Quotes\" />\n    <meta name=\"page.id\" content=\"marketdata-quotes-overview\" />\n    <meta name=\"ad.id\" content=\"undefined\" />\n    <meta name=\"twitter:card\" content=\"summary\" />\n    <meta name=\"twitter:title\" content=\"Dell Technologies Inc. Cl C (DELL) Stock Price Today - WSJ\" />\n    <meta name=\"twitter:description\" content=\"View the latest Dell Technologies Inc. Cl C (DELL) stock price, news, historical charts, analyst ratings and financial information from WSJ.\" />\n    <meta name=\"twitter:image\" content=\"https://s.wsj.net/img/meta/wsj-social-share.png\" />\n    <meta name=\"twitter:site\" content=\"@WSJ\" />\n    <meta name=\"twitter:domain\" content=\"wsj.com\" />\n    <meta property=\"fb:app_id\" content=\"368513495882\" />\n    <meta property=\"og:locale\" content=\"en_US\" />\n\n\n...[truncated 767718 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0090",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Dell+Technologies+AI+compute+instance+pricing+azure.microsoft.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.97,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "bottom_ads",
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0091",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Intel+Gaudi+3+competitive+landscape+news+theinformation.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.71,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0092",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Supermicro+AI+server+product+availability+supermicro.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.82,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0093",
+    "zone": "pulselens_scraper",
+    "url": "https://www.supermicro.com/en/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.77,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.supermicro.com/en/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0094",
+    "zone": "pulselens_scraper",
+    "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.74,
+    "error": "BrightDataError(\"Bright Data request failed for https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0095",
+    "zone": "pulselens_scraper",
+    "url": "https://www.supermicro.com/en/support",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.75,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.supermicro.com/en/support: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0096",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Nvidia+cloud+GPU+instance+cost+changes+aws.amazon.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.21,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0097",
+    "zone": "pulselens_scraper",
+    "url": "https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Intelligent-In-Store-Retail-Solutions-in-Collaboration-with-a-Broad-Range-of-Industry-Partners/default.aspx",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.8,
+    "error": "BrightDataError(\"Bright Data request failed for https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Intelligent-In-Store-Retail-Solutions-in-Collaboration-with-a-Broad-Range-of-Industry-Partners/default.aspx: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0098",
+    "zone": "pulselens_scraper",
+    "url": "https://www.supermicro.com/en/support/os-compatibility-certification",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.84,
+    "error": "BrightDataError(\"Bright Data request failed for https://www.supermicro.com/en/support/os-compatibility-certification: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0099",
+    "zone": "pulselens_scraper",
+    "url": "https://www.intc.com/news-events/press-releases/detail/1689/intel-unleashes-enterprise-ai-with-gaudi-3-ai-open-systems",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.29,
+    "response_summary": {
+      "type": "str",
+      "chars": 56132,
+      "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n    \n        <meta charset=\"utf-8\">\n        <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\">\n        \n\n        <base href=\"https://www.intc.com\" />\n            <link rel=\"alternate\" type=\"application/rss+xml\" title=\"Intel Corporation - Recent News\" href=\"https://www.intc.com/news-events/press-releases/rss\" />\n            \n        <title>Intel Unleashes Enterprise AI with Gaudi 3, AI Open Systems Strategy and New Customer Wins :: Intel Corporation (INTC)</title>\n        \n        \n    <link rel=\"canonical\" href=\"https://www.intc.com/news-events/press-releases/detail/1689/intel-unleashes-enterprise-ai-with-gaudi-3-ai-open-systems\">\n    <meta property=\"og:url\" content=\"https://www.intc.com/news-events/press-releases/detail/1689/intel-unleashes-enterprise-ai-with-gaudi-3-ai-open-systems\">\n\n\n    <meta property=\"og:site_name\" content=\"Intel Corporation\">\n    <meta property=\"og:title\" content=\"Intel Unleashes Enterprise AI with Gaudi 3, AI Open Systems Strategy and New Customer Wins\">\n    <meta property=\"og:type\" content=\"website\">\n    \n    <meta property=\"og:image\" content=\"https://d1io3yog0oux5.cloudfront.net/_7fd037f8a1293044bb2d879c9d69c\n\n...[truncated 54354 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0100",
+    "zone": "pulselens_scraper",
+    "url": "https://www.delltechnologies.com/asset/en-us/products/cross-company/industry-market/principled-technologies-genai-cost-benefits-with-dell-ai-factory-whitepaper.pdf.external",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.06,
+    "response_summary": {
+      "type": "str",
+      "chars": 450345,
+      "preview": "%PDF-1.6\n%����\n439 0 obj\n<</Filter/FlateDecode/First 127/Length 1485/N 15/Type/ObjStm>>stream\nh��mo�6\u0010��S�q�`�<�\u000fE�6n\u0002c�\u0012�\u001e6,\b\u0006ՖS\n�e�\n���mG����I�FI�N\t$\u001eMޙ/���Q�R\u0013J\u0018a\\Q�\b\b\u000e�1\u0014\u0004(\u0011.�HI\u0005\u0011�(�5��h�8є\u0018+,1�0J�Y�2�\u0016�\u0015a �BI;\t�raPRx��@�&/_&��ˢZ�\u0018lȻ�UY�.��iL�;\u0014\u0003<k�����,��ZzX,�lY�Ϲ��\u0014�IeHUHu�Z\u001a�Pn}9Z*�խ_s\\\u0016W+\"����d�<���YZb��\u0018��gy6�F�y��\u001e-��:�\\�8,�W\u000b�7\u001a���?�u��VQ\u001c͢\u001c�\u001f#\u001biLe�E)\u001e*\u001a`��1CID�F\u001c���Ay��\u001c��P��.G\u001d\u0013�\u0017��t]�\u0014�|�g3�EC4\u000eX\t�8Ŋ�U\u0019��+���\u0017��W��Yy:?K/�Q�-֣�\u0013\t\u000f%�/Y\u0013����e�L?��\u0017���x��y�\u0004�B�7(\u001b��D�|��FB�\u001a��i�H���2\u001aN���4��b9L��$]�H�s\u000eZ\u0019�\u0000\u001e�\u0001���\t\u001e��b�\u00197I\u0003�e��\n��\u000e'\u000f��1�a\u0005�b\u0010\u0017\t�X��EΤ\u00135�%��ue��`�?�t\fx�٘�!�\u0018b�P���\u000b����\u0010�xV�\u0012�.\u000e\u000e�0L�t��\u0017��IZ����|]�a��B�\u001b]\u001c��*���\n���Ϫ\u000f�\u0012)\u001f���]�.��i�ƒ��cQ�W�4s����ڛ��x\\��+9�%���12E� �Q\u0011A��g\u001d��ЃQq��@MUkb\u0006U\u0015o2��D��h�6\u0019\u0004�euf��&�OP�4����Av�&|�YYL�Yu��\n��Iv]%�\u0005���+Yee����\u001c�\u0014����\fe\u0019\f�v���l�Z�puj�?Z�:6�@\u0004� c�A\u0004\u0019'\u0016��#�\u000b���F�pcIh2)�ŭ�������\u001d\u001cly\n\u001dєԭ�\u0013��O\b��C��b7���> \u000b\u001b\b�ّEa�,N�.dQ�F�h!�\u0001�G��Q�\"\u0019Hg��\u0012M�?8�j'_8�\u001b���\u0017�+^؞\u0017=/��\u0017R\b�<K�\n#�aD͋�#7�8�\u0006/vS�ɽ�u�\\`���������}���=�\u0005_����G\u0007~\u000e��������%�N�\u000b��\f\\uE\u0006~\u000f2� �|H\f����1�\n&\u0014\u0015{�\t�E\u0013\t}\u00142B���m���m�3\u0004,}���6������\u0011��\u001d��\u001b\u0010m�\u0004]AIt\u0016����P\n�P=�z(=/�4�Z�0_\b\u001f&��\t\u001b\u001e5oL�7��\u001b�\u0000�H��7R>%o\u0014�7a��\u001e�Q��Mϛ��\u001b#�-�@k}\u0003|�\u001b�\u0016oZ�����ڽ���S�Fw\u0016���\t;�=oz�<�M\u0017��\nm�\u0006>Ǜ-bX\u001b1\n\n...[truncated 449073 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0101",
+    "zone": "pulselens_scraper",
+    "url": "https://www.dell.com/en-us/lp/dt/workloads-microsoft",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.83,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0102",
+    "zone": "pulselens_scraper",
+    "url": "https://www.linkedin.com/posts/jeffbarr_big-news-we-are-reducing-the-price-of-activity-7336442917051371520-IDzy",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.63,
+    "response_summary": {
+      "type": "str",
+      "chars": 314950,
+      "preview": "<!DOCTYPE html>\n\n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n\n    \n    <html lang=\"en\">\n      <head>\n        <meta name=\"pageKey\" content=\"d_public_post\">\n          \n    <meta name=\"robots\" content=\"max-image-preview:large, noarchive\">\n    <meta name=\"bingbot\" content=\"max-image-preview:large, archive\">\n  \n<!----><!---->        <meta name=\"locale\" content=\"en_US\">\n<!---->        <meta id=\"config\" data-app-version=\"1.2.1936\" data-call-tree-id=\"AAZSpsWQh1N6HZCKngTXLw==\" data-multiproduct-name=\"feedcontent-guest-frontend\" data-service-name=\"feedcontent-guest-frontend\" data-browser-id=\"51163fcc-ab79-4133-8758-5afe3cb69ba1\" data-is-bot=\"false\" data-enable-page-view-heartbeat-tracking data-page-instance=\"urn:li:page:d_public_post;uw9jitdjSAi1kIfopEy86g==\" data-disable-jsbeacon-pagekey-suffix=\"false\" data-member-id=\"0\" data-should-use-full-url-in-pve-path=\"true\" data-dna-member-lix-treatment=\"enabled\" data-human-member-lix-treatment=\"enabled\" data-dfp-member-lix-treatment=\"control\" data-sync-apfc-headers-lix-treatment=\"control\" data-sync-apfc-cb-lix-treatment=\"control\" data-recaptcha-v3-integration-lix-value=\"control\" data-network-interceptor-lix-value=\n\n...[truncated 313750 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0103",
+    "zone": "pulselens_scraper",
+    "url": "https://www.silicon.co.uk/cloud/datacenter/intel-unveils-latest-ai-chip-to-counter-nvidia-558083",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.89,
+    "response_summary": {
+      "type": "str",
+      "chars": 164094,
+      "preview": "<!DOCTYPE html>\n<!--[if IE 7]>\n<html class=\"ie ie7\" lang=\"en-GB\">\n<![endif]-->\n<!--[if IE 8]>\n<html class=\"ie ie8\" lang=\"en-GB\">\n<![endif]-->\n    <!--[if !(IE 7) | !(IE 8)  ]><!-->\n        <html lang=\"en-GB\">\n        <!--<![endif]-->\n            <head>\n\n                <meta charset=\"UTF-8\">\n                <meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no\">\n                                    <meta name=\"news_keywords\" content=\"ai, ai chips, artificial intelligence, gaudi 3 ai accelerator, generative ai, intel, nvidia, processor, cloud, components, datacentre, innovation, server, workspace\">\n                                <title>Intel Unveils Latest AI Chip To Counter Nvidia | Silicon UK</title>\n                <style type=\"text/css\">\n                    .bigmag{\n                        top: 21px;\n                        left: 7px;\n                        width: 152px;\n                        height: auto;\n                        position: absolute;\n                        z-index: 0;\n                        padding-right: 30px;\n                    }\n                    .smallmag {\n                        top:\n\n...[truncated 162893 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0104",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Broadcom+AI+innovation+strategy+press+release+broadcom.com%2Fnews+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 15.16,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0105",
+    "zone": "pulselens_scraper",
+    "url": "https://news.broadcom.com/releases",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.77,
+    "error": "BrightDataError(\"Bright Data request failed for https://news.broadcom.com/releases: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0106",
+    "zone": "pulselens_scraper",
+    "url": "https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.61,
+    "response_summary": {
+      "type": "str",
+      "chars": 1044128,
+      "preview": "<!doctype html>\n<html data-static-assets=\"https://a0.awsstatic.com\" class=\"aws-lng-en_US\" data-aws-assets=\"https://a0.awsstatic.com\" data-js-version=\"1.0.682\" data-css-version=\"1.0.538\" prefix=\"og: https://ogp.me/ns#\">\n <head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Announcing up to 45% price reduction for Amazon EC2 NVIDIA GPU-accelerated instances | AWS News Blog</title>\n  <meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self' data: https://a0.awsstatic.com https://prod.us-east-1.ui.gcr-chat.marketing.aws.dev; base-uri 'none'; connect-src 'self' *.akamaized.net *.googlevideo.com/videoplayback https://*.analytics.console.aws.a2z.com https://*.harmony.a2z.com https://*.marketing.aws.dev https://*.panorama.console.api.aws https://*.prod.chc-features.uxplatform.aws.dev https://*.prod.cxm.marketing.aws.dev https://0vctm1i0if.execute-api.eusc-de-east-1.amazonaws.eu/gamma/spot.json https://112-tzm-766.mktoresp.com https://112-tzm-766.mktoutil.com https://8810.clrt.ai https://a0.awsstatic.com https://a0.p.awsstatic.com https://a1.awsstatic.com https://amazonwebservices.d2.sc.omtrdc.net https://amazonwebservi\n\n...[truncated 1042928 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0107",
+    "zone": "pulselens_scraper",
+    "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-launches-unified-wi-fi-8-platform-seamless-ai",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.75,
+    "error": "BrightDataError(\"Bright Data request failed for https://investors.broadcom.com/news-releases/news-release-details/broadcom-launches-unified-wi-fi-8-platform-seamless-ai: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0108",
+    "zone": "pulselens_scraper",
+    "url": "https://finance.yahoo.com/quote/AVGO/press-releases/",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.75,
+    "error": "BrightDataError(\"Bright Data request failed for https://finance.yahoo.com/quote/AVGO/press-releases/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0109",
+    "zone": "pulselens_scraper",
+    "url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.77,
+    "error": "BrightDataError(\"Bright Data request failed for https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0110",
+    "zone": "pulselens_scraper",
+    "url": "https://news.broadcom.com/latest/page/19",
+    "response_format": "raw",
+    "render_js": true,
+    "ok": false,
+    "duration_sec": 0.76,
+    "error": "BrightDataError(\"Bright Data request failed for https://news.broadcom.com/latest/page/19: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400\")"
+  },
+  {
+    "call_id": "bd_0111",
+    "zone": "pulselens_scraper",
+    "url": "https://aws.amazon.com/blogs/aws/category/price-reduction/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.58,
+    "response_summary": {
+      "type": "str",
+      "chars": 1072483,
+      "preview": "<!doctype html>\n<html data-static-assets=\"https://a0.awsstatic.com\" class=\"aws-lng-en_US\" data-aws-assets=\"https://a0.awsstatic.com\" data-js-version=\"1.0.682\" data-css-version=\"1.0.538\">\n <head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <title>Price Reduction | AWS News Blog</title>\n  <meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'self' data: https://a0.awsstatic.com https://prod.us-east-1.ui.gcr-chat.marketing.aws.dev; base-uri 'none'; connect-src 'self' *.akamaized.net *.googlevideo.com/videoplayback https://*.analytics.console.aws.a2z.com https://*.harmony.a2z.com https://*.marketing.aws.dev https://*.panorama.console.api.aws https://*.prod.chc-features.uxplatform.aws.dev https://*.prod.cxm.marketing.aws.dev https://0vctm1i0if.execute-api.eusc-de-east-1.amazonaws.eu/gamma/spot.json https://112-tzm-766.mktoresp.com https://112-tzm-766.mktoutil.com https://8810.clrt.ai https://a0.awsstatic.com https://a0.p.awsstatic.com https://a1.awsstatic.com https://amazonwebservices.d2.sc.omtrdc.net https://amazonwebservicesinc.tt.omtrdc.net https://api-v2.builderprofile.aws.dev https://api.regional-table.region-services\n\n...[truncated 1071283 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0112",
+    "zone": "pulselens_scraper",
+    "url": "https://www.forbes.com/sites/moorinsights/2024/04/16/intel-announces-gaudi-3-accelerator-for-generative-ai/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 32.08,
+    "response_summary": {
+      "type": "str",
+      "chars": 1399877,
+      "preview": "<!doctype html>\n<html lang=\"en\" class=\"\" style=\"--header-height: NaNpx;\"><head><meta charset=\"utf-8\" data-next-head=\"\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1,maximum-scale=5,minimum-scale=1,user-scalable=yes\" data-next-head=\"\"><title data-next-head=\"\">Intel Announces Gaudi 3 Accelerator For Generative AI</title><link rel=\"preconnect\" href=\"https://cdn.ketchjs.com\" crossorigin=\"anonymous\" data-next-head=\"\"><link rel=\"preconnect\" href=\"https://global.ketchcdn.com\" crossorigin=\"anonymous\" data-next-head=\"\"><meta http-equiv=\"Content-Language\" content=\"en_US\" data-next-head=\"\"><meta name=\"keywords\" content=\"AI,generative AI,Intel,AMD,Nvidia\" data-next-head=\"\"><meta name=\"robots\" content=\"max-image-preview:large\" data-next-head=\"\"><meta property=\"og:site_name\" content=\"Forbes\" data-next-head=\"\"><meta property=\"og:title\" content=\"Intel Announces Gaudi 3 Accelerator For Generative AI\" data-next-head=\"\"><meta property=\"og:type\" content=\"article\" data-next-head=\"\"><meta property=\"og:url\" content=\"https://www.forbes.com/sites/moorinsights/2024/04/16/intel-announces-gaudi-3-accelerator-for-generative-ai/\" data-next-head=\"\"><meta property=\"og:image\" content=\"https://i\n\n...[truncated 1398677 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0113",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Micron+Technology+earnings+call+ASP+margin+commentary+investor.micron.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.77,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0114",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Market+AI+semiconductor+market+outlook+reuters.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 2.82,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic",
+        "videos"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0115",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Nvidia+financial+analyst+upgrade+AI+demand+last+7+days+wsj.com&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.64,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0116",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=HPE+GreenLake+AI+capex+spending+increase+bloomberg.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.01,
+    "response_summary": {
+      "type": "dict",
+      "keys": [
+        "organic"
+      ]
+    }
+  },
+  {
+    "call_id": "bd_0117",
+    "zone": "pulselens_scraper",
+    "url": "https://www.bloomberg.com/news/videos/2023-06-21/hpe-ceo-neri-ai-will-be-huge-boost-to-revenue-growth-video",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.81,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0118",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/world/asia-pacific/tsmc-says-global-chip-market-hit-15-trillion-by-2030-ai-drives-growth-2026-05-14/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 5.02,
+    "response_summary": {
+      "type": "str",
+      "chars": 417148,
+      "preview": "<!DOCTYPE html><html data-layout=\"regular-article\" data-rdr-ts=\"1779725685836\" data-site-lang=\"en\" lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"image\" imageSrcSet=\"https://www.reuters.com/resizer/v2/AJIEXTMEZNLV3KTPOE2CIOPMEA.jpg?auth=96e97ce2b683e270d6d91dd127f75f569d01c7c760889f41c4fb6bebb53366aa&amp;width=480&amp;quality=80 480w,https://www.reuters.com/resizer/v2/AJIEXTMEZNLV3KTPOE2CIOPMEA.jpg?auth=96e97ce2b683e270d6d91dd127f75f569d01c7c760889f41c4fb6bebb53366aa&amp;width=640&amp;quality=80 640w,https://www.reuters.com/resizer/v2/AJIEXTMEZNLV3KTPOE2CIOPMEA.jpg?auth=96e97ce2b683e270d6d91dd127f75f569d01c7c760889f41c4fb6bebb53366aa&amp;width=720&amp;quality=80 720w,https://www.reuters.com/resizer/v2/AJIEXTMEZNLV3KTPOE2CIOPMEA.jpg?auth=96e97ce2b683e270d6d91dd127f75f569d01c7c760889f41c4fb6bebb53366aa&amp;width=960&amp;quality=80 960w,https://www.reuters.com/resizer/v2/AJIEXTMEZNLV3KTPOE2CIOPMEA.jpg?auth=96e97ce2b683e270d6d91dd127f75f569d01c7c760889f41c4fb6bebb53366aa&amp;width=1080&amp;quality=80 1080w,https://www.reuters.com/resizer/v2/AJIEXTMEZNLV3KTPOE2CIOPMEA.jpg?auth=96e97ce2b683e270d6d91dd127f75f569d01c7c760889f41c\n\n...[truncated 415948 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0119",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/tech/ai/nvidia-earnings-q3-2025-nvda-stock-9c6a40fe",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.32,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0120",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/business/strong-asml-tsmc-forecasts-signal-ai-spending-boom-is-intact-2026-04-16/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.07,
+    "response_summary": {
+      "type": "str",
+      "chars": 529146,
+      "preview": "<!DOCTYPE html><html data-layout=\"regular-article\" data-rdr-ts=\"1779726140425\" data-site-lang=\"en\" lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" as=\"image\" imageSrcSet=\"https://www.reuters.com/resizer/v2/26ZCJVT27RN7NLNNTCSWGRG5HQ.jpg?auth=f0e2b43169ffc1d217cbb6c8f9e2b4b2313c885e3f612799f2f145c4cba2f95c&amp;width=960&amp;quality=80 960w,https://www.reuters.com/resizer/v2/26ZCJVT27RN7NLNNTCSWGRG5HQ.jpg?auth=f0e2b43169ffc1d217cbb6c8f9e2b4b2313c885e3f612799f2f145c4cba2f95c&amp;width=1080&amp;quality=80 1080w,https://www.reuters.com/resizer/v2/26ZCJVT27RN7NLNNTCSWGRG5HQ.jpg?auth=f0e2b43169ffc1d217cbb6c8f9e2b4b2313c885e3f612799f2f145c4cba2f95c&amp;width=1200&amp;quality=80 1200w\" imageSizes=\"(min-width: 1024px) 640px, 100vw\"/><script id=\"preload-ads\" type=\"text/javascript\" src=\"/pf/resources/dist/ads/js/main.js?d=363\" async=\"\" data-onetrust-script-id=\"38cb75bd-fbe1-4ac8-b4af-e531ab368caf\" data-deployment-id=\"363\" data-is-admin=\"false\"></script><script src=\"/pf/resources/dist/reuters/js/main.js?d=363\" async=\"\" data-config=\"{&quot;API_ORIGIN&quot;:&quot;https://api-reuters-reuters-prod.cdn.arcpublishing.com&quot;,&quot;ADMIN&quot;\n\n...[truncated 527946 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0121",
+    "zone": "pulselens_scraper",
+    "url": "https://www.facebook.com/Reuters/posts/from-intels-surge-to-nokias-revival-ai-is-driving-a-global-chip-rally-what-does-/1530830302241030/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.79,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0122",
+    "zone": "pulselens_serp",
+    "url": "https://www.google.com/search?q=Intel+AI+accelerator+product+roadmap+investor.intel.com+last+7+days&num=5",
+    "response_format": "json",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 17.33,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0123",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/finance/stocks/this-record-stock-market-is-riding-on-questionable-ai-assumptions-cb890703",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.4,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0124",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/world/asia-pacific/chip-stocks-rise-after-tsmcs-rosy-outlook-strong-ai-demand-2025-10-16/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 6.59,
+    "response_summary": {
+      "type": "str",
+      "chars": 533196,
+      "preview": "<!DOCTYPE html><html data-layout=\"regular-article\" data-rdr-ts=\"1779726147884\" data-site-lang=\"en\" lang=\"en\"><head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><script id=\"preload-ads\" type=\"text/javascript\" src=\"/pf/resources/dist/ads/js/main.js?d=363\" async=\"\" data-onetrust-script-id=\"38cb75bd-fbe1-4ac8-b4af-e531ab368caf\" data-deployment-id=\"363\" data-is-admin=\"false\"></script><script src=\"/pf/resources/dist/reuters/js/main.js?d=363\" async=\"\" data-config=\"{&quot;API_ORIGIN&quot;:&quot;https://api-reuters-reuters-prod.cdn.arcpublishing.com&quot;,&quot;ADMIN&quot;:false,&quot;BUSINESS_COUNTRIES&quot;:[],&quot;CHARTBEAT_CONFIG&quot;:{&quot;title&quot;:&quot;Chip stocks rise after TSMC&#x27;s rosy outlook on strong AI demand&quot;,&quot;authors&quot;:&quot;Reuters&quot;,&quot;section&quot;:&quot;Asia Pacific&quot;,&quot;type&quot;:&quot;regular-article&quot;,&quot;domain&quot;:&quot;reuters.com&quot;},&quot;DEPLOYMENT&quot;:&quot;363&quot;,&quot;ELOQUA_SITE_ID&quot;:&quot;2124157686&quot;,&quot;MAX_NUMBER_OF_UNICODE_CHARS&quot;:256,&quot;ONETRUST_SCRIPT_ID&quot;:&quot;38cb75bd-fbe1-4ac8-b4af-e531ab368caf&quot;,&quot;SEGMENT_WRITE_KEY&quot;:&quot;IEWBqQ8VWHijTQ\n\n...[truncated 531996 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0125",
+    "zone": "pulselens_scraper",
+    "url": "https://www.reuters.com/world/europe/european-chip-electrical-stocks-surge-ai-optimism-builds-earnings-2026-04-22/",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 0.89,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  },
+  {
+    "call_id": "bd_0126",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/finance/stocks/nvidias-strong-results-show-ai-fears-are-premature-ed2a7f89",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 4.67,
+    "response_summary": {
+      "type": "str",
+      "chars": 709504,
+      "preview": "<!DOCTYPE html><html lang=\"en-US\" data-theme=\"WSJ_00-Base\"><head><meta charSet=\"utf-8\"/><link rel=\"canonical\" href=\"https://www.wsj.com/finance/stocks/nvidias-strong-results-show-ai-fears-are-premature-ed2a7f89\"/><title>Nvidia’s Strong Results Show AI Fears Are Premature - WSJ</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0\"/><meta name=\"page.section\" content=\"Article\"/><meta name=\"page.content.type\" content=\"Article\"/><meta name=\"page.content.format\" content=\"responsive\"/><meta name=\"msnbot\" content=\"nocache, noarchive\"/><meta name=\"page.content.source\" content=\"WSJ Online\"/><meta name=\"google-signin-client_id\" content=\"61387583289.apps.googleusercontent.com\"/><meta name=\"servo-context\" content=\"servo:prod:virginia:wsj-nextjs-app:article\"/><meta name=\"branch:deeplink:target\" content=\"app\"/><meta name=\"twitter:title\" content=\"Nvidia’s Strong Results Show AI Fears Are Premature\"/><meta name=\"twitter:description\" content=\"The chip maker says demand looks strong through next year, while a selloff has made the $4.5 trillion company look cheap.\"/><meta name=\"twitter:image\" content=\"https://images.wsj.net/im-45653104/socia\n\n...[truncated 708304 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0127",
+    "zone": "pulselens_scraper",
+    "url": "https://www.wsj.com/business/earnings/nvidia-nvda-q1-earnings-report-2025-62ff6a10",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 3.36,
+    "response_summary": {
+      "type": "str",
+      "chars": 642458,
+      "preview": "<!DOCTYPE html><html lang=\"en-US\" data-theme=\"WSJ_00-Base\"><head><meta charSet=\"utf-8\"/><link rel=\"canonical\" href=\"https://www.wsj.com/business/earnings/nvidia-nvda-q1-earnings-report-2025-62ff6a10\"/><title>Nvidia’s Business Is Booming Despite Being Shut Out of China - WSJ</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0\"/><meta name=\"page.section\" content=\"Article\"/><meta name=\"page.content.type\" content=\"Article\"/><meta name=\"page.content.format\" content=\"responsive\"/><meta name=\"msnbot\" content=\"nocache, noarchive\"/><meta name=\"page.content.source\" content=\"WSJ Online\"/><meta name=\"google-signin-client_id\" content=\"61387583289.apps.googleusercontent.com\"/><meta name=\"servo-context\" content=\"servo:prod:virginia:wsj-nextjs-app:article\"/><meta name=\"branch:deeplink:target\" content=\"app\"/><meta name=\"twitter:title\" content=\"Nvidia’s Business Is Booming Despite Being Shut Out of China\"/><meta name=\"twitter:description\" content=\"The AI chip maker’s shares rose more than 5% after hours as quarterly revenue surged to a record $44 billion.\"/><meta name=\"twitter:image\" content=\"https://images.wsj.net/im-44094453/social\"/><m\n\n...[truncated 641258 chars]"
+    }
+  },
+  {
+    "call_id": "bd_0128",
+    "zone": "pulselens_scraper",
+    "url": "https://www.youtube.com/watch?v=SyEAEWOcqN0",
+    "response_format": "raw",
+    "render_js": false,
+    "ok": true,
+    "duration_sec": 1.87,
+    "response_summary": {
+      "type": "str",
+      "chars": 0,
+      "preview": ""
+    }
+  }
+]

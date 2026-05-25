@@ -24,10 +24,14 @@ class PipelineState(TypedDict, total=False):
 
     # Agent 1 output
     queries: List[SearchQuery]
+    pending_queries: List[SearchQuery]
+    query_planner_audit: Dict[str, Any]
 
     # Agent 2 output
     agent2_query: Optional[SearchQuery]     # optional single-query payload for direct Agent 2 tests
     raw_documents: Annotated[List[RawDocument], operator.add]
+    web_collection_audit: Dict[str, Any]
+    fetch_error_summary: Dict[str, Any]
 
     # Agent 3 output (pre-validation)
     raw_facts: List[FactObject]
@@ -53,6 +57,15 @@ class PipelineState(TypedDict, total=False):
     query_expansion_rounds: int            # incremented each time quality gate loops back
     low_signal_types: List[str]            # signal types under-covered — injected into Agent 1 on re-run
     quality_passed: bool
+    quality_status: str
+    quality_reasons: List[str]
+    covered_signal_types: List[str]
+    missing_signal_types: List[str]
+    company_coverage: float
+    zero_doc_query_rate: float
+    fetch_error_rate: float
+    source_count: int
+    fact_count: int
 
     # Error accumulation — failed nodes log here, pipeline continues
     errors: List[str]

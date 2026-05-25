@@ -116,6 +116,16 @@ async def load_report(report_id: str) -> MarketPulseReport | None:
     return MarketPulseReport.model_validate_json(row["payload"])
 
 
+async def latest_report_id() -> str | None:
+    """Return the report_id of the most recently created real pipeline report, or None."""
+    await create_tables()
+    with sqlite3.connect(DB_PATH) as db:
+        row = db.execute(
+            "SELECT report_id FROM reports WHERE report_id LIKE 'report_%' ORDER BY created_at DESC LIMIT 1"
+        ).fetchone()
+    return row[0] if row else None
+
+
 async def list_report_facts(report_id: str) -> list[FactObject]:
     await create_tables()
     with sqlite3.connect(DB_PATH) as db:

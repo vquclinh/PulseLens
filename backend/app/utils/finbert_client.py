@@ -1,4 +1,5 @@
-# ProsusAI/finbert HuggingFace pipeline for financial sentiment scoring (-1.0 to 1.0)
+# Placeholder FinBERT client interface. The active pipeline scorer reads FINBERT_MODEL
+# from app.config.quality_gates.
 from typing import Tuple
 
 

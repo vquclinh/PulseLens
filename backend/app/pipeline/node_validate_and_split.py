@@ -10,14 +10,15 @@ import logging
 from typing import Optional
 
 from app.config.companies import KNOWN_ENTITIES
+from app.config.quality_gates import FACT_MIN_CONFIDENCE, SAFE_MAX_CONCURRENT, SAFE_MIN_SUPPORT_RATIO
 from app.schemas.models import FactObject, RawDocument
 from app.utils.llm_client import LLMClient
 
 logger = logging.getLogger(__name__)
 
-_MIN_CONFIDENCE = 0.6
-_MIN_SUPPORT_RATIO = 0.5   # SAFE threshold: discard if < 50% atomic claims supported
-_MAX_CONCURRENT_SAFE = 5   # SAFE is expensive (2+ LLM calls per fact)
+_MIN_CONFIDENCE = FACT_MIN_CONFIDENCE
+_MIN_SUPPORT_RATIO = SAFE_MIN_SUPPORT_RATIO   # SAFE threshold: discard if < 50% atomic claims supported
+_MAX_CONCURRENT_SAFE = SAFE_MAX_CONCURRENT    # SAFE is expensive (2+ LLM calls per fact)
 
 # ── Gate 1: pure Python verbatim check ────────────────────────────────────────
 
@@ -33,7 +34,7 @@ def validate_facts(
       1. evidence_quote is a VERBATIM substring of source.content
          (LLM invented the quote → discard the entire fact)
       2. claim length ≤ 150 chars
-      3. confidence ≥ 0.6
+      3. confidence ≥ configured minimum (default 0.60)
       4. entity is in KNOWN_ENTITIES
     """
     validated: list[FactObject] = []

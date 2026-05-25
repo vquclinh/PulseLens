@@ -24,6 +24,8 @@ export type MomentumLabel =
   | 'negative'
   | 'elevated_risk'
 
+export type QualityStatus = 'PASS' | 'PARTIAL_PASS' | 'FAIL_EXPAND'
+
 export interface RawDocument {
   doc_id: string
   url: string
@@ -33,6 +35,7 @@ export interface RawDocument {
   published_date: string | null
   fetched_at: string
   source_tier: 1 | 2 | 3 | 4
+  content_quality: 'full_text' | 'metadata_only' | 'snippet_only'
   collection_query: string
   signal_type_hint: SignalType | null
 }
@@ -148,6 +151,18 @@ export interface ContradictionFlag {
   note: string
 }
 
+export interface PipelineAuditSummary {
+  query_count: number
+  accepted_doc_count: number
+  failed_query_count: number
+  zero_doc_query_count: number
+  fetch_error_count: number
+  covered_signal_types: SignalType[]
+  missing_signal_types: SignalType[]
+  source_count: number
+  evidence_count: number
+}
+
 export interface MarketPulseReport {
   report_id: string
   market: string
@@ -166,6 +181,9 @@ export interface MarketPulseReport {
   evidence_count: number
   source_count: number
   signal_breakdown: Record<string, number>
+  quality_status: QualityStatus
+  quality_reasons: string[]
+  audit_summary: PipelineAuditSummary
 }
 
 export interface StockContext {

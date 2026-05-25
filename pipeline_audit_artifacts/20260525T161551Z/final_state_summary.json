@@ -1,0 +1,53 @@
+{
+  "queries": {
+    "count": 0,
+    "sample": []
+  },
+  "raw_documents": {
+    "count": 0,
+    "sample": []
+  },
+  "raw_facts": {
+    "count": 0,
+    "sample": []
+  },
+  "scored_facts": {
+    "count": 0,
+    "sample": []
+  },
+  "verified_claims": {
+    "count": 0,
+    "sample": []
+  },
+  "contradictions": {
+    "count": 0,
+    "sample": []
+  },
+  "company_narratives": {
+    "count": 0,
+    "sample": []
+  },
+  "errors": {
+    "count": 0,
+    "sample": []
+  },
+  "market": "US AI Hardware / Semiconductor",
+  "companies": {
+    "count": 8,
+    "sample": [
+      "Nvidia",
+      "AMD",
+      "Intel"
+    ]
+  },
+  "time_window": "last 7 days",
+  "query_expansion_rounds": 0,
+  "low_signal_types": {
+    "count": 0,
+    "sample": []
+  },
+  "quality_passed": false,
+  "signal_scores": {},
+  "market_narrative": null,
+  "report": null
+}

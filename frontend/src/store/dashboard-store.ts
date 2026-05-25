@@ -13,13 +13,13 @@ interface DashboardState {
   setReport: (report: MarketPulseReport | null) => void
 }
 
-export const useDashboardStore = create<DashboardState>()(() => ({
+export const useDashboardStore = create<DashboardState>()((set) => ({
   activeTab: 'overview',
   isChatOpen: false,
   highlightedFactId: null,
   report: null,
-  setActiveTab: () => {},
-  setIsChatOpen: () => {},
-  setHighlightedFactId: () => {},
-  setReport: () => {},
+  setActiveTab: (tab) => set({ activeTab: tab }),
+  setIsChatOpen: (open) => set({ isChatOpen: open }),
+  setHighlightedFactId: (id) => set({ highlightedFactId: id }),
+  setReport: (report) => set({ report }),
 }))

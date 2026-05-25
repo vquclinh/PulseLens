@@ -1,0 +1,20 @@
+[
+  {
+    "label": "Backend compile",
+    "command": "/mnt/vquclinh/PROJECT-CMAKE/PULSE-LENS/PulseLens/backend/.venv/bin/python -m compileall -q app",
+    "cwd": "backend",
+    "returncode": 0,
+    "duration_sec": 0.07,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "label": "Frontend build",
+    "command": "npm run build",
+    "cwd": "frontend",
+    "returncode": 0,
+    "duration_sec": 5.9,
+    "stdout": "\n> pulselens-frontend@0.1.0 build\n> tsc -b && vite build\n\nvite v6.4.2 building for production...\ntransforming...\n✓ 743 modules transformed.\nrendering chunks...\ncomputing gzip size...\ndist/index.html                   0.74 kB │ gzip:   0.41 kB\ndist/assets/index-DHYfJtIW.css   26.31 kB │ gzip:   6.06 kB\ndist/assets/index-C6EmSras.js   671.18 kB │ gzip: 195.13 kB\n✓ built in 3.62s\n",
+    "stderr": "\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n"
+  }
+]

@@ -1,59 +1,122 @@
-# Node — Quality Gate: fact count + signal coverage check, routes to expand or proceed
+# Node — Quality Gate: strict coverage diagnostics, routes to expand or proceed.
 # Pure Python conditional — no LLM cost. Hard stop at MAX_EXPANSION_ROUNDS.
 from __future__ import annotations
 
 import logging
 from typing import Literal
 
-from app.config.quality_gates import MAX_EXPANSION_ROUNDS
+from app.config.quality_gates import MAX_EXPANSION_ROUNDS, QUALITY_GATE_CONFIG
 from app.pipeline.state import PipelineState
 from app.schemas.models import SignalType
 
 logger = logging.getLogger(__name__)
 
-_MIN_FACTS        = 50
-_MIN_SIGNAL_TYPES = 4
-
-
 def run_quality_gate(state: PipelineState) -> dict:
     """
-    Node function — computes gate decision, writes quality_passed + low_signal_types.
-    The conditional edge router reads quality_passed from state after this node runs.
-    """
-    facts           = state.get("scored_facts") or []
-    rounds          = state.get("query_expansion_rounds", 0)
-    covered_signals = {f.signal_type for f in facts}
+    Compute quality status and diagnostics.
 
-    logger.info(
-        "quality_gate: facts=%d signal_types=%d round=%d",
-        len(facts), len(covered_signals), rounds,
+    Status values:
+      PASS         strict thresholds satisfied
+      FAIL_EXPAND  coverage is low and expansion rounds remain
+      PARTIAL_PASS max rounds exhausted but enough evidence exists to assemble a cautious report
+    """
+    facts = state.get("scored_facts") or []
+    rounds = state.get("query_expansion_rounds", 0)
+    companies = state.get("companies") or []
+    web_audit = state.get("web_collection_audit") or {}
+    fetch_summary = state.get("fetch_error_summary") or {}
+
+    covered_signals = {f.signal_type for f in facts}
+    covered_signal_values = sorted(st.value for st in covered_signals)
+    missing_signal_values = sorted(st.value for st in SignalType if st not in covered_signals)
+    source_count = len({getattr(f, "source_url", "") for f in facts if getattr(f, "source_url", "")})
+
+    fact_entities = {getattr(f, "entity", "") for f in facts}
+    tracked_companies = [company for company in companies if company != "market"]
+    company_coverage = (
+        len([company for company in tracked_companies if company in fact_entities]) / len(tracked_companies)
+        if tracked_companies else 0.0
     )
 
-    # Hard stop — prevent infinite loop
-    if rounds >= MAX_EXPANSION_ROUNDS:
-        logger.info("quality_gate: hard stop at round=%d → proceed", rounds)
-        return {"quality_passed": True}
+    query_audits = web_audit.get("queries") if isinstance(web_audit, dict) else []
+    query_count = len(query_audits) if isinstance(query_audits, list) else int(web_audit.get("query_count") or 0)
+    zero_doc_queries = (
+        sum(1 for item in query_audits if int(item.get("accepted_doc_count") or 0) == 0)
+        if isinstance(query_audits, list) else int(web_audit.get("zero_doc_query_count") or 0)
+    )
+    zero_doc_query_rate = zero_doc_queries / max(query_count, 1)
 
-    # Signal coverage or volume insufficient
-    if len(facts) < _MIN_FACTS or len(covered_signals) < _MIN_SIGNAL_TYPES:
-        missing = sorted(st.value for st in SignalType if st not in covered_signals)
-        logger.info(
-            "quality_gate: FAIL (facts=%d<%d OR signal_types=%d<%d) → expand, missing=%s",
-            len(facts), _MIN_FACTS, len(covered_signals), _MIN_SIGNAL_TYPES, missing,
-        )
+    total_fetch_attempts = int(fetch_summary.get("total_fetch_attempts") or 0)
+    failed_fetches = int(fetch_summary.get("failed_fetches") or 0)
+    fetch_error_rate = failed_fetches / max(total_fetch_attempts, 1)
+
+    reasons: list[str] = []
+    cfg = QUALITY_GATE_CONFIG
+    if len(facts) < cfg.min_facts:
+        reasons.append(f"fact_count {len(facts)} < {cfg.min_facts}")
+    if len(covered_signals) < cfg.min_signal_types:
+        reasons.append(f"signal_types {len(covered_signals)} < {cfg.min_signal_types}")
+    if company_coverage < cfg.min_company_coverage_ratio:
+        reasons.append(f"company_coverage {company_coverage:.2f} < {cfg.min_company_coverage_ratio:.2f}")
+    if zero_doc_query_rate > cfg.max_zero_doc_query_rate:
+        reasons.append(f"zero_doc_query_rate {zero_doc_query_rate:.2f} > {cfg.max_zero_doc_query_rate:.2f}")
+    if fetch_error_rate > cfg.max_fetch_error_rate:
+        reasons.append(f"fetch_error_rate {fetch_error_rate:.2f} > {cfg.max_fetch_error_rate:.2f}")
+    if source_count < cfg.min_source_count:
+        reasons.append(f"source_count {source_count} < {cfg.min_source_count}")
+
+    logger.info(
+        "quality_gate: facts=%d signal_types=%d companies=%.0f%% zero_doc=%.0f%% fetch_errors=%.0f%% sources=%d round=%d",
+        len(facts),
+        len(covered_signals),
+        company_coverage * 100,
+        zero_doc_query_rate * 100,
+        fetch_error_rate * 100,
+        source_count,
+        rounds,
+    )
+
+    diagnostics = {
+        "quality_reasons": reasons,
+        "covered_signal_types": covered_signal_values,
+        "missing_signal_types": missing_signal_values,
+        "company_coverage": round(company_coverage, 4),
+        "zero_doc_query_rate": round(zero_doc_query_rate, 4),
+        "fetch_error_rate": round(fetch_error_rate, 4),
+        "source_count": source_count,
+        "fact_count": len(facts),
+        "low_signal_types": missing_signal_values,
+    }
+
+    if not reasons:
+        logger.info("quality_gate: PASS")
         return {
+            **diagnostics,
+            "quality_status": "PASS",
+            "quality_passed": True,
+        }
+
+    if rounds + 1 < MAX_EXPANSION_ROUNDS:
+        logger.info("quality_gate: FAIL_EXPAND round=%d reasons=%s", rounds, reasons)
+        return {
+            **diagnostics,
+            "quality_status": "FAIL_EXPAND",
             "quality_passed": False,
-            "low_signal_types": missing,
             "query_expansion_rounds": rounds + 1,
         }
 
-    logger.info("quality_gate: PASS → proceed")
-    return {"quality_passed": True}
+    status = "PARTIAL_PASS"
+    logger.info("quality_gate: %s after max rounds reasons=%s", status, reasons)
+    return {
+        **diagnostics,
+        "quality_status": status,
+        "quality_passed": True,
+    }
 
 
 def quality_gate_router(state: PipelineState) -> Literal["expand_queries", "proceed"]:
-    """Conditional edge router — reads quality_passed written by run_quality_gate node."""
-    if not state.get("quality_passed", True):
+    """Conditional edge router — expand only on explicit FAIL_EXPAND."""
+    if state.get("quality_status") == "FAIL_EXPAND" or not state.get("quality_passed", True):
         return "expand_queries"
     return "proceed"
 

@@ -15,7 +15,9 @@ from app.schemas.models import (
     MarketNarrative,
     MarketPulseReport,
     NewsItem,
+    PipelineAuditSummary,
     PulseStatus,
+    QualityStatus,
     SignalSummary,
     SignalType,
     VerifiedClaim,
@@ -94,15 +96,20 @@ def build_news_items(facts: list[FactObject]) -> list[NewsItem]:
     ]
 
 
-def build_grounded_brief(claims: list[VerifiedClaim]) -> GroundedBrief:
+def build_grounded_brief(claims: list[VerifiedClaim], quality_status: str, quality_reasons: list[str]) -> GroundedBrief:
     top = sorted(claims, key=lambda claim: claim.final_confidence, reverse=True)[:3]
+    implication = f"Analysis based on {len(claims)} verified claims."
+    if quality_status == QualityStatus.PARTIAL_PASS.value:
+        implication += " Coverage is incomplete; treat conclusions as usable but provisional."
+        if quality_reasons:
+            implication += " Key gaps: " + "; ".join(quality_reasons[:3]) + "."
     return GroundedBrief(
         what_we_found=[
             CitedStatement(text=claim.summary, fact_ids=claim.supporting_facts[:2])
             for claim in top
         ],
         what_we_infer=[],
-        strategic_implication=f"Analysis based on {len(claims)} verified claims.",
+        strategic_implication=implication,
     )
 
 
@@ -118,11 +125,61 @@ def _fallback_narrative(claims: list[VerifiedClaim]) -> MarketNarrative:
     )
 
 
+def _quality_status(value: object) -> QualityStatus:
+    if isinstance(value, QualityStatus):
+        return value
+    try:
+        return QualityStatus(str(value))
+    except ValueError:
+        return QualityStatus.PARTIAL_PASS
+
+
+def _build_audit_summary(state: PipelineState, facts: list[FactObject]) -> PipelineAuditSummary:
+    web_audit = state.get("web_collection_audit") or {}
+    fetch_summary = state.get("fetch_error_summary") or {}
+    query_audits = web_audit.get("queries") if isinstance(web_audit, dict) else []
+    query_count = len(query_audits) if isinstance(query_audits, list) else int(web_audit.get("query_count") or 0)
+    zero_doc_count = (
+        sum(1 for item in query_audits if int(item.get("accepted_doc_count") or 0) == 0)
+        if isinstance(query_audits, list) else int(web_audit.get("zero_doc_query_count") or 0)
+    )
+    return PipelineAuditSummary(
+        query_count=query_count or len(state.get("queries") or []),
+        accepted_doc_count=len(state.get("raw_documents") or []),
+        failed_query_count=int(web_audit.get("failed_query_count") or zero_doc_count),
+        zero_doc_query_count=zero_doc_count,
+        fetch_error_count=int(fetch_summary.get("failed_fetches") or 0),
+        covered_signal_types=[SignalType(s) for s in state.get("covered_signal_types", []) if s in {st.value for st in SignalType}],
+        missing_signal_types=[SignalType(s) for s in state.get("missing_signal_types", []) if s in {st.value for st in SignalType}],
+        source_count=len({fact.source_url for fact in facts}),
+        evidence_count=len(facts),
+    )
+
+
+def _mark_partial_narrative(narrative: MarketNarrative, reasons: list[str]) -> MarketNarrative:
+    if narrative.narrative_body.startswith("Coverage incomplete:"):
+        return narrative
+    reason_text = "; ".join(reasons[:3]) if reasons else "quality thresholds were not fully met"
+    narrative.narrative_body = (
+        f"Coverage incomplete: this report is usable but provisional because {reason_text}. "
+        + narrative.narrative_body
+    )
+    return narrative
+
+
 async def report_assembler(state: PipelineState) -> dict:
     claims = state.get("verified_claims") or []
     scores = state.get("signal_scores") or {}
     facts = state.get("scored_facts") or []
     market_narrative = state.get("market_narrative") or _fallback_narrative(claims)
+    quality_status = _quality_status(state.get("quality_status", QualityStatus.PARTIAL_PASS.value))
+    quality_reasons = list(state.get("quality_reasons") or [])
+    if quality_status == QualityStatus.PARTIAL_PASS:
+        market_narrative = _mark_partial_narrative(market_narrative, quality_reasons)
+
+    pulse_confidence = float(scores.get("pulse_confidence", 0.0))
+    if quality_status == QualityStatus.PARTIAL_PASS:
+        pulse_confidence = min(pulse_confidence, 0.5)
 
     report = MarketPulseReport(
         report_id=f"report_{generate_uuid()[:12]}",
@@ -131,17 +188,20 @@ async def report_assembler(state: PipelineState) -> dict:
         generated_at=now_iso(),
         pulse_score=float(scores.get("pulse_score", 0.0)),
         pulse_status=_pulse_status(scores.get("pulse_status", PulseStatus.stable)),
-        pulse_confidence=float(scores.get("pulse_confidence", 0.0)),
+        pulse_confidence=pulse_confidence,
         trend_vs_previous=None,
         top_signals=build_top_signals(claims, scores, facts),
         company_narratives=state.get("company_narratives") or [],
         news_items=build_news_items(facts),
         market_narrative=market_narrative,
         contradictions=state.get("contradictions") or [],
-        grounded_brief=build_grounded_brief(claims),
+        grounded_brief=build_grounded_brief(claims, quality_status.value, quality_reasons),
         evidence_count=len(facts),
         source_count=len({fact.source_url for fact in facts}),
         signal_breakdown=_signal_breakdown(scores),
+        quality_status=quality_status,
+        quality_reasons=quality_reasons,
+        audit_summary=_build_audit_summary(state, facts),
     )
 
     await save_report(report, facts, claims)

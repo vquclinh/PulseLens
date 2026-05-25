@@ -840,7 +840,7 @@ own judgment. Blending contradictory signals is a form of misinformation.
 ## 10. Agent 5 — Contradiction Writers
 
 **File:** `app/pipeline/agent5_contradiction_writer.py`  
-**Type:** LLM — OpenRouter via `LLMClient`  
+**Type:** LLM — OpenRouter via `LLMClient`
 **LangGraph node:** `contradiction_writer` (parallel, one per flagged pair)  
 **Research methods applied:** None — requires LLM judgment
 

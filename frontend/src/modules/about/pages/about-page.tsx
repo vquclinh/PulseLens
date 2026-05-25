@@ -17,7 +17,7 @@ const SECTIONS = [
   },
   {
     title: 'Structured fact extraction',
-    body: 'Raw documents are processed by Claude (claude-sonnet-4-20250514) using a schema-constrained extraction prompt. Every extracted fact must include an exact verbatim quote from the source. Any fact whose evidence_quote cannot be found in the source document is automatically discarded — this eliminates LLM hallucination at the extraction stage.',
+    body: 'Raw documents are processed through OpenRouter using the configured Agent 3 model, with a schema-constrained extraction prompt. Every extracted fact must include an exact verbatim quote from the source. Any fact whose evidence_quote cannot be found in the source document is automatically discarded — this eliminates LLM hallucination at the extraction stage.',
   },
   {
     title: 'Evidence triangulation',

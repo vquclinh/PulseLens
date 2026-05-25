@@ -1,5 +1,5 @@
 # Agent 5 — Contradiction Writers
-# LLM (Claude) writes a symmetric analyst note for each contradicted (entity, signal_type) pair.
+# LLM via OpenRouter writes a symmetric analyst note for each contradicted (entity, signal_type) pair.
 from __future__ import annotations
 
 import asyncio

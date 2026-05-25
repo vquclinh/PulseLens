@@ -1,0 +1,4220 @@
+[
+  {
+    "time": "2026-05-25T16:17:07.007054+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: query_planner (round=0)"
+  },
+  {
+    "time": "2026-05-25T16:17:07.012598+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent1_query_planner",
+    "message": "Phase 1: Step-Back abstraction (round=0)"
+  },
+  {
+    "time": "2026-05-25T16:17:08.810098+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:28.014958+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent1_query_planner",
+    "message": "Step-Back returned structured JSON (7 signal keys)"
+  },
+  {
+    "time": "2026-05-25T16:17:28.014991+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent1_query_planner",
+    "message": "Step-Back complete (12700 chars)"
+  },
+  {
+    "time": "2026-05-25T16:17:28.015011+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent1_query_planner",
+    "message": "Phase 2: Multi-HyDE-inspired query generation (target=40 to 50 queries)"
+  },
+  {
+    "time": "2026-05-25T16:17:28.776452+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:44.724121+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent1_query_planner",
+    "message": "Skipped 5 malformed/duplicate queries from LLM output"
+  },
+  {
+    "time": "2026-05-25T16:17:44.724290+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent1_query_planner",
+    "message": "Generated 40 queries covering 7 signal types, 8 companies"
+  },
+  {
+    "time": "2026-05-25T16:17:44.727533+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: web_worker fallback batch size=40"
+  },
+  {
+    "time": "2026-05-25T16:17:47.199906+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:47.201934+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_bc90248d — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:17:47.201995+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_bc90248d"
+  },
+  {
+    "time": "2026-05-25T16:17:47.705308+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:47.707393+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 3/5 SERP results for query q_191b3497 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:17:47.735821+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 2 documents for query q_191b3497"
+  },
+  {
+    "time": "2026-05-25T16:17:47.736751+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:47.787932+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:47.788943+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_c9d686da — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:17:47.788993+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_c9d686da"
+  },
+  {
+    "time": "2026-05-25T16:17:49.465445+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:49.467014+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 3/5 SERP results for query q_6234761b — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:17:49.470362+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 2 documents for query q_6234761b"
+  },
+  {
+    "time": "2026-05-25T16:17:50.154460+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:53.321058+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:57.651776+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:17:58.242910+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 4 documents for query q_2f33b724"
+  },
+  {
+    "time": "2026-05-25T16:17:59.894990+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:00.281038+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:00.282622+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 1/5 SERP results for query q_08804f7a — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:00.654430+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:01.949164+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:01.950855+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 1/5 SERP results for query q_aeb9b06d — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:02.527396+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:02.537866+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_49bed1d7"
+  },
+  {
+    "time": "2026-05-25T16:18:02.942215+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:03.996976+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:04.211530+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:04.979176+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:04.980228+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://nvidianews.nvidia.com/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:04.980411+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://nvidianews.nvidia.com/ for query q_6a186b6f: Bright Data request failed for https://nvidianews.nvidia.com/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:05.767149+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:05.767789+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://nvidianews.nvidia.com/news/latest — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:05.767911+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://nvidianews.nvidia.com/news/latest for query q_6a186b6f: Bright Data request failed for https://nvidianews.nvidia.com/news/latest: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:06.522917+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:06.523574+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://nvidianews.nvidia.com/news — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:06.523718+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://nvidianews.nvidia.com/news for query q_6a186b6f: Bright Data request failed for https://nvidianews.nvidia.com/news: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:06.907063+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:07.273308+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:07.274310+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://finance.yahoo.com/news/nvidia-prepares-triumphant-return-chinas-154554164.html — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:07.274458+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://finance.yahoo.com/news/nvidia-prepares-triumphant-return-chinas-154554164.html for query q_6a186b6f: Bright Data request failed for https://finance.yahoo.com/news/nvidia-prepares-triumphant-return-chinas-154554164.html: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:08.025829+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:08.026641+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.investors.com/news/technology/nvidia-stock-nvda-gtc-2026-keynote/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:08.026803+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.investors.com/news/technology/nvidia-stock-nvda-gtc-2026-keynote/ for query q_6a186b6f: Bright Data request failed for https://www.investors.com/news/technology/nvidia-stock-nvda-gtc-2026-keynote/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:08.026868+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_6a186b6f"
+  },
+  {
+    "time": "2026-05-25T16:18:13.870656+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:19.563507+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:18:19.612814+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:20.861855+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:20.864009+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 4 documents for query q_aeb9b06d"
+  },
+  {
+    "time": "2026-05-25T16:18:23.239142+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:23.463749+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:23.754298+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 4 documents for query q_08804f7a"
+  },
+  {
+    "time": "2026-05-25T16:18:30.035179+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:30.573832+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_9a43fdc9"
+  },
+  {
+    "time": "2026-05-25T16:18:31.699723+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:31.700544+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_cddef7ce"
+  },
+  {
+    "time": "2026-05-25T16:18:32.432071+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:32.433605+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 4/5 SERP results for query q_083762e5 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:32.656526+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:32.657483+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_8cfe4c46 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:32.657537+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_8cfe4c46"
+  },
+  {
+    "time": "2026-05-25T16:18:33.057317+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:33.058412+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 4/4 SERP results for query q_b624f0c3 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:33.058472+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_b624f0c3"
+  },
+  {
+    "time": "2026-05-25T16:18:44.913779+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:45.185731+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 1 documents for query q_083762e5"
+  },
+  {
+    "time": "2026-05-25T16:18:46.116834+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.google.com/search?q=Dell+PowerEdge+AI+server+roadmap+update+last+7+days+dell.com%2Fproducts+OR+ir.dell.com&num=5: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:18:49.579732+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:49.581304+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 1/5 SERP results for query q_19b2a1e5 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:50.374394+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:50.375147+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-expands-dell-ai-factory-new-poweredge-servers — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:50.375269+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-expands-dell-ai-factory-new-poweredge-servers for query q_19b2a1e5: Bright Data request failed for https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-expands-dell-ai-factory-new-poweredge-servers: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:51.291650+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:51.292849+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.dell.com/en-us/dt/corporate/newsroom/announcements/detailpage.press-releases~usa~2024~10~amd-advancing-ai.htm — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:51.293045+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.dell.com/en-us/dt/corporate/newsroom/announcements/detailpage.press-releases~usa~2024~10~amd-advancing-ai.htm for query q_19b2a1e5: Bright Data request failed for https://www.dell.com/en-us/dt/corporate/newsroom/announcements/detailpage.press-releases~usa~2024~10~amd-advancing-ai.htm: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:52.289195+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:52.289991+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.youtube.com/watch?v=ivU7YOTYa5g — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:52.290152+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.youtube.com/watch?v=ivU7YOTYa5g for query q_19b2a1e5: Bright Data request failed for https://www.youtube.com/watch?v=ivU7YOTYa5g: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:53.049333+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:18:53.050384+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.datacenterdynamics.com/en/news/dell-updates-its-server-storage-and-networking-portfolios-to-support-ai-deployments-at-scale/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:18:53.050499+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.datacenterdynamics.com/en/news/dell-updates-its-server-storage-and-networking-portfolios-to-support-ai-deployments-at-scale/ for query q_19b2a1e5: Bright Data request failed for https://www.datacenterdynamics.com/en/news/dell-updates-its-server-storage-and-networking-portfolios-to-support-ai-deployments-at-scale/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:18:53.050540+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_19b2a1e5"
+  },
+  {
+    "time": "2026-05-25T16:18:55.008662+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:55.101105+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:55.291411+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:55.292466+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_1b039bf4 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:18:55.292534+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_1b039bf4"
+  },
+  {
+    "time": "2026-05-25T16:18:57.261394+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:57.594960+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:58.538628+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:18:59.388923+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:00.382053+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:00.735669+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:00.816029+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:00.817249+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_a16a88b4 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:19:00.817316+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_a16a88b4"
+  },
+  {
+    "time": "2026-05-25T16:19:01.705719+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:03.462800+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:03.467459+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_792f28ce"
+  },
+  {
+    "time": "2026-05-25T16:19:04.090026+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:05.039179+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:05.042581+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_3d424c67"
+  },
+  {
+    "time": "2026-05-25T16:19:08.628423+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.google.com/search?q=Intel+GPU+architect+jobs+site%3Alinkedin.com%2Fjobs+last+7+days&num=5: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:19:12.100055+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:12.101145+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_b3c94cda — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:19:12.101198+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_b3c94cda"
+  },
+  {
+    "time": "2026-05-25T16:19:13.945325+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:13.951120+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_0e50613a"
+  },
+  {
+    "time": "2026-05-25T16:19:14.403209+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:14.432571+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:14.433457+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_f0f151b4 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:19:14.433490+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_f0f151b4"
+  },
+  {
+    "time": "2026-05-25T16:19:14.973098+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:15.810325+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:17.362694+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:17.409597+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:18.220274+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:18.862603+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:19.711692+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:19.713475+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 3 documents for query q_7783cf8c"
+  },
+  {
+    "time": "2026-05-25T16:19:20.482639+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:25.235784+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:25.496749+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_22cec13d"
+  },
+  {
+    "time": "2026-05-25T16:19:27.651660+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.google.com/search?q=Nvidia+Blackwell+GPU+benchmark+results+anandtech.com+tomshardware.com+last+7+days&num=5: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:19:30.766186+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:30.767435+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 2/5 SERP results for query q_eb903573 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:19:45.822898+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:19:48.592720+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:04.741750+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:05.012935+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 3 documents for query q_eb903573"
+  },
+  {
+    "time": "2026-05-25T16:20:06.921930+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:06.922600+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 4/5 SERP results for query q_30aeea44 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:20:07.688969+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:07.690333+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 1/5 SERP results for query q_c13df1f2 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:20:08.509501+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:09.349799+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:09.600908+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:09.604409+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 1 documents for query q_30aeea44"
+  },
+  {
+    "time": "2026-05-25T16:20:09.668606+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:10.433924+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:20:10.434738+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:20:10.434870+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx for query q_d25a0efb: Bright Data request failed for https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:20:11.204486+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:20:11.205327+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.supermicro.com/en/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:20:11.205461+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.supermicro.com/en/ for query q_d25a0efb: Bright Data request failed for https://www.supermicro.com/en/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:20:11.981166+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:20:11.981752+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.reddit.com/r/sysadmin/comments/1pk1l3z/trying_to_buy_a_server_from_supermicrocom_why_did/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:20:11.981889+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.reddit.com/r/sysadmin/comments/1pk1l3z/trying_to_buy_a_server_from_supermicrocom_why_did/ for query q_d25a0efb: Bright Data request failed for https://www.reddit.com/r/sysadmin/comments/1pk1l3z/trying_to_buy_a_server_from_supermicrocom_why_did/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:20:12.746866+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:20:12.747654+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.instagram.com/reel/DPmQghvjZag/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:20:12.747819+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.instagram.com/reel/DPmQghvjZag/ for query q_d25a0efb: Bright Data request failed for https://www.instagram.com/reel/DPmQghvjZag/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:20:13.533974+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:20:13.534729+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.facebook.com/Supermicro/posts/supermicro-was-one-of-the-first-to-unveil-a-context-memory-cmx-storage-server-as/1422217376617632/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:20:13.534841+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.facebook.com/Supermicro/posts/supermicro-was-one-of-the-first-to-unveil-a-context-memory-cmx-storage-server-as/1422217376617632/ for query q_d25a0efb: Bright Data request failed for https://www.facebook.com/Supermicro/posts/supermicro-was-one-of-the-first-to-unveil-a-context-memory-cmx-storage-server-as/1422217376617632/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:20:13.534879+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_d25a0efb"
+  },
+  {
+    "time": "2026-05-25T16:20:20.569427+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.google.com/search?q=Intel+Foundry+Services+AI+strategy+investor.intel.com+last+7+days&num=5: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:20:22.394509+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:22.395169+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_ee1f9feb"
+  },
+  {
+    "time": "2026-05-25T16:20:23.194087+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.wsj.com/business/earnings/dell-technologies-raises-outlook-as-sales-rise-on-ai-demand-e4c2de1f: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:20:24.855624+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.reuters.com/markets/deals/broadcom-review-strategic-options-two-vmware-units-insider-2023-11-29/: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:20:26.683913+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:27.492008+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:28.358680+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:29.222532+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:20:29.225528+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_1de84bc1"
+  },
+  {
+    "time": "2026-05-25T16:20:39.710882+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 2/4 for https://www.wsj.com/business/earnings/dell-technologies-raises-outlook-as-sales-rise-on-ai-demand-e4c2de1f: ; retrying in 2.0s"
+  },
+  {
+    "time": "2026-05-25T16:20:57.244836+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 3/4 for https://www.wsj.com/business/earnings/dell-technologies-raises-outlook-as-sales-rise-on-ai-demand-e4c2de1f: ; retrying in 4.0s"
+  },
+  {
+    "time": "2026-05-25T16:21:06.686390+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:12.757149+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:18.292363+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:24.094442+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:24.620558+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 4 documents for query q_c13df1f2"
+  },
+  {
+    "time": "2026-05-25T16:21:26.604489+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:26.605922+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 3/5 SERP results for query q_4603aa9a — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:21:27.339008+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:27.340623+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 1/5 SERP results for query q_e65cd7f9 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:21:27.447941+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:28.223555+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:28.224205+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.supermicro.com/en/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:28.224332+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.supermicro.com/en/ for query q_bba70ad7: Bright Data request failed for https://www.supermicro.com/en/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:28.968797+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:28.969439+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:28.969557+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx for query q_bba70ad7: Bright Data request failed for https://ir.supermicro.com/news/news-details/2026/Supermicro-Accelerates-Deployment-Times-with-New-Gold-Series-Enterprise-Server-Solutions/default.aspx: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:29.719747+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:29.720319+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.supermicro.com/en/support — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:29.720435+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.supermicro.com/en/support for query q_bba70ad7: Bright Data request failed for https://www.supermicro.com/en/support: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:29.829561+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:29.830786+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 1/5 SERP results for query q_eafef72c — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:21:30.518281+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:30.518970+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Intelligent-In-Store-Retail-Solutions-in-Collaboration-with-a-Broad-Range-of-Industry-Partners/default.aspx — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:30.519088+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Intelligent-In-Store-Retail-Solutions-in-Collaboration-with-a-Broad-Range-of-Industry-Partners/default.aspx for query q_bba70ad7: Bright Data request failed for https://ir.supermicro.com/news/news-details/2026/Supermicro-Announces-Intelligent-In-Store-Retail-Solutions-in-Collaboration-with-a-Broad-Range-of-Industry-Partners/default.aspx: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:31.361624+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:31.362175+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://www.supermicro.com/en/support/os-compatibility-certification — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:31.362238+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://www.supermicro.com/en/support/os-compatibility-certification for query q_bba70ad7: Bright Data request failed for https://www.supermicro.com/en/support/os-compatibility-certification: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:31.362259+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_bba70ad7"
+  },
+  {
+    "time": "2026-05-25T16:21:31.675326+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:32.632107+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:33.540053+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:33.543008+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 2 documents for query q_4603aa9a"
+  },
+  {
+    "time": "2026-05-25T16:21:34.668209+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:37.533866+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:39.789222+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:40.555606+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:40.556165+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://news.broadcom.com/releases — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:40.556292+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://news.broadcom.com/releases for query q_8c9e307f: Bright Data request failed for https://news.broadcom.com/releases: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:40.609292+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:41.305523+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:41.305859+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://investors.broadcom.com/news-releases/news-release-details/broadcom-launches-unified-wi-fi-8-platform-seamless-ai — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:41.305918+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://investors.broadcom.com/news-releases/news-release-details/broadcom-launches-unified-wi-fi-8-platform-seamless-ai for query q_8c9e307f: Bright Data request failed for https://investors.broadcom.com/news-releases/news-release-details/broadcom-launches-unified-wi-fi-8-platform-seamless-ai: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:42.058304+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:42.058903+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://finance.yahoo.com/quote/AVGO/press-releases/ — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:42.059000+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://finance.yahoo.com/quote/AVGO/press-releases/ for query q_8c9e307f: Bright Data request failed for https://finance.yahoo.com/quote/AVGO/press-releases/: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:42.824752+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:42.825335+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:42.825460+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking for query q_8c9e307f: Bright Data request failed for https://investors.broadcom.com/news-releases/news-release-details/broadcom-delivers-future-ai-infrastructure-end-end-ai-networking: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:43.219924+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:21:43.583578+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 400 Bad Request\""
+  },
+  {
+    "time": "2026-05-25T16:21:43.583922+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data permanent error 400 for https://news.broadcom.com/latest/page/19 — not retrying"
+  },
+  {
+    "time": "2026-05-25T16:21:43.583992+00:00",
+    "level": "WARNING",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped https://news.broadcom.com/latest/page/19 for query q_8c9e307f: Bright Data request failed for https://news.broadcom.com/latest/page/19: Client error '400 Bad Request' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400"
+  },
+  {
+    "time": "2026-05-25T16:21:43.584021+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_8c9e307f"
+  },
+  {
+    "time": "2026-05-25T16:21:43.750653+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 4 documents for query q_eafef72c"
+  },
+  {
+    "time": "2026-05-25T16:21:53.050284+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.forbes.com/sites/moorinsights/2024/04/16/intel-announces-gaudi-3-accelerator-for-generative-ai/: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:22:08.876026+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:09.749621+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 4 documents for query q_e65cd7f9"
+  },
+  {
+    "time": "2026-05-25T16:22:12.532799+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:12.533515+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 5/5 SERP results for query q_9c5b1c85 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:22:12.533548+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_9c5b1c85"
+  },
+  {
+    "time": "2026-05-25T16:22:12.594889+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:14.409582+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:15.756216+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:15.757456+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 skipped 4/5 SERP results for query q_fec107c9 — below relevance threshold"
+  },
+  {
+    "time": "2026-05-25T16:22:16.565053+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:16.568486+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 1 documents for query q_fec107c9"
+  },
+  {
+    "time": "2026-05-25T16:22:17.376645+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:20.734324+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:21.474360+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:22.531080+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:25.289626+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.brightdata_client",
+    "message": "Bright Data request failed attempt 1/4 for https://www.google.com/search?q=Intel+AI+accelerator+product+roadmap+investor.intel.com+last+7+days&num=5: ; retrying in 1.0s"
+  },
+  {
+    "time": "2026-05-25T16:22:27.109374+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:27.110197+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 0 documents for query q_9b0113e1"
+  },
+  {
+    "time": "2026-05-25T16:22:27.131832+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:28.869726+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:30.048041+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:30.049503+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_3d1a4706"
+  },
+  {
+    "time": "2026-05-25T16:22:31.202950+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:34.695963+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:37.102594+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://api.brightdata.com/request \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:37.105484+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 collected 5 documents for query q_d095c558"
+  },
+  {
+    "time": "2026-05-25T16:22:37.106693+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent2_web_workers",
+    "message": "Agent 2 filtered 41/84 documents as low-quality before extraction"
+  },
+  {
+    "time": "2026-05-25T16:22:37.125882+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: fact_extractor documents=43"
+  },
+  {
+    "time": "2026-05-25T16:22:38.029263+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.078739+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.122159+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.132210+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.285187+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.355070+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.359664+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.459249+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.597588+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:38.618972+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:39.180487+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:39.257300+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:39.502899+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:39.606537+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:39.797108+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:39.852592+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:40.206724+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:40.246536+00:00",
+    "level": "WARNING",
+    "logger": "app.utils.llm_client",
+    "message": "JSON parse failure attempt 1/3: Expecting value: line 1 column 1 (char 0) — preview: I am sorry, but I cannot extract any relevant financial market intelligence from the provided text. The text appears to "
+  },
+  {
+    "time": "2026-05-25T16:22:40.246600+00:00",
+    "level": "INFO",
+    "logger": "app.utils.llm_client",
+    "message": "Retrying in 1s…"
+  },
+  {
+    "time": "2026-05-25T16:22:40.247963+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:40.378929+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:40.398783+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:40.989952+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:41.073434+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:41.789237+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:42.003389+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:42.016825+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:42.108454+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:42.141114+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:42.588144+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:42.876996+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:43.124875+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:43.307382+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:43.582422+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:44.012068+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:44.242432+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:44.320199+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:44.325843+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:44.534744+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:44.735920+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:45.043887+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:45.116560+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:45.370330+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:45.418278+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:45.683732+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:46.872121+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:53.990148+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent3_fact_extractors",
+    "message": "Agent 3 extracted 79 raw facts from 43 documents"
+  },
+  {
+    "time": "2026-05-25T16:22:53.990183+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: fact_extractor extracted 79 raw facts from 43 documents"
+  },
+  {
+    "time": "2026-05-25T16:22:53.991598+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: validate_fact raw_facts=79 documents=43"
+  },
+  {
+    "time": "2026-05-25T16:22:53.991884+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_validate_and_split",
+    "message": "validate_fact: 72/79 passed  (verbatim=7 len=0 conf=0 entity=0 discarded)"
+  },
+  {
+    "time": "2026-05-25T16:22:53.991909+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: validate_fact passed=72 failed=7"
+  },
+  {
+    "time": "2026-05-25T16:22:53.993032+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: validate_and_split validated_facts=72"
+  },
+  {
+    "time": "2026-05-25T16:22:54.716097+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:54.719097+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:54.722818+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:54.777002+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:55.546690+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:55.558182+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:55.658963+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:55.923123+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:56.079473+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:56.152492+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:56.399792+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:56.465670+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:56.709222+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:57.089672+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:57.229225+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:57.326324+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:57.339534+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:57.828671+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:57.832257+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.215151+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.227216+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.278696+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.714320+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.715306+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.837911+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.845328+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:58.914680+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:59.322644+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:59.488123+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:59.565469+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:59.806862+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:22:59.870161+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:00.095152+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:00.326112+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:00.454817+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:00.594777+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:01.200569+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:01.306352+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:01.526028+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:01.621394+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:01.878321+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:01.961129+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:02.229634+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:02.314946+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:02.513211+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:02.806962+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:02.864742+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:03.221435+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:03.489409+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:03.542736+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:03.647990+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:03.892761+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:04.304977+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:04.440245+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:04.464934+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:04.748984+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:04.892520+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.058635+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.255964+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.352902+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.880798+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.881457+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.881831+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:05.908322+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:06.477454+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:06.588935+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:06.793509+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:07.047081+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:07.135172+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:07.186586+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:07.202858+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:07.631095+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:07.723915+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.014091+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.091548+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.321300+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.572415+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.594897+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.689720+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.732821+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:08.915173+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:09.376737+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:09.378921+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:09.391324+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:09.581734+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:09.619033+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:09.964696+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.030748+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.048768+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.459416+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.664498+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.899410+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.900147+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:10.968737+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:11.056387+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:11.276777+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:11.472850+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:11.488830+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:11.674358+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:11.764516+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.026351+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.234118+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.307689+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.355059+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.422086+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.870948+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.871607+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:12.925447+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:13.152357+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:13.246256+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:13.527499+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:13.767586+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:13.935319+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.128105+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.133889+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.353341+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.369362+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.570804+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.901554+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.958086+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:14.978064+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:15.192837+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:15.387199+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:15.676383+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:15.926996+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:15.979678+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:15.989343+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:16.534034+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:16.572097+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:16.783072+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:16.990033+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:17.459586+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:17.576327+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:17.824668+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:17.919236+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:17.966006+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:18.028936+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:18.575739+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:18.586636+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:18.603188+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:18.624301+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:18.696005+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:19.168545+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:19.276589+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:19.338364+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:19.512799+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:19.781871+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:19.806556+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.130177+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.202060+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.219506+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.517664+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.551084+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.740282+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.868434+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:20.900980+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:21.539305+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:21.640281+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:21.659742+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:21.765960+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:21.968641+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:22.105996+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:22.426503+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:22.696996+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:22.748534+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:22.904511+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.231849+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.257939+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.344925+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.506440+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.861946+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.913599+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:23.978912+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:24.168107+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:24.526827+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:24.581314+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:24.784841+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:24.966192+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:25.143467+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:25.194760+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:25.356022+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:25.749311+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:25.846439+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:26.106032+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:26.141421+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:26.250200+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:26.434055+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:26.721294+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:26.797026+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:27.137612+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:27.225153+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:27.321167+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:27.568721+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:27.939925+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:27.943825+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:28.311857+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:28.436854+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:28.622090+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:28.746874+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.046897+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.094798+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.166219+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.347096+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.561732+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.598415+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.805483+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:29.943269+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:30.143557+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:30.308567+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:30.467093+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:30.511188+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:30.516351+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:30.705727+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.175920+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.201929+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.221542+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.452480+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.485671+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.760955+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.861308+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:31.866388+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:32.043517+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:32.337797+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:32.712510+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:32.783132+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:32.877790+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.086923+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.113814+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.390786+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.467926+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.541412+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.644802+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:33.976890+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.146458+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.159378+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.266686+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.275982+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.760255+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.816155+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.851982+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.871169+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:34.950498+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:35.304669+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:35.470061+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:35.499916+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:35.558154+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:35.852817+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:35.894979+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:36.313930+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:36.365269+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:36.496606+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:36.565553+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:36.959662+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:36.988557+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.006082+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.045303+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.501631+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.583198+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.589713+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.642873+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:37.645069+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.131734+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.149553+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.157353+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.345484+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.388104+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.755228+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.825614+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.938460+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:38.951953+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:39.045153+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:39.371535+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:39.534202+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:39.767392+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:39.944804+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.065460+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.204463+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.356392+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.574515+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.667280+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.920543+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:40.982584+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:41.231465+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:41.339310+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:41.578197+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:42.070728+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:42.210041+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:42.696721+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:42.829550+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:43.449230+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:44.123294+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:45.789963+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:47.120019+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:47.752379+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:23:47.762210+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_validate_and_split",
+    "message": "SAFE verification: 60/72 facts passed (83%); 0 kept unverified internally"
+  },
+  {
+    "time": "2026-05-25T16:23:47.762277+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: validate_and_split safe_passed=60 safe_failed=12"
+  },
+  {
+    "time": "2026-05-25T16:23:47.765240+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: finbert_scorer facts=60"
+  },
+  {
+    "time": "2026-05-25T16:24:09.236387+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent4_finbert_scorer",
+    "message": "Loading FinBERT model ProsusAI/finbert on device=cpu"
+  },
+  {
+    "time": "2026-05-25T16:24:09.547014+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:09.555177+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:09.863272+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/model.safetensors \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:10.136137+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:10.433068+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/commits/main \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:10.754938+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/discussions?p=0 \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:10.818289+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/tree/main/additional_chat_templates?recursive=false&expand=false \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:11.041021+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/commits/refs%2Fpr%2F29 \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:11.171948+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/tree/main?recursive=true&expand=false \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:11.187169+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent4_finbert_scorer",
+    "message": "FinBERT loaded"
+  },
+  {
+    "time": "2026-05-25T16:24:13.262094+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/refs%2Fpr%2F29/model.safetensors.index.json \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:13.262309+00:00",
+    "level": "WARNING",
+    "logger": "huggingface_hub.utils._http",
+    "message": "Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads."
+  },
+  {
+    "time": "2026-05-25T16:24:13.570616+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/refs%2Fpr%2F29/model.safetensors \"HTTP/1.1 302 Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:14.266943+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent4_finbert_scorer",
+    "message": "FinBERT scored 60 facts — pos=37 neg=2 neu=21 errors=0"
+  },
+  {
+    "time": "2026-05-25T16:24:14.267147+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: finbert_scorer completed 60 facts scored errors=0"
+  },
+  {
+    "time": "2026-05-25T16:24:14.269127+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_quality_gate",
+    "message": "quality_gate: facts=60 signal_types=5 round=0"
+  },
+  {
+    "time": "2026-05-25T16:24:14.269161+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_quality_gate",
+    "message": "quality_gate: PASS → proceed"
+  },
+  {
+    "time": "2026-05-25T16:24:14.270134+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: triangulator facts=60"
+  },
+  {
+    "time": "2026-05-25T16:24:14.270185+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_triangulator",
+    "message": "M4 triangulator: MiniCheck pass=60 fail=0"
+  },
+  {
+    "time": "2026-05-25T16:24:14.270722+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_triangulator",
+    "message": "M4: contradiction detected (Supermicro, strategic_messaging) pos=5 neg=1"
+  },
+  {
+    "time": "2026-05-25T16:24:14.271054+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_triangulator",
+    "message": "M4 triangulator: 12 verified claims, 1 contradictions from 19 groups"
+  },
+  {
+    "time": "2026-05-25T16:24:14.271080+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: triangulator verified_claims=12 contradictions=1"
+  },
+  {
+    "time": "2026-05-25T16:24:14.271896+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: contradiction_writer flags=1"
+  },
+  {
+    "time": "2026-05-25T16:24:15.105235+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:15.719885+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.agent5_contradiction_writer",
+    "message": "Agent 5 wrote contradiction note for Supermicro/strategic_messaging (92 words)"
+  },
+  {
+    "time": "2026-05-25T16:24:15.719941+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: contradiction_writer wrote 1 notes"
+  },
+  {
+    "time": "2026-05-25T16:24:15.720902+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: signal_scorer claims=12"
+  },
+  {
+    "time": "2026-05-25T16:24:15.721357+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_signal_scorer",
+    "message": "M5 Signal Scorer: pulse_score=52.2 status=stable confidence=0.648 claims=12 contradicted=1"
+  },
+  {
+    "time": "2026-05-25T16:24:15.721383+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: signal_scorer pulse_score=52.2 status=stable"
+  },
+  {
+    "time": "2026-05-25T16:24:15.721962+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: company_narratives companies=8 claims=12"
+  },
+  {
+    "time": "2026-05-25T16:24:16.437856+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:16.438547+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:16.439309+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:16.440070+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:16.702101+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:16.921043+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:17.956389+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.node_company_narratives",
+    "message": "Company narratives built: 8 companies, 6.6 avg evidence count"
+  },
+  {
+    "time": "2026-05-25T16:24:17.956469+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: company_narratives built=8"
+  },
+  {
+    "time": "2026-05-25T16:24:17.958429+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: narrative_synthesizer claims=12"
+  },
+  {
+    "time": "2026-05-25T16:24:18.791921+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:23.377772+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: narrative_synthesizer headline='AI server demand fuels profit growth targets for Dell and Broadcom, while AMD in' anomalies=2"
+  },
+  {
+    "time": "2026-05-25T16:24:23.379826+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: watch_list_builder claims=12"
+  },
+  {
+    "time": "2026-05-25T16:24:24.320725+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: POST https://openrouter.ai/api/v1/chat/completions \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:26.571253+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: watch_list_builder items=3"
+  },
+  {
+    "time": "2026-05-25T16:24:26.572971+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: report_assembler"
+  },
+  {
+    "time": "2026-05-25T16:24:27.396027+00:00",
+    "level": "INFO",
+    "logger": "app.utils.embeddings",
+    "message": "Loading embedding model sentence-transformers/all-MiniLM-L6-v2"
+  },
+  {
+    "time": "2026-05-25T16:24:27.398470+00:00",
+    "level": "INFO",
+    "logger": "sentence_transformers.base.model",
+    "message": "No device provided, using cuda:0"
+  },
+  {
+    "time": "2026-05-25T16:24:27.677622+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:27.687734+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:27.958048+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:27.968523+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:27.969637+00:00",
+    "level": "INFO",
+    "logger": "sentence_transformers.base.model",
+    "message": "Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2."
+  },
+  {
+    "time": "2026-05-25T16:24:28.241365+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:28.250862+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:28.517431+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:28.526817+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:28.803832+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:28.814491+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:29.076853+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:29.088792+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:29.357928+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:29.647352+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:29.659596+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:30.037163+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:30.357335+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:30.632090+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:30.897554+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:31.163526+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:31.174477+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:31.430129+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:31.440526+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:31.721439+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:31.732347+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:32.000596+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:32.014448+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:32.316735+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false \"HTTP/1.1 404 Not Found\""
+  },
+  {
+    "time": "2026-05-25T16:24:32.597440+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:32.920902+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json \"HTTP/1.1 307 Temporary Redirect\""
+  },
+  {
+    "time": "2026-05-25T16:24:32.933241+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:33.198124+00:00",
+    "level": "INFO",
+    "logger": "httpx",
+    "message": "HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 \"HTTP/1.1 200 OK\""
+  },
+  {
+    "time": "2026-05-25T16:24:33.809760+00:00",
+    "level": "INFO",
+    "logger": "app.pipeline.graph",
+    "message": "node: report_assembler saved report_id=report_b70b7ed97a60"
+  },
+  {
+    "time": "2026-05-25T16:24:33.811613+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.SignalType from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'SignalType')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.811687+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.SearchQuery from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'SearchQuery')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.812335+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.RawDocument from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'RawDocument')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.824772+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.FactObject from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'FactObject')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826254+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.VerifiedClaim from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'VerifiedClaim')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826436+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.ContradictionFlag from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'ContradictionFlag')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826482+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.PulseStatus from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'PulseStatus')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826534+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.MomentumLabel from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'MomentumLabel')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826572+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.CompanyNarrative from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'CompanyNarrative')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826763+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.MarketNarrative from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'MarketNarrative')]"
+  },
+  {
+    "time": "2026-05-25T16:24:33.826938+00:00",
+    "level": "WARNING",
+    "logger": "langgraph.checkpoint.serde.jsonplus",
+    "message": "Deserializing unregistered type app.schemas.models.MarketPulseReport from checkpoint. This will be blocked in a future version. Set LANGGRAPH_STRICT_MSGPACK=true to block now, or add to allowed_msgpack_modules to allow explicitly: [('app.schemas.models', 'MarketPulseReport')]"
+  }
+]

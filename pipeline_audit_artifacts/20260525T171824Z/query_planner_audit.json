@@ -1,0 +1,44 @@
+{
+  "original_query_count": 7,
+  "accepted_query_count": 7,
+  "rejected_query_count": 0,
+  "rejected_reasons_by_type": {},
+  "signal_coverage_after_planning": [
+    "supplier_risk"
+  ],
+  "regeneration_attempted": false,
+  "regeneration_query_count": 0,
+  "expansion_round": 1,
+  "rounds": [
+    {
+      "original_query_count": 47,
+      "accepted_query_count": 47,
+      "rejected_query_count": 0,
+      "rejected_reasons_by_type": {},
+      "signal_coverage_after_planning": [
+        "hiring_momentum",
+        "investor_signal",
+        "news_sentiment",
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "regeneration_attempted": false,
+      "regeneration_query_count": 0,
+      "expansion_round": 0
+    },
+    {
+      "original_query_count": 7,
+      "accepted_query_count": 7,
+      "rejected_query_count": 0,
+      "rejected_reasons_by_type": {},
+      "signal_coverage_after_planning": [
+        "supplier_risk"
+      ],
+      "regeneration_attempted": false,
+      "regeneration_query_count": 0,
+      "expansion_round": 1
+    }
+  ]
+}

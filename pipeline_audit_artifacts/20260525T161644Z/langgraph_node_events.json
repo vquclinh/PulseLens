@@ -1,0 +1,1390 @@
+[
+  {
+    "time": "2026-05-25T16:17:44.727068+00:00",
+    "node": "query_planner",
+    "summary": {
+      "queries": {
+        "count": 40,
+        "sample": [
+          {
+            "query_id": "q_bc90248d",
+            "query_text": "Nvidia 13F filings institutional ownership changes last 7 days site:sec.gov",
+            "target_entity": "Nvidia",
+            "signal_type": "investor_signal",
+            "source_type": "ir_pages",
+            "priority": 1,
+            "expected_source_tier": 1
+          },
+          {
+            "query_id": "q_6234761b",
+            "query_text": "AMD Q2 2026 earnings guidance revision investor.amd.com last 7 days",
+            "target_entity": "AMD",
+            "signal_type": "investor_signal",
+            "source_type": "ir_pages",
+            "priority": 1,
+            "expected_source_tier": 1
+          },
+          {
+            "query_id": "q_191b3497",
+            "query_text": "Intel 8-K filing AI strategy last 7 days site:sec.gov",
+            "target_entity": "Intel",
+            "signal_type": "investor_signal",
+            "source_type": "ir_pages",
+            "priority": 1,
+            "expected_source_tier": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:22:37.125394+00:00",
+    "node": "web_worker",
+    "summary": {
+      "raw_documents": {
+        "count": 43,
+        "sample": [
+          {
+            "doc_id": "doc_7dcd66ad163e",
+            "url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "domain": "ir.amd.com",
+            "title": "AMD Reports First Quarter 2026 Financial Results :: Advanced Micro Devices, Inc. (AMD)",
+            "content": {
+              "chars": 32745,
+              "preview": "AMD Reports First Quarter 2026 Financial Results :: Advanced Micro Devices, Inc. (AMD) {\"@context\":\"http:\\/\\/schema.org\",\"@type\":\"Corporation\",\"name\":\"Advanced Micro Devices, Inc.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"2485 Augustine Drive \",\"addressLocality\":\"Santa Clara, CA\",\"postalCode\":\"95054\",\"addressCountry\":\"\"},\"legalName\":\"Advanced Micro Devices, Inc.\",\"description\":\"For 50 years AMD has driven innovation in high-performance computing, graphics and visualization technologies \\u2015 the building blocks for gaming, immersive platforms and the data center. Hundreds of millions of consumers, leading Fortune 500 businesses and cutting-edge scientific research facilities around the world rely on AMD technology daily to improve how they live, work and play. AMD employees aro\n\n...[truncated 31945 chars]"
+            },
+            "published_date": "2026-05-05T16:15:00",
+            "fetched_at": "2026-05-25T16:17:49.469872+00:00",
+            "source_tier": 1,
+            "collection_query": "AMD Q2 2026 earnings guidance revision investor.amd.com last 7 days",
+            "signal_type_hint": "investor_signal"
+          },
+          {
+            "doc_id": "doc_632df99e8f52",
+            "url": "https://ir.amd.com/",
+            "domain": "ir.amd.com",
+            "title": "Advanced Micro Devices, Inc. (AMD)",
+            "content": {
+              "chars": 10435,
+              "preview": "Advanced Micro Devices, Inc. (AMD) {\"@context\":\"http:\\/\\/schema.org\",\"@type\":\"Corporation\",\"name\":\"Advanced Micro Devices, Inc.\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"2485 Augustine Drive \",\"addressLocality\":\"Santa Clara, CA\",\"postalCode\":\"95054\",\"addressCountry\":\"\"},\"legalName\":\"Advanced Micro Devices, Inc.\",\"description\":\"For 50 years AMD has driven innovation in high-performance computing, graphics and visualization technologies \\u2015 the building blocks for gaming, immersive platforms and the data center. Hundreds of millions of consumers, leading Fortune 500 businesses and cutting-edge scientific research facilities around the world rely on AMD technology daily to improve how they live, work and play. AMD employees around the world are focused on building great products\n\n...[truncated 9635 chars]"
+            },
+            "published_date": "2026-05-21T01:35:00",
+            "fetched_at": "2026-05-25T16:17:49.470213+00:00",
+            "source_tier": 1,
+            "collection_query": "AMD Q2 2026 earnings guidance revision investor.amd.com last 7 days",
+            "signal_type_hint": "investor_signal"
+          },
+          {
+            "doc_id": "doc_209cdad4b933",
+            "url": "https://es.tradingview.com/news/reuters.com,2025:newsml_L3N3VO0Q5:0-dell-gains-after-raising-long-term-earnings-outlook-on-strong-ai-server-demand/",
+            "domain": "es.tradingview.com",
+            "title": "Dell gains after raising long-term earnings outlook on strong AI server demand — Noticias de TradingView",
+            "content": {
+              "chars": 92271,
+              "preview": "window.initData = {}; Dell gains after raising long-term earnings outlook on strong AI server demand — Noticias de TradingView window.locale = 'es'; window.language = 'es'; window.initData = window.initData || {}; window.initData.theme = \"light\"; (()=>{\"use strict\";const t=/(?:^|;)\\s*theme=(dark|light)(?:;|$)|$/.exec(document.cookie)[1];t&&(document.documentElement.classList.toggle(\"theme-dark\",\"dark\"===t),document.documentElement.classList.toggle(\"theme-light\",\"light\"===t),document.documentElement.dataset.theme=t,window.initData=window.initData||{},window.initData.theme=t)})(); (()=>{\"use strict\";\"undefined\"!=typeof window&&\"undefined\"!=typeof navigator&&/mac/i.test(navigator.platform)&&document.documentElement.classList.add(\"mac_os_system\")})(); var environment = \"battle\"; window.WS_HOST\n\n...[truncated 91471 chars]"
+            },
+            "published_date": "2025-10-07T12:47:17.000Z",
+            "fetched_at": "2026-05-25T16:17:50.430034+00:00",
+            "source_tier": 4,
+            "collection_query": "Dell Technologies analyst upgrade AI server demand last 7 days bloomberg.com OR reuters.com",
+            "signal_type_hint": "investor_signal"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:22:53.991404+00:00",
+    "node": "fact_extractor",
+    "summary": {
+      "raw_facts": {
+        "count": 79,
+        "sample": [
+          {
+            "fact_id": "fact_a42d305d39b8",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD reported first quarter 2026 revenue of $10.3 billion with a 53% GAAP gross margin and $0.84 diluted earnings per share.",
+            "evidence_quote": {
+              "chars": 167,
+              "preview": "First quarter revenue was $10.3 billion, gross margin was 53%, operating income was $1.5 billion, net income was $1.4 billion and diluted earnings per share was $0.84."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 1.0,
+            "atomic_claims": null,
+            "safe_verified": false
+          },
+          {
+            "fact_id": "fact_b387724d9952",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Q1 2026 non-GAAP gross margin was 55%, with $2.3 billion net income and $1.37 diluted earnings per share.",
+            "evidence_quote": {
+              "chars": 151,
+              "preview": "On a non-GAAP (*) basis, gross margin was 55%, operating income was $2.5 billion, net income was $2.3 billion and diluted earnings per share was $1.37."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 1.0,
+            "atomic_claims": null,
+            "safe_verified": false
+          },
+          {
+            "fact_id": "fact_3e530b5933b6",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Data Center segment revenue reached $5.8 billion, a 57% year-over-year increase, driven by AMD EPYC™ processors and AMD Instinct™ GPU shipments.",
+            "evidence_quote": {
+              "chars": 172,
+              "preview": "Data Center segment revenue was $5.8 billion, up 57% year-over-year, driven by strong demand for AMD EPYC™ processors and the continued ramp of AMD Instinct™ GPU shipments."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 0.9,
+            "atomic_claims": null,
+            "safe_verified": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:22:53.992891+00:00",
+    "node": "validate_fact",
+    "summary": {
+      "raw_facts": {
+        "count": 72,
+        "sample": [
+          {
+            "fact_id": "fact_a42d305d39b8",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD reported first quarter 2026 revenue of $10.3 billion with a 53% GAAP gross margin and $0.84 diluted earnings per share.",
+            "evidence_quote": {
+              "chars": 167,
+              "preview": "First quarter revenue was $10.3 billion, gross margin was 53%, operating income was $1.5 billion, net income was $1.4 billion and diluted earnings per share was $0.84."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 1.0,
+            "atomic_claims": null,
+            "safe_verified": false
+          },
+          {
+            "fact_id": "fact_b387724d9952",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Q1 2026 non-GAAP gross margin was 55%, with $2.3 billion net income and $1.37 diluted earnings per share.",
+            "evidence_quote": {
+              "chars": 151,
+              "preview": "On a non-GAAP (*) basis, gross margin was 55%, operating income was $2.5 billion, net income was $2.3 billion and diluted earnings per share was $1.37."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 1.0,
+            "atomic_claims": null,
+            "safe_verified": false
+          },
+          {
+            "fact_id": "fact_3e530b5933b6",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Data Center segment revenue reached $5.8 billion, a 57% year-over-year increase, driven by AMD EPYC™ processors and AMD Instinct™ GPU shipments.",
+            "evidence_quote": {
+              "chars": 172,
+              "preview": "Data Center segment revenue was $5.8 billion, up 57% year-over-year, driven by strong demand for AMD EPYC™ processors and the continued ramp of AMD Instinct™ GPU shipments."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 0.9,
+            "atomic_claims": null,
+            "safe_verified": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:23:47.764920+00:00",
+    "node": "validate_and_split",
+    "summary": {
+      "scored_facts": {
+        "count": 60,
+        "sample": [
+          {
+            "fact_id": "fact_3e530b5933b6",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Data Center segment revenue reached $5.8 billion, a 57% year-over-year increase, driven by AMD EPYC™ processors and AMD Instinct™ GPU shipments.",
+            "evidence_quote": {
+              "chars": 172,
+              "preview": "Data Center segment revenue was $5.8 billion, up 57% year-over-year, driven by strong demand for AMD EPYC™ processors and the continued ramp of AMD Instinct™ GPU shipments."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 0.9,
+            "atomic_claims": {
+              "count": 2,
+              "sample": [
+                "AMD's Data Center segment revenue reached $5.8 billion.",
+                "AMD's Data Center segment revenue had a 57% year-over-year increase."
+              ]
+            },
+            "safe_verified": true
+          },
+          {
+            "fact_id": "fact_7b227f78d4b2",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Embedded segment revenue was $873 million, up 6% year-over-year, with strengthening demand across several end markets.",
+            "evidence_quote": {
+              "chars": 115,
+              "preview": "Embedded segment revenue was $873 million, up 6% year-over-year, as demand strengthened across several end markets."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 0.9,
+            "atomic_claims": {
+              "count": 3,
+              "sample": [
+                "AMD's Embedded segment revenue was $873 million.",
+                "AMD's Embedded segment revenue was up 6% year-over-year.",
+                "There is strengthening demand across several end markets for AMD's Embedded segment."
+              ]
+            },
+            "safe_verified": true
+          },
+          {
+            "fact_id": "fact_ba8aa79883b9",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "product_launch",
+            "claim": "Meta and AMD plan to deploy up to 6 gigawatts of AMD Instinct GPUs, with the first 1-GW powered by a custom AMD Instinct MI450-based GPU.",
+            "evidence_quote": {
+              "chars": 154,
+              "preview": "Meta and AMD announced plans to deploy up to 6 gigawatts of AMD Instinct GPUs, with the first 1-GW to be powered by a custom AMD Instinct MI450-based GPU."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 0.9,
+            "atomic_claims": {
+              "count": 3,
+              "sample": [
+                "Meta and AMD plan to deploy up to 6 gigawatts of AMD Instinct GPUs.",
+                "The first 1-GW will be powered by a custom AMD Instinct MI450-based GPU.",
+                "The custom AMD Instinct MI450-based GPU is an AMD Instinct GPU."
+              ]
+            },
+            "safe_verified": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:14.268897+00:00",
+    "node": "finbert_scorer",
+    "summary": {
+      "scored_facts": {
+        "count": 60,
+        "sample": [
+          {
+            "fact_id": "fact_3e530b5933b6",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Data Center segment revenue reached $5.8 billion, a 57% year-over-year increase, driven by AMD EPYC™ processors and AMD Instinct™ GPU shipments.",
+            "evidence_quote": {
+              "chars": 172,
+              "preview": "Data Center segment revenue was $5.8 billion, up 57% year-over-year, driven by strong demand for AMD EPYC™ processors and the continued ramp of AMD Instinct™ GPU shipments."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "positive",
+            "sentiment_score": 0.9552255272865295,
+            "confidence": 0.9,
+            "atomic_claims": {
+              "count": 2,
+              "sample": [
+                "AMD's Data Center segment revenue reached $5.8 billion.",
+                "AMD's Data Center segment revenue had a 57% year-over-year increase."
+              ]
+            },
+            "safe_verified": true
+          },
+          {
+            "fact_id": "fact_7b227f78d4b2",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "claim": "AMD's Embedded segment revenue was $873 million, up 6% year-over-year, with strengthening demand across several end markets.",
+            "evidence_quote": {
+              "chars": 115,
+              "preview": "Embedded segment revenue was $873 million, up 6% year-over-year, as demand strengthened across several end markets."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "positive",
+            "sentiment_score": 0.9563538432121277,
+            "confidence": 0.9,
+            "atomic_claims": {
+              "count": 3,
+              "sample": [
+                "AMD's Embedded segment revenue was $873 million.",
+                "AMD's Embedded segment revenue was up 6% year-over-year.",
+                "There is strengthening demand across several end markets for AMD's Embedded segment."
+              ]
+            },
+            "safe_verified": true
+          },
+          {
+            "fact_id": "fact_ba8aa79883b9",
+            "doc_id": "doc_7dcd66ad163e",
+            "entity": "AMD",
+            "signal_type": "product_launch",
+            "claim": "Meta and AMD plan to deploy up to 6 gigawatts of AMD Instinct GPUs, with the first 1-GW powered by a custom AMD Instinct MI450-based GPU.",
+            "evidence_quote": {
+              "chars": 154,
+              "preview": "Meta and AMD announced plans to deploy up to 6 gigawatts of AMD Instinct GPUs, with the first 1-GW to be powered by a custom AMD Instinct MI450-based GPU."
+            },
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "neutral",
+            "sentiment_score": 0.0,
+            "confidence": 0.9,
+            "atomic_claims": {
+              "count": 3,
+              "sample": [
+                "Meta and AMD plan to deploy up to 6 gigawatts of AMD Instinct GPUs.",
+                "The first 1-GW will be powered by a custom AMD Instinct MI450-based GPU.",
+                "The custom AMD Instinct MI450-based GPU is an AMD Instinct GPU."
+              ]
+            },
+            "safe_verified": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:14.269923+00:00",
+    "node": "quality_gate",
+    "summary": {
+      "quality_passed": true
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:14.271743+00:00",
+    "node": "triangulator",
+    "summary": {
+      "verified_claims": {
+        "count": 12,
+        "sample": [
+          {
+            "claim_id": "claim_b3902542223c",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "summary": "AMD will host its Annual Meeting of Stockholders on May 7, 2026.",
+            "supporting_facts": {
+              "count": 5,
+              "sample": [
+                "fact_3e530b5933b6",
+                "fact_7b227f78d4b2",
+                "fact_9f28bee23b9e"
+              ]
+            },
+            "corroboration_count": 1,
+            "source_tiers_present": {
+              "count": 1,
+              "sample": [
+                1
+              ]
+            },
+            "weighted_sentiment": 0.0,
+            "recency_score": 0.0,
+            "final_confidence": 0.684,
+            "factscore": 0.96,
+            "is_contradicted": false,
+            "contradiction_note": null
+          },
+          {
+            "claim_id": "claim_39f7d5d46e7e",
+            "entity": "AMD",
+            "signal_type": "product_launch",
+            "summary": "AMD announced the production ramp of its next-generation AMD EPYC Processor named “Venice” using TSMC's 2nm process technology.",
+            "supporting_facts": {
+              "count": 3,
+              "sample": [
+                "fact_ba8aa79883b9",
+                "fact_3e086956105d",
+                "fact_47d41c7e0b45"
+              ]
+            },
+            "corroboration_count": 1,
+            "source_tiers_present": {
+              "count": 1,
+              "sample": [
+                1
+              ]
+            },
+            "weighted_sentiment": 0.0,
+            "recency_score": 0.0586,
+            "final_confidence": 0.698,
+            "factscore": 0.9667,
+            "is_contradicted": false,
+            "contradiction_note": null
+          },
+          {
+            "claim_id": "claim_14f1e8818df6",
+            "entity": "AMD",
+            "signal_type": "strategic_messaging",
+            "summary": "AMD announced over $10 billion in investments within the Taiwan ecosystem to accelerate AI infrastructure development.",
+            "supporting_facts": {
+              "count": 3,
+              "sample": [
+                "fact_9f7e4214599f",
+                "fact_f6a967aaaf64",
+                "fact_9077fc522790"
+              ]
+            },
+            "corroboration_count": 2,
+            "source_tiers_present": {
+              "count": 2,
+              "sample": [
+                1,
+                4
+              ]
+            },
+            "weighted_sentiment": 0.8966,
+            "recency_score": 0.0586,
+            "final_confidence": 0.798,
+            "factscore": 0.9667,
+            "is_contradicted": false,
+            "contradiction_note": null
+          }
+        ]
+      },
+      "contradictions": {
+        "count": 1,
+        "sample": [
+          {
+            "entity": "Supermicro",
+            "signal_type": "strategic_messaging",
+            "positive_facts": {
+              "count": 5,
+              "sample": [
+                "fact_4a39ff6d6f78",
+                "fact_749c2b5c8d5b",
+                "fact_2ee85d324d2e"
+              ]
+            },
+            "negative_facts": {
+              "count": 1,
+              "sample": [
+                "fact_d1ed81d227e3"
+              ]
+            },
+            "note": ""
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:15.720614+00:00",
+    "node": "contradiction_writer",
+    "summary": {
+      "contradictions": {
+        "count": 1,
+        "sample": [
+          {
+            "entity": "Supermicro",
+            "signal_type": "strategic_messaging",
+            "positive_facts": {
+              "count": 5,
+              "sample": [
+                "fact_4a39ff6d6f78",
+                "fact_749c2b5c8d5b",
+                "fact_2ee85d324d2e"
+              ]
+            },
+            "negative_facts": {
+              "count": 1,
+              "sample": [
+                "fact_d1ed81d227e3"
+              ]
+            },
+            "note": "Supermicro has received significant new orders, observed robust demand for Blackwell Ultra, and recorded over $12 billion in design wins for delivery in Q2 FY26. The company reports strong demand for its Nvidia and AMD products, expects customer demand to accelerate, and reiterates at least $33 billion in FY26 revenue, noting an AI market share gain. Conversely, Supermicro's estimated revenue for Q1 FY26 is $5 billion, which is lower than its $6-$7 billion guidance, attributed to design win upgrades pushing revenue into Q2 FY26. Recommend manual review before acting on this signal."
+          }
+        ]
+      },
+      "verified_claims": {
+        "count": 12,
+        "sample": [
+          {
+            "claim_id": "claim_b3902542223c",
+            "entity": "AMD",
+            "signal_type": "investor_signal",
+            "summary": "AMD will host its Annual Meeting of Stockholders on May 7, 2026.",
+            "supporting_facts": {
+              "count": 5,
+              "sample": [
+                "fact_3e530b5933b6",
+                "fact_7b227f78d4b2",
+                "fact_9f28bee23b9e"
+              ]
+            },
+            "corroboration_count": 1,
+            "source_tiers_present": {
+              "count": 1,
+              "sample": [
+                1
+              ]
+            },
+            "weighted_sentiment": 0.0,
+            "recency_score": 0.0,
+            "final_confidence": 0.684,
+            "factscore": 0.96,
+            "is_contradicted": false,
+            "contradiction_note": null
+          },
+          {
+            "claim_id": "claim_39f7d5d46e7e",
+            "entity": "AMD",
+            "signal_type": "product_launch",
+            "summary": "AMD announced the production ramp of its next-generation AMD EPYC Processor named “Venice” using TSMC's 2nm process technology.",
+            "supporting_facts": {
+              "count": 3,
+              "sample": [
+                "fact_ba8aa79883b9",
+                "fact_3e086956105d",
+                "fact_47d41c7e0b45"
+              ]
+            },
+            "corroboration_count": 1,
+            "source_tiers_present": {
+              "count": 1,
+              "sample": [
+                1
+              ]
+            },
+            "weighted_sentiment": 0.0,
+            "recency_score": 0.0586,
+            "final_confidence": 0.698,
+            "factscore": 0.9667,
+            "is_contradicted": false,
+            "contradiction_note": null
+          },
+          {
+            "claim_id": "claim_14f1e8818df6",
+            "entity": "AMD",
+            "signal_type": "strategic_messaging",
+            "summary": "AMD announced over $10 billion in investments within the Taiwan ecosystem to accelerate AI infrastructure development.",
+            "supporting_facts": {
+              "count": 3,
+              "sample": [
+                "fact_9f7e4214599f",
+                "fact_f6a967aaaf64",
+                "fact_9077fc522790"
+              ]
+            },
+            "corroboration_count": 2,
+            "source_tiers_present": {
+              "count": 2,
+              "sample": [
+                1,
+                4
+              ]
+            },
+            "weighted_sentiment": 0.8966,
+            "recency_score": 0.0586,
+            "final_confidence": 0.798,
+            "factscore": 0.9667,
+            "is_contradicted": false,
+            "contradiction_note": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:15.721788+00:00",
+    "node": "signal_scorer",
+    "summary": {
+      "signal_scores": {
+        "pulse_score": 52.2,
+        "pulse_status": "stable",
+        "pulse_confidence": 0.648,
+        "breakdown": {
+          "by_signal": {
+            "investor_signal": 0.0,
+            "news_sentiment": 0.0,
+            "pricing_pressure": 0.0,
+            "strategic_messaging": 0.289,
+            "hiring_momentum": 0.0,
+            "product_launch": 0.0,
+            "supplier_risk": 0.0
+          },
+          "by_company": {
+            "AMD": "{'pulse_score': 56.7, 'pulse_confidence': 0.701, 'pulse_status': 'stable', 'signal_scores': {'investor_signal': 0.0, 'news_sentiment': 0.0, 'pricing_pressure': 0.0, 'strategic_m...",
+            "Broadcom": "{'pulse_score': 50.0, 'pulse_confidence': 0.642, 'pulse_status': 'stable', 'signal_scores': {'investor_signal': 0.0, 'news_sentiment': 0.0, 'pricing_pressure': 0.0, 'strategic_m...",
+            "Dell": "{'pulse_score': 50.0, 'pulse_confidence': 0.757, 'pulse_status': 'stable', 'signal_scores': {'investor_signal': 0.0, 'news_sentiment': 0.0, 'pricing_pressure': 0.0, 'strategic_m...",
+            "Intel": "{'pulse_score': 50.0, 'pulse_confidence': 0.521, 'pulse_status': 'stable', 'signal_scores': {'investor_signal': 0.0, 'news_sentiment': 0.0, 'pricing_pressure': 0.0, 'strategic_m...",
+            "Nvidia": "{'pulse_score': 50.0, 'pulse_confidence': 0.505, 'pulse_status': 'stable', 'signal_scores': {'investor_signal': 0.0, 'news_sentiment': 0.0, 'pricing_pressure': 0.0, 'strategic_m...",
+            "Supermicro": "{'pulse_score': 50.0, 'pulse_confidence': 0.82, 'pulse_status': 'volatile', 'signal_scores': {'investor_signal': 0.0, 'news_sentiment': 0.0, 'pricing_pressure': 0.0, 'strategic_..."
+          }
+        }
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:17.958075+00:00",
+    "node": "company_narratives",
+    "summary": {
+      "company_narratives": {
+        "count": 8,
+        "sample": [
+          {
+            "company": "Nvidia",
+            "ticker": "NVDA",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "Nvidia is seeing price reductions for its GPU-accelerated Amazon EC2 instances on Amazon Web Services (AWS) by up to 45% [claim_e9709819c046]. However, AWS is also making new P6-B200 instances available to support large-scale deployments [claim_244c781e03b3]. The broader impact of these conflicting signals on the company's competitive position is unclear without further data.",
+            "key_events": {
+              "count": 2,
+              "sample": [
+                "AWS reducing prices for NVIDIA GPU-accelerated EC2 instances by up to 45% [claim_e9709819c046]",
+                "AWS offering new P6-B200 instances via Savings Plans [claim_244c781e03b3]"
+              ]
+            },
+            "key_drivers": {
+              "count": 2,
+              "sample": [
+                "Pricing adjustments for GPU-accelerated cloud instances [claim_e9709819c046]",
+                "Launch and availability of new high-performance cloud instances [claim_244c781e03b3]"
+              ]
+            },
+            "competitive_position": "holding",
+            "supporting_claim_ids": {
+              "count": 2,
+              "sample": [
+                "claim_e9709819c046",
+                "claim_244c781e03b3"
+              ]
+            },
+            "evidence_count": 4,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "AMD",
+            "ticker": "AMD",
+            "momentum": "neutral",
+            "momentum_score": 57,
+            "narrative": "AMD is strategically investing over $10 billion in the Taiwan ecosystem to accelerate AI infrastructure development [claim_14f1e8818df6]. The company is also commencing production of its next-generation EPYC Processor, 'Venice,' utilizing TSMC's 2nm process technology [claim_39f7d5d46e7e]. An upcoming Annual Meeting of Stockholders is scheduled for May 7, 2026 [claim_b3902542223c].",
+            "key_events": {
+              "count": 3,
+              "sample": [
+                "Over $10B investment in Taiwan's AI infrastructure [claim_14f1e8818df6]",
+                "Production ramp of 'Venice' EPYC Processor using TSMC 2nm [claim_39f7d5d46e7e]",
+                "Annual Meeting of Stockholders scheduled for May 7, 2026 [claim_b3902542223c]"
+              ]
+            },
+            "key_drivers": {
+              "count": 2,
+              "sample": [
+                "AI infrastructure development as a strategic focus [claim_14f1e8818df6]",
+                "Advancements in processor technology with 'Venice' leveraging 2nm process [claim_39f7d5d46e7e]"
+              ]
+            },
+            "competitive_position": "holding",
+            "supporting_claim_ids": {
+              "count": 3,
+              "sample": [
+                "claim_b3902542223c",
+                "claim_14f1e8818df6",
+                "claim_39f7d5d46e7e"
+              ]
+            },
+            "evidence_count": 11,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "Intel",
+            "ticker": "INTC",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "Intel is focused on strengthening its position in the AI market through a comprehensive strategy that emphasizes open and scalable systems across various AI segments [claim_8798f3190a47]. A key recent product, the Intel Gaudi 3 AI accelerator, notably outperforms Nvidia H100 in inference and power efficiency [claim_ecaee7750ad8].",
+            "key_events": {
+              "count": 2,
+              "sample": [
+                "Unveiled a comprehensive AI strategy for enterprises [claim_8798f3190a47].",
+                "Launched the Intel Gaudi 3 AI accelerator [claim_ecaee7750ad8]."
+              ]
+            },
+            "key_drivers": {
+              "count": 2,
+              "sample": [
+                "Opportunity to compete in the AI accelerator market with Gaudi 3 [claim_ecaee7750ad8].",
+                "Strategic focus on open and scalable AI systems [claim_8798f3190a47]."
+              ]
+            },
+            "competitive_position": "gaining",
+            "supporting_claim_ids": {
+              "count": 2,
+              "sample": [
+                "claim_ecaee7750ad8",
+                "claim_8798f3190a47"
+              ]
+            },
+            "evidence_count": 7,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:23.379500+00:00",
+    "node": "narrative_synthesizer",
+    "summary": {
+      "market_narrative": {
+        "narrative_headline": "AI server demand fuels profit growth targets for Dell and Broadcom, while AMD invests heavily and Intel challenges Nvidia with new accelerators, yet AWS price cuts for Nvidia GPUs signal potential pricing pressures.",
+        "narrative_body": "Strong demand for AI servers has led Dell to raise its annual profit growth targets for the next four years [claim_847074afe0aa, claim_ea44dbf47af1]. Similarly, Broadcom projects significant AI semiconductor revenue growth, aiming to double it by Q1 2026 through custom accelerators and Ethernet AI switches [claim_007b7bddc906, claim_faecddf996d3]. AMD is making strategic moves, investing over $10 billion in Taiwan's AI infrastructure and ramping up production of its next-gen EPYC Processor 'Venice' [claim_14f1e8818df6, claim_39f7d5d46e7e]. Meanwhile, Intel is directly competing in the AI accelerator market, with its Gaudi 3 demonstrating superior inference and power efficiency compared to Nvidia H100 [claim_ecaee7750ad8], even as AWS is cutting prices for Nvidia GPU-accelerated instances [claim_e9709819c046], which may suggest increasing competitive pressure or market adjustments in the cloud AI segment.",
+        "anomalies": [
+          {
+            "description": "AWS reducing prices on some NVIDIA GPU-accelerated instances while also making new high-performance instances available.",
+            "signal_types_involved": [
+              "pricing_pressure",
+              "product_launch"
+            ],
+            "implication": "This suggests a potential two-pronged strategy by AWS: using price cuts to increase adoption or clear inventory on older GPU instances, while simultaneously introducing newer, more powerful instances to meet advanced AI workload demands. This could indicate a dynamic and evolving competitive landscape in the cloud AI infrastructure market, potentially leading to increased pricing pressure on GPU providers for certain segments.",
+            "fact_ids": [
+              "fact_6c8abddb1d2a",
+              "fact_81abd07d01ba",
+              "fact_fa1ec51c450b",
+              "fact_947a4f731ae3"
+            ]
+          },
+          {
+            "description": "Supermicro reported significant design wins for future quarters (Q2 FY26) but an estimated Q1 FY26 revenue below guidance, attributed to these very design win upgrades pushing revenue recognition. This creates a disconnect between immediate financial performance and long-term booking success.",
+            "signal_types_involved": [
+              "strategic_messaging",
+              "investor_signal"
+            ],
+            "implication": "This anomaly implies that while Supermicro has strong long-term demand and competitive wins, near-term revenue recognition is being impacted by the timing and nature of these larger contracts. Investors might interpret this as a delay in realizing growth, even though the underlying business momentum appears robust for future periods.",
+            "fact_ids": [
+              "fact_d1ed81d227e3",
+              "fact_e77eccc7ea1d",
+              "fact_2b3bddc27b3a",
+              "fact_4ee20933dc87"
+            ]
+          }
+        ],
+        "watch_list": []
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:26.572692+00:00",
+    "node": "watch_list_builder",
+    "summary": {
+      "market_narrative": {
+        "narrative_headline": "AI server demand fuels profit growth targets for Dell and Broadcom, while AMD invests heavily and Intel challenges Nvidia with new accelerators, yet AWS price cuts for Nvidia GPUs signal potential pricing pressures.",
+        "narrative_body": "Strong demand for AI servers has led Dell to raise its annual profit growth targets for the next four years [claim_847074afe0aa, claim_ea44dbf47af1]. Similarly, Broadcom projects significant AI semiconductor revenue growth, aiming to double it by Q1 2026 through custom accelerators and Ethernet AI switches [claim_007b7bddc906, claim_faecddf996d3]. AMD is making strategic moves, investing over $10 billion in Taiwan's AI infrastructure and ramping up production of its next-gen EPYC Processor 'Venice' [claim_14f1e8818df6, claim_39f7d5d46e7e]. Meanwhile, Intel is directly competing in the AI accelerator market, with its Gaudi 3 demonstrating superior inference and power efficiency compared to Nvidia H100 [claim_ecaee7750ad8], even as AWS is cutting prices for Nvidia GPU-accelerated instances [claim_e9709819c046], which may suggest increasing competitive pressure or market adjustments in the cloud AI segment.",
+        "anomalies": [
+          {
+            "description": "AWS reducing prices on some NVIDIA GPU-accelerated instances while also making new high-performance instances available.",
+            "signal_types_involved": [
+              "pricing_pressure",
+              "product_launch"
+            ],
+            "implication": "This suggests a potential two-pronged strategy by AWS: using price cuts to increase adoption or clear inventory on older GPU instances, while simultaneously introducing newer, more powerful instances to meet advanced AI workload demands. This could indicate a dynamic and evolving competitive landscape in the cloud AI infrastructure market, potentially leading to increased pricing pressure on GPU providers for certain segments.",
+            "fact_ids": [
+              "fact_6c8abddb1d2a",
+              "fact_81abd07d01ba",
+              "fact_fa1ec51c450b",
+              "fact_947a4f731ae3"
+            ]
+          },
+          {
+            "description": "Supermicro reported significant design wins for future quarters (Q2 FY26) but an estimated Q1 FY26 revenue below guidance, attributed to these very design win upgrades pushing revenue recognition. This creates a disconnect between immediate financial performance and long-term booking success.",
+            "signal_types_involved": [
+              "strategic_messaging",
+              "investor_signal"
+            ],
+            "implication": "This anomaly implies that while Supermicro has strong long-term demand and competitive wins, near-term revenue recognition is being impacted by the timing and nature of these larger contracts. Investors might interpret this as a delay in realizing growth, even though the underlying business momentum appears robust for future periods.",
+            "fact_ids": [
+              "fact_d1ed81d227e3",
+              "fact_e77eccc7ea1d",
+              "fact_2b3bddc27b3a",
+              "fact_4ee20933dc87"
+            ]
+          }
+        ],
+        "watch_list": [
+          {
+            "title": "AWS Nvidia GPU Pricing Strategy Impact",
+            "rationale": "AWS price cuts on older Nvidia GPUs alongside new high-performance instance launches suggest evolving competitive dynamics. How this impacts Nvidia's short-term cloud revenue and pricing power is crucial to monitor.",
+            "trigger": "Nvidia, AWS, or other cloud providers release statements or data indicating the impact of recent pricing adjustments on GPU sales or cloud AI infrastructure adoption.",
+            "signals_pointing_there": [
+              "claim_e9709819c046",
+              "claim_244c781e03b3"
+            ],
+            "urgency": "this_week"
+          },
+          {
+            "title": "AMD's EPYC 'Venice' Production Ramp & AI Investments",
+            "rationale": "AMD's significant investment in Taiwan's AI infrastructure and the production ramp of its new EPYC 'Venice' processor indicate a strong commitment to expanding its AI market share. Early indicators of adoption and production success will be key.",
+            "trigger": "AMD provides updates on manufacturing progress, customer adoption of 'Venice' processors, or further details on the impact of its Taiwan investments.",
+            "signals_pointing_there": [
+              "claim_14f1e8818df6",
+              "claim_39f7d5d46e7e"
+            ],
+            "urgency": "this_month"
+          },
+          {
+            "title": "Intel Gaudi 3 Market Penetration",
+            "rationale": "Intel directly challenging Nvidia with its Gaudi 3 accelerator, boasting superior performance in certain metrics, could significantly alter the AI accelerator landscape. Monitoring initial adoption and customer feedback is critical.",
+            "trigger": "Intel or its partners announce new design wins, significant customer deployments, or further performance benchmarks for the Gaudi 3 accelerator against competitors.",
+            "signals_pointing_there": [
+              "claim_ecaee7750ad8",
+              "claim_8798f3190a47"
+            ],
+            "urgency": "next_2_weeks"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "time": "2026-05-25T16:24:33.811229+00:00",
+    "node": "report_assembler",
+    "summary": {
+      "report": {
+        "report_id": "report_b70b7ed97a60",
+        "market": "US AI Hardware / Semiconductor",
+        "time_window": "last 7 days",
+        "generated_at": "2026-05-25T16:24:26.573006+00:00",
+        "pulse_score": 52.2,
+        "pulse_status": "stable",
+        "pulse_confidence": 0.648,
+        "trend_vs_previous": null,
+        "top_signals": [
+          {
+            "signal_type": "strategic_messaging",
+            "score": 0.289,
+            "source_count": 10,
+            "confidence": 0.727,
+            "narrative": "AMD announced over $10 billion in investments within the Taiwan ecosystem to accelerate AI infrastructure development.",
+            "is_contradicted": true
+          },
+          {
+            "signal_type": "investor_signal",
+            "score": 0.0,
+            "source_count": 9,
+            "confidence": 0.755,
+            "narrative": "AMD will host its Annual Meeting of Stockholders on May 7, 2026.",
+            "is_contradicted": false
+          },
+          {
+            "signal_type": "news_sentiment",
+            "score": 0.0,
+            "source_count": 0,
+            "confidence": 0.0,
+            "narrative": "No verified claims yet for this signal.",
+            "is_contradicted": false
+          },
+          {
+            "signal_type": "pricing_pressure",
+            "score": 0.0,
+            "source_count": 2,
+            "confidence": 0.58,
+            "narrative": "Amazon Web Services (AWS) is reducing the price of NVIDIA GPU-accelerated Amazon EC2 instances (P4d, P4de, P5, and P5en) by up to 45%.",
+            "is_contradicted": false
+          },
+          {
+            "signal_type": "hiring_momentum",
+            "score": 0.0,
+            "source_count": 0,
+            "confidence": 0.0,
+            "narrative": "No verified claims yet for this signal.",
+            "is_contradicted": false
+          }
+        ],
+        "company_narratives": [
+          {
+            "company": "Nvidia",
+            "ticker": "NVDA",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "Nvidia is seeing price reductions for its GPU-accelerated Amazon EC2 instances on Amazon Web Services (AWS) by up to 45% [claim_e9709819c046]. However, AWS is also making new P6-B200 instances available to support large-scale deployments [claim_244c781e03b3]. The broader impact of these conflicting signals on the company's competitive position is unclear without further data.",
+            "key_events": [
+              "AWS reducing prices for NVIDIA GPU-accelerated EC2 instances by up to 45% [claim_e9709819c046]",
+              "AWS offering new P6-B200 instances via Savings Plans [claim_244c781e03b3]"
+            ],
+            "key_drivers": [
+              "Pricing adjustments for GPU-accelerated cloud instances [claim_e9709819c046]",
+              "Launch and availability of new high-performance cloud instances [claim_244c781e03b3]"
+            ],
+            "competitive_position": "holding",
+            "supporting_claim_ids": [
+              "claim_e9709819c046",
+              "claim_244c781e03b3"
+            ],
+            "evidence_count": 4,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "AMD",
+            "ticker": "AMD",
+            "momentum": "neutral",
+            "momentum_score": 57,
+            "narrative": "AMD is strategically investing over $10 billion in the Taiwan ecosystem to accelerate AI infrastructure development [claim_14f1e8818df6]. The company is also commencing production of its next-generation EPYC Processor, 'Venice,' utilizing TSMC's 2nm process technology [claim_39f7d5d46e7e]. An upcoming Annual Meeting of Stockholders is scheduled for May 7, 2026 [claim_b3902542223c].",
+            "key_events": [
+              "Over $10B investment in Taiwan's AI infrastructure [claim_14f1e8818df6]",
+              "Production ramp of 'Venice' EPYC Processor using TSMC 2nm [claim_39f7d5d46e7e]",
+              "Annual Meeting of Stockholders scheduled for May 7, 2026 [claim_b3902542223c]"
+            ],
+            "key_drivers": [
+              "AI infrastructure development as a strategic focus [claim_14f1e8818df6]",
+              "Advancements in processor technology with 'Venice' leveraging 2nm process [claim_39f7d5d46e7e]"
+            ],
+            "competitive_position": "holding",
+            "supporting_claim_ids": [
+              "claim_b3902542223c",
+              "claim_14f1e8818df6",
+              "claim_39f7d5d46e7e"
+            ],
+            "evidence_count": 11,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "Intel",
+            "ticker": "INTC",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "Intel is focused on strengthening its position in the AI market through a comprehensive strategy that emphasizes open and scalable systems across various AI segments [claim_8798f3190a47]. A key recent product, the Intel Gaudi 3 AI accelerator, notably outperforms Nvidia H100 in inference and power efficiency [claim_ecaee7750ad8].",
+            "key_events": [
+              "Unveiled a comprehensive AI strategy for enterprises [claim_8798f3190a47].",
+              "Launched the Intel Gaudi 3 AI accelerator [claim_ecaee7750ad8]."
+            ],
+            "key_drivers": [
+              "Opportunity to compete in the AI accelerator market with Gaudi 3 [claim_ecaee7750ad8].",
+              "Strategic focus on open and scalable AI systems [claim_8798f3190a47]."
+            ],
+            "competitive_position": "gaining",
+            "supporting_claim_ids": [
+              "claim_ecaee7750ad8",
+              "claim_8798f3190a47"
+            ],
+            "evidence_count": 7,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "Broadcom",
+            "ticker": "AVGO",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "Broadcom anticipates significant growth in its AI semiconductor revenue, with a projection to reach $10.7 billion in Q2 [claim_007b7bddc906]. The company is also targeting a doubling of AI semiconductor revenue by Q1 2026, primarily through custom AI accelerators and Ethernet AI switches [claim_faecddf996d3]. The current momentum score for Broadcom is neutral.",
+            "key_events": [
+              "Q2 AI semiconductor revenue is expected to reach $10.7 billion [claim_007b7bddc906].",
+              "Broadcom aims to double AI semiconductor revenue by Q1 2026 [claim_faecddf996d3]."
+            ],
+            "key_drivers": [
+              "Growth in AI semiconductor revenue [claim_007b7bddc906].",
+              "Development of custom AI accelerators [claim_faecddf996d3].",
+              "Development of Ethernet AI switches [claim_faecddf996d3]."
+            ],
+            "competitive_position": "holding",
+            "supporting_claim_ids": [
+              "claim_007b7bddc906",
+              "claim_faecddf996d3"
+            ],
+            "evidence_count": 12,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "Supermicro",
+            "ticker": "SMCI",
+            "momentum": "mixed",
+            "momentum_score": 50,
+            "narrative": "Supermicro has reportedly secured over $12 billion in design wins, with delivery anticipated in the second quarter of fiscal year 2026 [claim_1ffd4c12233d]. However, this positive news is contrasted by an estimated Q1 FY26 revenue of $5 billion, which is below previous guidance, as design win upgrades have shifted revenue recognition to Q2 FY26 [claim_1ffd4c12233d]. This situation suggests a complex outlook with strong long-term bookings but near-term revenue adjustments.",
+            "key_events": [
+              "Over $12 billion in design wins recorded for delivery in Q2 FY26 [claim_1ffd4c12233d]"
+            ],
+            "key_drivers": [
+              "Strategic design win upgrades impacting revenue recognition timelines [claim_1ffd4c12233d]"
+            ],
+            "competitive_position": "holding",
+            "supporting_claim_ids": [
+              "claim_1ffd4c12233d"
+            ],
+            "evidence_count": 8,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "Dell",
+            "ticker": "DELL",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "Dell has raised its annual profit growth targets for the next four years [claim_847074afe0aa], primarily driven by robust demand for its AI servers [claim_ea44dbf47af1]. This strategic adjustment reflects strong market performance and future growth expectations in this sector.",
+            "key_events": [
+              "Increased annual profit growth target for the next four years [claim_847074afe0aa]"
+            ],
+            "key_drivers": [
+              "Strong demand for AI servers [claim_847074afe0aa]",
+              "Raised growth targets [claim_ea44dbf47af1]"
+            ],
+            "competitive_position": "gaining",
+            "supporting_claim_ids": [
+              "claim_847074afe0aa",
+              "claim_ea44dbf47af1"
+            ],
+            "evidence_count": 11,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "HPE",
+            "ticker": "HPE",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "No verified company-specific claims are available for HPE in this report.",
+            "key_events": [],
+            "key_drivers": [],
+            "competitive_position": "holding",
+            "supporting_claim_ids": [],
+            "evidence_count": 0,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          },
+          {
+            "company": "Micron",
+            "ticker": "MU",
+            "momentum": "neutral",
+            "momentum_score": 50,
+            "narrative": "No verified company-specific claims are available for Micron in this report.",
+            "key_events": [],
+            "key_drivers": [],
+            "competitive_position": "holding",
+            "supporting_claim_ids": [],
+            "evidence_count": 0,
+            "price_current": null,
+            "price_change_7d_pct": null,
+            "signal_lead_days": null
+          }
+        ],
+        "news_items": [
+          {
+            "item_id": "news_189f35629edd",
+            "headline": "Dell's gross margin decreased by 2.5 percentage points in the first quarter of 2024, falling to 22.2% of its revenue.",
+            "summary": "Gross margin fell 2.5 percentage points in the first quarter, to 22.2% of revenue",
+            "source_url": "https://www.wsj.com/livecoverage/stock-market-today-dow-jones-earnings-05-31-2024/card/dell-stock-skids-after-ai-servers-drag-on-margins-iFxxGm5769TzVJPTmxOP",
+            "domain": "sj.com",
+            "source_tier": 4,
+            "published_date": "2024-05-31",
+            "sentiment": "negative",
+            "fact_ids": [
+              "fact_3d44b14c5fa7"
+            ]
+          },
+          {
+            "item_id": "news_41562422bab6",
+            "headline": "Supermicro's estimated revenue for Q1'26 is $5 billion, lower than the $6-$7 billion guidance due to design win upgrades pushing revenue to Q2'26.",
+            "summary": "Design win upgrades pushed some expected Q1'26 revenue to Q2'26, resulting in estimated revenue in Q1'26 of $5B versus $6B-$7B guidance",
+            "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+            "domain": "ir.supermicro.com",
+            "source_tier": 1,
+            "published_date": "2025-10-23",
+            "sentiment": "negative",
+            "fact_ids": [
+              "fact_d1ed81d227e3"
+            ]
+          },
+          {
+            "item_id": "news_17294b79f030",
+            "headline": "Broadcom achieved record first quarter revenue, driven by strong performance in AI semiconductor solutions.",
+            "summary": "Broadcom achieved record first quarter revenue on continued strength in AI semiconductor solutions.",
+            "source_url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial",
+            "domain": "investors.broadcom.com",
+            "source_tier": 1,
+            "published_date": "2026-03-04",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_44ef878e8ec7"
+            ]
+          },
+          {
+            "item_id": "news_aaeeb2d34979",
+            "headline": "AMD's Embedded segment revenue was $873 million, up 6% year-over-year, with strengthening demand across several end markets.",
+            "summary": "Embedded segment revenue was $873 million, up 6% year-over-year, as demand strengthened across several end markets.",
+            "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+            "domain": "ir.amd.com",
+            "source_tier": 1,
+            "published_date": "2026-05-05",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_7b227f78d4b2"
+            ]
+          },
+          {
+            "item_id": "news_ba2724f3a1e9",
+            "headline": "Supermicro received large new orders and observes robust demand for Blackwell Ultra.",
+            "summary": "Receives Large New Orders and Sees Strong Demand for Blackwell Ultra",
+            "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+            "domain": "ir.supermicro.com",
+            "source_tier": 1,
+            "published_date": "2025-10-23",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_4a39ff6d6f78"
+            ]
+          },
+          {
+            "item_id": "news_46e59ca02d92",
+            "headline": "Broadcom expects second quarter revenue growth to increase 47% year-over-year to $22.0 billion with Adjusted EBITDA of 68%.",
+            "summary": "In Q2 we expect revenue growth to increase 47% year-over-year to $22.0 billion , with adjusted EBITDA of 68%",
+            "source_url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial",
+            "domain": "investors.broadcom.com",
+            "source_tier": 1,
+            "published_date": "2026-03-04",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_a64b18996df8"
+            ]
+          },
+          {
+            "item_id": "news_853fef259ba4",
+            "headline": "Dell shares have risen due to strong demand for AI servers, which boosted results and forecasts.",
+            "summary": "Dell shares rise as AI server demand boosts results, forecasts",
+            "source_url": "https://www.investing.com/news/stock-market-news/dell-shares-jump-as-ai-server-demand-boosts-results-forecasts-3595177",
+            "domain": "investing.com",
+            "source_tier": 4,
+            "published_date": "2026-04-20 18:08:21",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_b1b63e08a843"
+            ]
+          },
+          {
+            "item_id": "news_a275b4f40afd",
+            "headline": "Broadcom expects AI semiconductor revenue to double year-over-year to $8.2 billion in Q1 fiscal year 2026.",
+            "summary": "expect AI semiconductor revenue to double year-over-year to $8.2 billion",
+            "source_url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-fourth-quarter-and-fiscal-year-2025",
+            "domain": "investors.broadcom.com",
+            "source_tier": 1,
+            "published_date": "2025-12-11",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_421a61dc9c20"
+            ]
+          },
+          {
+            "item_id": "news_7a8bf27c2a6b",
+            "headline": "Broadcom's Adjusted EBITDA for the first quarter increased 30% year-over-year to a record $13.1 billion, representing 68% of revenue.",
+            "summary": "Adjusted EBITDA increased 30% year-over-year to a record $13.1 billion , representing 68% of revenue.",
+            "source_url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial",
+            "domain": "investors.broadcom.com",
+            "source_tier": 1,
+            "published_date": "2026-03-04",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_907afa0e3b47"
+            ]
+          },
+          {
+            "item_id": "news_326225eeda56",
+            "headline": "Broadcom anticipates Q2 AI semiconductor revenue to reach $10.7 billion, indicating an acceleration in AI revenue growth.",
+            "summary": "Our AI revenue growth is accelerating, and we expect AI semiconductor revenue to be $10.7 billion in Q2.",
+            "source_url": "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial",
+            "domain": "investors.broadcom.com",
+            "source_tier": 1,
+            "published_date": "2026-03-04",
+            "sentiment": "positive",
+            "fact_ids": [
+              "fact_d152d28b4a6b"
+            ]
+          }
+        ],
+        "market_narrative": {
+          "narrative_headline": "AI server demand fuels profit growth targets for Dell and Broadcom, while AMD invests heavily and Intel challenges Nvidia with new accelerators, yet AWS price cuts for Nvidia GPUs signal potential pricing pressures.",
+          "narrative_body": "Strong demand for AI servers has led Dell to raise its annual profit growth targets for the next four years [claim_847074afe0aa, claim_ea44dbf47af1]. Similarly, Broadcom projects significant AI semiconductor revenue growth, aiming to double it by Q1 2026 through custom accelerators and Ethernet AI switches [claim_007b7bddc906, claim_faecddf996d3]. AMD is making strategic moves, investing over $10 billion in Taiwan's AI infrastructure and ramping up production of its next-gen EPYC Processor 'Venice' [claim_14f1e8818df6, claim_39f7d5d46e7e]. Meanwhile, Intel is directly competing in the AI accelerator market, with its Gaudi 3 demonstrating superior inference and power efficiency compared to Nvidia H100 [claim_ecaee7750ad8], even as AWS is cutting prices for Nvidia GPU-accelerated instances [claim_e9709819c046], which may suggest increasing competitive pressure or market adjustments in the cloud AI segment.",
+          "anomalies": [
+            {
+              "description": "AWS reducing prices on some NVIDIA GPU-accelerated instances while also making new high-performance instances available.",
+              "signal_types_involved": [
+                "pricing_pressure",
+                "product_launch"
+              ],
+              "implication": "This suggests a potential two-pronged strategy by AWS: using price cuts to increase adoption or clear inventory on older GPU instances, while simultaneously introducing newer, more powerful instances to meet advanced AI workload demands. This could indicate a dynamic and evolving competitive landscape in the cloud AI infrastructure market, potentially leading to increased pricing pressure on GPU providers for certain segments.",
+              "fact_ids": [
+                "fact_6c8abddb1d2a",
+                "fact_81abd07d01ba",
+                "fact_fa1ec51c450b",
+                "fact_947a4f731ae3"
+              ]
+            },
+            {
+              "description": "Supermicro reported significant design wins for future quarters (Q2 FY26) but an estimated Q1 FY26 revenue below guidance, attributed to these very design win upgrades pushing revenue recognition. This creates a disconnect between immediate financial performance and long-term booking success.",
+              "signal_types_involved": [
+                "strategic_messaging",
+                "investor_signal"
+              ],
+              "implication": "This anomaly implies that while Supermicro has strong long-term demand and competitive wins, near-term revenue recognition is being impacted by the timing and nature of these larger contracts. Investors might interpret this as a delay in realizing growth, even though the underlying business momentum appears robust for future periods.",
+              "fact_ids": [
+                "fact_d1ed81d227e3",
+                "fact_e77eccc7ea1d",
+                "fact_2b3bddc27b3a",
+                "fact_4ee20933dc87"
+              ]
+            }
+          ],
+          "watch_list": [
+            {
+              "title": "AWS Nvidia GPU Pricing Strategy Impact",
+              "rationale": "AWS price cuts on older Nvidia GPUs alongside new high-performance instance launches suggest evolving competitive dynamics. How this impacts Nvidia's short-term cloud revenue and pricing power is crucial to monitor.",
+              "trigger": "Nvidia, AWS, or other cloud providers release statements or data indicating the impact of recent pricing adjustments on GPU sales or cloud AI infrastructure adoption.",
+              "signals_pointing_there": [
+                "claim_e9709819c046",
+                "claim_244c781e03b3"
+              ],
+              "urgency": "this_week"
+            },
+            {
+              "title": "AMD's EPYC 'Venice' Production Ramp & AI Investments",
+              "rationale": "AMD's significant investment in Taiwan's AI infrastructure and the production ramp of its new EPYC 'Venice' processor indicate a strong commitment to expanding its AI market share. Early indicators of adoption and production success will be key.",
+              "trigger": "AMD provides updates on manufacturing progress, customer adoption of 'Venice' processors, or further details on the impact of its Taiwan investments.",
+              "signals_pointing_there": [
+                "claim_14f1e8818df6",
+                "claim_39f7d5d46e7e"
+              ],
+              "urgency": "this_month"
+            },
+            {
+              "title": "Intel Gaudi 3 Market Penetration",
+              "rationale": "Intel directly challenging Nvidia with its Gaudi 3 accelerator, boasting superior performance in certain metrics, could significantly alter the AI accelerator landscape. Monitoring initial adoption and customer feedback is critical.",
+              "trigger": "Intel or its partners announce new design wins, significant customer deployments, or further performance benchmarks for the Gaudi 3 accelerator against competitors.",
+              "signals_pointing_there": [
+                "claim_ecaee7750ad8",
+                "claim_8798f3190a47"
+              ],
+              "urgency": "next_2_weeks"
+            }
+          ]
+        },
+        "contradictions": [
+          {
+            "entity": "Supermicro",
+            "signal_type": "strategic_messaging",
+            "positive_facts": [
+              "fact_4a39ff6d6f78",
+              "fact_749c2b5c8d5b",
+              "fact_2ee85d324d2e",
+              "fact_e77eccc7ea1d",
+              "fact_d60306b7f01c"
+            ],
+            "negative_facts": [
+              "fact_d1ed81d227e3"
+            ],
+            "note": "Supermicro has received significant new orders, observed robust demand for Blackwell Ultra, and recorded over $12 billion in design wins for delivery in Q2 FY26. The company reports strong demand for its Nvidia and AMD products, expects customer demand to accelerate, and reiterates at least $33 billion in FY26 revenue, noting an AI market share gain. Conversely, Supermicro's estimated revenue for Q1 FY26 is $5 billion, which is lower than its $6-$7 billion guidance, attributed to design win upgrades pushing revenue into Q2 FY26. Recommend manual review before acting on this signal."
+          }
+        ],
+        "grounded_brief": {
+          "what_we_found": [
+            {
+              "text": "Dell raised its annual profit growth target for the next four years due to strong demand for its AI servers.",
+              "fact_ids": [
+                "fact_bbaba734fc36",
+                "fact_affd36ffe0be"
+              ]
+            },
+            {
+              "text": "Supermicro recorded recent design wins exceeding $12 billion, with delivery requested in the second quarter of fiscal year 2026.",
+              "fact_ids": [
+                "fact_4a39ff6d6f78",
+                "fact_749c2b5c8d5b"
+              ]
+            },
+            {
+              "text": "AMD announced over $10 billion in investments within the Taiwan ecosystem to accelerate AI infrastructure development.",
+              "fact_ids": [
+                "fact_9f7e4214599f",
+                "fact_f6a967aaaf64"
+              ]
+            }
+          ],
+          "what_we_infer": [],
+          "strategic_implication": "Analysis based on 12 verified claims."
+        },
+        "evidence_count": 60,
+        "source_count": 23,
+        "signal_breakdown": {
+          "investor_signal": 0.0,
+          "news_sentiment": 0.0,
+          "pricing_pressure": 0.0,
+          "strategic_messaging": 0.289,
+          "hiring_momentum": 0.0,
+          "product_launch": 0.0,
+          "supplier_risk": 0.0
+        }
+      }
+    }
+  }
+]

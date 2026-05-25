@@ -96,7 +96,7 @@ class FactExtractor:
             content=doc.content[:8000],
         )
         try:
-            raw = self._llm.call_json(_SYSTEM, user, max_tokens=2048)
+            raw = self._llm.call_json(_SYSTEM, user, max_tokens=4096)
         except Exception as exc:
             logger.warning("Agent 3 LLM failed for doc %s: %s", doc.doc_id, exc)
             return []

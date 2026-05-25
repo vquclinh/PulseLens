@@ -118,11 +118,12 @@ class BrightDataClient:
             "format": response_format,
         }
         if render_js:
-            request_payload["render"] = "html"
+            request_payload["render"] = True
 
         headers = {"Authorization": f"Bearer {self.api_key}"}
         last_error: Exception | None = None
         last_status_code: int | None = None
+        last_response_snippet: str = ""
         for attempt in range(len(self.retry_delays) + 1):
             try:
                 async with httpx.AsyncClient(timeout=self.timeout_seconds) as client:
@@ -131,30 +132,48 @@ class BrightDataClient:
                     return self._decode_response(response)
             except (httpx.HTTPError, ValueError) as exc:
                 last_error = exc
+                exc_class = type(exc).__name__
+                exc_message = str(exc) or "(empty exception message)"
                 if isinstance(exc, httpx.HTTPStatusError):
                     last_status_code = exc.response.status_code
+                    last_response_snippet = exc.response.text[:500]
                     if last_status_code in _NON_RETRYABLE_CODES:
                         logger.warning(
-                            "Bright Data permanent error %d for %s — not retrying",
-                            last_status_code,
+                            "Bright Data permanent error url=%s zone=%s attempt=%d/%d class=%s message=%s status=%s response_snippet=%r — not retrying",
                             url,
+                            zone,
+                            attempt + 1,
+                            len(self.retry_delays) + 1,
+                            exc_class,
+                            exc_message,
+                            last_status_code,
+                            last_response_snippet,
                         )
                         break
                 if attempt >= len(self.retry_delays):
                     break
                 delay = self.retry_delays[attempt]
                 logger.warning(
-                    "Bright Data request failed attempt %d/%d for %s: %s; retrying in %.1fs",
+                    "Bright Data request failed url=%s zone=%s attempt=%d/%d class=%s message=%s status=%s response_snippet=%r; retrying in %.1fs",
+                    url,
+                    zone,
                     attempt + 1,
                     len(self.retry_delays) + 1,
-                    url,
-                    exc,
+                    exc_class,
+                    exc_message,
+                    last_status_code,
+                    last_response_snippet,
                     delay,
                 )
                 await asyncio.sleep(delay)
 
         raise BrightDataError(
-            f"Bright Data request failed for {url}: {last_error}",
+            (
+                f"Bright Data request failed url={url} zone={zone} "
+                f"class={type(last_error).__name__ if last_error else 'UnknownError'} "
+                f"message={str(last_error) or '(empty exception message)'} "
+                f"status={last_status_code} response_snippet={last_response_snippet[:200]!r}"
+            ),
             status_code=last_status_code,
         )
 

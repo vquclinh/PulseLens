@@ -1,0 +1,1617 @@
+{
+  "query_count": 54,
+  "queries": [
+    {
+      "query_id": "q_cf72165a",
+      "query_text": "AMD Q1 2026 earnings call transcript 'AI demand' site:ir.amd.com",
+      "target_entity": "AMD",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000076/amd-20260328.htm"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_37649c49",
+      "query_text": "Micron investor presentation 'HBM roadmap' May 2026 site:investor.micron.com",
+      "target_entity": "Micron",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://investors.micron.com/static-files/530bd7ed-a8c8-4687-af4a-8c129f740e09",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=dfEO_qqEVXs",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://futurumgroup.com/insights/micron-technology-q1-fy-2026-sets-records-strong-q2-outlook/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/MU.MX/earnings/MU.MX-Q2-2026-earnings_call-532241.html/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/news-releases/news-release-details/micron-technology-inc-reports-results-first-quarter-fiscal-2026",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/723125/000072312526000004/a2026q2ex991-pressrelease.htm",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://quartr.com/companies/micron-technology-inc_5199",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.stocktitan.net/news/MU/micron-announces-participation-in-investor-x8mznl8e43uc.html",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.cnbc.com/2026/05/08/micron-surges-more-than-30percent-on-week-as-memory-chip-rally-goes-parabolic.html",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/microns-record-run-shows-ai-demand-is-still-powering-us-equities-even-as-energy-/1495863125737748/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/opinion/articles/2026-05-06/the-ai-boom-s-chipmaker-moment-ignores-history-as-micron-surges",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/news-releases/news-release-details/micron-technology-inc-reports-results-first-quarter-fiscal-2026",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.alphaspread.com/market-news/earnings/micron-reports-record-earnings-and-strong-forecast-on-ai-boom",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_ebef4c27",
+      "query_text": "Dell 8-K filing stock buyback 'May 2026' site:sec.gov",
+      "target_entity": "Dell",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1571996/000119312526226755/d341553dars.pdf"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001571996/000157199621000007/dell-20210129.htm",
+          "reason": "tracking_or_email_redirect_url"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_df61e086",
+      "query_text": "Nvidia 13F filing institutional ownership Q1 2026 site:sec.gov",
+      "target_entity": "Nvidia",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://www.sec.gov/edgar/browse/?CIK=0001084208",
+        "https://www.sec.gov/ix?doc=/Archives/edgar/data/1045810/000104581024000028/nvda-20240221.htm",
+        "https://www.sec.gov/edgar/browse/?CIK=0002046751&owner=include"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_0fc41f21",
+      "query_text": "Intel analyst upgrade 'AI growth' last 7 days",
+      "target_entity": "Intel",
+      "signal_type": "investor_signal",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://finance.yahoo.com/news/intel-stock-rises-on-analyst-upgrade-citing-data-center-ai-demand-significant-progress-in-manufacturing-163050036.html",
+        "https://thebull.com.au/us-news/intel-gains-ground-as-analyst-upgrade-and-ai-policy-shift-boost-sentiment/",
+        "https://www.youtube.com/watch?v=w5OsotxjDb4",
+        "https://www.tradingview.com/news/invezz:ff4d016e7094b:0-intel-stock-resumes-rally-as-ai-demand-fuels-fresh-analyst-upgrades/",
+        "https://www.perplexity.ai/finance/INTC"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "https://finance.yahoo.com/news/intel-stock-rises-on-analyst-upgrade-citing-data-center-ai-demand-significant-progress-in-manufacturing-163050036.html",
+          "status": 502,
+          "error": "BrightDataError: Bright Data request failed url=https://finance.yahoo.com/news/intel-stock-rises-on-analyst-upgrade-citing-data-center-ai-demand-significant-progress-in-manufacturing-163050036.html zone=pulselens_scraper class=HTTPStatusError message=Server error '502 Bad Gateway' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502 status=502 response_snippet='<html>\\r\\n<head><title>502 Bad Gateway</title></head>\\r\\n<body>\\r\\n<center><h1>502 Bad Gateway</h1></center>\\r\\n</body>\\r\\n</html>\\r\\n'"
+        },
+        {
+          "url": "https://www.perplexity.ai/finance/INTC",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.perplexity.ai/finance/INTC zone=pulselens_scraper class=ReadTimeout message=(empty exception message) status=None response_snippet=''"
+        }
+      ],
+      "accepted_doc_count": 3,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_93d10b1b",
+      "query_text": "Nvidia 'AI accelerator demand' last 7 days site:reuters.com OR site:bloomberg.com",
+      "target_entity": "Nvidia",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.reuters.com/business/nvidia-results-are-ai-markets-biggest-test-amid-competitive-worries-2026-02-24/",
+        "https://www.reuters.com/business/retail-consumer/us-clears-h200-chip-sales-10-china-firms-nvidia-ceo-looks-breakthrough-2026-05-14/"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.bloomberg.com/graphics/2025-china-data-centers-nvidia-chips/",
+          "reason": "site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_bf57995e",
+      "query_text": "HPE 'earnings guidance' 'AI server' Q2 2026 site:investor.hpe.com",
+      "target_entity": "HPE",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://investors.hpe.com/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.alphaspread.com/market-news/earnings/hewlett-packard-enterprise-raises-guidance-as-networking-and-ai-server-demand-boost-q1-results",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/technology/hewlett-packard-enterprise-forecasts-revenue-above-estimates-2026-03-09/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.marketbeat.com/earnings/reports/2026-6-1-hewlett-packard-enterprise-stock/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.insiderfinance.io/news/hpe-q2-revenue-guidance-tops-estimates",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-03-09/hpe-projects-sales-that-top-estimates-on-ai-hardware-demand",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/videos/2026-03-10/ai-hardware-demand-drives-hpe-sales-forecast-video",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/technology/hewlett-packard-enterprise-forecasts-revenue-above-estimates-2026-03-09/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.hpe.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=4wGZMUmiYas",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_e5d8f7d4",
+      "query_text": "Broadcom 'AI revenue growth' 'analyst report' last 7 days",
+      "target_entity": "Broadcom",
+      "signal_type": "investor_signal",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://finance.yahoo.com/news/broadcom-buy-ai-revenue-continues-220600077.html",
+        "https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial",
+        "https://www.investopedia.com/broadcom-revenue-reaches-record-high-on-strong-ai-demand-11803728",
+        "https://www.investing.com/analysis/broadcoms-ai-backlog-starts-to-matter-more-than-shortterm-margin-optics-200673252",
+        "https://investors.broadcom.com/"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_c115336e",
+      "query_text": "AMD 'data center GPU' market share last 7 days site:wsj.com",
+      "target_entity": "AMD",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.wsj.com/tech/nvidia-vs-amd-coming-to-a-metaverse-near-you-11637064180",
+        "https://www.wsj.com/business/earnings/amd-sales-climb-on-help-from-data-center-business-fad8b357",
+        "https://www.wsj.com/tech/ai/meta-and-amd-agree-to-ai-chips-deal-worth-more-than-100-billion-9c7fd06b",
+        "https://www.wsj.com/tech/ai/openai-amd-deal-ai-chips-ed92cc42",
+        "https://www.wsj.com/tech/openai-raises-the-stakes-for-amds-race-to-catch-nvidia-e0bde483"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_18090253",
+      "query_text": "Supermicro 10-Q 'inventory write-downs' Q1 2026 site:sec.gov",
+      "target_entity": "Supermicro",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1375365/000137536525000030/smci-20250930.htm",
+        "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000006/exhibit991_20251231.htm",
+        "https://www.sec.gov/Archives/edgar/data/1375365/000137536525000005/smci-20240930.htm",
+        "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001375365/000137536524000022/smci-20240331.htm"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.sec.gov/ix?doc=/Archives/edgar/data/0001375365/000137536524000022/smci-20240331.htm",
+          "reason": "low_content"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_66ff2f10",
+      "query_text": "Dell 'PowerEdge AI' server 'lead time' May 2026 site:insight.com",
+      "target_entity": "Dell",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_0058448c",
+      "query_text": "Micron 'HBM demand' AI 'analyst note' last 7 days",
+      "target_entity": "Micron",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.alphaspread.com/market-news/earnings/micron-rallies-as-ai-demand-sells-out-2026-hbm-production-strong-q1-results-and-analyst-upgrades-fuel-optimism",
+        "https://finance.yahoo.com/news/micron-stock-soars-on-earnings-beat-amid-unprecedented-ai-fueled-demand-for-memory-chips-164848986.html",
+        "https://www.youtube.com/watch?v=Hk1uKuAXDoE"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/cnbc/posts/micron-technologys-stock-jumped-after-the-company-signaled-robust-demand-for-its/1256035953064462/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_8fc3e229",
+      "query_text": "HPE 'Cray' AI 'GPU instance pricing' last 7 days site:aws.amazon.com",
+      "target_entity": "HPE",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=4wGZMUmiYas",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/videos/2026-03-10/ai-hardware-demand-drives-hpe-sales-forecast-video",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/markets/deals/hpe-secures-1-bln-ai-server-deal-elon-musks-x-bloomberg-news-reports-2025-01-10/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-03-09/hpe-projects-sales-that-top-estimates-on-ai-hardware-demand",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.msn.com/en-us/money/companies/hpe-projects-sales-that-top-estimates-on-ai-hardware-demand/ar-AA1XQZZZ?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_976dc028",
+      "query_text": "Supermicro 'AI server' pricing 'discount' last 7 days site:cdw.com",
+      "target_entity": "Supermicro",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://store.supermicro.com/us_en/solutions/artificial-intelligence.html?srsltid=AfmBOopg7L49dPDbZx02odZcdN_t72kPVA5X_QfvhDmwqEG7m9w4ixBs",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://finance.yahoo.com/news/supermicro-unveils-ai-servers-madrid-100802683.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/products/gpu",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.ebay.com/itm/127317764871",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=CHEbom4opXg&vl=en",
+          "reason": "site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_79730d0a",
+      "query_text": "Intel Gaudi 'competitive pressure' last 7 days site:ft.com",
+      "target_entity": "Intel",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.intc.com/news-events/press-releases/detail/1767/intel-reports-first-quarter-2026-financial-results",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.intc.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://newsroom.intel.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/INTC/press-releases/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://newsroom.intel.com/corporate/intel-to-report-fourth-quarter-and-full-year-2025-financial-results",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_784f6805",
+      "query_text": "Supermicro 'data center expansion' 'AI solution' CEO last 7 days",
+      "target_entity": "Supermicro",
+      "signal_type": "strategic_messaging",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_a1f2e45d",
+      "query_text": "Broadcom 'AI chip' 'margin pressure' last 7 days",
+      "target_entity": "Broadcom",
+      "signal_type": "pricing_pressure",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_4412bc71",
+      "query_text": "Nvidia CEO 'AI strategy' 'investor day' May 2026 site:investor.nvidia.com",
+      "target_entity": "Nvidia",
+      "signal_type": "strategic_messaging",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_3107592e",
+      "query_text": "AMD 'earnings call' 'AI roadmap' May 2026 site:ir.amd.com",
+      "target_entity": "AMD",
+      "signal_type": "strategic_messaging",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000045/pressreleasedatedfebruary2.htm"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_5077e548",
+      "query_text": "Intel 'data center investment' 'AI growth' 'presentation' May 2026 site:investor.intel.com",
+      "target_entity": "Intel",
+      "signal_type": "strategic_messaging",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.intc.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://newsroom.intel.com/corporate/intel-corporation-to-participate-in-upcoming-investor-conferences-may-2026",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://newsroom.intel.com/corporate/intel-reports-first-quarter-2026-financial-results",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://quartr.com/companies/intel-corporation_4689",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.businesswire.com/news/home/20260423038467/en/Intel-Reports-First-Quarter-2026-Financial-Results",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-03-04/us-senators-press-intel-over-ties-to-firm-with-sanctioned-units",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.instagram.com/p/DX93Uv1lNuS/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=DtCNGpeEZxM",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/jeffcooper_intel-is-reported-to-secure-microsoft-tesla-activity-7397775841381859328-7LKo",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DUVbDH2glA2/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_2c624f78",
+      "query_text": "Broadcom careers 'AI/ML compiler' jobs May 2026 site:careers.broadcom.com",
+      "target_entity": "Broadcom",
+      "signal_type": "hiring_momentum",
+      "source_type": "job_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.broadcom.com/company/careers",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://broadcom.wd1.myworkdayjobs.com/External_Career",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.ambitionbox.com/jobs/broadcom-jobs-cmp?rid=naukri_160326503763",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.naukri.com/broadcom-jobs",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.foundit.in/search/broadcom-589296-jobs-career",
+          "reason": "site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_1e189d44",
+      "query_text": "Intel 'hiring freeze' 'AI division' rumors last 7 days",
+      "target_entity": "Intel",
+      "signal_type": "hiring_momentum",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_abf371cb",
+      "query_text": "Micron jobs 'HBM engineer' May 2026 site:micron.com/careers",
+      "target_entity": "Micron",
+      "signal_type": "hiring_momentum",
+      "source_type": "job_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "http://careers.micron.com/careers/job/41482646",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://careers.micron.com/careers?location=taiwan",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://careers.micron.com/careers/job/41967477",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "http://careers.micron.com/careers/job/40696212",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "http://careers.micron.com/careers/job/40689288",
+          "reason": "site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_9c55540a",
+      "query_text": "AMD jobs 'AI hardware engineer' May 2026 site:careers.amd.com",
+      "target_entity": "AMD",
+      "signal_type": "hiring_momentum",
+      "source_type": "job_pages",
+      "attempted_urls": [
+        "https://careers.amd.com/careers-home/jobs",
+        "https://careers.amd.com/careers-home/jobs/78894?lang=en-us",
+        "https://careers.amd.com/careers-home/jobs/80071?lang=en-us",
+        "https://careers.amd.com/careers-home/jobs/80733?lang=en-us",
+        "https://careers.amd.com/careers-home/jobs/84697?lang=en-us"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://careers.amd.com/careers-home/jobs",
+          "reason": "low_content"
+        },
+        {
+          "url": "https://careers.amd.com/careers-home/jobs/78894?lang=en-us",
+          "reason": "low_content"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_1d270131",
+      "query_text": "Nvidia careers 'CUDA architect' jobs May 2026 site:linkedin.com/jobs",
+      "target_entity": "Nvidia",
+      "signal_type": "hiring_momentum",
+      "source_type": "job_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.nvidia.com/en-us/about-nvidia/careers/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://nvidia.eightfold.ai/careers",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DTS09YrEvh9/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_30571249",
+      "query_text": "AMD 'Instinct MI300X' 'benchmark results' last 7 days site:anandtech.com",
+      "target_entity": "AMD",
+      "signal_type": "product_launch",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_8a71241e",
+      "query_text": "Intel Gaudi 3 'product page' 'available' May 2026 site:intel.com",
+      "target_entity": "Intel",
+      "signal_type": "product_launch",
+      "source_type": "dynamic_pages",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_fd02cdd6",
+      "query_text": "Nvidia 'new GPU launch' 'press release' May 2026 site:nvidianews.nvidia.com",
+      "target_entity": "Nvidia",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_e678c25a",
+      "query_text": "Dell 'AI server platform' 'launch' May 2026 site:dell.com/en-us/news",
+      "target_entity": "Dell",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/ForbesMENA.English/posts/nvidia-ceo-jensen-huang-signed-dells-powerrack-server-at-dell-technologies-world/1550086830460538/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.dell.com/en-us/shop/storage-servers-and-networking-for-business/sf/poweredge-ai-servers",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.nextplatform.com/compute/2026/05/19/dell-bulks-up-hardware-as-ai-infrastructure-shifts-to-on-premises/5242811",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://itbrief.co.uk/story/dell-amd-expand-on-prem-ai-servers-for-enterprises",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.servethehome.com/dell-tech-world-2026-its-all-about-sovereign-and-on-premises-ai/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-18/dell-sells-1-000-ai-servers-with-nvidia-chips-in-current-quarter",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.dell.com/en-us/blog/dell-technologies-world-2026-enterprise-ai-announcements-this-week/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/technology/artificial-intelligence/dell-nears-deal-sell-5-billion-ai-servers-xai-bloomberg-news-reports-2025-02-14/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=AJ3eiLLuw9Y",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/graphics/2026-ai-boom-memory-chip-shortage/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_803f1bbe",
+      "query_text": "Micron 'HBM3e release date' 'announcement' May 2026 site:micron.com/newsroom",
+      "target_entity": "Micron",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.bloomberg.com/graphics/2026-ai-boom-memory-chip-shortage/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.cnbc.com/2026/05/08/micron-surges-more-than-30percent-on-week-as-memory-chip-rally-goes-parabolic.html",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=26a5mstYu8g",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/memory-chipmaker-micron-technology-said-on-wednesday-it-will-exit-its-consumer-b/1405808961409832/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/technology/artificial-intelligence/us-mulls-new-curbs-chinas-access-ai-memory-chips-bloomberg-news-says-2024-07-31/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_0e7df4e7",
+      "query_text": "Micron 'HBM availability' 'supply chain' last 7 days site:micron.com/newsroom",
+      "target_entity": "Micron",
+      "signal_type": "supplier_risk",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.micron.com/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Micron_Technology",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/MU/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.micron.com/about/careers",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.micron.com/about",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/latest-news-english",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/quarterly-results",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/MU/press-releases/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.micron.com/news-releases/news-release-details/micron-technology-inc-reports-results-first-quarter-fiscal-2026",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_4e6fbff3",
+      "query_text": "Semiconductor 'export controls' 'US-China' AI last 7 days site:ft.com",
+      "target_entity": "market",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_3a32e1b2",
+      "query_text": "HPE 'new AI accelerator' 'partner integration' last 7 days site:hpe.com/newsroom",
+      "target_entity": "HPE",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/HewlettPackardEnterprise/posts/from-full-stack-ai-factories-to-low-latency-long-haul-interconnects-hpe-and-nvid/1315319673966771/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.hpe.com/us/en/newsroom/press-release/2025/08/hpe-unveils-new-ai-driven-security-and-advanced-data-protection-innovations-at-black-hat-usa-2025.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/HewlettPackardEnterprise/posts/strong-partnerships-deep-knowledge-and-expansive-experience-are-key-ingredients-/1096260809205993/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.hpe.com/us/en/events/on-demand.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://ultima.com/blog/ai-the-key-takeaway-from-hpes-partner-event/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://ca.finance.yahoo.com/news/hpe-secures-1-billion-ai-205317727.html",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=4wGZMUmiYas",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/videos/2026-03-10/ai-hardware-demand-drives-hpe-sales-forecast-video",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2025-01-10/hpe-wins-1-billion-ai-server-deal-for-elon-musk-s-x",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/technology/hpe-ceo-unveils-simple-ai-hardware-aimed-help-businesses-2024-06-18/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_db83393e",
+      "query_text": "TSMC 'CoWoS packaging' 'capacity constraints' AI last 7 days site:wsj.com",
+      "target_entity": "market",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.wsj.com/business/earnings/tsmc-thinks-the-turn-in-the-chip-cycle-is-nigh-623a15fd"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_de47c4bb",
+      "query_text": "HBM 'supply shortage' 'AI impact' last 7 days site:reuters.com OR site:bloomberg.com",
+      "target_entity": "market",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.semiconductors.org/category/press-releases/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://medium.com/@adnanmasood/semiconductors-in-2026-the-ai-driven-upswing-meets-structural-bottlenecks-3568b004905b",
+          "reason": "fallback:tracking_or_email_redirect_url"
+        },
+        {
+          "url": "https://www.deloitte.com/us/en/insights/industry/technology/technology-media-telecom-outlooks/semiconductor-industry-outlook.html",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.india-briefing.com/news/setting-up-a-semiconductor-fabrication-plant-in-india-what-foreign-investors-should-know-22009.html/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.spglobal.com/en",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/chinas-chip-industry-is-showing-strong-growth-momentum-as-a-global-sprint-to-bui/1502454101745317/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.sourcengine.com/blog/semiconductor-industry-news?srsltid=AfmBOoq2fUMVpht-2IUpbvIIK_yZmkbK9aa4h8roD6nEnLSm7fbLpiNB",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://researchbriefings.files.parliament.uk/documents/POST-PN-0721/POST-PN-0721.pdf",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/from-intels-surge-to-nokias-revival-ai-is-driving-a-global-chip-rally-what-does-/1530830302241030/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.precedenceresearch.com/artificial-intelligence-in-semiconductor-market",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_e994a7b7",
+      "query_text": "Nvidia 'AI server' 'pricing trend' last 7 days site:connection.com",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.connection.com/content/gaming-technology?srsltid=AfmBOoo_SuiLjxTRGfe2xNc4PUejDjRyiVpLHsnszd0Ks_cAYsvzEy5f"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.connection.com/search/nvidia/12681435?srsltid=AfmBOorOmLqUr3j-Ueqxwy8m8WJSMjiR1pa0AVy9IkjUXhicwZ6dm4Cj",
+          "reason": "pricing_page_lacks_market_relevance"
+        },
+        {
+          "url": "https://www.connection.com/content/data-center-technology?srsltid=AfmBOopZT74x0XyCqbgxUu23sYwDrkZ1aImwxMBj62oyQDEGbrg53eZc",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.connection.com/?srsltid=AfmBOoqrAm_-Uo0kRtmQMccjI34E4Hhhp71iCgKsccgRb4XX7P3I0uP9",
+          "reason": "pricing_page_lacks_market_relevance"
+        },
+        {
+          "url": "https://www.connection.com/solutions-services/artificial-intelligence?srsltid=AfmBOop7wYwU5EsrY_Gxx4o9HfixqsymwF6PT5OOq1dVy_Ashnk_GU7m",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_43f38da9",
+      "query_text": "Supermicro investor relations 'AI capex' Q1 2026 site:ir.supermicro.com",
+      "target_entity": "Supermicro",
+      "signal_type": "strategic_messaging",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.youtube.com/watch?v=rA7p-BQkxXw",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-super-micro-computer-misses-q1-fy2026-earnings-expectations-93CH-4332468",
+          "reason": "site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_14f61ce4",
+      "query_text": "Intel 'Gaudi' 'cloud pricing' 'Microsoft Azure' last 7 days",
+      "target_entity": "Intel",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.youtube.com/watch?v=tiRdjmQfNMg",
+        "https://finance.yahoo.com/sectors/technology/live/tech-stocks-today-semiconductor-earnings-ai-boom-musk-altman-fight-100000447.html"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/Reuters/posts/from-intels-surge-to-nokias-revival-ai-is-driving-a-global-chip-rally-what-does-/1530830302241030/",
+          "reason": "fallback:social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/big-techs-ai-rollout-could-drive-11-trillion-in-spending-next-year-fueling-globa/1538451118145615/",
+          "reason": "fallback:social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DYYt-g5AGJh/",
+          "reason": "fallback:below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_e788cfd7",
+      "query_text": "Broadcom 'AI chip' 'supply chain stability' last 7 days site:broadcom.com/news",
+      "target_entity": "Broadcom",
+      "signal_type": "supplier_risk",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://investors.broadcom.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.broadcom.com/financial-information/financial-news-releases",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/broadcom-inc-announces-first-quarter-fiscal-year-2026-financial-results-and-quarterly-dividend-302704490.html",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1124610/000114036123040703/brhc20057846_425.htm",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investors.broadcom.com/company-information/events-presentations",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/bloombergbusiness/posts/broadcom-a-chip-supplier-for-apple-and-other-big-tech-companies-rallied-in-late-/884083006911127/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/commentary/breakingviews/ai-adds-logic-reinventing-silicon-wheel-2025-11-17/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.tradingview.com/news/invezz:106f14a41094b:0-why-is-broadcom-warning-of-tighter-supply-in-ai-hardware/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=Iz9vDVJRnKk",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.linkedin.com/news/story/broadcom-stumbles-after-outlook-disappoints-wary-investors-6826612/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_3064ab42",
+      "query_text": "AMD 'MI300X' pricing 'discount' last 7 days site:dell.com",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.dell.com/en-us/blog/generative-ai-release-updates-with-dell-and-amd/",
+        "https://www.dell.com/en-us/blog/dell-generative-ai-open-ecosystem-with-amd-instinct-accelerators/",
+        "https://www.dell.com/en-us/blog/dell-expands-ai-for-telecom-with-amd-solutions/"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.dell.com/en-us/shop/ipovw/poweredge-xe9680",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_a0d63640",
+      "query_text": "Broadcom 'AI chip' 'new product' press release May 2026 site:broadcom.com/press",
+      "target_entity": "Broadcom",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/Reuters/posts/broadcom-said-on-monday-it-has-signed-a-long-term-agreement-with-google-to-devel/1513009840689743/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=GaRltizcMOg",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://techblog.comsoc.org/2024/10/29/reuters-bloomberg-openai-to-design-inference-ai-chip-with-broadcom-and-tsmc/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2025-09-04/broadcom-gives-upbeat-forecast-in-sign-ai-demand-remains-strong",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://finance.yahoo.com/news/openai-broadcom-partner-ai-hardware-152747211.html",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_e1649fc1",
+      "query_text": "Nvidia H200 'availability' 'distributor' last 7 days",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.reuters.com/business/retail-consumer/us-clears-h200-chip-sales-10-china-firms-nvidia-ceo-looks-breakthrough-2026-05-14/",
+        "https://www.ft.com/content/02a3eb7c-684f-4e39-87b8-36e9595ef800?syn-25a6b1a6=1",
+        "https://www.theguardian.com/technology/2026/jan/17/china-blocks-nvidia-h200-ai-chips-that-us-government-cleared-for-export-report",
+        "https://lenovopress.lenovo.com/lp1944-nvidia-h200-141gb-gpu"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/financialtimes/posts/nvidia-suppliers-halt-h200-output-after-china-blocks-chip-shipments/1284853377021370/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_ee30ed62",
+      "query_text": "Nvidia 'AI leadership' 'competitive advantage' last 7 days site:theinformation.com",
+      "target_entity": "Nvidia",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://macronetservices.com/nvidia-strategic-analysis-ai-ecosystem-executives/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.abiresearch.com/blog/nvidias-strategy-for-ai-dominance",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DXOxCKgiMRh/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://hbr.org/podcast/2023/12/nvidias-ceo-on-leading-through-the-a-i-revolution",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.instagram.com/p/DWWd6iXlRYp/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/markets-braced-for-a-swing-of-up-to-350-billion-in-nvidia-stock-ahead-of-its-ear/1552254880098572/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/bubble-or-breakout-nvidia-earnings-put-ai-boom-under-the-microscopeclick-the-lin/1393338959323499/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DYUzBNfStl6/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/business/wall-st-week-ahead-nvidia-retailer-reports-shed-light-on-ai-boom-consumer-2026-05-15/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://aiweekly.co/ai-news-today/nvidia-ai-news",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_2da964b0",
+      "query_text": "HPE 'AI/ML' jobs 'data center' May 2026 site:careers.hpe.com",
+      "target_entity": "HPE",
+      "signal_type": "hiring_momentum",
+      "source_type": "job_pages",
+      "attempted_urls": [
+        "https://careers.hpe.com/us/en/job/1198688/Distinguished-Technologist-Pre-Sales-AI-Data-Center-Networking%C2%A0",
+        "https://careers.hpe.com/us/en/job/1198781/Distinguished-Technologist-Pre-Sales-AI-Data-Center-Networking%C2%A0",
+        "https://careers.hpe.com/us/en/job/1198691/Senior-Distinguished-Technologist-Pre-Sales-AI-Data-Center-Networking%C2%A0",
+        "https://careers.hpe.com/us/en/job/1200724/Senior-Data-Scientist-AI-ML"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_31343391",
+      "query_text": "Dell 'AI solution architect' jobs May 2026 site:jobs.dell.com",
+      "target_entity": "Dell",
+      "signal_type": "hiring_momentum",
+      "source_type": "job_pages",
+      "attempted_urls": [
+        "https://jobs.dell.com/pt-br/vaga/singapur/specialist-2-inside-product/375/93539291952",
+        "https://jobs.dell.com/de/stellenbeschreibung/taipe/2026-server-hardware-engineer-summer-intern/375/92299394544"
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_949dc900",
+      "query_text": "HPE 'AI infrastructure' 'customer wins' last 7 days site:reuters.com",
+      "target_entity": "HPE",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.reuters.com/business/server-maker-super-micro-cuts-third-quarter-results-forecast-2025-04-29/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/business/energy/us-department-energy-forms-1-billion-supercomputer-ai-partnership-with-amd-2025-10-27/",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_7e0f54ea",
+      "query_text": "Dell 'AI market share' 'growth prospects' last 7 days site:bloomberg.com",
+      "target_entity": "Dell",
+      "signal_type": "news_sentiment",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.bloomberg.com/news/videos/2025-11-26/bloomberg-tech-11-26-2025-video",
+        "https://www.bloomberg.com/news/articles/2025-10-09/s-p-500-fluctuates-as-traders-weigh-earnings-from-delta-pepsico",
+        "https://www.bloomberg.com/news/articles/2019-02-28/dell-s-sales-rise-9-in-first-look-after-return-to-public-market"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.bloomberg.com/news/articles/2025-11-19/nvidia-gives-strong-forecast-helping-counter-fears-of-ai-bubble",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-01-25/big-tech-earnings-land-with-2026-s-ai-winners-still-in-question",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_774c0b73",
+      "query_text": "Supermicro server component availability issues site:wsj.com last 7 days",
+      "target_entity": "Supermicro",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.wsj.com/finance/stocks/super-micro-is-coming-up-too-short-a64659d0",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.wsj.com/finance/stocks/super-micros-fate-lies-in-nvidias-hands-ac3157ab",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.wsj.com/tech/super-micro-to-expand-production-capacity-as-ai-demand-accelerates-b87ee53b",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.wsj.com/business/earnings/super-micro-cuts-full-year-outlook-after-results-disappoint-768afcd6",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_ff01a8a9",
+      "query_text": "Intel Gaudi 3 supply chain update investor.intel.com earnings call transcript last 7 days",
+      "target_entity": "Intel",
+      "signal_type": "supplier_risk",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.intc.com/",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-intel-q3-2025-beats-earnings-expectations-stock-rises-93CH-4306387",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://newsroom.intel.com/corporate/intel-to-report-third-quarter-2025-financial-results",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/INTC/earnings/INTC-Q3-2025-earnings_call-366977.html/",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://newsroom.intel.com/corporate/intel-report-first-quarter-2025-financial-results",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.intc.com/news-events/press-releases",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.intc.com/",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.intc.com/news-events/press-releases/detail/1767/intel-reports-first-quarter-2026-financial-results",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://quartr.com/companies/intel-corporation_4689",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://csrreportbuilder.intel.com/pdfbuilder/pdfs/CSR-2023-24-Full-Report.pdf",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/from-intels-surge-to-nokias-revival-ai-is-driving-a-global-chip-rally-what-does-/1530830302241030/",
+          "reason": "fallback:social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://www.reuters.com/technology/tsmc-considering-running-intels-us-factories-after-trump-team-request-bloomberg-2025-02-14/",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DXW-9S_kn8C/",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=XuBwSQBHh5M",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://finance.yahoo.com/news/intel-shares-tumble-supply-chain-132557078.html",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_05a47c11",
+      "query_text": "Micron HBM3e supply chain issues last 7 days site:reuters.com",
+      "target_entity": "Micron",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.reuters.com/technology/samsungs-hbm-chips-failing-nvidia-tests-due-heat-power-consumption-woes-sources-2024-05-23/"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.reuters.com/commentary/breakingviews/samsung-has-fighting-shot-close-ai-marathon-gap-2025-09-23/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/commentary/reuters-open-interest/global-markets-trading-day-graphic-2026-05-18/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/commentary/reuters-open-interest/global-markets-trading-day-graphic-2026-05-13/",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_7bf7b14a",
+      "query_text": "Nvidia CoWoS packaging capacity constraints last 7 days site:bloomberg.com",
+      "target_entity": "Nvidia",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.digitimes.com/news/a20260410VL204/packaging-capacity-tsmc-nvidia-demand.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reddit.com/r/AMD_Stock/comments/195ffgy/nvidia_is_rumored_to_be_cutting_tsmcs_cowos/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://newsletter.semianalysis.com/p/ai-capacity-constraints-cowos-and",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/perepelychnyy_13t-semiconductor-industry-isnt-constrained-activity-7462159253756100608-ErVR",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://wccftech.com/nvidia-alone-has-tsmc-advanced-packaging-lines-booked-for-several-years-ahead/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2026/default.aspx",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investor.nvidia.com/home/default.aspx",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investor.nvidia.com/financial-info/financial-reports/default.aspx",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-20250126.htm",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/default.aspx",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/nvidia-supplier-foxconn-bullish-on-ai-demand-teases-openai-announcementclick-the/1388131133177615/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Reuters/posts/nvidias-latest-sales-forecasts-disappointed-investors-despite-the-chipmaker-tout/1478938854096842/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=6yThGSZVyaw",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://academiccommons.columbia.edu/doi/10.7916/479n-za88/download",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://aiweekly.co/ai-news-today/nvidia-ai-news",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_74f43a59",
+      "query_text": "AMD MI300X component shortage news last 7 days site:digitimes.com",
+      "target_entity": "AMD",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.digitimes.com/search/results.php?q=tsmc&ch=0&r=&o=4&f=0&h=0&b=3901&a=20&m=0",
+        "https://www.digitimes.com/news/a20231205PD217/amd-ai-gpu-2024-us-china-chip-ban.html",
+        "https://www.digitimes.com/search/results.php?q=amd&ch=0&r=&o=4&f=0&h=0&b=1901&a=20&m=0"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.digitimes.com/search/results.php?q=AMD&ch=2&r=&o=4&f=0&h=0&b=61&a=20&m=0",
+          "reason": "serp_news_irrelevant_tier4_domain"
+        },
+        {
+          "url": "https://www.digitimes.com/search/results.php?q=AMD&ch=18&r=&o=4&f=0&h=0&b=1161&a=20&m=0",
+          "reason": "serp_news_irrelevant_tier4_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": false
+    },
+    {
+      "query_id": "q_c15a0d95",
+      "query_text": "Dell AI server manufacturing delays last 7 days site:trendforce.com",
+      "target_entity": "Dell",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.trendforce.com/news/2024/09/04/news-supermicro-denies-short-selling-claims-as-its-ceo-responds-for-the-first-time-after-the-controversy/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://investors.delltechnologies.com/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.dell.com/en-us/dt/corporate/newsroom/announcements/detailpage.press-releases~usa~2025~08~dell-technologies-delivers-second-quarter-fiscal-2026-financial-results.htm",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://delltechnologies.gcs-web.com/news-events/press-release",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.dell.com/en-us/dt/corporate/newsroom/20180702-press.htm",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://quartr.com/companies/dell-technologies-inc_5910",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.reuters.com/technology/artificial-intelligence/dell-nears-deal-sell-5-billion-ai-servers-xai-bloomberg-news-reports-2025-02-14/",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=1T9ZAavUu2M",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.investing.com/news/stock-market-news/dell-nears-deal-to-sell-5-billion-in-ai-servers-to-xai-bloomberg-news-reports-3871222",
+          "reason": "fallback:site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.digitimes.com/news/a20250814VL205/dell-shipments-high-end-hardware-chips.html",
+          "reason": "fallback:tracking_or_email_redirect_url"
+        },
+        {
+          "url": "https://www.instagram.com/reel/DYfhO1QDmgS/",
+          "reason": "fallback:site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true
+    },
+    {
+      "query_id": "q_0d4f8645",
+      "query_text": "HPE supply chain diversification AI hardware news last 7 days site:reuters.com",
+      "target_entity": "HPE",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.reuters.com/markets/deals/hpe-secures-1-bln-ai-server-deal-elon-musks-x-bloomberg-news-reports-2025-01-10/",
+        "https://www.reuters.com/technology/hewlett-packard-enterprise-sees-third-quarter-revenue-above-estimates-robust-ai-2024-06-04/",
+        "https://www.reuters.com/technology/hewlett-packard-enterprise-shares-tumble-after-us-tariffs-hit-forecasts-2025-03-07/",
+        "https://www.reuters.com/sustainability/sustainable-finance-reporting/hewlett-packard-beats-quarterly-revenue-estimates-robust-server-demand-2025-09-03/"
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.reuters.com/technology/artificial-intelligence/dell-nears-deal-sell-5-billion-ai-servers-xai-bloomberg-news-reports-2025-02-14/",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": false
+    }
+  ],
+  "accepted_doc_count": 85,
+  "failed_query_count": 29,
+  "zero_doc_query_count": 29,
+  "low_quality_discard_count": 0
+}

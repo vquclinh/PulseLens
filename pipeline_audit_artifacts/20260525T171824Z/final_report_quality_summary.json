@@ -1,0 +1,33 @@
+{
+  "report_id": "report_5c21f48f4eb0",
+  "quality_status": "PARTIAL_PASS",
+  "quality_reasons": [
+    "signal_types 6 < 7",
+    "zero_doc_query_rate 0.54 > 0.35"
+  ],
+  "pulse_score": 50.0,
+  "pulse_status": "risk_rising",
+  "pulse_confidence": 0.5,
+  "evidence_count": 93,
+  "source_count": 45,
+  "audit_summary": {
+    "query_count": 54,
+    "accepted_doc_count": 85,
+    "failed_query_count": 29,
+    "zero_doc_query_count": 29,
+    "fetch_error_count": 2,
+    "covered_signal_types": [
+      "hiring_momentum",
+      "investor_signal",
+      "news_sentiment",
+      "product_launch",
+      "strategic_messaging",
+      "supplier_risk"
+    ],
+    "missing_signal_types": [
+      "pricing_pressure"
+    ],
+    "source_count": 45,
+    "evidence_count": 93
+  }
+}

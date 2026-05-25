@@ -1,5 +1,5 @@
 # Pipeline LangGraph StateGraph — nodes, quality-gate conditional, full DAG
-# Implemented: Agent 1–7, validate_fact, SAFE, quality_gate, M4 triangulator, M5 signal scorer, report assembler
+# Implemented: Agent 1–7, validate_fact, SAFE, quality_gate, M4 triangulator, M5 signal scorer, company narratives, report assembler
 from __future__ import annotations
 
 import logging
@@ -30,6 +30,45 @@ _HERE = os.path.dirname(os.path.abspath(__file__))
 _DB_PATH = os.path.normpath(os.path.join(_HERE, "..", "..", "data", "pulselens.db"))
 os.makedirs(os.path.dirname(_DB_PATH), exist_ok=True)
 
+
+def _merge_web_audit(previous: dict | None, current: dict | None) -> dict:
+    previous = previous or {}
+    current = current or {}
+    prev_queries = list(previous.get("queries") or [])
+    cur_queries = list(current.get("queries") or [])
+    merged_queries = prev_queries + cur_queries
+    return {
+        "query_count": len(merged_queries) or int(previous.get("query_count") or 0) + int(current.get("query_count") or 0),
+        "queries": merged_queries,
+        "accepted_doc_count": int(previous.get("accepted_doc_count") or 0) + int(current.get("accepted_doc_count") or 0),
+        "failed_query_count": int(previous.get("failed_query_count") or 0) + int(current.get("failed_query_count") or 0),
+        "zero_doc_query_count": int(previous.get("zero_doc_query_count") or 0) + int(current.get("zero_doc_query_count") or 0),
+        "low_quality_discard_count": int(previous.get("low_quality_discard_count") or 0) + int(current.get("low_quality_discard_count") or 0),
+    }
+
+
+def _merge_fetch_summary(previous: dict | None, current: dict | None) -> dict:
+    previous = previous or {}
+    current = current or {}
+    merged_domains: dict[str, int] = {}
+    merged_reasons: dict[str, int] = {}
+    for source, target in (
+        (previous.get("failure_count_by_domain") or {}, merged_domains),
+        (current.get("failure_count_by_domain") or {}, merged_domains),
+        (previous.get("failure_count_by_reason") or {}, merged_reasons),
+        (current.get("failure_count_by_reason") or {}, merged_reasons),
+    ):
+        for key, value in dict(source).items():
+            target[str(key)] = target.get(str(key), 0) + int(value)
+    return {
+        "total_fetch_attempts": int(previous.get("total_fetch_attempts") or 0) + int(current.get("total_fetch_attempts") or 0),
+        "successful_fetches": int(previous.get("successful_fetches") or 0) + int(current.get("successful_fetches") or 0),
+        "failed_fetches": int(previous.get("failed_fetches") or 0) + int(current.get("failed_fetches") or 0),
+        "permanent_failures": int(previous.get("permanent_failures") or 0) + int(current.get("permanent_failures") or 0),
+        "failure_count_by_domain": dict(sorted(merged_domains.items(), key=lambda item: item[1], reverse=True)),
+        "failure_count_by_reason": dict(sorted(merged_reasons.items(), key=lambda item: item[1], reverse=True)),
+    }
+
 # ── Node functions ─────────────────────────────────────────────────────────────
 
 async def query_planner(state: PipelineState) -> dict:
@@ -47,7 +86,16 @@ async def query_planner(state: PipelineState) -> dict:
         low_signal_types=low_signal_types,
     )
     existing = list(state.get("queries") or [])
-    return {"queries": existing + queries}   # counter owned by quality_gate
+    round_audit = dict(planner.last_query_telemetry)
+    round_audit["expansion_round"] = expansion_round
+    previous_audit = state.get("query_planner_audit") or {}
+    audit_history = list(previous_audit.get("rounds") or []) if isinstance(previous_audit, dict) else []
+    combined_audit = {**round_audit, "rounds": audit_history + [round_audit]}
+    return {
+        "queries": existing + queries,
+        "pending_queries": queries,
+        "query_planner_audit": combined_audit,
+    }   # expansion counter owned by quality_gate
 
 
 async def web_worker(state: PipelineState) -> dict:
@@ -55,12 +103,26 @@ async def web_worker(state: PipelineState) -> dict:
     query = state.get("agent2_query")
     if query is not None:
         logger.info("node: web_worker query_id=%s", query.query_id)
-        return {"raw_documents": await collect_documents_for_query(query)}
+        docs = await collect_documents_for_query(query)
+        from app.pipeline.agent2_web_workers import get_last_collection_audit, get_last_fetch_error_summary
+
+        return {
+            "raw_documents": docs,
+            "web_collection_audit": _merge_web_audit(state.get("web_collection_audit"), get_last_collection_audit()),
+            "fetch_error_summary": _merge_fetch_summary(state.get("fetch_error_summary"), get_last_fetch_error_summary()),
+        }
 
     # Fallback path for direct node testing without Send.
-    queries = state.get("queries") or []
+    queries = state.get("pending_queries") or state.get("queries") or []
     logger.info("node: web_worker fallback batch size=%d", len(queries))
-    return {"raw_documents": await collect_documents(queries)}
+    docs = await collect_documents(queries)
+    from app.pipeline.agent2_web_workers import get_last_collection_audit, get_last_fetch_error_summary
+
+    return {
+        "raw_documents": docs,
+        "web_collection_audit": _merge_web_audit(state.get("web_collection_audit"), get_last_collection_audit()),
+        "fetch_error_summary": _merge_fetch_summary(state.get("fetch_error_summary"), get_last_fetch_error_summary()),
+    }
 
 
 async def fact_extractor(state: PipelineState) -> dict:
@@ -109,7 +171,7 @@ async def validate_and_split(state: PipelineState) -> dict:
 
 
 async def finbert_scorer(state: PipelineState) -> dict:
-    """Agent 4 — FinBERT Scorer (ProsusAI/finbert, batch sentiment)"""
+    """Agent 4 — FinBERT Scorer (configured HuggingFace model, batch sentiment)"""
     safe_facts = state.get("scored_facts") or []
     logger.info("node: finbert_scorer facts=%d", len(safe_facts))
     scored, errors = await run_finbert_scorer(safe_facts)

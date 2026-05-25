@@ -10,12 +10,21 @@ import os
 import re
 from collections import defaultdict
 from datetime import datetime
-from typing import List, Optional
+from difflib import SequenceMatcher
+from typing import Any, List, Optional
 from urllib.parse import urlparse as _urlparse
 
 from app.config.companies import COMPANIES
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
-from app.config.quality_gates import MAX_EXPANSION_ROUNDS, MIN_EXPANSION_QUERIES, MIN_QUERIES, MIN_SIGNAL_TYPES
+from app.config.quality_gates import (
+    MAX_EXPANSION_QUERIES,
+    MAX_EXPANSION_ROUNDS,
+    MAX_MALFORMED_QUERY_RATE,
+    MAX_QUERIES,
+    MIN_EXPANSION_QUERIES,
+    MIN_QUERIES,
+    MIN_SIGNAL_TYPES,
+)
 from app.config.signal_types import SIGNAL_DESCRIPTIONS, SIGNAL_WEIGHTS
 from app.config.source_tiers import TOOL_MAPPING
 from app.schemas.models import SearchQuery, SignalType
@@ -53,6 +62,11 @@ PRIORITY_COMPANIES = ["Nvidia", "AMD", "Intel", "Dell", "HPE", "Micron"]
 _PRIORITY_INVESTOR_COMPANIES = set(PRIORITY_COMPANIES)
 _TIME_ANCHOR_RE = re.compile(
     r"(\b(?:2025|2026)\b|\blast\s+7\s+days\b|\bQ[12]\b)",
+    re.IGNORECASE,
+)
+_RAW_URL_RE = re.compile(r"https?://\S+", re.IGNORECASE)
+_TRACKING_URL_RE = re.compile(
+    r"(links\.message\.|email\.|/url\?|utm_|mkt_tok|[?&](?:trk|tracking|redirect|url)=)",
     re.IGNORECASE,
 )
 _NORMAL_SIGNAL_QUERY_MINIMUMS = {
@@ -253,6 +267,7 @@ class QueryPlanner:
     def __init__(self, api_key: str | None = None) -> None:
         self._llm = LLMClient(api_key=api_key, agent_name="agent1")
         self.last_step_back_output: str = ""
+        self.last_query_telemetry: dict[str, Any] = {}
 
     def run(
         self,
@@ -278,9 +293,15 @@ class QueryPlanner:
             )
 
         expansion_signal_types = low_signal_types or []
-        is_expansion = expansion_round > 0 and bool(expansion_signal_types)
+        is_expansion = expansion_round > 0
         signal_types = expansion_signal_types if is_expansion else _ALL_SIGNAL_TYPES
-        target_count = "5 to 10" if is_expansion else "40 to 50"
+        if is_expansion and not signal_types:
+            signal_types = _ALL_SIGNAL_TYPES
+        target_count = (
+            f"{MIN_EXPANSION_QUERIES} to {MAX_EXPANSION_QUERIES}"
+            if is_expansion
+            else f"{MIN_QUERIES} to {MAX_QUERIES}"
+        )
         min_queries = MIN_EXPANSION_QUERIES if is_expansion else MIN_QUERIES
         required_signal_types = set(signal_types)
         require_all_companies = not is_expansion
@@ -315,10 +336,11 @@ class QueryPlanner:
 
         expansion_note = ""
         if is_expansion:
+            expansion_targets = expansion_signal_types or _ALL_SIGNAL_TYPES
             expansion_note = (
                 f"\n⚠ EXPANSION ROUND {expansion_round}: Generate gap-filling queries ONLY.\n"
-                f"Low-coverage signal types to target: {', '.join(expansion_signal_types)}\n"
-                "Do NOT generate queries for other signal types."
+                f"Signal types to target: {', '.join(expansion_targets)}\n"
+                "Keep this to the requested 5-10 replacement queries. Avoid URLs/patterns that failed previously."
             )
 
         # ── Phase 2+3: Multi-HyDE + validation, with per-company coverage retry ─
@@ -354,8 +376,9 @@ class QueryPlanner:
                 max_tokens=8192,
             )
             try:
-                queries = self._parse_and_validate(
+                queries = self._parse_and_validate_with_regeneration(
                     raw_queries,
+                    multihyde_system,
                     companies,
                     min_queries,
                     required_signal_types=required_signal_types,
@@ -443,6 +466,68 @@ class QueryPlanner:
 
         return raw
 
+    def _parse_and_validate_with_regeneration(
+        self,
+        raw: list,
+        generation_system_prompt: str,
+        expected_companies: List[str],
+        min_queries: int = MIN_QUERIES,
+        required_signal_types: Optional[set[str]] = None,
+        allowed_signal_types: Optional[set[str]] = None,
+        require_all_companies: bool = True,
+        require_market_query: bool = False,
+        require_priority_investor_signals: bool = False,
+        signal_minimums: Optional[dict[str, int]] = None,
+    ) -> List[SearchQuery]:
+        queries, telemetry = self._parse_candidates(raw, allowed_signal_types=allowed_signal_types)
+        malformed_rate = _rejection_rate(telemetry)
+
+        if malformed_rate > MAX_MALFORMED_QUERY_RATE:
+            logger.warning(
+                "Agent 1 rejected %.0f%% of generated queries; requesting one replacement batch",
+                malformed_rate * 100,
+            )
+            replacement_raw = self._llm.call_json(
+                system=generation_system_prompt,
+                user=self._replacement_prompt(
+                    accepted=queries,
+                    min_queries=min_queries,
+                    required_signal_types=required_signal_types or set(),
+                    signal_minimums=signal_minimums or {},
+                    expected_companies=expected_companies,
+                    require_market_query=require_market_query,
+                    require_priority_investor_signals=require_priority_investor_signals,
+                ),
+                max_tokens=4096,
+            )
+            replacements, replacement_telemetry = self._parse_candidates(
+                replacement_raw,
+                allowed_signal_types=allowed_signal_types,
+                existing_queries=queries,
+            )
+            telemetry = _merge_telemetry(telemetry, replacement_telemetry)
+            telemetry["regeneration_attempted"] = True
+            telemetry["regeneration_query_count"] = (
+                len(replacement_raw) if isinstance(replacement_raw, list) else 0
+            )
+            queries.extend(replacements)
+        else:
+            telemetry["regeneration_attempted"] = False
+            telemetry["regeneration_query_count"] = 0
+
+        queries = self._enforce_final_quality(
+            queries=queries,
+            telemetry=telemetry,
+            expected_companies=expected_companies,
+            min_queries=min_queries,
+            required_signal_types=required_signal_types,
+            require_all_companies=require_all_companies,
+            require_market_query=require_market_query,
+            require_priority_investor_signals=require_priority_investor_signals,
+            signal_minimums=signal_minimums,
+        )
+        return queries
+
     def _parse_and_validate(
         self,
         raw: list,
@@ -455,72 +540,138 @@ class QueryPlanner:
         require_priority_investor_signals: bool = False,
         signal_minimums: Optional[dict[str, int]] = None,
     ) -> List[SearchQuery]:
+        queries, telemetry = self._parse_candidates(raw, allowed_signal_types=allowed_signal_types)
+        return self._enforce_final_quality(
+            queries=queries,
+            telemetry=telemetry,
+            expected_companies=expected_companies,
+            min_queries=min_queries,
+            required_signal_types=required_signal_types,
+            require_all_companies=require_all_companies,
+            require_market_query=require_market_query,
+            require_priority_investor_signals=require_priority_investor_signals,
+            signal_minimums=signal_minimums,
+        )
+
+    def _parse_candidates(
+        self,
+        raw: object,
+        allowed_signal_types: Optional[set[str]] = None,
+        existing_queries: Optional[list[SearchQuery]] = None,
+    ) -> tuple[list[SearchQuery], dict[str, Any]]:
+        telemetry: dict[str, Any] = {
+            "original_query_count": len(raw) if isinstance(raw, list) else 0,
+            "accepted_query_count": 0,
+            "rejected_query_count": 0,
+            "rejected_reasons_by_type": defaultdict(int),
+            "signal_coverage_after_planning": [],
+        }
+
         if not isinstance(raw, list):
+            telemetry["rejected_reasons_by_type"]["not_json_array"] += 1
+            telemetry["rejected_query_count"] += 1
+            self.last_query_telemetry = _finalize_telemetry_dict(telemetry)
             raise ValueError(f"LLM returned {type(raw).__name__}, expected list")
 
-        parsed: List[SearchQuery] = []
-        skipped = 0
+        queries: list[SearchQuery] = []
+        seen_texts = [_normalize_query_text(q.query_text) for q in (existing_queries or [])]
+
+        def reject(reason: str, idx: int, detail: object = "") -> None:
+            telemetry["rejected_reasons_by_type"][reason] += 1
+            telemetry["rejected_query_count"] += 1
+            logger.debug("Skipping query %d: %s %s", idx, reason, detail)
+
         for i, item in enumerate(raw):
             if not isinstance(item, dict):
-                skipped += 1
+                reject("malformed_item", i, type(item).__name__)
                 continue
+
+            query_text = str(item.get("query_text", "")).strip()
+            target_entity = str(item.get("target_entity", "")).strip()
+            signal_type_raw = str(item.get("signal_type", "")).strip()
+            source_type = str(item.get("source_type", "")).strip()
+
+            if not query_text or not target_entity or not signal_type_raw or not source_type:
+                reject("empty_required_field", i)
+                continue
+            if target_entity not in _VALID_ENTITIES:
+                reject("invalid_target_entity", i, target_entity)
+                continue
+            if signal_type_raw not in _VALID_SIGNAL_TYPES:
+                reject("unsupported_signal_type", i, signal_type_raw)
+                continue
+            if allowed_signal_types and signal_type_raw not in allowed_signal_types:
+                reject("signal_type_outside_requested_set", i, signal_type_raw)
+                continue
+            if source_type not in _AGENT1_SOURCE_TYPES:
+                reject("invalid_source_type", i, source_type)
+                continue
+            if _has_disallowed_url(query_text):
+                reject("raw_or_tracking_url_in_query_text", i, query_text[:120])
+                continue
+            if not _has_time_anchor(query_text):
+                reject("missing_time_anchor", i, query_text)
+                continue
+
             try:
-                q = SearchQuery(
-                    query_id=f"q_{generate_uuid()[:8]}",
-                    query_text=item["query_text"].strip(),
-                    target_entity=item["target_entity"],
-                    signal_type=SignalType(item["signal_type"]),
-                    source_type=item["source_type"],
-                    priority=int(item["priority"]),
-                    expected_source_tier=int(item["expected_source_tier"]),
-                )
-                # FIX 1: entity must be a tracked company or "market"
-                if q.target_entity not in _VALID_ENTITIES:
-                    logger.warning("Skipping query %d: invalid target_entity '%s'", i, q.target_entity)
-                    skipped += 1
-                    continue
-                if allowed_signal_types and q.signal_type.value not in allowed_signal_types:
-                    logger.debug("Skipping query %d: signal_type '%s' outside requested set", i, q.signal_type.value)
-                    skipped += 1
-                    continue
-                if q.source_type not in _AGENT1_SOURCE_TYPES:
-                    logger.debug("Skipping query %d: invalid source_type '%s'", i, q.source_type)
-                    skipped += 1
-                    continue
-                if q.expected_source_tier not in _VALID_TIERS:
-                    skipped += 1
-                    continue
-                if q.priority not in _VALID_PRIORITIES:
-                    skipped += 1
-                    continue
-                if not q.query_text:
-                    skipped += 1
-                    continue
-                if not _has_time_anchor(q.query_text):
-                    logger.debug("Skipping query %d: missing time anchor '%s'", i, q.query_text)
-                    skipped += 1
-                    continue
-                parsed.append(q)
-            except (KeyError, ValueError) as exc:
-                logger.debug("Skipping malformed query %d: %s", i, exc)
-                skipped += 1
-
-        # FIX 9: deduplicate by (entity, signal_type, source_type) triple — keep first occurrence
-        seen_triples: set[tuple] = set()
-        queries: List[SearchQuery] = []
-        for q in parsed:
-            triple = (q.target_entity, q.signal_type, q.source_type)
-            if triple in seen_triples:
-                logger.debug("Deduplicating repeated triple %s", triple)
-                skipped += 1
+                priority = int(item.get("priority"))
+                expected_source_tier = int(item.get("expected_source_tier"))
+            except (TypeError, ValueError):
+                reject("invalid_numeric_field", i)
                 continue
-            seen_triples.add(triple)
-            queries.append(q)
+            if priority not in _VALID_PRIORITIES:
+                reject("invalid_priority", i, priority)
+                continue
+            if expected_source_tier not in _VALID_TIERS:
+                reject("invalid_expected_source_tier", i, expected_source_tier)
+                continue
 
-        if skipped:
-            logger.warning("Skipped %d malformed/duplicate queries from LLM output", skipped)
+            normalized_text = _normalize_query_text(query_text)
+            if not normalized_text:
+                reject("empty_normalized_query_text", i)
+                continue
+            if _is_near_duplicate(normalized_text, seen_texts):
+                reject("duplicate_or_near_duplicate_query_text", i, query_text)
+                continue
+            seen_texts.append(normalized_text)
 
-        # Quality gates — FIX 2: use caller-supplied min_queries threshold
+            queries.append(
+                SearchQuery(
+                    query_id=f"q_{generate_uuid()[:8]}",
+                    query_text=query_text,
+                    target_entity=target_entity,
+                    signal_type=SignalType(signal_type_raw),
+                    source_type=source_type,
+                    priority=priority,
+                    expected_source_tier=expected_source_tier,
+                )
+            )
+
+        telemetry["accepted_query_count"] = len(queries)
+        telemetry["signal_coverage_after_planning"] = sorted({q.signal_type.value for q in queries})
+        if telemetry["rejected_query_count"]:
+            logger.warning(
+                "Skipped %d malformed/duplicate queries from LLM output",
+                telemetry["rejected_query_count"],
+            )
+        return queries, telemetry
+
+    def _enforce_final_quality(
+        self,
+        queries: list[SearchQuery],
+        telemetry: dict[str, Any],
+        expected_companies: list[str],
+        min_queries: int,
+        required_signal_types: Optional[set[str]],
+        require_all_companies: bool,
+        require_market_query: bool,
+        require_priority_investor_signals: bool,
+        signal_minimums: Optional[dict[str, int]],
+    ) -> list[SearchQuery]:
+        telemetry["accepted_query_count"] = len(queries)
+        telemetry["signal_coverage_after_planning"] = sorted({q.signal_type.value for q in queries})
+        self.last_query_telemetry = _finalize_telemetry_dict(telemetry)
+
         if len(queries) < min_queries:
             raise ValueError(
                 f"Quality gate FAIL: generated {len(queries)} queries, minimum is {min_queries}. "
@@ -577,11 +728,127 @@ class QueryPlanner:
             if missing_investor:
                 raise _InvestorSignalCoverageValidationError(missing_investor)
 
+        self.last_query_telemetry = _finalize_telemetry_dict(telemetry)
         return queries
+
+    def _replacement_prompt(
+        self,
+        accepted: list[SearchQuery],
+        min_queries: int,
+        required_signal_types: set[str],
+        signal_minimums: dict[str, int],
+        expected_companies: list[str],
+        require_market_query: bool,
+        require_priority_investor_signals: bool,
+    ) -> str:
+        accepted_payload = [
+            {
+                "query_text": q.query_text,
+                "target_entity": q.target_entity,
+                "signal_type": q.signal_type.value,
+                "source_type": q.source_type,
+            }
+            for q in accepted
+        ]
+        covered_signals = {q.signal_type.value for q in accepted}
+        signal_counts: dict[str, int] = defaultdict(int)
+        for q in accepted:
+            signal_counts[q.signal_type.value] += 1
+        signal_deficits = {
+            sig: max(0, minimum - signal_counts.get(sig, 0))
+            for sig, minimum in signal_minimums.items()
+            if signal_counts.get(sig, 0) < minimum
+        }
+        missing_companies = sorted(set(expected_companies) - {q.target_entity for q in accepted})
+        investor_entities = {
+            q.target_entity for q in accepted if q.signal_type == SignalType.investor_signal
+        }
+        missing_investor = sorted((_PRIORITY_INVESTOR_COMPANIES & set(expected_companies)) - investor_entities)
+        needed_count = max(
+            min_queries - len(accepted),
+            len(required_signal_types - covered_signals),
+            sum(signal_deficits.values()),
+            len(missing_companies),
+            len(missing_investor) if require_priority_investor_signals else 0,
+            1,
+        )
+        return (
+            "The previous JSON array contained malformed, duplicate, or unusable queries. "
+            "Generate ONLY replacement queries for the invalid/missing slots. Do not repeat any accepted query.\n"
+            f"Accepted query count: {len(accepted)}\n"
+            f"Replacement target: {needed_count} to {max(needed_count + 5, needed_count)} queries\n"
+            f"Missing signal types: {sorted(required_signal_types - covered_signals)}\n"
+            f"Signal minimum deficits: {signal_deficits}\n"
+            f"Missing company coverage: {missing_companies}\n"
+            f"Missing investor_signal priority companies: {missing_investor if require_priority_investor_signals else []}\n"
+            f"Market-level query required: {require_market_query and not any(q.target_entity == 'market' for q in accepted)}\n"
+            "Accepted queries to avoid duplicating:\n"
+            f"{json.dumps(accepted_payload, indent=2)}\n"
+            "Return ONLY a JSON array of SearchQuery objects."
+        )
 
 
 def _has_time_anchor(query_text: str) -> bool:
     return bool(_TIME_ANCHOR_RE.search(query_text))
+
+
+def _has_disallowed_url(query_text: str) -> bool:
+    """Agent 1 should emit search queries, not raw/tracking URLs."""
+    return bool(_RAW_URL_RE.search(query_text) or _TRACKING_URL_RE.search(query_text))
+
+
+def _normalize_query_text(query_text: str) -> str:
+    text = query_text.lower()
+    text = re.sub(r"\bsite:\S+", "", text)
+    text = re.sub(r"[^\w\s]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def _is_near_duplicate(candidate: str, existing: list[str]) -> bool:
+    candidate_tokens = set(candidate.split())
+    for previous in existing:
+        if candidate == previous:
+            return True
+        previous_tokens = set(previous.split())
+        if candidate_tokens and previous_tokens:
+            overlap = len(candidate_tokens & previous_tokens) / max(len(candidate_tokens | previous_tokens), 1)
+            if overlap >= 0.82:
+                return True
+        if SequenceMatcher(None, candidate, previous).ratio() >= 0.88:
+            return True
+    return False
+
+
+def _rejection_rate(telemetry: dict[str, Any]) -> float:
+    total = int(telemetry.get("original_query_count") or 0)
+    if total <= 0:
+        return 1.0
+    return int(telemetry.get("rejected_query_count") or 0) / total
+
+
+def _merge_telemetry(base: dict[str, Any], extra: dict[str, Any]) -> dict[str, Any]:
+    merged = dict(base)
+    merged["original_query_count"] = int(base.get("original_query_count") or 0)
+    merged["accepted_query_count"] = int(base.get("accepted_query_count") or 0) + int(
+        extra.get("accepted_query_count") or 0
+    )
+    merged["rejected_query_count"] = int(base.get("rejected_query_count") or 0) + int(
+        extra.get("rejected_query_count") or 0
+    )
+    reasons: defaultdict[str, int] = defaultdict(int)
+    for source in (base.get("rejected_reasons_by_type") or {}, extra.get("rejected_reasons_by_type") or {}):
+        for key, count in dict(source).items():
+            reasons[str(key)] += int(count)
+    merged["rejected_reasons_by_type"] = reasons
+    return merged
+
+
+def _finalize_telemetry_dict(telemetry: dict[str, Any]) -> dict[str, Any]:
+    result = dict(telemetry)
+    result["rejected_reasons_by_type"] = dict(telemetry.get("rejected_reasons_by_type") or {})
+    result["signal_coverage_after_planning"] = list(telemetry.get("signal_coverage_after_planning") or [])
+    return result
 
 
 # ── Standalone test ───────────────────────────────────────────────────────────
