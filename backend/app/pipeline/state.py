@@ -71,5 +71,8 @@ class PipelineState(TypedDict, total=False):
     source_count: int
     fact_count: int
 
+    # Validation telemetry — from validate_fact gate (not in MarketPulseReport)
+    validation_audit: Dict[str, Any]
+
     # Error accumulation — failed nodes log here, pipeline continues
     errors: List[str]

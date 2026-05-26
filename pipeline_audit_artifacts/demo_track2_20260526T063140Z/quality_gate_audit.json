@@ -1,0 +1,21 @@
+{
+  "quality_status": "PARTIAL_PASS",
+  "quality_reasons": [
+    "fact_count 43 < 50"
+  ],
+  "covered_signal_types": [
+    "hiring_momentum",
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "strategic_messaging",
+    "supplier_risk"
+  ],
+  "missing_signal_types": [],
+  "company_coverage": 1.0,
+  "zero_doc_query_rate": 0.3333,
+  "fetch_error_rate": 0.0,
+  "source_count": 17,
+  "fact_count": 43,
+  "query_expansion_rounds": 1
+}

@@ -1,0 +1,14 @@
+{
+  "python_version": "3.14.4",
+  "OPENROUTER_API_KEY_SET": false,
+  "BRIGHTDATA_API_KEY_SET": false,
+  "demo_scope_enabled": true,
+  "scope_companies": [
+    "Nvidia",
+    "AMD",
+    "Supermicro"
+  ],
+  "backend_cwd": "/mnt/vquclinh/PROJECT-CMAKE/PULSE-LENS/PulseLens/backend",
+  "OPENROUTER_API_KEY_IN_DOTENV": true,
+  "BRIGHTDATA_API_KEY_IN_DOTENV": true
+}

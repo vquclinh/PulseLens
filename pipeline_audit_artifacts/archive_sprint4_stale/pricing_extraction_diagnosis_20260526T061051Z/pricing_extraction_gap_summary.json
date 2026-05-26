@@ -1,0 +1,13 @@
+{
+  "report_id": "report_dfd5e69a3a42",
+  "artifact_dir": "/mnt/vquclinh/PROJECT-CMAKE/PULSE-LENS/PulseLens/pipeline_audit_artifacts/demo_track2_20260526T040110Z",
+  "run_at": "20260526T061051Z",
+  "total_accepted_pricing_urls": 0,
+  "urls_that_produced_pricing_facts": 0,
+  "urls_with_zero_pricing_facts": 0,
+  "zero_fact_urls_with_explicit_price_in_url_or_title": 0,
+  "zero_fact_urls_without_explicit_price": 0,
+  "gap_count_by_domain": {},
+  "gap_count_by_cause": {},
+  "domain_detail": {}
+}

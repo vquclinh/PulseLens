@@ -1,0 +1,129 @@
+{
+  "report_id": "report_3dfb4b94068b",
+  "artifact_dir": "pipeline_audit_artifacts/demo_track2_20260526T063140Z",
+  "run_at": "20260526T071833Z",
+  "total_accepted_pricing_urls": 18,
+  "urls_that_produced_pricing_facts": 3,
+  "urls_with_zero_pricing_facts": 15,
+  "zero_fact_urls_with_explicit_price_in_url_or_title": 0,
+  "zero_fact_urls_without_explicit_price": 15,
+  "gap_count_by_domain": {
+    "runpod.io": 4,
+    "coreweave.com": 2,
+    "reuters.com": 2,
+    "blogs.oracle.com": 1,
+    "ir.amd.com": 1,
+    "servethehome.com": 1,
+    "amd.com": 1,
+    "cloud.google.com": 1,
+    "ir.supermicro.com": 1,
+    "oracle.com": 1
+  },
+  "gap_count_by_cause": {
+    "unknown": 9,
+    "likely_comparison_guide_not_primary_price_source": 4,
+    "likely_no_explicit_price_table_in_scraped_html": 2
+  },
+  "domain_detail": {
+    "coreweave.com": {
+      "url_count": 2,
+      "url_types": [
+        "direct_pricing_page",
+        "direct_pricing_page"
+      ],
+      "gap_causes": [
+        "likely_no_explicit_price_table_in_scraped_html",
+        "likely_no_explicit_price_table_in_scraped_html"
+      ]
+    },
+    "blogs.oracle.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "ir.amd.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "runpod.io": {
+      "url_count": 4,
+      "url_types": [
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide"
+      ],
+      "gap_causes": [
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source"
+      ]
+    },
+    "servethehome.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "amd.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "cloud.google.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "ir.supermicro.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "oracle.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "reuters.com": {
+      "url_count": 2,
+      "url_types": [
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown"
+      ]
+    }
+  }
+}

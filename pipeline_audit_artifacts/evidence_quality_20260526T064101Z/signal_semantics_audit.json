@@ -1,0 +1,203 @@
+{
+  "hiring_momentum": {
+    "fact_count": 1,
+    "verified_claim_count": 1,
+    "average_confidence": 0.9,
+    "source_count": 1,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_016a9d403e4c",
+        "entity": "AMD",
+        "claim": "AMD hired Ariel Kelman as its Chief Marketing Officer.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['hiring', 'jobs', 'headcount', 'talent']"
+      }
+    ]
+  },
+  "product_launch": {
+    "fact_count": 6,
+    "verified_claim_count": 2,
+    "average_confidence": 0.9,
+    "source_count": 4,
+    "top_domains": [
+      {
+        "domain": "distillintelligence.com",
+        "fact_count": 3
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "aiweekly.co",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_da8168596c27",
+        "entity": "Broadcom",
+        "claim": "Broadcom shipped the world's first 2nm custom compute SoC.",
+        "source_url": "https://www.distillintelligence.com/briefings/semiconductors-ai-chips-2026-03-20",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      }
+    ]
+  },
+  "pricing_pressure": {
+    "fact_count": 4,
+    "verified_claim_count": 0,
+    "average_confidence": 0.975,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "thinkmate.com",
+        "fact_count": 3
+      },
+      {
+        "domain": "runpod.io",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "strategic_messaging": {
+    "fact_count": 2,
+    "verified_claim_count": 1,
+    "average_confidence": 0.85,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "servethehome.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_51cdf6aa930b",
+        "entity": "AMD",
+        "claim": "AMD discussed the upcoming MI355X product for 2025.",
+        "source_url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      }
+    ]
+  },
+  "investor_signal": {
+    "fact_count": 26,
+    "verified_claim_count": 2,
+    "average_confidence": 0.981,
+    "source_count": 4,
+    "top_domains": [
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 16
+      },
+      {
+        "domain": "investor.nvidia.com",
+        "fact_count": 8
+      },
+      {
+        "domain": "tomshardware.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "sj.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 5,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_a4e231660011",
+        "entity": "Supermicro",
+        "claim": "Supermicro's cash flow used by operations for Q1'26 amounted to $918 million.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_55b7d5873096",
+        "entity": "Supermicro",
+        "claim": "Supermicro's total cash and cash equivalents were $4.2 billion as of September 30, 2025.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_727b856a2114",
+        "entity": "Supermicro",
+        "claim": "Supermicro observes robust demand for its NVIDIA GB300, B300, RTX Pro, and AMD 355X LC products, which are now shipping.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_bef5abafe862",
+        "entity": "Supermicro",
+        "claim": "Elon Musk's xAI reportedly shifted a $6 billion AI server order away from Supermicro to its competitors.",
+        "source_url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/elon-musks-xai-reportedly-shifts-usd6-billion-ai-server-order-from-troubled-supermicro-to-its-rivals",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_14aaff9fbce8",
+        "entity": "Supermicro",
+        "claim": "Super Micro Computer has lowered its full-year outlook after reporting disappointing results.",
+        "source_url": "https://www.wsj.com/business/earnings/super-micro-cuts-full-year-outlook-after-results-disappoint-768afcd6",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      }
+    ]
+  },
+  "news_sentiment": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "supplier_risk": {
+    "fact_count": 4,
+    "verified_claim_count": 1,
+    "average_confidence": 0.925,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "digitimes.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "reuters.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_a01eef2e54d0",
+        "entity": "market",
+        "claim": "China issued guidance requiring new state-funded data center projects to use only domestically-made artificial intelligence chips.",
+        "source_url": "https://www.reuters.com/world/china/china-bans-foreign-ai-chips-state-funded-data-centres-sources-say-2025-11-05/",
+        "reason": "zero vocab matches from ['shortage', 'supply', 'dependency', 'hbm']"
+      }
+    ]
+  }
+}

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import asyncio
 import logging
+import re
 from typing import Optional
 
 from app.config.companies import KNOWN_ENTITIES
@@ -20,13 +21,42 @@ _MIN_CONFIDENCE = FACT_MIN_CONFIDENCE
 _MIN_SUPPORT_RATIO = SAFE_MIN_SUPPORT_RATIO   # SAFE threshold: discard if < 50% atomic claims supported
 _MAX_CONCURRENT_SAFE = SAFE_MAX_CONCURRENT    # SAFE is expensive (2+ LLM calls per fact)
 
+# ── Gate 1 supplemental: deterministic claim-quality patterns ─────────────────
+
+_METADATA_NAV_PATTERNS = [
+    re.compile(r"provides?\s+investor\s+relations\s+information", re.I),
+    re.compile(r"includes?\s+(?:financial\s+results|sec\s+filings|earnings\s+webcasts)", re.I),
+    re.compile(r"(?:website|page|portal)\s+provides?", re.I),
+    re.compile(r"contains?\s+links?\s+to", re.I),
+    re.compile(r"offers?\s+information\s+about", re.I),
+    re.compile(r"investor\s+relations\s+(?:page|portal|section|information)", re.I),
+    re.compile(r"(?:financial\s+results|press\s+releases|sec\s+filings)\s+(?:are|can\s+be)\s+(?:found|accessed|viewed)", re.I),
+]
+
+_PRICING_STRONG_PATTERNS = [
+    re.compile(r"\$[\d,]+\.?\d*"),                                                                   # explicit $ amount
+    re.compile(r"\d+\.?\d*\s*%\s*(?:increase|decrease|drop|rise|change|higher|lower)", re.I),       # % price change
+    re.compile(r"(?:discount|discounted|on.demand|spot\s+price|rental\s+rate|hourly\s+rate)", re.I),
+    re.compile(r"(?:cost|price)\s+per\s+(?:hour|month|year)", re.I),
+    re.compile(r"starting\s+price\s+of\s+\$", re.I),
+    re.compile(r"(?:lead\s+time).{0,60}(?:availability|weeks?|months?|days?)", re.I),
+]
+
+_PRICING_REJECT_PATTERNS = [
+    re.compile(r"(?:launched?|announced?|introduced?)\s+.{0,40}(?:index|tracker|benchmark|price\s+index)", re.I),
+    re.compile(r"(?:index|tracker|benchmark).{0,40}(?:launched?|announced?|introduced?)", re.I),
+    re.compile(r"hbm.{0,60}(?:price|cost|shortage)", re.I),
+    re.compile(r"memory.{0,60}(?:shortage|supply).{0,60}(?:price|cost)", re.I),
+    re.compile(r"available\s+with\s+a\s+starting\s+price(?!\s+of\s+\$)", re.I),
+]
+
 # ── Gate 1: pure Python verbatim check ────────────────────────────────────────
 
 
 def validate_facts(
     raw_facts: list[FactObject],
     docs_by_id: dict[str, RawDocument],
-) -> list[FactObject]:
+) -> tuple[list[FactObject], dict]:
     """
     CRITICAL anti-hallucination gate (ARCHITECTURE.md §5).
 
@@ -36,9 +66,18 @@ def validate_facts(
       2. claim length ≤ 150 chars
       3. confidence ≥ configured minimum (default 0.60)
       4. entity is in KNOWN_ENTITIES
+      5. claim does not match navigation/metadata page description patterns
+      6. pricing_pressure: claim+quote must contain explicit price signal
+         (index launches, HBM shortage, "available at a price" → rejected)
+
+    Returns (validated_facts, audit_dict).
     """
     validated: list[FactObject] = []
     discarded_verbatim = discarded_conf = discarded_entity = discarded_len = 0
+    discarded_nav_metadata = 0
+    discarded_pricing_weak = 0
+    pricing_sanity_checked = 0
+    rejected_nav_fact_ids: list[str] = []
 
     for fact in raw_facts:
         doc = docs_by_id.get(fact.doc_id)
@@ -68,14 +107,50 @@ def validate_facts(
             )
             continue
 
+        if any(pat.search(fact.claim) for pat in _METADATA_NAV_PATTERNS):
+            discarded_nav_metadata += 1
+            rejected_nav_fact_ids.append(fact.fact_id)
+            logger.debug(
+                "validate_fact: nav_metadata FAIL fact=%s claim=%.80s",
+                fact.fact_id, fact.claim,
+            )
+            continue
+
+        if fact.signal_type.value == "pricing_pressure":
+            text = fact.claim + " " + fact.evidence_quote
+            if any(pat.search(text) for pat in _PRICING_REJECT_PATTERNS):
+                if not any(pat.search(text) for pat in _PRICING_STRONG_PATTERNS):
+                    discarded_pricing_weak += 1
+                    logger.info(
+                        "validate_fact: pricing_sanity REJECT fact=%s claim=%.80s",
+                        fact.fact_id, fact.claim,
+                    )
+                    continue
+            pricing_sanity_checked += 1
+
         validated.append(fact)
 
+    audit: dict = {
+        "discarded_verbatim": discarded_verbatim,
+        "discarded_length": discarded_len,
+        "discarded_confidence": discarded_conf,
+        "discarded_entity": discarded_entity,
+        "discarded_nav_metadata": discarded_nav_metadata,
+        "pricing_sanity_checked_count": pricing_sanity_checked,
+        "pricing_sanity_rejected_count": discarded_pricing_weak,
+        "pricing_sanity_relabel_count": 0,
+        "pricing_sanity_weak_count": discarded_pricing_weak,
+        "metadata_navigation_fact_rejected_count": discarded_nav_metadata,
+        "rejected_metadata_navigation_facts": rejected_nav_fact_ids,
+    }
     logger.info(
-        "validate_fact: %d/%d passed  (verbatim=%d len=%d conf=%d entity=%d discarded)",
+        "validate_fact: %d/%d passed  "
+        "(verbatim=%d len=%d conf=%d entity=%d nav_meta=%d pricing_weak=%d discarded)",
         len(validated), len(raw_facts),
         discarded_verbatim, discarded_len, discarded_conf, discarded_entity,
+        discarded_nav_metadata, discarded_pricing_weak,
     )
-    return validated
+    return validated, audit
 
 
 # ── Gate 2: SAFE atomic verification ─────────────────────────────────────────

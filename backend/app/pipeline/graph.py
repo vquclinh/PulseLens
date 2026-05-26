@@ -164,13 +164,15 @@ async def validate_fact(state: PipelineState) -> dict:
         len(raw_facts),
         len(documents),
     )
-    validated = validate_facts(raw_facts, docs_by_id)
+    validated, audit = validate_facts(raw_facts, docs_by_id)
     logger.info(
-        "node: validate_fact passed=%d failed=%d",
+        "node: validate_fact passed=%d failed=%d nav_meta=%d pricing_weak=%d",
         len(validated),
         len(raw_facts) - len(validated),
+        audit.get("discarded_nav_metadata", 0),
+        audit.get("pricing_sanity_rejected_count", 0),
     )
-    return {"raw_facts": validated}
+    return {"raw_facts": validated, "validation_audit": audit}
 
 
 async def validate_and_split(state: PipelineState) -> dict:

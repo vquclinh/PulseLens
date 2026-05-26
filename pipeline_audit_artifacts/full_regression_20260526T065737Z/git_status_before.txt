@@ -1,0 +1,28 @@
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   backend/app/pipeline/graph.py
+	modified:   backend/app/pipeline/node_validate_and_split.py
+	modified:   backend/app/pipeline/state.py
+	modified:   backend/app/utils/url_scorer.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	AUTHORITATIVE_SPRINT_4_ARTIFACTS.md
+	CLEANUP_MANIFEST.md
+	CLEAN_FULL_REGRESSION_PLAN.md
+	CURRENT_PIPELINE_RUN_STATUS.md
+	EVIDENCE_CLEANUP_SPRINT_4_REPORT.md
+	SPRINT_4_BEFORE_AFTER_COMPARISON.md
+	SPRINT_4_IMPLEMENTATION_PLAN.md
+	backend/scripts/pricing_document_extraction_diagnosis.py
+	pipeline_audit_artifacts/archive_sprint4_stale/
+	pipeline_audit_artifacts/demo_track2_20260526T063140Z/
+	pipeline_audit_artifacts/evidence_quality_20260526T064101Z/
+	pipeline_audit_artifacts/full_regression_20260526T065737Z/
+	pipeline_audit_artifacts/pricing_extraction_diagnosis_20260526T061730Z/
+
+no changes added to commit (use "git add" and/or "git commit -a")

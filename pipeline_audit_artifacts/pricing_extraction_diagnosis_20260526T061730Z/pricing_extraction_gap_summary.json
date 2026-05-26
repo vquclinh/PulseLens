@@ -1,0 +1,164 @@
+{
+  "report_id": "report_dfd5e69a3a42",
+  "artifact_dir": "/mnt/vquclinh/PROJECT-CMAKE/PULSE-LENS/PulseLens/pipeline_audit_artifacts/demo_track2_20260526T040110Z",
+  "run_at": "20260526T061730Z",
+  "total_accepted_pricing_urls": 27,
+  "urls_that_produced_pricing_facts": 3,
+  "urls_with_zero_pricing_facts": 24,
+  "zero_fact_urls_with_explicit_price_in_url_or_title": 0,
+  "zero_fact_urls_without_explicit_price": 24,
+  "gap_count_by_domain": {
+    "runpod.io": 6,
+    "dell.com": 3,
+    "cloud.google.com": 3,
+    "coreweave.com": 2,
+    "servethehome.com": 2,
+    "amd.com": 2,
+    "blogs.oracle.com": 1,
+    "ir.amd.com": 1,
+    "oracle.com": 1,
+    "ir.supermicro.com": 1,
+    "newsletter.semianalysis.com": 1,
+    "theregister.com": 1
+  },
+  "gap_count_by_cause": {
+    "unknown": 12,
+    "likely_comparison_guide_not_primary_price_source": 9,
+    "likely_no_explicit_price_table_in_scraped_html": 2,
+    "likely_paywall_partial_content": 1
+  },
+  "domain_detail": {
+    "runpod.io": {
+      "url_count": 6,
+      "url_types": [
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide"
+      ],
+      "gap_causes": [
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source"
+      ]
+    },
+    "coreweave.com": {
+      "url_count": 2,
+      "url_types": [
+        "direct_pricing_page",
+        "direct_pricing_page"
+      ],
+      "gap_causes": [
+        "likely_no_explicit_price_table_in_scraped_html",
+        "likely_no_explicit_price_table_in_scraped_html"
+      ]
+    },
+    "dell.com": {
+      "url_count": 3,
+      "url_types": [
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide"
+      ],
+      "gap_causes": [
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source"
+      ]
+    },
+    "blogs.oracle.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "ir.amd.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "oracle.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "ir.supermicro.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "servethehome.com": {
+      "url_count": 2,
+      "url_types": [
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    "amd.com": {
+      "url_count": 2,
+      "url_types": [
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    "cloud.google.com": {
+      "url_count": 3,
+      "url_types": [
+        "unknown",
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown",
+        "unknown"
+      ]
+    },
+    "newsletter.semianalysis.com": {
+      "url_count": 1,
+      "url_types": [
+        "newsletter"
+      ],
+      "gap_causes": [
+        "likely_paywall_partial_content"
+      ]
+    },
+    "theregister.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    }
+  }
+}

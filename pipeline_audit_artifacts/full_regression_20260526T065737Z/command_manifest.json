@@ -1,0 +1,44 @@
+{
+  "regression_ts": "20260526T065737Z",
+  "created_at": "2026-05-26T06:58:14Z",
+  "scope": {
+    "companies": [
+      "Nvidia",
+      "AMD",
+      "Supermicro"
+    ],
+    "demo_scope_enabled": true
+  },
+  "commands": [
+    {
+      "step": 1,
+      "name": "backend_import_check",
+      "command": "python -c \"import app.utils.url_scorer; import app.pipeline.node_validate_and_split; import app.pipeline.state; import app.pipeline.graph; print(OK)\""
+    },
+    {
+      "step": 2,
+      "name": "demo_pipeline",
+      "command": "python backend/scripts/demo_track2_ai_hardware_audit.py",
+      "estimated_brightdata_calls": "118-140",
+      "estimated_openrouter_calls": "115"
+    },
+    {
+      "step": 3,
+      "name": "evidence_quality_audit",
+      "command": "python backend/scripts/evidence_quality_audit.py --report-id <new_id> --artifact-dir <new_folder>",
+      "cost": "zero"
+    },
+    {
+      "step": 4,
+      "name": "pricing_diagnosis",
+      "command": "python backend/scripts/pricing_document_extraction_diagnosis.py --report-id <new_id> --artifact-dir <new_folder>",
+      "cost": "zero"
+    },
+    {
+      "step": 5,
+      "name": "frontend_build",
+      "command": "cd frontend && npm run build",
+      "cost": "zero"
+    }
+  ]
+}

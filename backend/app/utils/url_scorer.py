@@ -96,6 +96,11 @@ CLOUD_PRICING_DOMAINS = {
 
 COMPANY_PRODUCT_DOMAINS = {company.domain for company in COMPANIES}
 
+COMPANY_IR_DOMAINS = frozenset(
+    urlparse(company.ir_url).netloc.lower().lstrip("www.")
+    for company in COMPANIES
+)
+
 OEM_DISTRIBUTOR_DOMAINS = {
     "supermicro.com",
     "store.supermicro.com",
@@ -272,6 +277,14 @@ class URLScorer:
             return "forum_or_community_source_not_allowed"
         if any(marker in haystack for marker in SOCIAL_MARKERS):
             return "social_or_low_signal_page_not_allowed"
+
+        if (
+            "/investor-relations" in urlparse(url).path.lower()
+            and not _domain_in_family(domain, COMPANY_PRODUCT_DOMAINS)
+            and not _domain_in_family(domain, COMPANY_IR_DOMAINS)
+            and not _domain_in_family(domain, frozenset({"sec.gov"}))
+        ):
+            return "fallback_ir_metadata_wrong_entity"
 
         if source_type == "ir_pages" and assign_tier(url) != 1:
             return "ir_pages_requires_tier1_ir_or_sec_domain"

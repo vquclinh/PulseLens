@@ -1,0 +1,26 @@
+{
+  "report_id": "report_3dfb4b94068b",
+  "quality_status": "PARTIAL_PASS",
+  "pulse_score": 57.0,
+  "total_facts": 43,
+  "total_verified_claims": 7,
+  "average_confidence": 0.956,
+  "total_source_domains": 12,
+  "suspicious_claim_count": 0,
+  "weak_source_count": 1,
+  "suspicious_or_low_signal_source_count": 0,
+  "reject_next_time_candidate_count": 0,
+  "strong_pricing_signal_count": 4,
+  "weak_pricing_signal_count": 0,
+  "misclassified_signal_count": 0,
+  "pricing_verdict": "ACCEPTABLE — majority of pricing facts are strong signals",
+  "signal_coverage": {
+    "hiring_momentum": 1,
+    "product_launch": 6,
+    "pricing_pressure": 4,
+    "strategic_messaging": 2,
+    "investor_signal": 26,
+    "news_sentiment": 0,
+    "supplier_risk": 4
+  }
+}

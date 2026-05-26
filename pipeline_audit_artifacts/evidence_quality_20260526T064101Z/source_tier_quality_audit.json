@@ -1,0 +1,228 @@
+{
+  "total_domains": 12,
+  "rating_summary": {
+    "acceptable": 4,
+    "weak_but_usable": 1,
+    "authoritative": 3,
+    "unknown": 4
+  },
+  "suspicious_or_low_signal_count": 0,
+  "reject_next_time_candidate_count": 0,
+  "domains": [
+    {
+      "domain": "ir.supermicro.com",
+      "quality_rating": "authoritative",
+      "fact_count": 16,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx"
+      ]
+    },
+    {
+      "domain": "investor.nvidia.com",
+      "quality_rating": "authoritative",
+      "fact_count": 8,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2026/default.aspx",
+        "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Fourth-Quarter-and-Fiscal-2026/"
+      ]
+    },
+    {
+      "domain": "ir.amd.com",
+      "quality_rating": "authoritative",
+      "fact_count": 4,
+      "signal_types": [
+        "hiring_momentum",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://ir.amd.com/",
+        "https://ir.amd.com/news-events/press-releases"
+      ]
+    },
+    {
+      "domain": "thinkmate.com",
+      "quality_rating": "weak_but_usable",
+      "fact_count": 3,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOooR7SXYzI3Y_fSIk0K9lyRSyvbzzOZz2YwMIj_3K6jzQQ9c8Rwr",
+        "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOor8C4y_lPRl8aB2OCc-jUmxp5oEf25jlLT9RID2BFVwxXq3R3at"
+      ]
+    },
+    {
+      "domain": "distillintelligence.com",
+      "quality_rating": "unknown",
+      "fact_count": 3,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Broadcom",
+        "Nvidia",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.distillintelligence.com/briefings/semiconductors-ai-chips-2026-03-20"
+      ]
+    },
+    {
+      "domain": "servethehome.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/"
+      ]
+    },
+    {
+      "domain": "digitimes.com",
+      "quality_rating": "unknown",
+      "fact_count": 2,
+      "signal_types": [
+        "supplier_risk"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.digitimes.com/news/a20260522PD228/amd-packaging-cowos-taiwan-tsmc.html",
+        "https://www.digitimes.com/news/a20260522PD237/amd-lisa-su-cowos-packaging-memory-chips.html"
+      ]
+    },
+    {
+      "domain": "runpod.io",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://www.runpod.io/pricing"
+      ]
+    },
+    {
+      "domain": "aiweekly.co",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://aiweekly.co/ai-news-today/nvidia-ai-news"
+      ]
+    },
+    {
+      "domain": "tomshardware.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        3
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.tomshardware.com/tech-industry/artificial-intelligence/elon-musks-xai-reportedly-shifts-usd6-billion-ai-server-order-from-troubled-supermicro-to-its-rivals"
+      ]
+    },
+    {
+      "domain": "sj.com",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.wsj.com/business/earnings/super-micro-cuts-full-year-outlook-after-results-disappoint-768afcd6"
+      ]
+    },
+    {
+      "domain": "reuters.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "supplier_risk"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.reuters.com/world/china/china-bans-foreign-ai-chips-state-funded-data-centres-sources-say-2025-11-05/"
+      ]
+    }
+  ]
+}

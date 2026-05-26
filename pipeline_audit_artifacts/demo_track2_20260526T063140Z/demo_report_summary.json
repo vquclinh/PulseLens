@@ -1,0 +1,110 @@
+{
+  "report": {
+    "report_id": "report_3dfb4b94068b",
+    "quality_status": "PARTIAL_PASS",
+    "quality_reasons": [
+      "fact_count 43 < 50"
+    ],
+    "pulse_score": 57.0,
+    "pulse_status": "stable",
+    "pulse_confidence": 0.5,
+    "evidence_count": 43,
+    "source_count": 17,
+    "top_signals": [
+      {
+        "signal_type": "strategic_messaging",
+        "score": 0.831,
+        "source_count": 2,
+        "confidence": 0.756,
+        "narrative": "AMD plans to invest over $10 billion in the Taiwan ecosystem to accelerate AI infrastructure.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "product_launch",
+        "score": 0.1363,
+        "source_count": 4,
+        "confidence": 0.676,
+        "narrative": "AMD launched the Instinct MI325X, a 256GB HBM3E accelerator, as an update to the MI300X.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "supplier_risk",
+        "score": 0.2222,
+        "source_count": 3,
+        "confidence": 0.809,
+        "narrative": "AMD announced a production ramp of its next-generation AMD EPYC processor “Venice” on TSMC's 2nm process technology on May 21, 2026.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "investor_signal",
+        "score": 0.0,
+        "source_count": 6,
+        "confidence": 0.794,
+        "narrative": "NVIDIA reported record revenue of $57.0 billion for the third quarter ended October 26, 2025, which is up 62% from a year ago.",
+        "is_contradicted": true
+      },
+      {
+        "signal_type": "news_sentiment",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      }
+    ],
+    "watch_list": [
+      {
+        "title": "Supermicro Q1 FY26 guidance reconciliation",
+        "rationale": "Supermicro's Q1 FY2026 net sales were below guidance, but they secured significant new orders. Clarification on the 'design win upgrades shifting revenue' is crucial to understand the duration and impact of this discrepancy on future quarters.",
+        "trigger": "Supermicro provides further details or clarification on the 'design win upgrades' effect on their Q1 FY2026 revenue and revised guidance for Q2.",
+        "signals_pointing_there": [
+          "claim_7cf2527890d1",
+          "fact_a7942e8ef170",
+          "fact_58e5dfbdb2d1",
+          "fact_92e496b495c1",
+          "fact_ba0b75a3b5ac"
+        ],
+        "urgency": "next_2_weeks"
+      }
+    ],
+    "audit_summary": {
+      "query_count": 36,
+      "accepted_doc_count": 57,
+      "failed_query_count": 12,
+      "zero_doc_query_count": 12,
+      "fetch_error_count": 0,
+      "covered_signal_types": [
+        "hiring_momentum",
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "missing_signal_types": [],
+      "source_count": 17,
+      "evidence_count": 43
+    }
+  },
+  "companies_covered": [
+    "AMD",
+    "Nvidia",
+    "Supermicro"
+  ],
+  "core_signals_covered": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "core_signals_missing": [],
+  "optional_signals_covered": [
+    "hiring_momentum",
+    "strategic_messaging"
+  ],
+  "optional_signals_missing": [
+    "news_sentiment"
+  ],
+  "pricing_pressure_document_count": 15,
+  "estimated_brightdata_calls": 118
+}
