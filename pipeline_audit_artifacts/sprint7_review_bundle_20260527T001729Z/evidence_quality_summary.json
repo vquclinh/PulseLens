@@ -1,0 +1,26 @@
+{
+  "report_id": "report_05aacb872fda",
+  "quality_status": "PARTIAL_PASS",
+  "pulse_score": 55.8,
+  "total_facts": 49,
+  "total_verified_claims": 8,
+  "average_confidence": 0.931,
+  "total_source_domains": 12,
+  "suspicious_claim_count": 0,
+  "weak_source_count": 0,
+  "suspicious_or_low_signal_source_count": 1,
+  "reject_next_time_candidate_count": 0,
+  "strong_pricing_signal_count": 2,
+  "weak_pricing_signal_count": 0,
+  "misclassified_signal_count": 0,
+  "pricing_verdict": "ACCEPTABLE — majority of pricing facts are strong signals",
+  "signal_coverage": {
+    "hiring_momentum": 0,
+    "product_launch": 19,
+    "pricing_pressure": 2,
+    "strategic_messaging": 9,
+    "investor_signal": 17,
+    "news_sentiment": 0,
+    "supplier_risk": 2
+  }
+}

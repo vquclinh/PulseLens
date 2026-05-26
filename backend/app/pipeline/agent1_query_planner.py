@@ -85,6 +85,22 @@ _NORMAL_SIGNAL_QUERY_MINIMUMS = {
     SignalType.supplier_risk.value: 2,
 }
 
+# Demo-scope LLM minimums (excludes pricing_pressure — covered by 15 deterministic playbook queries).
+# Stronger than _NORMAL_SIGNAL_QUERY_MINIMUMS for product_launch and supplier_risk to prevent
+# the source-domain collapse seen in Sprint 6 Retry (product_launch 14→1, investor spike 13→29).
+_DEMO_SIGNAL_QUERY_MINIMUMS: dict[str, int] = {
+    SignalType.investor_signal.value: 4,
+    SignalType.product_launch.value: 4,
+    SignalType.supplier_risk.value: 3,
+    SignalType.strategic_messaging.value: 2,
+}
+
+# Demo-scope query caps — prevent any single signal from monopolizing the LLM query budget.
+# investor_signal cap=7: prevents the 85% monopolization seen in Sprint 6 Retry.
+_DEMO_SIGNAL_QUERY_CAPS: dict[str, int] = {
+    SignalType.investor_signal.value: 7,
+}
+
 # ── Prompt fragments built from config and domain playbooks ───────────────────
 _SIGNAL_TYPES_BLOCK = "\n".join(
     f"  {name:<20} ({weight:.2f}) — {SIGNAL_DESCRIPTIONS[name]}"
@@ -240,7 +256,7 @@ BAD query examples (too vague, no time anchor, no source target):
   ✗ "Nvidia news" — too vague, no time anchor, no source
   ✗ "AI hardware market" — no company, no signal type, no source
 
-RULES — READ CAREFULLY:
+{domain_rules_block}{balance_rules_block}RULES — READ CAREFULLY:
   ✓ Every query MUST include a time anchor: month+year, quarter+year, or "last 7 days"
   ✓ Each query targets exactly ONE (entity × signal_type × source_type) triple
   ✓ No two queries retrieve the same documents — vary entity, angle, and source
@@ -387,6 +403,41 @@ class QueryPlanner:
                 "Keep this to the requested 5-10 replacement queries. Avoid URLs/patterns that failed previously."
             )
 
+        # Demo-scope per-signal balance controls injected into the prompt and trim logic
+        if demo_scope and not is_expansion:
+            _investor_cap = _DEMO_SIGNAL_QUERY_CAPS.get(SignalType.investor_signal.value, 7)
+            _product_min = _DEMO_SIGNAL_QUERY_MINIMUMS.get(SignalType.product_launch.value, 4)
+            _supplier_min = _DEMO_SIGNAL_QUERY_MINIMUMS.get(SignalType.supplier_risk.value, 3)
+            domain_rules_block = (
+                "SIGNAL-SPECIFIC SOURCE DOMAIN RULES — mandatory for this run:\n"
+                "  investor_signal   → MUST target: sec.gov, ir.[company].com, investor.[company].com, earnings transcripts\n"
+                "                      Do NOT target product pages or tech review sites for investor_signal queries.\n"
+                "  product_launch    → MUST target: [company].com/news or /newsroom (NOT ir.[company].com financial releases),\n"
+                "                      servethehome.com, anandtech.com, tomshardware.com, press release domains.\n"
+                "                      Do NOT use IR quarterly report pages for product_launch queries.\n"
+                "  supplier_risk     → MUST target: reuters.com, bloomberg.com supply chain coverage,\n"
+                "                      digitimes.com, techinsights.com. Do NOT use IR pages.\n"
+                "  pricing_pressure  → Covered by deterministic playbook. LLM supplements only.\n"
+                "  KEY RULE: Each signal type MUST retrieve from DIFFERENT source domains than investor_signal.\n\n"
+            )
+            balance_rules_block = (
+                f"SIGNAL BALANCE RULE — hard constraints for this run:\n"
+                f"  ✗ Do NOT generate more than {_investor_cap} investor_signal queries (hard cap)\n"
+                f"  ✓ Generate AT LEAST {_product_min} product_launch queries targeting newsrooms or tech review sites\n"
+                f"  ✓ Generate AT LEAST {_supplier_min} supplier_risk queries targeting reuters.com or bloomberg.com\n"
+                f"  ✓ No single signal type may exceed 40% of total LLM-generated queries\n"
+                f"  ✓ Spread queries across DIFFERENT source domains — do NOT concentrate on one company's IR domain\n\n"
+            )
+        else:
+            domain_rules_block = ""
+            balance_rules_block = ""
+        signal_minimums = (
+            {k: v for k, v in _DEMO_SIGNAL_QUERY_MINIMUMS.items() if k in required_signal_types}
+            if (demo_scope and not is_expansion)
+            else (None if is_expansion else _signal_minimums_for(required_signal_types))
+        )
+        signal_caps = _DEMO_SIGNAL_QUERY_CAPS if (demo_scope and not is_expansion) else None
+
         # ── Phase 2+3: Multi-HyDE + validation, with per-company coverage retry ─
         logger.info("Phase 2: Multi-HyDE-inspired query generation (target=%s queries)", target_count)
         low_coverage_companies: list[str] = []
@@ -413,6 +464,8 @@ class QueryPlanner:
                 entity_enum=entity_enum,
                 signal_type_enum=_SIGNAL_TYPE_ENUM,
                 source_type_enum=_SOURCE_TYPE_ENUM,
+                domain_rules_block=domain_rules_block,
+                balance_rules_block=balance_rules_block,
             )
             raw_queries = self._llm.call_json(
                 system=multihyde_system,
@@ -432,7 +485,8 @@ class QueryPlanner:
                     require_all_companies=require_all_companies,
                     require_market_query=not is_expansion,
                     require_priority_investor_signals=not is_expansion,
-                    signal_minimums=None if is_expansion else _signal_minimums_for(required_signal_types),
+                    signal_minimums=signal_minimums,
+                    signal_caps=signal_caps,
                     seed_queries=pricing_playbook_queries,
                     seed_telemetry={
                         "pricing_playbook_query_count": len(pricing_playbook_queries),
@@ -477,6 +531,40 @@ class QueryPlanner:
             len({q.signal_type for q in queries}),
             len({q.target_entity for q in queries if q.target_entity != "market"}),
         )
+
+        # B5: Targeted regeneration for under-represented signals (demo scope, round 0 only)
+        targeted_regen_attempts: list[str] = []
+        targeted_regen_success: dict[str, int] = {}
+        if demo_scope and not is_expansion:
+            queries, targeted_regen_attempts, targeted_regen_success = self._targeted_signal_regeneration(
+                queries=queries,
+                abstract_principles=abstract_principles,
+                companies=companies,
+                time_window=time_window,
+                allowed_entities=set(companies) | {"market"},
+                allowed_signal_types=required_signal_types,
+                signal_caps=signal_caps,
+            )
+
+        # B6: Per-signal telemetry
+        _llm_q_counts: dict[str, int] = defaultdict(int)
+        _det_q_counts: dict[str, int] = defaultdict(int)
+        _final_q_counts: dict[str, int] = defaultdict(int)
+        for q in queries:
+            _final_q_counts[q.signal_type.value] += 1
+            if q.query_id.startswith("q_price_"):
+                _det_q_counts[q.signal_type.value] += 1
+            else:
+                _llm_q_counts[q.signal_type.value] += 1
+        self.last_query_telemetry.update({
+            "llm_generated_query_counts_by_signal": dict(_llm_q_counts),
+            "deterministic_query_counts_by_signal": dict(_det_q_counts),
+            "final_query_counts_by_signal": dict(_final_q_counts),
+            "per_signal_minimums_used": signal_minimums or {},
+            "per_signal_caps_used": signal_caps or {},
+            "targeted_regeneration_attempts": targeted_regen_attempts,
+            "targeted_regeneration_success_by_signal": targeted_regen_success,
+        })
 
         if is_expansion:
             signal_counts: dict[str, int] = {}
@@ -549,6 +637,7 @@ class QueryPlanner:
         require_market_query: bool = False,
         require_priority_investor_signals: bool = False,
         signal_minimums: Optional[dict[str, int]] = None,
+        signal_caps: Optional[dict[str, int]] = None,
         seed_queries: Optional[list[SearchQuery]] = None,
         seed_telemetry: Optional[dict[str, object]] = None,
         is_expansion: bool = False,
@@ -607,6 +696,7 @@ class QueryPlanner:
             require_market_query=require_market_query,
             require_priority_investor_signals=require_priority_investor_signals,
             signal_minimums=signal_minimums,
+            signal_caps=signal_caps,
             is_expansion=is_expansion,
         )
         return queries
@@ -763,10 +853,21 @@ class QueryPlanner:
         require_market_query: bool,
         require_priority_investor_signals: bool,
         signal_minimums: Optional[dict[str, int]],
+        signal_caps: Optional[dict[str, int]] = None,
         is_expansion: bool = False,
     ) -> list[SearchQuery]:
         if max_queries and len(queries) > max_queries:
             before_trim = len(queries)
+            _before_dist: dict[str, int] = defaultdict(int)
+            for q in queries:
+                _before_dist[q.signal_type.value] += 1
+            telemetry["query_distribution_before_trim"] = dict(_before_dist)
+            if signal_caps:
+                telemetry["signal_budget_violations"] = {
+                    st: {"before_trim": _before_dist.get(st, 0), "cap": cap}
+                    for st, cap in signal_caps.items()
+                    if _before_dist.get(st, 0) > cap
+                }
             queries = _trim_queries_to_limit(
                 queries,
                 max_queries=max_queries,
@@ -775,12 +876,36 @@ class QueryPlanner:
                 require_market_query=require_market_query,
                 require_priority_investor_signals=require_priority_investor_signals,
                 signal_minimums=signal_minimums or {},
+                signal_caps=signal_caps,
             )
+            _after_dist: dict[str, int] = defaultdict(int)
+            for q in queries:
+                _after_dist[q.signal_type.value] += 1
+            telemetry["query_distribution_after_trim"] = dict(_after_dist)
             telemetry["trimmed_query_count"] = before_trim - len(queries)
             if len(queries) < before_trim:
                 logger.info("Trimmed query plan from %d to %d queries", before_trim, len(queries))
         else:
             telemetry["trimmed_query_count"] = 0
+
+        # Unconditional cap enforcement — applies even when total <= max_queries.
+        # Guarantees the final list respects signal_caps regardless of whether the
+        # over-budget trim path ran.
+        if signal_caps:
+            capped: list[SearchQuery] = []
+            cap_counts: dict[str, int] = defaultdict(int)
+            for q in queries:
+                st = q.signal_type.value
+                if st in signal_caps and cap_counts[st] >= signal_caps[st]:
+                    continue
+                capped.append(q)
+                cap_counts[st] += 1
+            if len(capped) < len(queries):
+                logger.info(
+                    "Signal cap enforcement: dropped %d over-cap queries from final list",
+                    len(queries) - len(capped),
+                )
+                queries = capped
 
         telemetry["accepted_query_count"] = len(queries)
         telemetry["signal_coverage_after_planning"] = sorted({q.signal_type.value for q in queries})
@@ -914,6 +1039,124 @@ class QueryPlanner:
             f"{json.dumps(accepted_payload, indent=2)}\n"
             "Return ONLY a JSON array of SearchQuery objects."
         )
+
+    def _targeted_signal_regeneration(
+        self,
+        queries: list[SearchQuery],
+        abstract_principles: str,
+        companies: list[str],
+        time_window: str,
+        allowed_entities: set[str],
+        allowed_signal_types: set[str],
+        signal_caps: Optional[dict[str, int]] = None,
+    ) -> tuple[list[SearchQuery], list[str], dict[str, int]]:
+        """
+        For each signal in _DEMO_SIGNAL_QUERY_MINIMUMS under-represented in LLM queries,
+        issues one focused LLM call. Playbook queries (q_price_*) excluded from LLM count.
+        Returns (updated_queries, attempts, success_counts).
+        """
+        _SIGNAL_DOMAIN_HINTS: dict[str, str] = {
+            "investor_signal": "sec.gov, ir.[company].com, investor.[company].com",
+            "product_launch": "[company].com/newsroom, servethehome.com, anandtech.com, tomshardware.com",
+            "supplier_risk": "reuters.com, bloomberg.com, digitimes.com, techinsights.com",
+            "strategic_messaging": "[company] investor day transcripts, earnings call coverage",
+        }
+
+        # Priority order: product_launch → supplier_risk → strategic_messaging (only if both blocked
+        # signals are already satisfied). hiring_momentum and news_sentiment are never regenerated.
+        # Hard limit: at most 2 LLM calls per planning round.
+        _REGEN_PRIORITY: list[str] = ["product_launch", "supplier_risk", "strategic_messaging"]
+        _REGEN_MAX_CALLS: int = 2
+        _REGEN_BLOCKING: set[str] = {"product_launch", "supplier_risk"}
+
+        llm_counts: dict[str, int] = defaultdict(int)
+        for q in queries:
+            if not q.query_id.startswith("q_price_"):
+                llm_counts[q.signal_type.value] += 1
+
+        seen_texts = [_normalize_query_text(q.query_text) for q in queries]
+        attempts: list[str] = []
+        success: dict[str, int] = {}
+        current_date = datetime.now().strftime("%B %d, %Y")
+        companies_str = ", ".join(companies)
+        entity_enum = ", ".join(f'"{c}"' for c in sorted(allowed_entities))
+        calls_used = 0
+
+        for signal_type in _REGEN_PRIORITY:
+            if calls_used >= _REGEN_MAX_CALLS:
+                break
+            if signal_type not in _DEMO_SIGNAL_QUERY_MINIMUMS:
+                continue
+            if signal_type not in allowed_signal_types:
+                continue
+            # strategic_messaging blocked until product_launch AND supplier_risk are satisfied
+            if signal_type not in _REGEN_BLOCKING:
+                blocking_satisfied = all(
+                    llm_counts.get(s, 0) >= _DEMO_SIGNAL_QUERY_MINIMUMS.get(s, 0)
+                    for s in _REGEN_BLOCKING
+                    if s in allowed_signal_types
+                )
+                if not blocking_satisfied:
+                    logger.info(
+                        "Targeted regen: skipping %s — blocking signals not yet satisfied", signal_type
+                    )
+                    continue
+
+            minimum = _DEMO_SIGNAL_QUERY_MINIMUMS[signal_type]
+            current = llm_counts.get(signal_type, 0)
+            cap = (signal_caps.get(signal_type, 999) if signal_caps else 999)
+            effective_target = min(minimum, cap)
+            needed = max(0, effective_target - current)
+            if needed <= 0:
+                continue
+
+            attempts.append(signal_type)
+            calls_used += 1
+            logger.info(
+                "Targeted regen call %d/%d: signal=%s current_llm=%d minimum=%d needed=%d",
+                calls_used, _REGEN_MAX_CALLS, signal_type, current, minimum, needed,
+            )
+            source_domains = _SIGNAL_DOMAIN_HINTS.get(signal_type, "relevant specialist news sites")
+            regen_system = (
+                f"You are a financial intelligence query planner.\n"
+                f"Generate exactly {needed} search queries for signal_type=\"{signal_type}\".\n"
+                f"Source domains to target: {source_domains}\n"
+                f"Time window: {time_window}. Current date: {current_date}.\n"
+                f"Companies: {companies_str}.\n"
+                f"Each query MUST include a time anchor (month+year or quarter+year).\n"
+                f"entity must be one of: {entity_enum}.\n"
+                f"\nStep-Back context for {signal_type}:\n{abstract_principles}\n"
+                f"\nReturn ONLY a valid JSON array. Each element must have exactly these fields:\n"
+                f'[{{"query_text": "...", "target_entity": "...", '
+                f'"signal_type": "{signal_type}", '
+                f'"source_type": "serp_news", "priority": 2, "expected_source_tier": 2}}]'
+            )
+            try:
+                raw = self._llm.call_json(
+                    system=regen_system,
+                    user=f"Generate {needed} {signal_type} queries now. Return only the JSON array.",
+                    max_tokens=2048,
+                )
+                new_queries, _ = self._parse_candidates(
+                    raw,
+                    allowed_signal_types={signal_type},
+                    allowed_entities=allowed_entities,
+                    existing_queries=queries,
+                )
+                added = 0
+                for q in new_queries:
+                    normalized = _normalize_query_text(q.query_text)
+                    if not _is_near_duplicate(normalized, seen_texts):
+                        queries.append(q)
+                        seen_texts.append(normalized)
+                        added += 1
+                success[signal_type] = added
+                logger.info("Targeted regen %s: added %d queries", signal_type, added)
+            except Exception as exc:
+                logger.warning("Targeted regen failed for %s: %s", signal_type, exc)
+                success[signal_type] = 0
+
+        return queries, attempts, success
 
 
 def _has_time_anchor(query_text: str) -> bool:
@@ -1049,6 +1292,7 @@ def _trim_queries_to_limit(
     require_market_query: bool,
     require_priority_investor_signals: bool,
     signal_minimums: dict[str, int],
+    signal_caps: Optional[dict[str, int]] = None,
 ) -> list[SearchQuery]:
     """Keep the most important coverage-preserving queries when an LLM overshoots."""
     if len(queries) <= max_queries:
@@ -1116,6 +1360,10 @@ def _trim_queries_to_limit(
         key=lambda q: (q.priority, -SIGNAL_WEIGHTS.get(q.signal_type.value, 0.0)),
     )
     for query in weighted_remaining:
+        if signal_caps:
+            st = query.signal_type.value
+            if st in signal_caps and sum(1 for q in selected if q.signal_type.value == st) >= signal_caps[st]:
+                continue
         add(query)
         if len(selected) >= max_queries:
             break

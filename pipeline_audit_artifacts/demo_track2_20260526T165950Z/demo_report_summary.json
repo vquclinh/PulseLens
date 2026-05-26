@@ -1,0 +1,125 @@
+{
+  "report": {
+    "report_id": "report_05aacb872fda",
+    "quality_status": "PARTIAL_PASS",
+    "quality_reasons": [
+      "fact_count 49 < 50"
+    ],
+    "pulse_score": 55.8,
+    "pulse_status": "stable",
+    "pulse_confidence": 0.5,
+    "evidence_count": 49,
+    "source_count": 23,
+    "top_signals": [
+      {
+        "signal_type": "investor_signal",
+        "score": 0.2413,
+        "source_count": 12,
+        "confidence": 0.785,
+        "narrative": "Institutional managers filed their quarterly reports (13F-HR) on May 15, 2026.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "strategic_messaging",
+        "score": 0.375,
+        "source_count": 4,
+        "confidence": 0.752,
+        "narrative": "AMD anticipates server growth to significantly accelerate as the company scales supply to meet demand for high-performance CPUs and accelerators.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "news_sentiment",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "pricing_pressure",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "hiring_momentum",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      }
+    ],
+    "watch_list": [
+      {
+        "title": "Nvidia's Q4 and FY26 Financial Results Call",
+        "rationale": "Nvidia will discuss its financial performance, which could provide insights into the strength of the AI market and their strategic direction. Investor sentiment and the stock price of Nvidia and related companies may react significantly to this report.",
+        "trigger": "Nvidia holds conference call and releases Q4/FY26 results.",
+        "signals_pointing_there": [
+          "claim_974f4ffedfdc",
+          "claim_38fadc656e4f"
+        ],
+        "urgency": "next_2_weeks"
+      },
+      {
+        "title": "AMD Server Segment Growth Realization",
+        "rationale": "AMD anticipates significant acceleration in its server business due to high demand for CPUs and accelerators. Monitoring developments here will indicate if AMD is successfully scaling production to meet this demand and capitalize on market opportunities.",
+        "trigger": "New reports or announcements from AMD or partners regarding server segment growth or supply chain scaling.",
+        "signals_pointing_there": [
+          "claim_27aa156fb052",
+          "claim_0794b19c9472"
+        ],
+        "urgency": "this_month"
+      },
+      {
+        "title": "Market Adoption of AI Mainstream Technologies",
+        "rationale": "Nvidia is actively trying to convince investors that AI is ready for mainstream adoption. Evidence of this shift, or lack thereof, will impact investor confidence in AI-centric companies.",
+        "trigger": "Reports or statements from enterprises about new widespread AI implementations or a broader market shift towards AI solutions.",
+        "signals_pointing_there": [
+          "claim_38fadc656e4f"
+        ],
+        "urgency": "this_month"
+      }
+    ],
+    "audit_summary": {
+      "query_count": 42,
+      "accepted_doc_count": 61,
+      "failed_query_count": 12,
+      "zero_doc_query_count": 12,
+      "fetch_error_count": 4,
+      "covered_signal_types": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "missing_signal_types": [],
+      "source_count": 23,
+      "evidence_count": 49
+    }
+  },
+  "companies_covered": [
+    "AMD",
+    "Nvidia",
+    "Supermicro"
+  ],
+  "core_signals_covered": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "core_signals_missing": [],
+  "optional_signals_covered": [
+    "strategic_messaging"
+  ],
+  "optional_signals_missing": [
+    "hiring_momentum",
+    "news_sentiment"
+  ],
+  "pricing_pressure_document_count": 18,
+  "estimated_brightdata_calls": 131
+}

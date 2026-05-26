@@ -1,0 +1,41 @@
+{
+  "total_pricing_facts": 2,
+  "strong_pricing_signal_count": 2,
+  "weak_pricing_signal_count": 0,
+  "misclassified_pricing_signal_count": 0,
+  "insufficient_evidence_count": 0,
+  "strong_fraction": 1.0,
+  "verdict": "ACCEPTABLE — majority of pricing facts are strong signals",
+  "facts": [
+    {
+      "fact_id": "fact_002c9ae58ab1",
+      "entity": "AMD",
+      "claim": "Oracle Cloud charges $6.00 per GPU/hour for instances running AMD Instinct MI300X accelerators.",
+      "evidence_quote": "Price (per GPU/hour), $6.00 ; Number of GPUs, 8 x AMD Instinct MI300X Accelerators",
+      "source_url": "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus",
+      "source_tier": 4,
+      "confidence": 1.0,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?"
+      ]
+    },
+    {
+      "fact_id": "fact_af5639981ba2",
+      "entity": "AMD",
+      "claim": "The price for an Oracle Cloud instance with 8x AMD Instinct MI300X accelerators is $6.00 per GPU/hour.",
+      "evidence_quote": "Price (per GPU/hour), $6.00 ; Number of GPUs, 8 x AMD Instinct MI300X Accelerators",
+      "source_url": "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus",
+      "source_tier": 4,
+      "confidence": 0.9,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?"
+      ]
+    }
+  ]
+}

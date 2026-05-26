@@ -1,0 +1,235 @@
+{
+  "total_domains": 12,
+  "rating_summary": {
+    "authoritative": 4,
+    "acceptable": 6,
+    "suspicious_or_low_signal": 1,
+    "unknown": 1
+  },
+  "suspicious_or_low_signal_count": 1,
+  "reject_next_time_candidate_count": 0,
+  "domains": [
+    {
+      "domain": "ir.amd.com",
+      "quality_rating": "authoritative",
+      "fact_count": 10,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://ir.amd.com/",
+        "https://ir.amd.com/news-events/press-releases"
+      ]
+    },
+    {
+      "domain": "sec.gov",
+      "quality_rating": "authoritative",
+      "fact_count": 9,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Nvidia",
+        "Supermicro",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1375365/000137536526000010/a447824_supermicroxarxproo.pdf",
+        "https://www.sec.gov/edgar/browse/?CIK=0001084208"
+      ]
+    },
+    {
+      "domain": "investor.nvidia.com",
+      "quality_rating": "authoritative",
+      "fact_count": 9,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://investor.nvidia.com/home/default.aspx",
+        "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2026/default.aspx"
+      ]
+    },
+    {
+      "domain": "bloomberg.com",
+      "quality_rating": "acceptable",
+      "fact_count": 7,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "Dell",
+        "Nvidia",
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://bloomberg.com/latest/nvidia",
+        "https://www.bloomberg.com/news/videos/2026-05-21/nvidia-targets-new-revenue-engine-beyond-hyperscalers-video"
+      ]
+    },
+    {
+      "domain": "servethehome.com",
+      "quality_rating": "acceptable",
+      "fact_count": 4,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/"
+      ]
+    },
+    {
+      "domain": "blogs.oracle.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus"
+      ]
+    },
+    {
+      "domain": "ir.supermicro.com",
+      "quality_rating": "authoritative",
+      "fact_count": 2,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx"
+      ]
+    },
+    {
+      "domain": "tomshardware.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        3
+      ],
+      "entities": [
+        "Intel",
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://www.tomshardware.com/tech-industry/nvidia-skips-new-gpus-at-ces-2026-as-its-roadmap-shifts-toward-rack-scale-ai-systems",
+        "https://www.tomshardware.com/tech-industry/semiconductors/intel-chip-roadmap-2026-2028"
+      ]
+    },
+    {
+      "domain": "youtube.com",
+      "quality_rating": "suspicious_or_low_signal",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://www.youtube.com/watch?v=7eWSdOxjVWA"
+      ]
+    },
+    {
+      "domain": "sj.com",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "supplier_risk"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.wsj.com/tech/microsoft-urges-trump-to-overhaul-curbs-on-ai-chip-exports-4dc48e81"
+      ]
+    },
+    {
+      "domain": "runpod.io",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.runpod.io/articles/alternatives/lambda-labs"
+      ]
+    },
+    {
+      "domain": "amd.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-accelerates-pace-of-data-center-ai-innovation-.html"
+      ]
+    }
+  ]
+}

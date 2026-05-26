@@ -1,0 +1,264 @@
+{
+  "hiring_momentum": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "product_launch": {
+    "fact_count": 19,
+    "verified_claim_count": 2,
+    "average_confidence": 0.937,
+    "source_count": 6,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 7
+      },
+      {
+        "domain": "investor.nvidia.com",
+        "fact_count": 5
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 3
+      },
+      {
+        "domain": "tomshardware.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "bloomberg.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 9,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_6ea0e4158d9b",
+        "entity": "AMD",
+        "claim": "Meta will be a lead customer for AMD's upcoming 6th Gen EPYC CPUs, codenamed “Venice” and “Verano.”",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_27383ce23d77",
+        "entity": "Dell",
+        "claim": "Dell has added 1,000 clients for its AI gear and is targeting corporate users.",
+        "source_url": "https://bloomberg.com/latest/nvidia",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_e9bb5770335c",
+        "entity": "AMD",
+        "claim": "AMD introduces the Ryzen AI Embedded Processor Portfolio for AI-driven immersive experiences in automotive, industrial, and physical AI sectors.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_dd9942fda28e",
+        "entity": "AMD",
+        "claim": "AMD expands its Ryzen AI 400 Series portfolio, providing consumers and businesses with more AI PC options.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_734ba691015c",
+        "entity": "Nvidia",
+        "claim": "Nvidia unveiled its latest rack-scale solutions at CES 2026.",
+        "source_url": "https://www.tomshardware.com/tech-industry/nvidia-skips-new-gpus-at-ces-2026-as-its-roadmap-shifts-toward-rack-scale-ai-systems",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_d22572ef2c97",
+        "entity": "Nvidia",
+        "claim": "NVIDIA will present its 2nd Quarter FY26 Financial Results.",
+        "source_url": "https://investor.nvidia.com/home/default.aspx",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_346f64d25d5e",
+        "entity": "Nvidia",
+        "claim": "NVIDIA will present its 3rd Quarter FY26 Financial Results.",
+        "source_url": "https://investor.nvidia.com/home/default.aspx",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_40e47cffc15b",
+        "entity": "Nvidia",
+        "claim": "NVIDIA will present its 1st Quarter FY27 Financial Results.",
+        "source_url": "https://investor.nvidia.com/home/default.aspx",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_1a3fa283ba76",
+        "entity": "AMD",
+        "claim": "AMD is accelerating its data center AI innovation with an expanded AMD Instinct GPU roadmap.",
+        "source_url": "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-accelerates-pace-of-data-center-ai-innovation-.html",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      }
+    ]
+  },
+  "pricing_pressure": {
+    "fact_count": 2,
+    "verified_claim_count": 0,
+    "average_confidence": 0.95,
+    "source_count": 1,
+    "top_domains": [
+      {
+        "domain": "blogs.oracle.com",
+        "fact_count": 2
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "strategic_messaging": {
+    "fact_count": 9,
+    "verified_claim_count": 2,
+    "average_confidence": 0.889,
+    "source_count": 5,
+    "top_domains": [
+      {
+        "domain": "bloomberg.com",
+        "fact_count": 3
+      },
+      {
+        "domain": "investor.nvidia.com",
+        "fact_count": 3
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "runpod.io",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 7,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_f1e649cab572",
+        "entity": "AMD",
+        "claim": "AMD discussed the upcoming MI355X product for 2025.",
+        "source_url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_1d73ec59ab52",
+        "entity": "AMD",
+        "claim": "AMD anticipates server growth to significantly accelerate as the company scales supply to meet demand for high-performance CPUs and accelerators.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_33db21d19968",
+        "entity": "Nvidia",
+        "claim": "Nvidia is informing skeptical investors that AI is prepared to go mainstream.",
+        "source_url": "https://bloomberg.com/latest/nvidia",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_e4c93f810542",
+        "entity": "Nvidia",
+        "claim": "NVIDIA announced a collaboration with Intel to jointly develop multiple generations of custom data center and PC products using NVIDIA NVLink.",
+        "source_url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2026/default.aspx",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_610f00e8746c",
+        "entity": "Nvidia",
+        "claim": "NVIDIA announced that Arm is extending its Neoverse platform with NVIDIA NVLink Fusion™ to accelerate AI data center adoption.",
+        "source_url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2026/default.aspx",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_93815c9d0bb9",
+        "entity": "Nvidia",
+        "claim": "Meta, Microsoft, and Oracle will enhance their AI data center networks with NVIDIA Spectrum-X™ Ethernet networking switches.",
+        "source_url": "https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2026/default.aspx",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_7a05e25bda62",
+        "entity": "market",
+        "claim": "Runpod lists alternatives to Lambda Labs that currently stock GPUs.",
+        "source_url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      }
+    ]
+  },
+  "investor_signal": {
+    "fact_count": 17,
+    "verified_claim_count": 4,
+    "average_confidence": 0.947,
+    "source_count": 6,
+    "top_domains": [
+      {
+        "domain": "sec.gov",
+        "fact_count": 9
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "bloomberg.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "youtube.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_e1fa95b1e771",
+        "entity": "Nvidia",
+        "claim": "A statement of changes in beneficial ownership for Nvidia was filed on March 25, 2026.",
+        "source_url": "https://www.sec.gov/edgar/browse/?CIK=0001167456",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      }
+    ]
+  },
+  "news_sentiment": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "supplier_risk": {
+    "fact_count": 2,
+    "verified_claim_count": 0,
+    "average_confidence": 0.9,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "bloomberg.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "sj.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  }
+}

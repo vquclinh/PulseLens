@@ -1,0 +1,13 @@
+{
+  "total_fetch_attempts": 43,
+  "successful_fetches": 39,
+  "failed_fetches": 4,
+  "permanent_failures": 0,
+  "failure_count_by_domain": {
+    "investor.nvidia.com": 3,
+    "nvidianews.nvidia.com": 1
+  },
+  "failure_count_by_reason": {
+    "timeout": 4
+  }
+}
