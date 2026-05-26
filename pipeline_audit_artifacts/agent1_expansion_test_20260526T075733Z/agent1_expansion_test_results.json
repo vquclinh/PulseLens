@@ -1,0 +1,41 @@
+{
+  "all_passed": true,
+  "tests": {
+    "test1_no_crash_on_pricing_only": {
+      "passed": true,
+      "queries_returned": 10,
+      "expansion_unsatisfied_signals": [
+        "investor_signal",
+        "product_launch",
+        "supplier_risk"
+      ],
+      "expansion_failure_recovered": true
+    },
+    "test2_required_types_preserved": {
+      "passed": true,
+      "trimmed_count": 10,
+      "covered_signal_types": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "supplier_risk"
+      ]
+    },
+    "test3_single_missing_pricing": {
+      "passed": true,
+      "queries_returned": 10,
+      "expansion_unsatisfied_signals": [],
+      "expansion_failure_recovered": false,
+      "covered_signal_types": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "supplier_risk"
+      ]
+    },
+    "test4_round0_still_raises": {
+      "passed": true,
+      "error_message": "Quality gate FAIL: missing required signal types. Missing: ['investor_signal', 'product_launch', 'supplier_risk']"
+    }
+  }
+}

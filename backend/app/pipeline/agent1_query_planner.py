@@ -438,6 +438,7 @@ class QueryPlanner:
                         "pricing_playbook_query_count": len(pricing_playbook_queries),
                         "pricing_playbook_queries": pricing_playbook_payload,
                     },
+                    is_expansion=is_expansion,
                 )
                 break
             except _CoverageValidationError as exc:
@@ -476,6 +477,23 @@ class QueryPlanner:
             len({q.signal_type for q in queries}),
             len({q.target_entity for q in queries if q.target_entity != "market"}),
         )
+
+        if is_expansion:
+            signal_counts: dict[str, int] = {}
+            for q in queries:
+                signal_counts[q.signal_type.value] = signal_counts.get(q.signal_type.value, 0) + 1
+            self.last_query_telemetry.setdefault("expansion_requested_missing_signals",
+                sorted(expansion_signal_types or required_signal_types))
+            self.last_query_telemetry.setdefault("expansion_generated_signal_counts", signal_counts)
+            self.last_query_telemetry.setdefault("expansion_trimmed_signal_counts",
+                {st: signal_counts.get(st, 0) for st in required_signal_types})
+            self.last_query_telemetry.setdefault("expansion_unsatisfied_signals", [])
+            self.last_query_telemetry.setdefault("expansion_failure_recovered", False)
+            self.last_query_telemetry["query_cap_before_after"] = {
+                "max_expansion_queries": MAX_EXPANSION_QUERIES,
+                "queries_returned": len(queries),
+            }
+
         return queries
 
     # ── Internal ──────────────────────────────────────────────────────────────
@@ -533,6 +551,7 @@ class QueryPlanner:
         signal_minimums: Optional[dict[str, int]] = None,
         seed_queries: Optional[list[SearchQuery]] = None,
         seed_telemetry: Optional[dict[str, object]] = None,
+        is_expansion: bool = False,
     ) -> List[SearchQuery]:
         queries, telemetry = self._parse_candidates(
             raw,
@@ -588,6 +607,7 @@ class QueryPlanner:
             require_market_query=require_market_query,
             require_priority_investor_signals=require_priority_investor_signals,
             signal_minimums=signal_minimums,
+            is_expansion=is_expansion,
         )
         return queries
 
@@ -742,6 +762,7 @@ class QueryPlanner:
         require_market_query: bool,
         require_priority_investor_signals: bool,
         signal_minimums: Optional[dict[str, int]],
+        is_expansion: bool = False,
     ) -> list[SearchQuery]:
         if max_queries and len(queries) > max_queries:
             before_trim = len(queries)
@@ -774,6 +795,19 @@ class QueryPlanner:
         if required_signal_types:
             missing_signals = required_signal_types - covered_signal_types
             if missing_signals:
+                if is_expansion:
+                    # Non-fatal in expansion mode: near-duplicate rejection may prevent full
+                    # signal coverage. Return best-effort queries and let Quality Gate decide.
+                    telemetry["expansion_unsatisfied_signals"] = sorted(missing_signals)
+                    telemetry["expansion_failure_recovered"] = True
+                    logger.warning(
+                        "agent1: expansion best-effort: unsatisfied signal types=%s "
+                        "(near-duplicate rejection prevented full coverage); returning %d queries",
+                        sorted(missing_signals),
+                        len(queries),
+                    )
+                    self.last_query_telemetry = _finalize_telemetry_dict(telemetry)
+                    return queries
                 raise ValueError(
                     "Quality gate FAIL: missing required signal types. "
                     f"Missing: {sorted(missing_signals)}"
@@ -1021,11 +1055,7 @@ def _trim_queries_to_limit(
         selected.append(query)
         selected_ids.add(query.query_id)
 
-    # Deterministic playbook queries carry the fragile pricing coverage.
-    for query in queries:
-        if query.query_id.startswith("q_price_"):
-            add(query)
-
+    # Reserve one slot per required signal type FIRST so pricing playbook cannot crowd them out.
     for signal_type in required_signal_types:
         if any(q.signal_type.value == signal_type for q in selected):
             continue
@@ -1033,6 +1063,11 @@ def _trim_queries_to_limit(
             if query.signal_type.value == signal_type:
                 add(query)
                 break
+
+    # Then fill remaining capacity with deterministic pricing playbook queries.
+    for query in queries:
+        if query.query_id.startswith("q_price_"):
+            add(query)
 
     for company in expected_companies:
         if any(q.target_entity == company for q in selected):

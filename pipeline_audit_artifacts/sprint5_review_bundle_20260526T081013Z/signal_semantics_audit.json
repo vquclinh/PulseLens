@@ -1,0 +1,222 @@
+{
+  "hiring_momentum": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "product_launch": {
+    "fact_count": 14,
+    "verified_claim_count": 2,
+    "average_confidence": 0.921,
+    "source_count": 5,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 9
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "anandtech.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "amd.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 3,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_d6a687fbbc3f",
+        "entity": "AMD",
+        "claim": "AMD is offering more AI PC options with an expanded Ryzen™ AI 400 Series portfolio.",
+        "source_url": "https://ir.amd.com/news-events/press-releases",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_f1ed730fb50b",
+        "entity": "AMD",
+        "claim": "AMD will expand its Ryzen AI 400 Series portfolio to offer consumers and businesses more AI PC options on March 2, 2026.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_b3e8cbab4276",
+        "entity": "AMD",
+        "claim": "AMD introduced the next-generation Helios rack-scale solution powered by AMD Instinct MI400 GPUs, AMD EPYC Venice CPUs, and AMD Pensando Vulcano NICs.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      }
+    ]
+  },
+  "pricing_pressure": {
+    "fact_count": 5,
+    "verified_claim_count": 0,
+    "average_confidence": 0.98,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "runpod.io",
+        "fact_count": 3
+      },
+      {
+        "domain": "blogs.oracle.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "thinkmate.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "strategic_messaging": {
+    "fact_count": 6,
+    "verified_claim_count": 1,
+    "average_confidence": 0.883,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "reuters.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 2
+      }
+    ],
+    "suspicious_claim_count": 5,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_783f25ba52bc",
+        "entity": "market",
+        "claim": "Samsung Electronics' customers praised the competitiveness of its HBM4 chip.",
+        "source_url": "https://www.reuters.com/world/asia-pacific/samsung-electronics-highlights-progress-hbm4-chip-supply-2026-01-02/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_d4e2218b07f2",
+        "entity": "market",
+        "claim": "Samsung Electronics is trying to achieve parity with AI chip rivals such as SK Hynix.",
+        "source_url": "https://www.reuters.com/world/asia-pacific/samsung-electronics-highlights-progress-hbm4-chip-supply-2026-01-02/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_c18d40bb578b",
+        "entity": "AMD",
+        "claim": "AMD discussed plans for the MI355X, expected in 2025.",
+        "source_url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_92a78ae54d76",
+        "entity": "AMD",
+        "claim": "AMD plans to achieve greater than 35% revenue compound annual growth as part of its long-term financial model.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1266/amd-unveils-strategy-to-lead-the-1-trillion-compute-market-and-accelerate-next-phase-of-growth",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_a3a6f0f8f695",
+        "entity": "AMD",
+        "claim": "AMD discussed the upcoming MI355X product for 2025.",
+        "source_url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      }
+    ]
+  },
+  "investor_signal": {
+    "fact_count": 13,
+    "verified_claim_count": 3,
+    "average_confidence": 0.954,
+    "source_count": 5,
+    "top_domains": [
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 7
+      },
+      {
+        "domain": "investor.nvidia.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "medium.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "sec.gov",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 3,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_d8c33438ae34",
+        "entity": "Supermicro",
+        "claim": "Supermicro's accumulated other comprehensive income was 698.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_d81b5f38b992",
+        "entity": "market",
+        "claim": "The global semiconductor market is projected to approach $1 trillion in 2026.",
+        "source_url": "https://medium.com/@adnanmasood/semiconductors-in-2026-the-ai-driven-upswing-meets-structural-bottlenecks-3568b004905b",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_63dd5b8a749a",
+        "entity": "market",
+        "claim": "The official market size for semiconductors in 2024 is $630.5 billion.",
+        "source_url": "https://medium.com/@adnanmasood/semiconductors-in-2026-the-ai-driven-upswing-meets-structural-bottlenecks-3568b004905b",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      }
+    ]
+  },
+  "news_sentiment": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "supplier_risk": {
+    "fact_count": 2,
+    "verified_claim_count": 1,
+    "average_confidence": 0.9,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "digitimes.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  }
+}

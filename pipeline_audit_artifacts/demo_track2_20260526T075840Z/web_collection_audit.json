@@ -1,0 +1,1871 @@
+{
+  "query_count": 42,
+  "queries": [
+    {
+      "query_id": "q_68aa3465",
+      "query_text": "Nvidia component supply chain risk HBM May 2026 site:reuters.com",
+      "target_entity": "Nvidia",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.reuters.com/world/asia-pacific/samsung-electronics-highlights-progress-hbm4-chip-supply-2026-01-02/",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.reuters.com/world/china/nvidia-supplier-sk-hynix-posts-record-q3-profit-meets-forecasts-2025-10-28/",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.reuters.com/commentary/breakingviews/samsung-has-fighting-shot-close-ai-marathon-gap-2025-09-23/",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.reuters.com/world/china/ai-frenzy-is-driving-new-global-supply-chain-crisis-2025-12-03/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/technology/chinese-firms-stockpile-high-end-samsung-chips-they-await-new-us-curbs-say-2024-08-06/",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_eef62432",
+      "query_text": "CoreWeave Nvidia H100 H200 B200 Blackwell GPU cloud pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.coreweave.com/pricing",
+        "https://www.coreweave.com/pricing/classic"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.coreweave.com/pricing",
+          "reason": "pricing_cloud_provider_accept"
+        },
+        {
+          "url": "https://www.coreweave.com/pricing/classic",
+          "reason": "pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://jarvislabs.ai/blog/h100-price",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/providers/coreweave",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_11ad9ed6",
+      "query_text": "Nvidia investor.nvidia.com earnings guidance revision May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://investor.nvidia.com/financial-info/financial-reports/default.aspx"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://investor.nvidia.com/financial-info/financial-reports/default.aspx",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://investor.nvidia.com/events-and-presentations/events-and-presentations/default.aspx",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "http://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2026",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_ed454e02",
+      "query_text": "site:aws.amazon.com/ec2 Nvidia H100 H200 GPU instance pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.runpod.io/articles/guides/top-cloud-gpu-providers"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+          "reason": "fallback:pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://aws.amazon.com/ec2/instance-types/p5/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/ac.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/capacityblocks/pricing/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/capacityblocks/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/instance-types/accelerated-computing/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://jarvislabs.ai/blog/h200-price",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://lambda.ai/pricing",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/pricing/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://altstreet.investments/tools/gpu/gpu-price-comparison",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://northflank.com/blog/12-best-gpu-cloud-providers",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/mirzabeg_genai-nvidia-gpus-activity-7455686728155226113-oG-M",
+          "reason": "fallback:social_or_low_signal_page_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_638494c3",
+      "query_text": "NVIDIA Blackwell launch review site:anandtech.com last 7 days",
+      "target_entity": "Nvidia",
+      "signal_type": "product_launch",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.anandtech.com/show/21310/nvidia-blackwell-architecture-and-b200b100-accelerators-announced-going-bigger-with-smaller-data",
+        "https://www.anandtech.com/show/13249/nvidia-announces-geforce-rtx-20-series-rtx-2080-ti-2080-2070"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.anandtech.com/show/21310/nvidia-blackwell-architecture-and-b200b100-accelerators-announced-going-bigger-with-smaller-data",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.anandtech.com/show/13249/nvidia-announces-geforce-rtx-20-series-rtx-2080-ti-2080-2070",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://forums.anandtech.com/threads/nvidia-blackwell-in-q1-2025.2614751/page-2",
+          "reason": "forum_or_community_source_not_allowed"
+        },
+        {
+          "url": "https://forums.anandtech.com/threads/gamers-nexus-hardware-unboxed-nvidia-manipulating-tech-reviewers-5060-launch.2629970/",
+          "reason": "forum_or_community_source_not_allowed"
+        },
+        {
+          "url": "https://forums.anandtech.com/threads/rdna4-cdna3-architectures-thread.2602668/page-471",
+          "reason": "forum_or_community_source_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_b6995c60",
+      "query_text": "Lambda Labs RunPod Nvidia H100 H200 L40S GPU pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.runpod.io/articles/alternatives/lambda-labs"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+          "reason": "pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://altstreet.investments/tools/gpu/gpu-price-comparison",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/providers/lambda",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://jarvislabs.ai/blog/h100-price",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_53d8a4e7",
+      "query_text": "site:azure.microsoft.com AMD Instinct MI300X MI325X GPU VM pricing availability May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.digitalocean.com/blog/now-available-amd-instinct-mi325x-gpus",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.thundercompute.com/blog/amd-mi300x-pricing",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus/amd-mi325x",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/developer/resources/cloud-access/amd-developer-cloud.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1218/amd-unveils-leadership-ai-solutions-at-advancing-ai-2024",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/partner/articles/instinct-mi325x-accelerators.html",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/ai-infrastructure",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/interestingengineering/posts/amd-went-all-in-on-ai-at-ces-2026-unveiling-the-helios-rack-platform-that-can-de/1322205829950851/",
+          "reason": "fallback:social_or_low_signal_page_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_21539af9",
+      "query_text": "AMD MI350 MI325X Instinct cloud GPU availability pricing May 2026 Reuters ServeTheHome",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-accelerates-pace-of-data-center-ai-innovation-.html",
+        "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-accelerates-pace-of-data-center-ai-innovation-.html",
+          "reason": "pricing_playbook_accept"
+        },
+        {
+          "url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+          "reason": "pricing_playbook_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.facebook.com/rundownnewsletter/posts/amd-has-raised-the-price-of-its-instinct-mi350-ai-chip-by-70-from-15000-to-25000/626998483755274/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://gpus.io/en/gpus/mi325",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus/amd-mi325x",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_7770305f",
+      "query_text": "AMD MI300X MI325X Instinct AI server pricing availability Dell Supermicro May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.dell.com/en-us/blog/dell-generative-ai-open-ecosystem-with-amd-instinct-accelerators/"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.dell.com/en-us/blog/dell-generative-ai-open-ecosystem-with-amd-instinct-accelerators/",
+          "reason": "pricing_playbook_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/amd-instinct",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/partner/articles/instinct-mi325x-accelerators.html",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_61cb692a",
+      "query_text": "Oracle Cloud AMD Instinct MI300X MI325X GPU instance pricing availability May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus",
+        "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus",
+          "reason": "pricing_cloud_provider_accept"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications",
+          "reason": "pricing_playbook_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://computeprices.com/providers/tensorwave",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/Vultr/posts/if-your-ai-or-ml-workloads-dont-require-always-on-gpu-power-preemptible-instance/1303936148445720/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://getdeploying.com/gpus/amd-mi300x",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_e4fc2b8d",
+      "query_text": "cloud GPU rental price changes H100 H200 B200 MI300X May 2026 SemiAnalysis ServeTheHome",
+      "target_entity": "market",
+      "signal_type": "pricing_pressure",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_688d785f",
+      "query_text": "AI server lead times GPU availability supply shortage oversupply May 2026 Reuters Bloomberg",
+      "target_entity": "market",
+      "signal_type": "pricing_pressure",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_eddfd9b2",
+      "query_text": "Supermicro Nvidia Blackwell B200 GPU server availability lead time liquid cooling May 2026",
+      "target_entity": "Supermicro",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_f973bf49",
+      "query_text": "site:supermicro.com Supermicro GPU server AI server pricing availability H100 H200 B200 May 2026",
+      "target_entity": "Supermicro",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_83c885a3",
+      "query_text": "Supermicro AMD Instinct MI300 MI325 GPU server availability pricing May 2026",
+      "target_entity": "Supermicro",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/supermicro",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/support/resources/gpu",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://laotiantimes.com/2025/11/20/supermicro-expands-its-portfolio-of-performance-and-efficiency-driven-air-cooled-ai-solutions-featuring-amd-instinct-mi355x-gpus/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://futurumgroup.com/insights/will-supermicros-legal-crisis-shift-server-market-share-to-new-dell-and-hpe-gpu-platforms/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_d41a6fc3",
+      "query_text": "GPU instance discounts pricing availability H100 H200 L40S MI300X May 2026 AWS Azure Google Cloud",
+      "target_entity": "market",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_edf2b81b",
+      "query_text": "NVDA 8-K filing details last 7 days site:sec.gov",
+      "target_entity": "Nvidia",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581022000036/nvda-20220130.htm",
+        "https://www.sec.gov/ix?doc=/Archives/edgar/data/1045810/000104581021000160/nvda-20211117.htm"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000023/nvda-20250126.htm",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581022000036/nvda-20220130.htm",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581024000029/nvda-20240128.htm",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/ix?doc=/Archives/edgar/data/1045810/000104581021000160/nvda-20211117.htm",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000021/nvda-20260125.htm",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_4e6ec806",
+      "query_text": "AI hardware market analyst commentary May 2026 site:wsj.com",
+      "target_entity": "market",
+      "signal_type": "investor_signal",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.infineon.com/about/investor",
+        "https://medium.com/@adnanmasood/semiconductors-in-2026-the-ai-driven-upswing-meets-structural-bottlenecks-3568b004905b"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.infineon.com/about/investor",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://medium.com/@adnanmasood/semiconductors-in-2026-the-ai-driven-upswing-meets-structural-bottlenecks-3568b004905b",
+          "reason": "fallback:accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.pwc.com/gx/en/industries/technology/pwc-semiconductor-and-beyond-2026-full-report.pdf",
+          "reason": "fallback:below_relevance_threshold:0.220"
+        },
+        {
+          "url": "https://www.aixtron.com/en/investors/news/voting-rights/AIXTRON%20receives%20multiple%20orders%20for%20G10-AsP%20MOCVD%20Systems%20from%20Lumentum%20to%20support%20expansion%20of%20High-Speed%20Optical%20Solutions%20for%20AI%20Networks_n13987",
+          "reason": "fallback:below_relevance_threshold:0.220"
+        },
+        {
+          "url": "https://www.deloitte.com/us/en/insights/industry/technology/technology-media-telecom-outlooks/semiconductor-industry-outlook.html",
+          "reason": "fallback:below_relevance_threshold:0.220"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": true,
+      "fallback_policy": "standard",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_ba289685",
+      "query_text": "Supermicro analyst upgrade downgrade May 2026 site:reuters.com OR site:bloomberg.com",
+      "target_entity": "Supermicro",
+      "signal_type": "investor_signal",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://ir.supermicro.com/ir-overview/default.aspx",
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+        "https://ir.supermicro.com/financials/quarterly-results/default.aspx",
+        "https://www.youtube.com/watch?v=m9WRY4n3FM8"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://ir.supermicro.com/ir-overview/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.supermicro.com/financials/quarterly-results/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=m9WRY4n3FM8",
+          "reason": "fallback:accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-26/sasol-s-blistering-rally-meets-growing-skepticism-from-analysts",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-26/sasol-s-blistering-rally-meets-growing-skepticism-from-analysts?srnd=homepage-europe",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-18/nextera-s-nee-d-mega-utility-deal-will-shore-up-its-credit-profile",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2025-05-18/us-states-likely-to-defy-us-downgrade-to-keep-top-credit-ratings",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-01-28/msci-halts-indonesia-index-changes-flags-transparency-risks",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=m9WRY4n3FM8",
+          "reason": "fallback:low_content"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 4,
+      "fallback_used": true,
+      "fallback_policy": "standard",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_b8ba11b0",
+      "query_text": "AMD 13F institutional holdings Q1 2026 site:sec.gov",
+      "target_entity": "AMD",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets",
+        "https://www.sec.gov/files/investment/13flist2026q1.pdf",
+        "https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f",
+        "https://www.sec.gov/edgar/browse/?CIK=0000826154",
+        "https://www.sec.gov/files/investment/13flist2025q1.pdf"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.sec.gov/data-research/sec-markets-data/form-13f-data-sets",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/files/investment/13flist2026q1.pdf",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/edgar/browse/?CIK=0000826154",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://www.sec.gov/files/investment/13flist2025q1.pdf",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_91561dba",
+      "query_text": "AMD CoWoS packaging capacity constraints May 2026 site:digitimes.com",
+      "target_entity": "AMD",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.digitimes.com/news/a20260522PD228/amd-packaging-cowos-taiwan-tsmc.html",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.digitimes.com/news/a20260504VL212/intel-cowos-ai-chip-mediatek-packaging.html",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.digitimes.com/news/a20260514PD237/tsmc-cowos-soic-capacity-packaging.html",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.digitimes.com/tag/cowos/00111842.html",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.digitimes.com/news/a20251215PD204/tsmc-cowos-packaging-capacity-asic-osat.html",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_fc4d3aed",
+      "query_text": "AMD H1 2026 earnings transcript AI hardware commentary ir.amd.com",
+      "target_entity": "AMD",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+          "reason": "accepted"
+        },
+        {
+          "url": "https://ir.amd.com/",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-amds-q1-2026-earnings-surpass-expectations-stock-rises-93CH-4661423",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/AMD/earnings/AMD-Q1-2026-earnings_call-551290.html/",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.amd.com/en/newsroom/press-releases/2026-5-5-amd-reports-first-quarter-2026-financial-results.html",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_8fe7edb6",
+      "query_text": "NVIDIA H100 pricing CDW Insight May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+          "reason": "fallback:pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.thundercompute.com/blog/nvidia-h100-pricing",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.linkedin.com/posts/jrahaman7_the-cost-of-an-nvidia-h100-gpu-varies-depending-activity-7365403046375288832-HvNj",
+          "reason": "social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://nebius.com/prices",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://jarvislabs.ai/blog/h200-price",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://lambda.ai/pricing",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/pricing/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/compare/coreweave-vs-lambda",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://northflank.com/blog/12-best-gpu-cloud-providers",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.siliconflow.com/articles/en/the-best-on-demand-gpu-instances-service",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_331932dd",
+      "query_text": "Supermicro AI server new generation press release May 2026 site:supermicro.com/en/news",
+      "target_entity": "Supermicro",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://ir.supermicro.com/ir-overview/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+          "reason": "fallback:accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.supermicro.com/en/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Supermicro",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.linkedin.com/company/supermicro",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/about",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/mysupermicro",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/newsroom/pressreleases",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.supermicro.com/en/newsroom",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.businesswire.com/news/home/20260122283286/en/Supermicro-to-Report-Second-Quarter-Fiscal-2026-Financial-Results-on-February-3rd-2026",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": true,
+      "fallback_policy": "standard",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_e75c25be",
+      "query_text": "AMD Instinct MI350 availability news.amd.com May 2026",
+      "target_entity": "AMD",
+      "signal_type": "product_launch",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://ir.amd.com/news-events/press-releases/detail/1282/amd-to-report-fiscal-first-quarter-2026-financial-results",
+        "https://ir.amd.com/news-events/press-releases/detail/1266/amd-unveils-strategy-to-lead-the-1-trillion-compute-market-and-accelerate-next-phase-of-growth"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1282/amd-to-report-fiscal-first-quarter-2026-financial-results",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1266/amd-unveils-strategy-to-lead-the-1-trillion-compute-market-and-accelerate-next-phase-of-growth",
+          "reason": "fallback:accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.amd.com/en/products/accelerators/instinct/mi350.html",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.amd.com/en/newsroom/press-releases/2026-2-24-amd-and-meta-announce-expanded-strategic-partnersh.html",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.amd.com/en/blogs/2025/amd-instinct-mi350-series-and-beyond-accelerating-the-future-of-ai-and-hpc.html",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.facebook.com/TweakTown/posts/amd-outlines-its-ai-plans-instinct-mi350-arrives-mid-2025-mi400-in-2026-intels-a/1091199696384865/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://www.amd.com/en/blogs/2026/amd-instinct-mi350p-pcie-gpus-run-enterprise-ai-on-your.html",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 5,
+      "fallback_used": true,
+      "fallback_policy": "standard",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_a247b03e",
+      "query_text": "Supermicro AI server discount May 2026 site:c dw.com",
+      "target_entity": "Supermicro",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_7b3bae81",
+      "query_text": "AMD Instinct MI300X lead times distributor May 2026 site:neweggbusiness.com OR site:pcm.com",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://www.amd.com/en/blogs/2025/astrazeneca-improved-life-sciences-model-training-time.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.opencompute.org/ai-marketplace/products/591/amd-instinct-mi300x-accelerator",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/blogs/2025/accelerating-generative-ai-how-instinct-gpus-delivered.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.techpowerup.com/news-tags/Instinct%20MI300",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.heygotrade.com/en/blog/amd-stock-analysis-2026-how-amd-quietly-outperformed-nvidia-with-114-gain/",
+          "reason": "site_constraint_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_990e5362",
+      "query_text": "Cloud GPU pricing AWS Azure GCP May 2026 site:aws.amazon.com OR site:azure.microsoft.com OR site:cloud.google.com/gpu/",
+      "target_entity": "market",
+      "signal_type": "pricing_pressure",
+      "source_type": "dynamic_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://aws.amazon.com/pricing/",
+          "reason": "pricing_missing_hardware_terms"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/instance-types/g5/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/free/",
+          "reason": "pricing_missing_hardware_terms"
+        },
+        {
+          "url": "https://docs.aws.amazon.com/dlami/latest/devguide/gpu.html",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.insightaceanalytic.com/report/gpu-server-market/3503",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://cyfuture.ai/blog/gpu-servers-in-india",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://vast.ai/pricing?srsltid=AfmBOopC0eVGMIZz22QFBqy8oQ6WgMrqXsuuFcK7IHE2VEzS6XANUYHA",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.intelmarketresearch.com/ai-server-market-46863",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.milesweb.in/blog/hosting/server/best-gpu-cloud-providers/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_4a817a64",
+      "query_text": "GPU server inventory distributor May 2026 site:insight.com",
+      "target_entity": "market",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+          "reason": "fallback:pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://ca.insight.com/content/dam/global/na/ca/pdfs/lenovo/lenovo-fast-track-ai-workflows-with-lenovo-and-nvidia-ebook.pdf",
+          "reason": "pricing_missing_hardware_terms"
+        },
+        {
+          "url": "https://www.insight.com/en_US/content-and-resources/glossary/r/relational-data.html",
+          "reason": "pricing_missing_hardware_terms"
+        },
+        {
+          "url": "https://www.insight.com/en_US/about/sustainability.html",
+          "reason": "pricing_missing_hardware_terms"
+        },
+        {
+          "url": "https://www.insight.com/en_US/content-and-resources/blog/how-to-identify-high-roi-use-cases-for-gen-ai.html",
+          "reason": "pricing_missing_hardware_terms"
+        },
+        {
+          "url": "https://www.insight.com/en_US/shop/partner/apple/mac.html",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/blog/top-gpu-rental/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.insightaceanalytic.com/report/gpu-server-market/3503",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://vast.ai/pricing?srsltid=AfmBOopnd-zY4lv0buWYffJo4Xd40Yi8cAamV2qPd788iy_NenpKXykl",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_db8ecfa1",
+      "query_text": "NVIDIA H100 pricing site:cdw.com May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+          "reason": "fallback:pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://jarvislabs.ai/blog/h200-price",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://lambda.ai/pricing",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/pricing/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/compare/coreweave-vs-lambda",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://northflank.com/blog/12-best-gpu-cloud-providers",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.siliconflow.com/articles/en/the-best-on-demand-gpu-instances-service",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_4a520c27",
+      "query_text": "Supermicro high-end AI server discount site:neweggbusiness.com May 2026",
+      "target_entity": "Supermicro",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [
+        "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOoo2U6X9yr1z93N-Qf1j-LLf2zreQbk65-tcSYjPUVRhBL4RU4Fq"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOoo2U6X9yr1z93N-Qf1j-LLf2zreQbk65-tcSYjPUVRhBL4RU4Fq",
+          "reason": "fallback:pricing_oem_distributor_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.neweggbusiness.com/t/servers-it-solutions/id-134?srsltid=AfmBOoqotbjXhlCYvjWpshgMiq3QmoewKctRq0hJzkzL3LjB53DPnkyk",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.neweggbusiness.com/product/product.aspx?item=9b-13-183-629&srsltid=AfmBOoqQjQii1MDKnH471ebnYItAVhHxEZPNjSNWxfqjT3lMIR1Hbq1P",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.neweggbusiness.com/product/product.aspx?item=9b-16-101-173&srsltid=AfmBOoo0qu08zuubQqvlmDUFI-qNQiIISMpTqYNFfgSdfpP4kpYSHbSx",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.neweggbusiness.com/product/product.aspx?item=9b-13-183-726&srsltid=AfmBOooZpuaPhxV8H2AtvHwltObm7jClBUpclg183y7UjVD9mmMmG50y",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.neweggbusiness.com/c/motherboard/id-20?srsltid=AfmBOorpt8U-oPSBJMG6S_tnDqCh7pdWs2KIHV9X4F5gytuJ5VByGR8E",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/products/gpu",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/supermicro",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/nvidia/hopper-ada-lovelace",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://marketplace.uvation.com/supermicro-as-8125gs-tnhr-gpu-a-plus-server-amd-8u-nvidia-hgx-h100-h200/?srsltid=AfmBOoqVgJqXKCFncPJvHZbI6R9NVPu33yRQruNZmGJwTZeuwwmU1o3t",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_22f8a45e",
+      "query_text": "AMD Instinct MI300X price site:insight.com May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://neysa.ai/blog/amd-mi300x/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/products/accelerators/instinct/mi300/mi300x.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus/amd-mi300x",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidias-h100-ai-gpus-cost-up-to-four-times-more-than-amds-competing-mi300x-amds-chips-cost-dollar10-to-dollar15k-apiece-nvidias-h100-has-peaked-beyond-dollar40000",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://www.techpowerup.com/318652/financial-analyst-outs-amd-instinct-mi300x-projected-pricing",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://gpus.io/en/gpus/mi325",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.hpcwire.com/bigdatawire/this-just-in/vultr-announces-availability-of-amd-instinct-mi325x-gpus-to-power-enterprise-ai/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/amd-instinct",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://blogs.vultr.com/MI325X",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/developer/resources/cloud-access.html",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1218/amd-unveils-leadership-ai-solutions-at-advancing-ai-2024",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.jonpeddie.com/news/amd-aips-are-going-to-have-a-great-2h-26/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://itbrief.co.uk/story/dell-amd-expand-on-prem-ai-servers-for-enterprises",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/interestingengineering/posts/amd-went-all-in-on-ai-at-ces-2026-unveiling-the-helios-rack-platform-that-can-de/1322205829950851/",
+          "reason": "fallback:social_or_low_signal_page_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_82d54766",
+      "query_text": "CoreWeave Nvidia H100 H200 B200 Blackwell GPU cloud pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.coreweave.com/pricing",
+          "reason": "pricing_cloud_provider_accept"
+        },
+        {
+          "url": "https://www.coreweave.com/pricing/classic",
+          "reason": "pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://jarvislabs.ai/blog/h100-price",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/providers/coreweave",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_2bb4f88f",
+      "query_text": "AMD Instinct MI300X launch availability anandtech.com last 7 days",
+      "target_entity": "AMD",
+      "signal_type": "product_launch",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://www.amd.com/en/products/accelerators/instinct/mi300.html"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://www.amd.com/en/products/accelerators/instinct/mi300.html",
+          "reason": "accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://news.ycombinator.com/item?id=36314744",
+          "reason": "forum_or_community_source_not_allowed"
+        },
+        {
+          "url": "https://www.reddit.com/r/hardware/comments/1abkkam/amd_instinct_mi300x_released_at_opportune_moment/",
+          "reason": "forum_or_community_source_not_allowed"
+        },
+        {
+          "url": "https://forums.anandtech.com/threads/rdna4-cdna3-architectures-thread.2602668/page-56",
+          "reason": "forum_or_community_source_not_allowed"
+        },
+        {
+          "url": "https://www.facebook.com/tomshardware/posts/amd-announces-cdna-6-based-instinct-mi500-series-gpus-with-hbm4e-memory-set-to-a/1284446190386463/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_41a6bfc3",
+      "query_text": "site:aws.amazon.com/ec2 Nvidia H100 H200 GPU instance pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+          "reason": "fallback:pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://aws.amazon.com/ec2/instance-types/p5/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/capacityblocks/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/ac.html",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/capacityblocks/pricing/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://aws.amazon.com/ec2/instance-types/accelerated-computing/",
+          "reason": "site_constraint_mismatch"
+        },
+        {
+          "url": "https://jarvislabs.ai/blog/h200-price",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/pricing/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://nebius.com/prices",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://acecloud.ai/blog/cloud-gpu-pricing-comparison/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/compare/coreweave-vs-lambda",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://northflank.com/blog/12-best-gpu-cloud-providers",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.siliconflow.com/articles/en/the-best-on-demand-gpu-instances-service",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_357ce39d",
+      "query_text": "Supermicro earnings guidance revision ir.supermicro.com \"last 7 days\"",
+      "target_entity": "Supermicro",
+      "signal_type": "investor_signal",
+      "source_type": "ir_pages",
+      "attempted_urls": [
+        "https://ir.supermicro.com/ir-overview/default.aspx",
+        "https://ir.supermicro.com/news/default.aspx"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://ir.supermicro.com/ir-overview/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.supermicro.com/news/default.aspx",
+          "reason": "fallback:accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.linkedin.com/directory/posts/q",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://www.prnewswire.co.uk/Sitemap_Index_Oct_2018.xml.gz",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://bizsmartsolution.alliancebank.com.my/getmedia/484c4016-6df9-4b87-a20e-ee8a3b578b50/Vol176_Invest-29Sep.pdf?ext=.pdf",
+          "reason": "ir_pages_requires_tier1_ir_or_sec_domain"
+        },
+        {
+          "url": "https://news.ycombinator.com/item?id=45418675",
+          "reason": "forum_or_community_source_not_allowed"
+        },
+        {
+          "url": "https://picclick.ca/Computers-Tablets-Networking/Computer-Components-Parts/Motherboard-CPU-Combos/",
+          "reason": "tracking_or_email_redirect_url"
+        },
+        {
+          "url": "https://fiscal.ai/company/NasdaqGS-SMCI/investor-relations/",
+          "reason": "fallback:fallback_ir_metadata_wrong_entity"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/SMCI/press-releases/",
+          "reason": "fallback:ir_pages_requires_tier1_ir_or_sec_domain"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 3,
+      "fallback_used": true,
+      "fallback_policy": "standard",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_c576d83d",
+      "query_text": "AMD HBM supply chain risk Reuters last 7 days site:reuters.com",
+      "target_entity": "AMD",
+      "signal_type": "supplier_risk",
+      "source_type": "serp_news",
+      "attempted_urls": [
+        "https://ir.amd.com/news-events/press-releases",
+        "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results",
+        "https://ir.amd.com/",
+        "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "https://finance.yahoo.com/quote/AMD/press-releases/"
+      ],
+      "accepted_urls": [
+        {
+          "url": "https://ir.amd.com/news-events/press-releases",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+          "reason": "fallback:accepted"
+        },
+        {
+          "url": "https://finance.yahoo.com/quote/AMD/press-releases/",
+          "reason": "fallback:accepted"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.reuters.com/world/china/ai-frenzy-is-driving-new-global-supply-chain-crisis-2025-12-03/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/technology/chinese-firms-stockpile-high-end-samsung-chips-they-await-new-us-curbs-say-2024-08-06/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/world/asia-pacific/samsung-electronics-highlights-progress-hbm4-chip-supply-2026-01-02/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/world/asia-pacific/ai-boom-puts-sk-hynix-cusp-1-trillion-market-value-2026-05-14/",
+          "reason": "below_relevance_threshold:0.000"
+        },
+        {
+          "url": "https://www.reuters.com/technology/micron-set-record-high-after-ai-demand-steers-strong-forecast-surprise-profit-2024-03-21/",
+          "reason": "below_relevance_threshold:0.000"
+        }
+      ],
+      "fetch_errors": [
+        {
+          "url": "https://finance.yahoo.com/quote/AMD/press-releases/",
+          "status": 502,
+          "error": "BrightDataError: Bright Data request failed url=https://finance.yahoo.com/quote/AMD/press-releases/ zone=pulselens_scraper class=HTTPStatusError message=Server error '502 Bad Gateway' for url 'https://api.brightdata.com/request'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502 status=502 response_snippet='<html>\\r\\n<head><title>502 Bad Gateway</title></head>\\r\\n<body>\\r\\n<center><h1>502 Bad Gateway</h1></center>\\r\\n</body>\\r\\n</html>\\r\\n'"
+        }
+      ],
+      "accepted_doc_count": 4,
+      "fallback_used": true,
+      "fallback_policy": "standard",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_price_d3cded1e",
+      "query_text": "Lambda Labs RunPod Nvidia H100 H200 L40S GPU pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+          "reason": "pricing_cloud_provider_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://altstreet.investments/tools/gpu/gpu-price-comparison",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://getdeploying.com/gpus",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://computeprices.com/compare/lambda-vs-runpod",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_45ad9870",
+      "query_text": "AMD MI300X MI325X Instinct AI server pricing availability Dell Supermicro May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.dell.com/en-us/blog/dell-generative-ai-open-ecosystem-with-amd-instinct-accelerators/",
+          "reason": "pricing_playbook_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/amd-instinct",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/partner/articles/instinct-mi325x-accelerators.html",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_a32c001d",
+      "query_text": "Oracle Cloud AMD Instinct MI300X MI325X GPU instance pricing availability May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [],
+      "rejected_urls": [
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1218/amd-unveils-leadership-ai-solutions-at-advancing-ai-2024",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/partner/articles/instinct-mi325x-accelerators.html",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://slyd.com/hardware/ai-infrastructure",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.sdxcentral.com/news/?tag=amd&page=3",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 0,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false
+    },
+    {
+      "query_id": "q_price_dfab3539",
+      "query_text": "site:azure.microsoft.com AMD Instinct MI300X MI325X GPU VM pricing availability May 2026",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "pricing_pages",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.dell.com/en-us/blog/dell-generative-ai-open-ecosystem-with-amd-instinct-accelerators/",
+          "reason": "fallback:pricing_playbook_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://blogs.vultr.com/MI325X",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.amd.com/en/products/accelerators/instinct.html",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://gpus.io/en/gpus/mi325",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.hpcwire.com/bigdatawire/this-just-in/vultr-announces-availability-of-amd-instinct-mi325x-gpus-to-power-enterprise-ai/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://introl.com/blog/digitalocean-characterai-amd-inference-breakthrough-2026",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://ir.amd.com/news-events/press-releases/detail/1218/amd-unveils-leadership-ai-solutions-at-advancing-ai-2024",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.supermicro.com/en/accelerators/amd",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.crn.com/news/data-center/2024/5-ai-and-hpc-servers-with-amd-s-instinct-mi300-accelerator-chips",
+          "reason": "fallback:pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.edge-ai-vision.com/2023/12/amd-showcases-growing-momentum-for-amd-powered-ai-solutions-from-the-data-center-to-pcs/",
+          "reason": "fallback:pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 1,
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": true
+    },
+    {
+      "query_id": "q_price_8bd9c965",
+      "query_text": "AMD MI350 MI325X Instinct cloud GPU availability pricing May 2026 Reuters ServeTheHome",
+      "target_entity": "AMD",
+      "signal_type": "pricing_pressure",
+      "source_type": "serp_news",
+      "attempted_urls": [],
+      "accepted_urls": [
+        {
+          "url": "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-accelerates-pace-of-data-center-ai-innovation-.html",
+          "reason": "pricing_playbook_accept"
+        },
+        {
+          "url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+          "reason": "pricing_playbook_accept"
+        }
+      ],
+      "rejected_urls": [
+        {
+          "url": "https://blogs.vultr.com/MI325X",
+          "reason": "pricing_source_family_mismatch"
+        },
+        {
+          "url": "https://www.facebook.com/rundownnewsletter/posts/amd-has-raised-the-price-of-its-instinct-mi350-ai-chip-by-70-from-15000-to-25000/626998483755274/",
+          "reason": "social_or_low_signal_page_not_allowed"
+        },
+        {
+          "url": "https://www.cirrascale.com/press/amd-instinct-mi350-series",
+          "reason": "pricing_source_family_mismatch"
+        }
+      ],
+      "fetch_errors": [],
+      "accepted_doc_count": 2,
+      "fallback_used": false,
+      "fallback_policy": null,
+      "fallback_produced_documents": false
+    }
+  ],
+  "accepted_doc_count": 54,
+  "failed_query_count": 12,
+  "zero_doc_query_count": 12,
+  "low_quality_discard_count": 0,
+  "metadata_only_count": 0,
+  "full_text_count": 37,
+  "snippet_only_count": 17,
+  "extraction_allowed_doc_count": 54
+}

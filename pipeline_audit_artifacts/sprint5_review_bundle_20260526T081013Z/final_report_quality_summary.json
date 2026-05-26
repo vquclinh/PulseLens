@@ -1,0 +1,117 @@
+{
+  "report_id": "report_10f68adcaf0f",
+  "quality_status": "PARTIAL_PASS",
+  "quality_reasons": [
+    "fact_count 40 < 50"
+  ],
+  "pulse_score": 53.6,
+  "pulse_status": "risk_rising",
+  "pulse_confidence": 0.5,
+  "evidence_count": 40,
+  "source_count": 19,
+  "top_signals": [
+    {
+      "signal_type": "investor_signal",
+      "score": 0.1528,
+      "source_count": 5,
+      "confidence": 0.728,
+      "narrative": "Nvidia reported record revenue of $81.6 billion for the first quarter ended April 26, 2026.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "supplier_risk",
+      "score": 0.8396,
+      "source_count": 2,
+      "confidence": 0.795,
+      "narrative": "AMD is supporting the Taiwan EFB packaging chain to reduce its reliance on CoWoS packaging.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "product_launch",
+      "score": 0.1304,
+      "source_count": 8,
+      "confidence": 0.768,
+      "narrative": "AMD launched the Instinct MI325X, a 256GB HBM3E accelerator, updated from the MI300X.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "news_sentiment",
+      "score": 0.0,
+      "source_count": 0,
+      "confidence": 0.0,
+      "narrative": "No verified claims yet for this signal.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "pricing_pressure",
+      "score": 0.0,
+      "source_count": 0,
+      "confidence": 0.0,
+      "narrative": "No verified claims yet for this signal.",
+      "is_contradicted": false
+    }
+  ],
+  "watch_list": [
+    {
+      "title": "AMD's CFO Presentation Insights",
+      "rationale": "A CFO's presentation at a technology conference often provides forward-looking statements, strategic priorities, and financial outlook that can influence investor sentiment. This event could offer clarity on AMD's strategy given Nvidia's strong results and AMD's recent product launches.",
+      "trigger": "Comments from AMD's CFO regarding market share, supply chain strategy, or future financial guidance during the Bank of America Global Technology Conference.",
+      "signals_pointing_there": [
+        "claim_9c4e66533c31",
+        "claim_4b991d32cc06",
+        "claim_d18d23770953"
+      ],
+      "urgency": "this_week"
+    },
+    {
+      "title": "Market Reception of AMD MI325X Accelerator",
+      "rationale": "The successful adoption and market feedback for AMD's new MI325X accelerator are crucial for its competitive standing against Nvidia. Initial orders or public statements from partners or key customers would indicate its immediate impact.",
+      "trigger": "Announcements of significant orders for the MI325X or positive reviews/benchmarks emerging from its deployment.",
+      "signals_pointing_there": [
+        "claim_d18d23770953",
+        "claim_15c2e4cfcecf",
+        "claim_4b991d32cc06"
+      ],
+      "urgency": "next_2_weeks"
+    },
+    {
+      "title": "Supermicro AI Product Shipment Updates",
+      "rationale": "Supermicro shipping new AI products, including those with Nvidia and AMD components, provides a real-time pulse on enterprise demand for AI infrastructure. Any updates on shipment volumes or customer uptake can indicate the blended market demand for both major chipmakers.",
+      "trigger": "Further announcements or reports from Supermicro regarding the uptake or performance metrics of their new AI products featuring AMD and Nvidia components.",
+      "signals_pointing_there": [
+        "claim_f5856b64cc33",
+        "claim_15c2e4cfcecf",
+        "claim_d18d23770953",
+        "claim_4b991d32cc06"
+      ],
+      "urgency": "next_2_weeks"
+    },
+    {
+      "title": "AMD's EFB Packaging Chain Progress",
+      "rationale": "AMD's strategic move to diversify its packaging supply chain is a long-term play to reduce reliance on CoWoS and mitigate future supply risks. Progress in this area could significantly enhance AMD's production stability and capacity.",
+      "trigger": "Reports or statements indicating concrete advancements or partnerships in AMD's development of the Taiwan EFB packaging chain.",
+      "signals_pointing_there": [
+        "claim_6c2371cf2009",
+        "claim_d18d23770953"
+      ],
+      "urgency": "this_month"
+    }
+  ],
+  "audit_summary": {
+    "query_count": 42,
+    "accepted_doc_count": 54,
+    "failed_query_count": 12,
+    "zero_doc_query_count": 12,
+    "fetch_error_count": 1,
+    "covered_signal_types": [
+      "investor_signal",
+      "pricing_pressure",
+      "product_launch",
+      "strategic_messaging",
+      "supplier_risk"
+    ],
+    "missing_signal_types": [],
+    "source_count": 19,
+    "evidence_count": 40
+  }
+}

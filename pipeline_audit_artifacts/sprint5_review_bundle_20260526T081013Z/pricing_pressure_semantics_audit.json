@@ -1,0 +1,91 @@
+{
+  "total_pricing_facts": 5,
+  "strong_pricing_signal_count": 5,
+  "weak_pricing_signal_count": 0,
+  "misclassified_pricing_signal_count": 0,
+  "insufficient_evidence_count": 0,
+  "strong_fraction": 1.0,
+  "verdict": "ACCEPTABLE — majority of pricing facts are strong signals",
+  "facts": [
+    {
+      "fact_id": "fact_433affbbc8d2",
+      "entity": "Nvidia",
+      "claim": "Nvidia A100 80GB GPUs are available at an hourly rate of $0.78, with H100 GPUs priced at $1.47 per hour.",
+      "evidence_quote": "A100 80GB at $0.78/hour, H100 at $1.47/hour",
+      "source_url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+      "source_tier": 4,
+      "confidence": 0.9,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?",
+        "(?:on.demand|spot\\s+price|reserved\\s+price|rental\\s+rate|hourly\\s+rate)",
+        "priced\\s+at\\s+\\$"
+      ]
+    },
+    {
+      "fact_id": "fact_c212b3f26434",
+      "entity": "AMD",
+      "claim": "Oracle Cloud offers AMD Instinct MI300X accelerators at a price of $6.00 per GPU/hour.",
+      "evidence_quote": "Price (per GPU/hour), $6.00 ; Number of GPUs, 8 x AMD Instinct MI300X Accelerators",
+      "source_url": "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus",
+      "source_tier": 4,
+      "confidence": 1.0,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?",
+        "price\\s+of\\s+\\$"
+      ]
+    },
+    {
+      "fact_id": "fact_ed2fc505dd3c",
+      "entity": "Supermicro",
+      "claim": "Supermicro's 1U SuperServer 112B-WR supports Intel Xeon 6 SP and has a starting price of $12,415.00.",
+      "evidence_quote": "Starting Price $ 12,415 .00",
+      "source_url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOoo2U6X9yr1z93N-Qf1j-LLf2zreQbk65-tcSYjPUVRhBL4RU4Fq",
+      "source_tier": 4,
+      "confidence": 1.0,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?",
+        "starting\\s+price\\s+of\\s+\\$",
+        "price\\s+of\\s+\\$"
+      ]
+    },
+    {
+      "fact_id": "fact_18232b9c9b92",
+      "entity": "Nvidia",
+      "claim": "Nvidia's A100 80GB GPU is available at $0.78 per hour.",
+      "evidence_quote": "A100 80GB at $0.78/hour",
+      "source_url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+      "source_tier": 4,
+      "confidence": 1.0,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?"
+      ]
+    },
+    {
+      "fact_id": "fact_2b63dbe36497",
+      "entity": "Nvidia",
+      "claim": "The H100 GPU is available at $1.47 per hour with per-second billing.",
+      "evidence_quote": "H100 at $1.47/hour with per-second billing",
+      "source_url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+      "source_tier": 4,
+      "confidence": 1.0,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?"
+      ]
+    }
+  ]
+}

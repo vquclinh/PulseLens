@@ -1,0 +1,241 @@
+{
+  "total_domains": 13,
+  "rating_summary": {
+    "acceptable": 6,
+    "authoritative": 4,
+    "unknown": 2,
+    "weak_but_usable": 1
+  },
+  "suspicious_or_low_signal_count": 0,
+  "reject_next_time_candidate_count": 0,
+  "domains": [
+    {
+      "domain": "ir.amd.com",
+      "quality_rating": "authoritative",
+      "fact_count": 13,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://ir.amd.com/",
+        "https://ir.amd.com/news-events/press-releases"
+      ]
+    },
+    {
+      "domain": "ir.supermicro.com",
+      "quality_rating": "authoritative",
+      "fact_count": 8,
+      "signal_types": [
+        "investor_signal",
+        "product_launch"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Announces-First-Quarter-Fiscal-Year-2026-Financial-Results/default.aspx",
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx"
+      ]
+    },
+    {
+      "domain": "servethehome.com",
+      "quality_rating": "acceptable",
+      "fact_count": 4,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/"
+      ]
+    },
+    {
+      "domain": "runpod.io",
+      "quality_rating": "acceptable",
+      "fact_count": 3,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://www.runpod.io/articles/alternatives/lambda-labs"
+      ]
+    },
+    {
+      "domain": "reuters.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "strategic_messaging"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.reuters.com/world/asia-pacific/samsung-electronics-highlights-progress-hbm4-chip-supply-2026-01-02/"
+      ]
+    },
+    {
+      "domain": "investor.nvidia.com",
+      "quality_rating": "authoritative",
+      "fact_count": 2,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://investor.nvidia.com/financial-info/financial-reports/default.aspx"
+      ]
+    },
+    {
+      "domain": "medium.com",
+      "quality_rating": "unknown",
+      "fact_count": 2,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://medium.com/@adnanmasood/semiconductors-in-2026-the-ai-driven-upswing-meets-structural-bottlenecks-3568b004905b"
+      ]
+    },
+    {
+      "domain": "anandtech.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        3
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://www.anandtech.com/show/21310/nvidia-blackwell-architecture-and-b200b100-accelerators-announced-going-bigger-with-smaller-data"
+      ]
+    },
+    {
+      "domain": "blogs.oracle.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus"
+      ]
+    },
+    {
+      "domain": "sec.gov",
+      "quality_rating": "authoritative",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.sec.gov/edgar/browse/?CIK=0000826154"
+      ]
+    },
+    {
+      "domain": "digitimes.com",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "supplier_risk"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.digitimes.com/news/a20260522PD228/amd-packaging-cowos-taiwan-tsmc.html"
+      ]
+    },
+    {
+      "domain": "thinkmate.com",
+      "quality_rating": "weak_but_usable",
+      "fact_count": 1,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOoo2U6X9yr1z93N-Qf1j-LLf2zreQbk65-tcSYjPUVRhBL4RU4Fq"
+      ]
+    },
+    {
+      "domain": "amd.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.amd.com/en/products/accelerators/instinct/mi300.html"
+      ]
+    }
+  ]
+}
