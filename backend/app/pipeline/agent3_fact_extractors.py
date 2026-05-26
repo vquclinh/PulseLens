@@ -69,7 +69,30 @@ Rules:
   Below 0.7 = do not include this fact
   Examples: "Revenue was $44.1B in Q1 2025" from earnings release → 1.0
             "Revenue increased significantly this quarter" → 0.8
-            "Revenue growth may continue next year" → do not include\
+            "Revenue growth may continue next year" → do not include
+
+PRICING_PRESSURE SIGNAL RULES — read carefully before assigning signal_type=pricing_pressure:
+A pricing_pressure fact MUST contain at least ONE of the following:
+  - Explicit price amount: "$2.49/hr", "$12,415.00 starting price"
+  - Percentage price change: "H100 rental prices rose 35%"
+  - Discount or promotional pricing: "20% off on-demand instances"
+  - Rental/on-demand/spot rate: "$3.89 per GPU-hour"
+  - Cost per unit of time: "costs $4.20 per hour"
+  - Lead time tied to availability/pricing pressure: "12-week lead times pushing prices up"
+  - Supply shortage EXPLICITLY tied to GPU/server price changes (not generic memory prices)
+  - OEM/distributor pricing signal: "available at $X from Dell/Supermicro"
+
+DO NOT use pricing_pressure for:
+  - Launching a pricing index or tracker ("SemiAnalysis launched a GPU rental price index")
+    → use strategic_messaging or news_sentiment instead
+  - Memory or HBM shortage causing DRAM/HBM prices to rise (no GPU price stated)
+    → use supplier_risk instead
+  - "A product is available" or "available with a starting price" without stating the price
+    → use product_launch instead
+  - General market commentary about supply/demand without a price figure
+    → use supplier_risk or news_sentiment instead
+  - Export control revenue impact: "export restrictions cost AMD $800M"
+    → use investor_signal instead\
 """
 
 _USER = """\

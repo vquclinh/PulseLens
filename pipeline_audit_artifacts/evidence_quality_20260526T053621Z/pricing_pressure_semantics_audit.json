@@ -1,0 +1,88 @@
+{
+  "total_pricing_facts": 5,
+  "strong_pricing_signal_count": 2,
+  "weak_pricing_signal_count": 2,
+  "misclassified_pricing_signal_count": 1,
+  "insufficient_evidence_count": 0,
+  "strong_fraction": 0.4,
+  "verdict": "WEAK — fewer than 50% of pricing facts are strong signals",
+  "facts": [
+    {
+      "fact_id": "fact_d93810c175de",
+      "entity": "market",
+      "claim": "SemiAnalysis launched an H100 1-Year Rental Price Index on April 2, 2026.",
+      "evidence_quote": "Launching our H100 1 Year Rental Price Index",
+      "source_url": "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
+      "source_tier": 4,
+      "confidence": 1.0,
+      "sentiment": "neutral",
+      "label": "weak_pricing_signal",
+      "reason": "Pricing-adjacent but no explicit price/rate data",
+      "matched_patterns": [
+        "(?:launched|announced).{0,40}(?:index|tracker|benchmark)"
+      ]
+    },
+    {
+      "fact_id": "fact_e966cca44f81",
+      "entity": "market",
+      "claim": "AI's demand for HBM is shrinking PC and phone supply, leading to increased prices.",
+      "evidence_quote": "AI's demand for HBM is shrinking PC & phone supply, driving prices up.",
+      "source_url": "https://enkiai.com/ai-market-intelligence/memory-shortage-2026-how-ai-will-cause-a-supply-crisis/",
+      "source_tier": 4,
+      "confidence": 0.9,
+      "sentiment": "negative",
+      "label": "misclassified_pricing_signal",
+      "reason": "should be supplier_risk: HBM shortage/cost",
+      "matched_pattern": "hbm.{0,60}(?:price|cost|shortage)"
+    },
+    {
+      "fact_id": "fact_7934c2d11530",
+      "entity": "Supermicro",
+      "claim": "A 1U SuperServer 112B-WR with Intel Xeon 6 SP and NVIDIA GPU optimization has a starting price of $12,415.00.",
+      "evidence_quote": "1U SuperServer 112B-WR Supports: Intel Xeon 6 SP 1 TB DDR5 ECC RDIMM 8 2.5\" SATA/SAS Hot-Swap 2 PCIe 5.0 x16 Redundant P",
+      "source_url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOorSkMna8zEA7WpycI_aq_zwczN8seUttB8BirM4GDQ7dTPvVrpD",
+      "source_tier": 4,
+      "confidence": 0.9,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?",
+        "starting\\s+price\\s+of\\s+\\$",
+        "price\\s+of\\s+\\$"
+      ]
+    },
+    {
+      "fact_id": "fact_4e73fd13acf4",
+      "entity": "Supermicro",
+      "claim": "A 1U SuperServer 512B-WR with Intel Xeon 6 SP and NVIDIA GPU optimization has a starting price of $12,288.00.",
+      "evidence_quote": "1U SuperServer 512B-WR Supports: Intel Xeon 6 SP 1 TB DDR5 ECC RDIMM 4 3.5\" SATA/SAS Hot-Swap 1 PCIe 5.0 x8 LP Redundant",
+      "source_url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOorSkMna8zEA7WpycI_aq_zwczN8seUttB8BirM4GDQ7dTPvVrpD",
+      "source_tier": 4,
+      "confidence": 0.9,
+      "sentiment": "neutral",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?",
+        "starting\\s+price\\s+of\\s+\\$",
+        "price\\s+of\\s+\\$"
+      ]
+    },
+    {
+      "fact_id": "fact_c30785170843",
+      "entity": "Supermicro",
+      "claim": "A 2U SuperServer 522B-WR with Intel Xeon 6 SP is available with a starting price.",
+      "evidence_quote": "2U SuperServer 522B-WR Supports: Intel Xeon 6 SP 1 TB DDR5 ECC RDIMM 8 3.5\" SATA/SAS Hot-Swap 2 PCIe 5.0 x8 LP Redundant",
+      "source_url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOorSkMna8zEA7WpycI_aq_zwczN8seUttB8BirM4GDQ7dTPvVrpD",
+      "source_tier": 4,
+      "confidence": 0.8,
+      "sentiment": "neutral",
+      "label": "weak_pricing_signal",
+      "reason": "Pricing-adjacent but no explicit price/rate data",
+      "matched_patterns": [
+        "available\\s+with\\s+a\\s+starting\\s+price(?!\\s+of\\s+\\$)"
+      ]
+    }
+  ]
+}

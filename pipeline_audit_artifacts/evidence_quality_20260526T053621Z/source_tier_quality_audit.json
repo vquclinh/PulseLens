@@ -1,0 +1,239 @@
+{
+  "total_domains": 12,
+  "rating_summary": {
+    "acceptable": 4,
+    "authoritative": 3,
+    "weak_but_usable": 3,
+    "suspicious_or_low_signal": 1,
+    "reject_next_time_candidate": 1
+  },
+  "suspicious_or_low_signal_count": 1,
+  "reject_next_time_candidate_count": 1,
+  "domains": [
+    {
+      "domain": "ir.amd.com",
+      "quality_rating": "authoritative",
+      "fact_count": 25,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://ir.amd.com/",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000076/amd-20260328.htm"
+      ]
+    },
+    {
+      "domain": "ir.supermicro.com",
+      "quality_rating": "authoritative",
+      "fact_count": 14,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD",
+        "Intel",
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.supermicro.com/financials/quarterly-results/default.aspx",
+        "https://ir.supermicro.com/news/news-details/2024/Supermicro-Announces-Second-Quarter-Fiscal-Year-2024-Financial-Results/default.aspx"
+      ]
+    },
+    {
+      "domain": "thinkmate.com",
+      "quality_rating": "weak_but_usable",
+      "fact_count": 7,
+      "signal_types": [
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOorSkMna8zEA7WpycI_aq_zwczN8seUttB8BirM4GDQ7dTPvVrpD"
+      ]
+    },
+    {
+      "domain": "sec.gov",
+      "quality_rating": "authoritative",
+      "fact_count": 4,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "supplier_risk"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD",
+        "Nvidia",
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.sec.gov/Archives/edgar/data/1045810/000104581025000098/finalforfiling-2025xannual.pdf",
+        "https://www.sec.gov/Archives/edgar/data/2488/000000248825000012/amd-20241228.htm"
+      ]
+    },
+    {
+      "domain": "servethehome.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/"
+      ]
+    },
+    {
+      "domain": "newsletter.semianalysis.com",
+      "quality_rating": "weak_but_usable",
+      "fact_count": 2,
+      "signal_types": [
+        "pricing_pressure",
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia",
+        "market"
+      ],
+      "sample_urls": [
+        "https://newsletter.semianalysis.com/p/mi300x-vs-h100-vs-h200-benchmark-part-1-training",
+        "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity"
+      ]
+    },
+    {
+      "domain": "tomshardware.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        3
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.tomshardware.com/pc-components/gpus/amd-says-instinct-mi400x-gpu-is-10x-faster-than-mi300x-will-power-helios-rack-scale-system-with-epyc-venice-cpus",
+        "https://www.tomshardware.com/pc-components/gpus/amd-to-split-flagship-ai-gpus-into-specialized-lineups-for-for-ai-and-hpc-add-ualink-instinct-mi400-series-models-takes-a-different-path"
+      ]
+    },
+    {
+      "domain": "enkiai.com",
+      "quality_rating": "weak_but_usable",
+      "fact_count": 2,
+      "signal_types": [
+        "pricing_pressure",
+        "supplier_risk"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://enkiai.com/ai-market-intelligence/memory-shortage-2026-how-ai-will-cause-a-supply-crisis/"
+      ]
+    },
+    {
+      "domain": "amd.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.amd.com/en/newsroom/press-releases/2024-5-21-amd-instinct-mi300x-accelerators-power-microsoft-a.html"
+      ]
+    },
+    {
+      "domain": "blogs.oracle.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus"
+      ]
+    },
+    {
+      "domain": "instagram.com",
+      "quality_rating": "suspicious_or_low_signal",
+      "fact_count": 1,
+      "signal_types": [
+        "supplier_risk"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.instagram.com/p/DVpgwM-jEz0/"
+      ]
+    },
+    {
+      "domain": "ceva-ip.com",
+      "quality_rating": "reject_next_time_candidate",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.ceva-ip.com/investor-relations/"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "fact_id": "fact_799fca22b13e",
+    "entity": "market",
+    "signal_type": "investor_signal",
+    "claim": "Ceva provides investor relations information including financial results, SEC filings, earnings webcasts, and corporate governance.",
+    "source_url": "https://www.ceva-ip.com/investor-relations/",
+    "source_tier": 4,
+    "confidence": 0.9,
+    "suspicious_reason": "IR page metadata extracted as fact"
+  }
+]

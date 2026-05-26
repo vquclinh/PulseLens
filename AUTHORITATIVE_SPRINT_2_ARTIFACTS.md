@@ -26,11 +26,13 @@ benchmark for pricing signal coverage going forward.
 
 ---
 
-## 2. Demo Track 2 — Full AI Hardware Pipeline
+## 2. Demo Track 2 — 3-Company Demo-Scope Pipeline
 
 **Folder:** `pipeline_audit_artifacts/demo_track2_20260526T040110Z/`
 **Run date:** 2026-05-26 04:01 UTC
-**Purpose:** Full 8-company pipeline run for demo/judge presentation.
+**Purpose:** 3-company demo-scope run (Nvidia, AMD, Supermicro) for demo/judge presentation.
+**Scope clarification:** `demo_scope_enabled: true`. Companies: Nvidia, AMD, Supermicro only.
+NOT a full 8-company run — confirmed from `demo_scope_config.json` in the artifact folder.
 
 | Metric | Value |
 |---|---|

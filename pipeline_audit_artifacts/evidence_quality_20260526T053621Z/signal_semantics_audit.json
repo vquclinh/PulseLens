@@ -1,0 +1,289 @@
+{
+  "hiring_momentum": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "product_launch": {
+    "fact_count": 17,
+    "verified_claim_count": 3,
+    "average_confidence": 0.906,
+    "source_count": 9,
+    "top_domains": [
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 5
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "tomshardware.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "thinkmate.com",
+        "fact_count": 2
+      }
+    ],
+    "suspicious_claim_count": 2,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_c1f858547292",
+        "entity": "Supermicro",
+        "claim": "Supermicro will soon ship liquid-cooled X14 SuperBlade in 8U and 6U configurations, as well as the rackmount X14 Hyper and X14 BigTwin.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2024/Supermicros-Rack-Scale-Liquid-Cooled-Solutions-with-the-Industrys-Latest-Accelerators-Target-AI-and-HPC-Convergence/default.aspx",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_0af6823e7531",
+        "entity": "AMD",
+        "claim": "AMD plans to offer the Instinct MI450X for AI and the Instinct MI430X for HPC in the second half of 2026.",
+        "source_url": "https://www.tomshardware.com/pc-components/gpus/amd-to-split-flagship-ai-gpus-into-specialized-lineups-for-for-ai-and-hpc-add-ualink-instinct-mi400-series-models-takes-a-different-path",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      }
+    ]
+  },
+  "pricing_pressure": {
+    "fact_count": 5,
+    "verified_claim_count": 1,
+    "average_confidence": 0.9,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "thinkmate.com",
+        "fact_count": 3
+      },
+      {
+        "domain": "newsletter.semianalysis.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "enkiai.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "strategic_messaging": {
+    "fact_count": 18,
+    "verified_claim_count": 2,
+    "average_confidence": 0.894,
+    "source_count": 4,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 13
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "thinkmate.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "amd.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 15,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_2c9f4b5c17bc",
+        "entity": "AMD",
+        "claim": "The combination of AMD solutions will benefit OCI customers with high performance, efficiency, and greater system design flexibility.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_165dcf5bfdc2",
+        "entity": "Supermicro",
+        "claim": "Supermicro's total liquid cooling solutions can manage up to 100 kW per rack, which decreases data center TCO and enables denser AI and HPC computing.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2024/Supermicros-Rack-Scale-Liquid-Cooled-Solutions-with-the-Industrys-Latest-Accelerators-Target-AI-and-HPC-Convergence/default.aspx",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_5fbd99c09232",
+        "entity": "AMD",
+        "claim": "AMD's Data Center segment is the primary driver of revenue and earnings growth due to accelerating demand for AI infrastructure.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_27a14a596aa9",
+        "entity": "AMD",
+        "claim": "AMD anticipates server growth to accelerate significantly as the company scales supply to meet demand.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_9876f0f3ab64",
+        "entity": "AMD",
+        "claim": "Customer engagement for AMD's MI450 Series and Helios is strengthening, with forecasts exceeding initial expectations.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_dee58ff0d6dd",
+        "entity": "AMD",
+        "claim": "AMD announced an event named “Advancing AI 2026”.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_98b9fffec782",
+        "entity": "AMD",
+        "claim": "AMD is expanding its Ryzen AI 400 Series portfolio to offer more AI PC options for consumers and businesses.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_8ebf7e799d3e",
+        "entity": "AMD",
+        "claim": "AMD and TCS will collaborate to bring the state-of-the-art ‘Helios’ rack-scale AI architecture to India.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_e72582225f7d",
+        "entity": "AMD",
+        "claim": "AMD experienced record revenue and earnings in 2025 due to strong execution and demand for its high-performance and AI platforms.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_847d9045f5fb",
+        "entity": "AMD",
+        "claim": "AMD expects strong momentum in 2026, driven by increasing adoption of its EPYC and Ryzen CPUs and rapid scaling of its data center AI franchise.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_7bf2d270c4e2",
+        "entity": "AMD",
+        "claim": "AMD's product portfolio includes Artificial Intelligence (AI) accelerators, microprocessors (CPUs), and graphics processing units (GPUs).",
+        "source_url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000076/amd-20260328.htm",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_b73d75710c61",
+        "entity": "Supermicro",
+        "claim": "Supermicro's end customers continue to demand its optimized AI computer platforms and rack-scale Total IT Solutions.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2024/Supermicro-Announces-Second-Quarter-Fiscal-Year-2024-Financial-Results/default.aspx",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_f6fc07303c84",
+        "entity": "Supermicro",
+        "claim": "Supermicro GPU accelerated servers are specifically designed for the demanding AI market.",
+        "source_url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOorSkMna8zEA7WpycI_aq_zwczN8seUttB8BirM4GDQ7dTPvVrpD",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_68884e42b042",
+        "entity": "Supermicro",
+        "claim": "Supermicro GPU servers can support up to 10 NVIDIA GPUs and multiple storage options.",
+        "source_url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOorSkMna8zEA7WpycI_aq_zwczN8seUttB8BirM4GDQ7dTPvVrpD",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_0f67e8d6709f",
+        "entity": "AMD",
+        "claim": "AMD Instinct MI300X accelerators are being utilized in Microsoft Azure OpenAI Service.",
+        "source_url": "https://www.amd.com/en/newsroom/press-releases/2024-5-21-amd-instinct-mi300x-accelerators-power-microsoft-a.html",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      }
+    ]
+  },
+  "investor_signal": {
+    "fact_count": 19,
+    "verified_claim_count": 2,
+    "average_confidence": 0.974,
+    "source_count": 4,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 10
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 7
+      },
+      {
+        "domain": "sec.gov",
+        "fact_count": 1
+      },
+      {
+        "domain": "ceva-ip.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 3,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_9fc9fa27c500",
+        "entity": "AMD",
+        "claim": "AMD released its financial results for the first quarter of 2026.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_120cf301aa27",
+        "entity": "AMD",
+        "claim": "Export restrictions on AMD Instinct MI308 data center GPU products resulted in approximately $800 million in inventory and related charges.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_799fca22b13e",
+        "entity": "market",
+        "claim": "Ceva provides investor relations information including financial results, SEC filings, earnings webcasts, and corporate governance.",
+        "source_url": "https://www.ceva-ip.com/investor-relations/",
+        "reason": "IR page metadata extracted as fact"
+      }
+    ]
+  },
+  "news_sentiment": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "supplier_risk": {
+    "fact_count": 4,
+    "verified_claim_count": 2,
+    "average_confidence": 0.875,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "sec.gov",
+        "fact_count": 2
+      },
+      {
+        "domain": "instagram.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "enkiai.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  }
+}

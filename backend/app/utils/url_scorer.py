@@ -60,6 +60,7 @@ FORUM_MARKERS = [
 
 SOCIAL_MARKERS = [
     "facebook.com", "twitter.com", "x.com/", "linkedin.com/pulse", "linkedin.com/posts",
+    "instagram.com",  # Sprint 3: was missing, causing Instagram URLs to slip through supplier_risk queries
 ]
 
 TRACKING_MARKERS = [
