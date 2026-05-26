@@ -6,7 +6,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
-from typing import Optional
+from typing import Any, Protocol, cast
 
 from app.config.quality_gates import FINBERT_MODEL
 from app.schemas.models import FactObject
@@ -17,21 +17,36 @@ _BATCH_SIZE = int(os.getenv("FINBERT_BATCH_SIZE", "32"))
 _DEVICE     = os.getenv("FINBERT_DEVICE", "cpu")
 _MODEL_ID   = FINBERT_MODEL
 
-_finbert: Optional[object] = None
+
+class TextClassificationModel(Protocol):
+    def __call__(
+        self,
+        texts: list[str],
+        *,
+        batch_size: int,
+        truncation: bool,
+    ) -> list[dict[str, Any]]:
+        ...
 
 
-def _get_finbert():
+_finbert: TextClassificationModel | None = None
+
+
+def _get_finbert() -> TextClassificationModel:
     global _finbert
     if _finbert is None:
         from transformers import pipeline as hf_pipeline
         logger.info("Loading FinBERT model %s on device=%s", _MODEL_ID, _DEVICE)
-        _finbert = hf_pipeline(
-            "sentiment-analysis",
-            model=_MODEL_ID,
-            tokenizer=_MODEL_ID,
-            device=_DEVICE,
-            truncation=True,
-            max_length=512,
+        _finbert = cast(
+            TextClassificationModel,
+            hf_pipeline(
+                "text-classification",
+                model=_MODEL_ID,
+                tokenizer=_MODEL_ID,
+                device=_DEVICE,
+                truncation=True,
+                max_length=512,
+            ),
         )
         logger.info("FinBERT loaded")
     return _finbert

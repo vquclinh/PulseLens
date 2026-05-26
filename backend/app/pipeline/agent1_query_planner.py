@@ -677,10 +677,11 @@ class QueryPlanner:
                 reject("malformed_item", i, type(item).__name__)
                 continue
 
-            query_text = str(item.get("query_text", "")).strip()
-            target_entity = str(item.get("target_entity", "")).strip()
-            signal_type_raw = str(item.get("signal_type", "")).strip()
-            source_type = str(item.get("source_type", "")).strip()
+            candidate: dict[str, Any] = item
+            query_text = str(candidate.get("query_text", "")).strip()
+            target_entity = str(candidate.get("target_entity", "")).strip()
+            signal_type_raw = str(candidate.get("signal_type", "")).strip()
+            source_type = str(candidate.get("source_type", "")).strip()
 
             if not query_text or not target_entity or not signal_type_raw or not source_type:
                 reject("empty_required_field", i)
@@ -708,8 +709,8 @@ class QueryPlanner:
                 continue
 
             try:
-                priority = int(item.get("priority"))
-                expected_source_tier = int(item.get("expected_source_tier"))
+                priority = _required_int(candidate, "priority")
+                expected_source_tier = _required_int(candidate, "expected_source_tier")
             except (TypeError, ValueError):
                 reject("invalid_numeric_field", i)
                 continue
@@ -917,6 +918,13 @@ class QueryPlanner:
 
 def _has_time_anchor(query_text: str) -> bool:
     return bool(_TIME_ANCHOR_RE.search(query_text))
+
+
+def _required_int(item: dict[str, Any], key: str) -> int:
+    value = item.get(key)
+    if value is None or isinstance(value, bool):
+        raise ValueError(f"{key} must be an integer")
+    return int(value)
 
 
 def _has_disallowed_url(query_text: str) -> bool:
