@@ -22,7 +22,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -86,8 +86,13 @@ def test_01_expansion_stability_suite(results: dict) -> bool:
     """Sprint 5 expansion stability: import run_tests() from existing suite and run all 4."""
     test_path = os.path.join(os.path.dirname(__file__), "test_agent1_expansion_stability.py")
     spec = importlib.util.spec_from_file_location("expansion_stability", test_path)
+    if spec is None:
+        raise RuntimeError(f"Could not load expansion stability test module from {test_path}")
+    loader = spec.loader
+    if loader is None:
+        raise RuntimeError(f"Expansion stability test module has no loader: {test_path}")
     mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
+    loader.exec_module(mod)
     result = mod.run_tests()
     all_passed = result.get("all_passed", False)
     results["test_01_expansion_stability"] = {"passed": all_passed, "detail": result}
@@ -181,7 +186,7 @@ def test_04_targeted_regen_telemetry(results: dict) -> bool:
             return []  # Return empty — no new queries added, but attempt is recorded
 
     planner = QueryPlanner(api_key=None)
-    planner._llm = _MockLLM()
+    cast(Any, planner)._llm = _MockLLM()
 
     # 2 product_launch (below minimum=4), 5 investor_signal (above minimum=4)
     queries = (
@@ -502,7 +507,7 @@ def test_15_targeted_regen_max_2_calls_and_priority(results: dict) -> bool:
             return []
 
     planner = QueryPlanner(api_key=None)
-    planner._llm = _TrackingLLM()
+    cast(Any, planner)._llm = _TrackingLLM()
 
     # Only investor_signal queries — all other signals at 0
     queries = [_make_query("investor_signal", "Nvidia", idx=i) for i in range(5)]

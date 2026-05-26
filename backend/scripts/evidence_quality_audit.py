@@ -6,10 +6,10 @@ Does NOT re-run the pipeline or make any BrightData calls.
 
 Usage:
     python backend/scripts/evidence_quality_audit.py
-    python backend/scripts/evidence_quality_audit.py --report-id report_dfd5e69a3a42
+    python backend/scripts/evidence_quality_audit.py --report-id report_05aacb872fda
     python backend/scripts/evidence_quality_audit.py \
-        --report-id report_dfd5e69a3a42 \
-        --artifact-dir pipeline_audit_artifacts/demo_track2_20260526T040110Z
+        --report-id report_05aacb872fda \
+        --artifact-dir pipeline_audit_artifacts/demo_track2_20260526T165950Z
 
 Outputs under pipeline_audit_artifacts/evidence_quality_<YYYYMMDDTHHMMSSZ>/:
     evidence_quality_summary.json
@@ -46,8 +46,8 @@ from app.schemas.models import FactObject, VerifiedClaim, MarketPulseReport
 # ── Config ─────────────────────────────────────────────────────────────────────
 
 DB_PATH = _REPO / "backend" / "data" / "pulselens.db"
-DEFAULT_REPORT_ID = "report_dfd5e69a3a42"
-DEFAULT_ARTIFACT_DIR = _REPO / "pipeline_audit_artifacts" / "demo_track2_20260526T040110Z"
+DEFAULT_REPORT_ID = "report_05aacb872fda"
+DEFAULT_ARTIFACT_DIR = _REPO / "pipeline_audit_artifacts" / "demo_track2_20260526T165950Z"
 
 # ── Pricing pressure semantic classification ───────────────────────────────────
 
@@ -216,8 +216,10 @@ def classify_domain(domain: str) -> str:
 
 
 def extract_domain(url: str) -> str:
+    # removeprefix("www.") strips only the exact prefix; lstrip("www.") would strip
+    # individual characters in the set {'w','.'} causing e.g. "www.wsj.com" → "sj.com".
     try:
-        return urlparse(url).netloc.lower().lstrip("www.")
+        return urlparse(url).netloc.lower().removeprefix("www.")
     except Exception:
         return url
 

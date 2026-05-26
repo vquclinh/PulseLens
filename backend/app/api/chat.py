@@ -4,8 +4,10 @@ from __future__ import annotations
 import asyncio
 
 from fastapi import APIRouter, HTTPException
+from langchain_core.runnables import RunnableConfig
 
 from app.chat.graph import chat_graph
+from app.chat.state import ChatState
 from app.db.database import get_fact, load_report, save_chat_message
 from app.schemas.models import ChatRequest, ChatResponse
 from app.utils.helpers import generate_uuid
@@ -20,7 +22,7 @@ def chat(request: ChatRequest):
         raise HTTPException(status_code=404, detail="Report not found")
 
     session_id = request.session_id or f"chat_{generate_uuid()[:12]}"
-    state = {
+    state: ChatState = {
         "report_id": request.report_id,
         "session_id": session_id,
         "history": request.history or [],
@@ -31,9 +33,10 @@ def chat(request: ChatRequest):
         "retrieval_rounds": 0,
         "errors": [],
     }
+    config: RunnableConfig = {"configurable": {"thread_id": session_id}}
     result = chat_graph.invoke(
         state,
-        config={"configurable": {"thread_id": session_id}},
+        config=config,
     )
 
     cited_facts = []

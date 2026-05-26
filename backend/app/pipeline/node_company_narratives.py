@@ -7,7 +7,7 @@ import json
 import logging
 import re
 from statistics import mean
-from typing import Any
+from typing import Any, Literal, Protocol, runtime_checkable
 
 from app.config.companies import COMPANIES, Company
 from app.schemas.models import CompanyNarrative, MomentumLabel, VerifiedClaim
@@ -16,6 +16,13 @@ from app.utils.llm_client import LLMClient
 logger = logging.getLogger(__name__)
 
 _CLAIM_REF_RE = re.compile(r"\[(claim_[A-Za-z0-9_]+)\]")
+CompetitivePosition = Literal["gaining", "holding", "losing"]
+
+
+@runtime_checkable
+class SupportsModelDump(Protocol):
+    def model_dump(self, *args: Any, **kwargs: Any) -> Any:
+        ...
 
 _SYSTEM_PROMPT = """\
 You are a senior market analyst writing a company card for a dashboard.
@@ -47,7 +54,7 @@ Verified claims: {claims_json}\
 
 
 def _jsonable(obj: object) -> object:
-    if hasattr(obj, "model_dump"):
+    if isinstance(obj, SupportsModelDump):
         return obj.model_dump(mode="json")
     return obj
 
@@ -81,7 +88,7 @@ def _momentum_label(score: int, claims: list[VerifiedClaim]) -> MomentumLabel:
     return MomentumLabel.negative
 
 
-def _default_competitive_position(company: str, signal_scores: dict[str, Any]) -> str:
+def _default_competitive_position(company: str, signal_scores: dict[str, Any]) -> CompetitivePosition:
     breakdown = signal_scores.get("breakdown", {})
     by_company = breakdown.get("by_company", {}) if isinstance(breakdown, dict) else {}
     if not isinstance(by_company, dict) or company not in by_company:
@@ -102,6 +109,15 @@ def _default_competitive_position(company: str, signal_scores: dict[str, Any]) -
     if index < max(1, len(ranked) // 3):
         return "gaining"
     if index >= max(1, len(ranked) * 2 // 3):
+        return "losing"
+    return "holding"
+
+
+def _competitive_position(value: object) -> CompetitivePosition:
+    position = str(value).strip()
+    if position == "gaining":
+        return "gaining"
+    if position == "losing":
         return "losing"
     return "holding"
 
@@ -225,7 +241,7 @@ async def _build_one_company(
             narrative=str(payload.get("narrative", "")).strip(),
             key_events=[str(item).strip() for item in payload.get("key_events", [])][:3],
             key_drivers=[str(item).strip() for item in payload.get("key_drivers", [])][:3],
-            competitive_position=str(payload.get("competitive_position", "holding")),
+            competitive_position=_competitive_position(payload.get("competitive_position", "holding")),
             supporting_claim_ids=[claim.claim_id for claim in top_claims],
             evidence_count=sum(len(claim.supporting_facts) for claim in claims),
             price_current=None,

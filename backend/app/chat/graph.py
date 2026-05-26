@@ -19,8 +19,8 @@ _FACT_REF_RE = re.compile(r"\[(fact_[A-Za-z0-9_]+)\]")
 
 def retrieve_facts(state: ChatState) -> dict:
     """Semantic search over fact embeddings for this report."""
-    report_id = state["report_id"]
-    query = state["current_query"]
+    report_id = state.get("report_id", "")
+    query = state.get("current_query", "")
     logger.info("chat node: retrieve_facts report=%s", report_id)
     facts = asyncio.run(search_facts(report_id, query, top_k=10))
     return {
@@ -38,9 +38,9 @@ def build_prompt(state: ChatState) -> dict:
 def analyst_chat(state: ChatState) -> dict:
     """Agent 8 — grounded answer over retrieved facts."""
     logger.info("chat node: analyst_chat")
-    report = asyncio.run(load_report(state["report_id"]))
+    report = asyncio.run(load_report(state.get("report_id", "")))
     response = answer_question(
-        query=state["current_query"],
+        query=state.get("current_query", ""),
         retrieved_facts=state.get("retrieved_facts") or [],
         history=state.get("history") or [],
         report=report,
@@ -64,16 +64,16 @@ def validate_citations(state: ChatState) -> dict:
     if not invalid:
         return {"cited_fact_ids": cited, "invalid_citations": []}
 
-    report = asyncio.run(load_report(state["report_id"]))
+    report = asyncio.run(load_report(state.get("report_id", "")))
     retry_note = (
-        f"User question: {state['current_query']}\n\n"
+        f"User question: {state.get('current_query', '')}\n\n"
         "The previous response cited fact IDs that are not in the retrieved "
         f"evidence: {', '.join(invalid)}.\n"
         "Rewrite the answer using only the fact IDs in the Evidence section. "
         "If the evidence is insufficient, say so."
     )
     response = answer_question(
-        query=state["current_query"],
+        query=state.get("current_query", ""),
         retrieved_facts=facts,
         history=state.get("history") or [],
         report=report,

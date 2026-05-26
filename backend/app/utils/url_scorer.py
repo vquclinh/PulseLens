@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Collection
 from typing import TYPE_CHECKING, Dict, FrozenSet, List
 from urllib.parse import urlparse
 
@@ -221,7 +222,7 @@ def _url_matches_site(url: str, site: str) -> bool:
     return host == site or host.endswith("." + site)
 
 
-def _domain_in_family(domain: str, family: set[str]) -> bool:
+def _domain_in_family(domain: str, family: Collection[str]) -> bool:
     return any(domain == item or domain.endswith("." + item) for item in family)
 
 

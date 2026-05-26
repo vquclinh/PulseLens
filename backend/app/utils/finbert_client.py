@@ -5,7 +5,7 @@ from typing import Tuple
 
 class FinBERTClient:
     def __init__(self, device: str = "cpu") -> None:
-        pass
+        self.device = device
 
     def score(self, text: str) -> Tuple[str, float]:
-        pass
+        return ("neutral", 0.0)

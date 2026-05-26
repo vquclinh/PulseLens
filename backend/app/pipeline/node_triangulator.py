@@ -7,7 +7,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Literal, Optional
 from urllib.parse import urlparse
 
 from app.schemas.models import ContradictionFlag, FactObject, SignalType, VerifiedClaim
@@ -217,10 +217,10 @@ if __name__ == "__main__":
         fact_id: str,
         entity: str,
         signal_type: SignalType,
-        sentiment: str,
+        sentiment: Literal["positive", "negative", "neutral"],
         sentiment_score: float,
         source_url: str,
-        source_tier: int,
+        source_tier: Literal[1, 2, 3, 4],
         confidence: float = 0.85,
         published_date: str = "2025-05-20",
     ) -> FactObject:

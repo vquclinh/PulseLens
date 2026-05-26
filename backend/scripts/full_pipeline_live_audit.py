@@ -25,7 +25,7 @@ import time
 import traceback
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 
 from dotenv import load_dotenv
 
@@ -313,12 +313,15 @@ def _run_command(label: str, args: list[str], cwd: Path) -> dict[str, Any]:
 
 
 async def _run_pipeline_with_telemetry() -> dict[str, Any]:
+    from langchain_core.runnables import RunnableConfig
+
     from app.config.companies import COMPANIES
     from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
     from app.pipeline.graph import pipeline_graph
+    from app.pipeline.state import PipelineState
     from app.utils.helpers import generate_uuid
 
-    initial_state = {
+    initial_state: PipelineState = {
         "market": DEFAULT_MARKET,
         "companies": [company.name for company in COMPANIES],
         "time_window": DEFAULT_TIME_WINDOW,
@@ -337,7 +340,7 @@ async def _run_pipeline_with_telemetry() -> dict[str, Any]:
         "quality_passed": False,
         "errors": [],
     }
-    config = {
+    config: RunnableConfig = {
         "configurable": {"thread_id": f"live-audit-{generate_uuid()[:12]}"},
         "recursion_limit": 80,
     }
@@ -502,7 +505,7 @@ def _summarize_brightdata_payload(payload: object) -> dict[str, Any]:
     return {"type": type(payload).__name__, "preview": _clip(payload, 1200)}
 
 
-def _markdown_table(rows: list[list[object]], headers: list[str]) -> str:
+def _markdown_table(rows: Sequence[Sequence[object]], headers: list[str]) -> str:
     def cell(value: object) -> str:
         return _one_line(value, 120).replace("|", "\\|")
 

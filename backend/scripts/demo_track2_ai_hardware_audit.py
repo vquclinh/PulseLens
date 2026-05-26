@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
+from langchain_core.runnables import RunnableConfig
 
 ROOT = Path(__file__).resolve().parents[2]
 BACKEND = ROOT / "backend"
@@ -23,6 +24,7 @@ load_dotenv(BACKEND / ".env")
 from app.config.demo_scope import get_scope_config, scope_payload  # noqa: E402
 from app.config.markets import DEFAULT_TIME_WINDOW  # noqa: E402
 from app.pipeline.graph import pipeline_graph  # noqa: E402
+from app.pipeline.state import PipelineState  # noqa: E402
 from app.schemas.models import MarketPulseReport  # noqa: E402
 from app.utils.helpers import generate_uuid  # noqa: E402
 
@@ -41,7 +43,7 @@ def _write(path: Path, payload: Any) -> None:
     path.write_text(json.dumps(_jsonable(payload), indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-def _initial_state(scope) -> dict[str, Any]:
+def _initial_state(scope: Any) -> PipelineState:
     return {
         "market": scope.market,
         "companies": scope.companies,
@@ -95,7 +97,7 @@ async def main() -> int:
     )
 
     scope = get_scope_config()
-    config = {"configurable": {"thread_id": f"demo-track2-{generate_uuid()[:12]}"}}
+    config: RunnableConfig = {"configurable": {"thread_id": f"demo-track2-{generate_uuid()[:12]}"}}
     result = await pipeline_graph.ainvoke(_initial_state(scope), config=config)
 
     query_audit = result.get("query_planner_audit") or {}

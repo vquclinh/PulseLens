@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from fastapi import APIRouter, HTTPException
+from langchain_core.runnables import RunnableConfig
 from pydantic import BaseModel
 
 from app.config.companies import COMPANIES
@@ -9,6 +10,7 @@ from app.config.demo_scope import get_scope_config
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
 from app.db.database import load_report, list_report_facts, latest_report_id
 from app.pipeline.graph import pipeline_graph
+from app.pipeline.state import PipelineState
 from app.schemas.models import FactObject, MarketPulseReport
 from app.utils.helpers import generate_uuid
 
@@ -25,7 +27,7 @@ class RunPipelineRequest(BaseModel):
 async def run_pipeline(request: RunPipelineRequest):
     scope = get_scope_config()
     companies = request.companies or (scope.companies if scope.demo_scope_enabled else [company.name for company in COMPANIES])
-    state = {
+    state: PipelineState = {
         "market": request.market or DEFAULT_MARKET,
         "companies": companies,
         "time_window": request.time_window or DEFAULT_TIME_WINDOW,
@@ -61,7 +63,7 @@ async def run_pipeline(request: RunPipelineRequest):
         "fact_count": 0,
         "errors": [],
     }
-    config = {"configurable": {"thread_id": f"run-{generate_uuid()[:12]}"}}
+    config: RunnableConfig = {"configurable": {"thread_id": f"run-{generate_uuid()[:12]}"}}
     result = await pipeline_graph.ainvoke(state, config=config)
     report = result.get("report")
     if report is None:

@@ -143,7 +143,10 @@ if __name__ == "__main__":
     from app.utils.helpers import generate_uuid
     from datetime import datetime, timezone
 
-    def _make_fact(signal_type: SignalType, sentiment: str = "neutral") -> FactObject:
+    def _make_fact(
+        signal_type: SignalType,
+        sentiment: Literal["positive", "negative", "neutral"] = "neutral",
+    ) -> FactObject:
         return FactObject(
             fact_id=f"fact_{generate_uuid()[:8]}",
             doc_id="doc_test",
@@ -164,7 +167,7 @@ if __name__ == "__main__":
 
     # Test 1: 10 facts, 2 signal types → expand_queries
     facts_10_2sig = [_make_fact(signal_types[i % 2]) for i in range(10)]
-    state1: dict = {"scored_facts": facts_10_2sig, "query_expansion_rounds": 0}
+    state1: PipelineState = {"scored_facts": facts_10_2sig, "query_expansion_rounds": 0}
     result1 = run_quality_gate(state1)
     state1.update(result1)
     route1 = quality_gate_router(state1)
@@ -173,7 +176,7 @@ if __name__ == "__main__":
 
     # Test 2: 60 facts, 5 signal types → proceed
     facts_60_5sig = [_make_fact(signal_types[i % 5]) for i in range(60)]
-    state2: dict = {"scored_facts": facts_60_5sig, "query_expansion_rounds": 0}
+    state2: PipelineState = {"scored_facts": facts_60_5sig, "query_expansion_rounds": 0}
     result2 = run_quality_gate(state2)
     state2.update(result2)
     route2 = quality_gate_router(state2)
@@ -182,7 +185,7 @@ if __name__ == "__main__":
 
     # Test 3: 10 facts, round=2 → proceed (hard stop)
     facts_10_round2 = [_make_fact(signal_types[i % 2]) for i in range(10)]
-    state3: dict = {"scored_facts": facts_10_round2, "query_expansion_rounds": 2}
+    state3: PipelineState = {"scored_facts": facts_10_round2, "query_expansion_rounds": 2}
     result3 = run_quality_gate(state3)
     state3.update(result3)
     route3 = quality_gate_router(state3)

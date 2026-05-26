@@ -17,8 +17,8 @@ Logic:
 Usage:
   python backend/scripts/pricing_document_extraction_diagnosis.py
   python backend/scripts/pricing_document_extraction_diagnosis.py \
-      --report-id report_dfd5e69a3a42 \
-      --artifact-dir pipeline_audit_artifacts/demo_track2_20260526T040110Z
+      --report-id report_05aacb872fda \
+      --artifact-dir pipeline_audit_artifacts/demo_track2_20260526T165950Z
 """
 from __future__ import annotations
 
@@ -43,8 +43,8 @@ _REPO_ROOT = _HERE.parent.parent
 _DB_PATH = _REPO_ROOT / "backend" / "data" / "pulselens.db"
 _ARTIFACT_ROOT = _REPO_ROOT / "pipeline_audit_artifacts"
 
-_DEFAULT_REPORT_ID = "report_dfd5e69a3a42"
-_DEFAULT_ARTIFACT_DIR = str(_ARTIFACT_ROOT / "demo_track2_20260526T040110Z")
+_DEFAULT_REPORT_ID = "report_05aacb872fda"
+_DEFAULT_ARTIFACT_DIR = str(_ARTIFACT_ROOT / "demo_track2_20260526T165950Z")
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 

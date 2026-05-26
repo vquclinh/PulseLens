@@ -6,7 +6,7 @@ import asyncio
 import json
 import logging
 import re
-from typing import Any
+from typing import Any, Protocol, runtime_checkable
 
 from app.schemas.models import AnomalyFlag, CompanyNarrative, MarketNarrative, VerifiedClaim
 from app.utils.llm_client import LLMClient
@@ -14,6 +14,12 @@ from app.utils.llm_client import LLMClient
 logger = logging.getLogger(__name__)
 
 _CLAIM_REF_RE = re.compile(r"\[(claim_[A-Za-z0-9_]+)\]")
+
+
+@runtime_checkable
+class SupportsModelDump(Protocol):
+    def model_dump(self, *args: Any, **kwargs: Any) -> Any:
+        ...
 
 _SYSTEM_PROMPT = """\
 You are a senior market analyst writing for buy-side teams.
@@ -67,7 +73,7 @@ Company narratives: {company_narratives_json}\
 
 
 def _jsonable(obj: object) -> object:
-    if hasattr(obj, "model_dump"):
+    if isinstance(obj, SupportsModelDump):
         return obj.model_dump(mode="json")
     return obj
 

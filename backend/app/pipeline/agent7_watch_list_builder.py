@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
+from typing import Any, Protocol, runtime_checkable
 
 from app.schemas.models import MarketNarrative, WatchItem, VerifiedClaim
 from app.utils.llm_client import LLMClient
@@ -12,6 +13,12 @@ from app.utils.llm_client import LLMClient
 logger = logging.getLogger(__name__)
 
 _VALID_URGENCY = {"this_week", "next_2_weeks", "this_month"}
+
+
+@runtime_checkable
+class SupportsModelDump(Protocol):
+    def model_dump(self, *args: Any, **kwargs: Any) -> Any:
+        ...
 
 _SYSTEM_PROMPT = """\
 Based on the evidence and market narrative, identify
@@ -35,7 +42,7 @@ Verified claims:  {verified_claims_json}\
 
 
 def _jsonable(obj: object) -> object:
-    if hasattr(obj, "model_dump"):
+    if isinstance(obj, SupportsModelDump):
         return obj.model_dump(mode="json")
     return obj
 

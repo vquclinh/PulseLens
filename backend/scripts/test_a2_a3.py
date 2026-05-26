@@ -14,7 +14,7 @@ Tests:
     • SAFE discard rate
 
 Run:
-  python -m app.pipeline.test_a2_a3
+  python backend/scripts/test_a2_a3.py
 """
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ import json
 import logging
 import sys
 from pathlib import Path
+from typing import Any
 
 _BACKEND = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(_BACKEND))
@@ -83,7 +84,7 @@ def _make_queries():
 
 # ── Agent 2 runner with per-query stats ───────────────────────────────────────
 
-async def run_agent2(queries) -> dict:
+async def run_agent2(queries) -> tuple[dict[str, Any], Any]:
     from app.pipeline.agent2_web_workers import (
         collect_documents_for_query, _discover_candidate_urls, BrightDataClient
     )
@@ -153,12 +154,12 @@ async def run_validation(raw_facts, docs) -> dict:
     from app.pipeline.node_validate_and_split import validate_facts, run_safe_verification
 
     docs_by_id = {d.doc_id: d for d in docs}
-    validated = validate_facts(raw_facts, docs_by_id)
+    validated, validation_audit = validate_facts(raw_facts, docs_by_id)
     print(f"  validate_fact: {len(validated)}/{len(raw_facts)} passed")
 
     safe = await run_safe_verification(validated)
     print(f"  SAFE:          {len(safe)}/{len(validated)} passed")
-    return {"validated": validated, "safe": safe}
+    return {"validated": validated, "safe": safe, "validation_audit": validation_audit}
 
 
 # ── Quality analysis ───────────────────────────────────────────────────────────
