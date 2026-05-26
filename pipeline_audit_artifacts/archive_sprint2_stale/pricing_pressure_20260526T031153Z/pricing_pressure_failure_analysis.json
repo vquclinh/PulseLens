@@ -1,0 +1,381 @@
+{
+  "pricing_query_count": 15,
+  "zero_doc_query_count": 15,
+  "pricing_queries": [
+    {
+      "query_id": "q_price_1a6a1b59",
+      "query_text": "Lambda Labs RunPod Nvidia H100 H200 L40S GPU pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Nvidia H100 H200 B200 GPU cloud pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+H100+H200+B200+GPU+cloud+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Nvidia GPU instance discount availability AWS Azure CoreWeave Lambda Labs 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+GPU+instance+discount+availability+AWS+Azure+CoreWeave+Lambda+Labs+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_f9cbdb71",
+      "query_text": "CoreWeave Nvidia H100 H200 B200 Blackwell GPU cloud pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Nvidia H100 H200 B200 GPU cloud pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+H100+H200+B200+GPU+cloud+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Nvidia GPU instance discount availability AWS Azure CoreWeave Lambda Labs 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+GPU+instance+discount+availability+AWS+Azure+CoreWeave+Lambda+Labs+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_8dbec517",
+      "query_text": "site:azure.microsoft.com Nvidia H100 H200 GPU VM pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Nvidia H100 H200 B200 GPU cloud pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+H100+H200+B200+GPU+cloud+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Nvidia GPU instance discount availability AWS Azure CoreWeave Lambda Labs 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+GPU+instance+discount+availability+AWS+Azure+CoreWeave+Lambda+Labs+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_bced5975",
+      "query_text": "site:aws.amazon.com/ec2 Nvidia H100 H200 GPU instance pricing availability May 2026",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Nvidia H100 H200 B200 GPU cloud pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+H100+H200+B200+GPU+cloud+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Nvidia GPU instance discount availability AWS Azure CoreWeave Lambda Labs 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Nvidia+GPU+instance+discount+availability+AWS+Azure+CoreWeave+Lambda+Labs+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_c47a91b7",
+      "query_text": "site:azure.microsoft.com AMD Instinct MI300X MI325X GPU VM pricing availability May 2026",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:AMD Instinct MI300X MI325X cloud GPU pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+Instinct+MI300X+MI325X+cloud+GPU+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AMD MI300X MI325X AI server pricing availability Dell Supermicro Oracle Azure 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+MI300X+MI325X+AI+server+pricing+availability+Dell+Supermicro+Oracle+Azure+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_f791e905",
+      "query_text": "AMD MI300X MI325X Instinct AI server pricing availability Dell Supermicro May 2026",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:AMD Instinct MI300X MI325X cloud GPU pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+Instinct+MI300X+MI325X+cloud+GPU+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AMD MI300X MI325X AI server pricing availability Dell Supermicro Oracle Azure 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+MI300X+MI325X+AI+server+pricing+availability+Dell+Supermicro+Oracle+Azure+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_07b544a0",
+      "query_text": "AMD MI350 MI325X Instinct cloud GPU availability pricing May 2026 Reuters ServeTheHome",
+      "target_entity": "AMD",
+      "source_type": "serp_news",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:AMD Instinct MI300X MI325X cloud GPU pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+Instinct+MI300X+MI325X+cloud+GPU+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AMD MI300X MI325X AI server pricing availability Dell Supermicro Oracle Azure 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+MI300X+MI325X+AI+server+pricing+availability+Dell+Supermicro+Oracle+Azure+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_a77b24a2",
+      "query_text": "Supermicro Nvidia Blackwell B200 GPU server availability lead time liquid cooling May 2026",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Supermicro GPU server AI server pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+GPU+server+AI+server+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Supermicro Blackwell AMD Instinct GPU server lead time delivery availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+Blackwell+AMD+Instinct+GPU+server+lead+time+delivery+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_57e3391e",
+      "query_text": "Oracle Cloud AMD Instinct MI300X MI325X GPU instance pricing availability May 2026",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:AMD Instinct MI300X MI325X cloud GPU pricing availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+Instinct+MI300X+MI325X+cloud+GPU+pricing+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AMD MI300X MI325X AI server pricing availability Dell Supermicro Oracle Azure 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AMD+MI300X+MI325X+AI+server+pricing+availability+Dell+Supermicro+Oracle+Azure+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_06e043a8",
+      "query_text": "site:supermicro.com Supermicro GPU server AI server pricing availability H100 H200 B200 May 2026",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Supermicro GPU server AI server pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+GPU+server+AI+server+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Supermicro Blackwell AMD Instinct GPU server lead time delivery availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+Blackwell+AMD+Instinct+GPU+server+lead+time+delivery+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_6d51cf42",
+      "query_text": "Supermicro AI GPU server distributor pricing availability H100 H200 B200 May 2026",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Supermicro GPU server AI server pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+GPU+server+AI+server+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Supermicro Blackwell AMD Instinct GPU server lead time delivery availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+Blackwell+AMD+Instinct+GPU+server+lead+time+delivery+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_9468f0d8",
+      "query_text": "Supermicro AMD Instinct MI300 MI325 GPU server availability pricing May 2026",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:Supermicro GPU server AI server pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+GPU+server+AI+server+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:Supermicro Blackwell AMD Instinct GPU server lead time delivery availability 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=Supermicro+Blackwell+AMD+Instinct+GPU+server+lead+time+delivery+availability+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_28c57c2c",
+      "query_text": "GPU instance discounts pricing availability H100 H200 L40S MI300X May 2026 AWS Azure Google Cloud",
+      "target_entity": "market",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:cloud GPU pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=cloud+GPU+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AI server lead time GPU availability distributor pricing 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AI+server+lead+time+GPU+availability+distributor+pricing+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_86fcc08c",
+      "query_text": "cloud GPU rental price changes H100 H200 B200 MI300X May 2026 SemiAnalysis ServeTheHome",
+      "target_entity": "market",
+      "source_type": "serp_news",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:cloud GPU pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=cloud+GPU+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AI server lead time GPU availability distributor pricing 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AI+server+lead+time+GPU+availability+distributor+pricing+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    },
+    {
+      "query_id": "q_price_3af13fb0",
+      "query_text": "AI server lead times GPU availability supply shortage oversupply May 2026 Reuters Bloomberg",
+      "target_entity": "market",
+      "source_type": "serp_news",
+      "accepted_doc_count": 0,
+      "accepted_urls": [],
+      "rejected_urls": [],
+      "fetch_errors": [
+        {
+          "url": "SERP:cloud GPU pricing availability H100 H200 B200 MI300X 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=cloud+GPU+pricing+availability+H100+H200+B200+MI300X+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        },
+        {
+          "url": "SERP:AI server lead time GPU availability distributor pricing 2026",
+          "status": null,
+          "error": "BrightDataError: Bright Data request failed url=https://www.google.com/search?q=AI+server+lead+time+GPU+availability+distributor+pricing+2026&num=5 zone=pulselens_serp class=ConnectError message=[Errno -3] Temporary failure in name resolution status=None response_snippet=''"
+        }
+      ],
+      "fallback_used": true,
+      "fallback_policy": "pricing_relaxed_site_constraint",
+      "fallback_produced_documents": false,
+      "likely_failure": "fetch_error"
+    }
+  ]
+}

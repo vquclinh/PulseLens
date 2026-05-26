@@ -1,0 +1,93 @@
+{
+  "pricing_query_count": 15,
+  "accepted_pricing_documents": 46,
+  "zero_doc_pricing_queries": 1,
+  "zero_doc_pricing_query_rate": 0.0667,
+  "metadata_only_count": 0,
+  "full_text_count": 25,
+  "top_accepted_domains": [
+    [
+      "getdeploying.com",
+      4
+    ],
+    [
+      "amd.com",
+      3
+    ],
+    [
+      "supermicro.com",
+      3
+    ],
+    [
+      "jarvislabs.ai",
+      2
+    ],
+    [
+      "spheron.network",
+      2
+    ],
+    [
+      "coreweave.com",
+      2
+    ],
+    [
+      "computeprices.com",
+      2
+    ],
+    [
+      "runpod.io",
+      2
+    ],
+    [
+      "servethehome.com",
+      2
+    ],
+    [
+      "youtube.com",
+      2
+    ]
+  ],
+  "top_rejection_reasons": [
+    [
+      "site_constraint_mismatch",
+      10
+    ],
+    [
+      "pricing_source_family_mismatch",
+      5
+    ],
+    [
+      "pricing_missing_hardware_terms",
+      3
+    ],
+    [
+      "fallback:pricing_source_family_mismatch",
+      3
+    ],
+    [
+      "social_or_low_signal_page_not_allowed",
+      2
+    ],
+    [
+      "tracking_or_email_redirect_url",
+      1
+    ],
+    [
+      "fallback:pricing_missing_hardware_terms",
+      1
+    ],
+    [
+      "forum_or_community_source_not_allowed",
+      1
+    ]
+  ],
+  "fetch_error_summary": {
+    "total_fetch_attempts": 51,
+    "successful_fetches": 51,
+    "failed_fetches": 0,
+    "permanent_failures": 0,
+    "failure_count_by_domain": {},
+    "failure_count_by_reason": {}
+  },
+  "estimated_brightdata_calls": 76
+}

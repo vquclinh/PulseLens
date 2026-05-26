@@ -1,0 +1,19 @@
+{
+  "pricing_query_count": 15,
+  "accepted_pricing_documents": 0,
+  "zero_doc_pricing_queries": 15,
+  "zero_doc_pricing_query_rate": 1.0,
+  "metadata_only_count": 0,
+  "full_text_count": 0,
+  "top_accepted_domains": [],
+  "top_rejection_reasons": [],
+  "fetch_error_summary": {
+    "total_fetch_attempts": 0,
+    "successful_fetches": 0,
+    "failed_fetches": 0,
+    "permanent_failures": 0,
+    "failure_count_by_domain": {},
+    "failure_count_by_reason": {}
+  },
+  "estimated_brightdata_calls": 45
+}

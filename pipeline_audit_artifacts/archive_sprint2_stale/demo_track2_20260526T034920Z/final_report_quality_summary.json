@@ -1,0 +1,87 @@
+{
+  "report_id": "report_ce3edef53b1f",
+  "quality_status": "PARTIAL_PASS",
+  "quality_reasons": [
+    "fact_count 48 < 50",
+    "required_signal_types 2 < 4"
+  ],
+  "pulse_score": 51.0,
+  "pulse_status": "stable",
+  "pulse_confidence": 0.5,
+  "evidence_count": 48,
+  "source_count": 17,
+  "top_signals": [
+    {
+      "signal_type": "product_launch",
+      "score": 0.2016,
+      "source_count": 6,
+      "confidence": 0.715,
+      "narrative": "AMD launched the Instinct MI325X, a 256GB HBM3E accelerator, as an update to the MI300X.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "investor_signal",
+      "score": 0.0201,
+      "source_count": 8,
+      "confidence": 0.675,
+      "narrative": "NVIDIA anticipates its fourth-quarter fiscal 2026 revenue to be $65.0 billion, with a margin of plus or minus 2%.",
+      "is_contradicted": true
+    },
+    {
+      "signal_type": "news_sentiment",
+      "score": 0.0,
+      "source_count": 0,
+      "confidence": 0.0,
+      "narrative": "No verified claims yet for this signal.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "pricing_pressure",
+      "score": 0.0,
+      "source_count": 0,
+      "confidence": 0.0,
+      "narrative": "No verified claims yet for this signal.",
+      "is_contradicted": false
+    },
+    {
+      "signal_type": "strategic_messaging",
+      "score": 0.0,
+      "source_count": 6,
+      "confidence": 0.756,
+      "narrative": "The combination of AMD's solutions will benefit OCI customers with high performance, efficiency, and greater system design flexibility.",
+      "is_contradicted": false
+    }
+  ],
+  "watch_list": [
+    {
+      "title": "Supermicro Investor Sentiment Resolution",
+      "rationale": "Conflicting investor signals for Supermicro create uncertainty regarding its short-to-medium term stock performance. The resolution of this divergence will provide clarity on its growth trajectory.",
+      "trigger": "Further analyst reports, major institutional investor actions (buying/selling), or Supermicro's own financial guidance.",
+      "signals_pointing_there": [
+        "claim_16f9566eb412",
+        "fact_335b7aa4619a",
+        "fact_ca2b85f779fe",
+        "fact_0ff437cf3c35"
+      ],
+      "urgency": "this_week"
+    }
+  ],
+  "audit_summary": {
+    "query_count": 47,
+    "accepted_doc_count": 60,
+    "failed_query_count": 15,
+    "zero_doc_query_count": 15,
+    "fetch_error_count": 0,
+    "covered_signal_types": [
+      "investor_signal",
+      "product_launch",
+      "strategic_messaging"
+    ],
+    "missing_signal_types": [
+      "pricing_pressure",
+      "supplier_risk"
+    ],
+    "source_count": 17,
+    "evidence_count": 48
+  }
+}

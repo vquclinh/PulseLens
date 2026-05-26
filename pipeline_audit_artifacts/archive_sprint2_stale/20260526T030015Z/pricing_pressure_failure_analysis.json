@@ -1,0 +1,139 @@
+{
+  "source_artifact": "pipeline_audit_artifacts/20260525T171824Z/web_collection_audit.json",
+  "analyzed_at": "2026-05-26T03:00:15Z",
+  "summary": {
+    "pricing_query_count": 8,
+    "accepted_doc_count": 11,
+    "zero_doc_query_count": 4,
+    "zero_doc_query_rate": 0.5,
+    "main_failure_patterns": [
+      "Over-strict site: constraints rejected otherwise relevant fallback results.",
+      "Several pricing queries targeted non-demo companies, diluting the demo problem.",
+      "Some queries aimed at generic distributor/product pages without enough AI hardware terms.",
+      "Fallback scoring reused the original source/site assumptions even when fallback queries intentionally broadened the search."
+    ]
+  },
+  "pricing_queries": [
+    {
+      "query_id": "q_66ff2f10",
+      "query_text": "Dell 'PowerEdge AI' server 'lead time' May 2026 site:insight.com",
+      "target_entity": "Dell",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "rejected_urls": [],
+      "fallback_used": true,
+      "fallback_produced_documents": false,
+      "source_family": "OEM/distributor",
+      "likely_failure": "Out of Sprint 2 demo scope and too narrowly pinned to insight.com; no accepted document survived discovery/fallback."
+    },
+    {
+      "query_id": "q_8fc3e229",
+      "query_text": "HPE 'Cray' AI 'GPU instance pricing' last 7 days site:aws.amazon.com",
+      "target_entity": "HPE",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "rejected_urls": [
+        {"url": "https://www.youtube.com/watch?v=4wGZMUmiYas", "reason": "fallback:site_constraint_mismatch"},
+        {"url": "https://www.bloomberg.com/news/videos/2026-03-10/ai-hardware-demand-drives-hpe-sales-forecast-video", "reason": "fallback:site_constraint_mismatch"},
+        {"url": "https://www.reuters.com/markets/deals/hpe-secures-1-bln-ai-server-deal-elon-musks-x-bloomberg-news-reports-2025-01-10/", "reason": "fallback:site_constraint_mismatch"},
+        {"url": "https://www.bloomberg.com/news/articles/2026-03-09/hpe-projects-sales-that-top-estimates-on-ai-hardware-demand", "reason": "fallback:site_constraint_mismatch"},
+        {"url": "https://www.msn.com/en-us/money/companies/hpe-projects-sales-that-top-estimates-on-ai-hardware-demand/ar-AA1XQZZZ?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1", "reason": "fallback:site_constraint_mismatch"}
+      ],
+      "fallback_used": true,
+      "fallback_produced_documents": false,
+      "source_family": "cloud pricing / news fallback",
+      "likely_failure": "Original site:aws.amazon.com constraint leaked into fallback evaluation, rejecting Bloomberg/Reuters HPE demand evidence. HPE is also outside Sprint 2 demo scope."
+    },
+    {
+      "query_id": "q_976dc028",
+      "query_text": "Supermicro 'AI server' pricing 'discount' last 7 days site:cdw.com",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 0,
+      "rejected_urls": [
+        {"url": "https://store.supermicro.com/us_en/solutions/artificial-intelligence.html?srsltid=AfmBOopg7L49dPDbZx02odZcdN_t72kPVA5X_QfvhDmwqEG7m9w4ixBs", "reason": "site_constraint_mismatch"},
+        {"url": "https://finance.yahoo.com/news/supermicro-unveils-ai-servers-madrid-100802683.html", "reason": "site_constraint_mismatch"},
+        {"url": "https://www.supermicro.com/en/products/gpu", "reason": "site_constraint_mismatch"},
+        {"url": "https://www.ebay.com/itm/127317764871", "reason": "site_constraint_mismatch"},
+        {"url": "https://www.youtube.com/watch?v=CHEbom4opXg&vl=en", "reason": "site_constraint_mismatch"}
+      ],
+      "fallback_used": true,
+      "fallback_produced_documents": false,
+      "source_family": "OEM/distributor",
+      "likely_failure": "The query forced site:cdw.com, but SERP discovered relevant Supermicro-owned product/store URLs. Strict site mismatch rejected the better source family."
+    },
+    {
+      "query_id": "q_a1f2e45d",
+      "query_text": "Broadcom 'AI chip' 'margin pressure' last 7 days",
+      "target_entity": "Broadcom",
+      "source_type": "serp_news",
+      "accepted_doc_count": 0,
+      "rejected_urls": [],
+      "fallback_used": true,
+      "fallback_produced_documents": false,
+      "source_family": "pricing/news context",
+      "likely_failure": "Broadcom is outside Sprint 2 demo scope and the query targeted margin pressure rather than observable pricing/availability evidence."
+    },
+    {
+      "query_id": "q_e994a7b7",
+      "query_text": "Nvidia 'AI server' 'pricing trend' last 7 days site:connection.com",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 1,
+      "rejected_urls": [
+        {"url": "https://www.connection.com/search/nvidia/12681435?srsltid=AfmBOorOmLqUr3j-Ueqxwy8m8WJSMjiR1pa0AVy9IkjUXhicwZ6dm4Cj", "reason": "pricing_page_lacks_market_relevance"},
+        {"url": "https://www.connection.com/content/data-center-technology?srsltid=AfmBOopZT74x0XyCqbgxUu23sYwDrkZ1aImwxMBj62oyQDEGbrg53eZc", "reason": "below_relevance_threshold:0.000"},
+        {"url": "https://www.connection.com/?srsltid=AfmBOoqrAm_-Uo0kRtmQMccjI34E4Hhhp71iCgKsccgRb4XX7P3I0uP9", "reason": "pricing_page_lacks_market_relevance"},
+        {"url": "https://www.connection.com/solutions-services/artificial-intelligence?srsltid=AfmBOop7wYwU5EsrY_Gxx4o9HfixqsymwF6PT5OOq1dVy_Ashnk_GU7m", "reason": "below_relevance_threshold:0.000"}
+      ],
+      "fallback_used": false,
+      "fallback_produced_documents": false,
+      "source_family": "OEM/distributor",
+      "likely_failure": "Partially worked, but source family was generic distributor content. Needs playbook terms for concrete GPU models and cloud/server pricing."
+    },
+    {
+      "query_id": "q_14f61ce4",
+      "query_text": "Intel 'Gaudi' 'cloud pricing' 'Microsoft Azure' last 7 days",
+      "target_entity": "Intel",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 2,
+      "rejected_urls": [
+        {"url": "https://www.facebook.com/Reuters/posts/from-intels-surge-to-nokias-revival-ai-is-driving-a-global-chip-rally-what-does-/1530830302241030/", "reason": "fallback:social_or_low_signal_page_not_allowed"},
+        {"url": "https://www.facebook.com/Reuters/posts/big-techs-ai-rollout-could-drive-11-trillion-in-spending-next-year-fueling-globa/1538451118145615/", "reason": "fallback:social_or_low_signal_page_not_allowed"},
+        {"url": "https://www.instagram.com/reel/DYYt-g5AGJh/", "reason": "fallback:below_relevance_threshold:0.000"}
+      ],
+      "fallback_used": true,
+      "fallback_produced_documents": true,
+      "source_family": "cloud pricing",
+      "likely_failure": "Worked enough to collect documents, but Intel is outside Sprint 2 demo scope."
+    },
+    {
+      "query_id": "q_3064ab42",
+      "query_text": "AMD 'MI300X' pricing 'discount' last 7 days site:dell.com",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 4,
+      "rejected_urls": [
+        {"url": "https://www.dell.com/en-us/shop/ipovw/poweredge-xe9680", "reason": "below_relevance_threshold:0.000"}
+      ],
+      "fallback_used": false,
+      "fallback_produced_documents": false,
+      "source_family": "OEM/cloud hardware",
+      "likely_failure": "This was one of the better query shapes because it included MI300X and an OEM site. Relevance scoring still underweighted Dell PowerEdge AI server context."
+    },
+    {
+      "query_id": "q_e1649fc1",
+      "query_text": "Nvidia H200 'availability' 'distributor' last 7 days",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "accepted_doc_count": 4,
+      "rejected_urls": [
+        {"url": "https://www.facebook.com/financialtimes/posts/nvidia-suppliers-halt-h200-output-after-china-blocks-chip-shipments/1284853377021370/", "reason": "social_or_low_signal_page_not_allowed"}
+      ],
+      "fallback_used": false,
+      "fallback_produced_documents": false,
+      "source_family": "availability/distributor",
+      "likely_failure": "Worked because it used concrete hardware plus availability language and avoided an over-strict site filter."
+    }
+  ]
+}

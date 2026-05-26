@@ -1,0 +1,8 @@
+{
+  "total_fetch_attempts": 46,
+  "successful_fetches": 46,
+  "failed_fetches": 0,
+  "permanent_failures": 0,
+  "failure_count_by_domain": {},
+  "failure_count_by_reason": {}
+}

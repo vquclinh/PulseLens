@@ -21,6 +21,10 @@ class PipelineState(TypedDict, total=False):
     market: str
     companies: List[str]
     time_window: str
+    demo_scope_enabled: bool
+    target_signal_types: List[str]
+    core_signal_types: List[str]
+    optional_signal_types: List[str]
 
     # Agent 1 output
     queries: List[SearchQuery]

@@ -1,0 +1,89 @@
+{
+  "pricing_query_count": 15,
+  "accepted_pricing_documents": 13,
+  "zero_doc_pricing_queries": 3,
+  "zero_doc_pricing_query_rate": 0.2,
+  "metadata_only_count": 0,
+  "full_text_count": 9,
+  "top_accepted_domains": [
+    [
+      "runpod.io",
+      2
+    ],
+    [
+      "coreweave.com",
+      2
+    ],
+    [
+      "servethehome.com",
+      2
+    ],
+    [
+      "ir.supermicro.com",
+      2
+    ],
+    [
+      "azure.microsoft.com",
+      1
+    ],
+    [
+      "blogs.oracle.com",
+      1
+    ],
+    [
+      "dell.com",
+      1
+    ],
+    [
+      "amd.com",
+      1
+    ],
+    [
+      "semianalysis.com",
+      1
+    ]
+  ],
+  "top_rejection_reasons": [
+    [
+      "pricing_source_family_mismatch",
+      45
+    ],
+    [
+      "fallback:pricing_source_family_mismatch",
+      43
+    ],
+    [
+      "site_constraint_mismatch",
+      10
+    ],
+    [
+      "pricing_missing_hardware_terms",
+      4
+    ],
+    [
+      "fallback:social_or_low_signal_page_not_allowed",
+      3
+    ],
+    [
+      "social_or_low_signal_page_not_allowed",
+      3
+    ],
+    [
+      "tracking_or_email_redirect_url",
+      1
+    ],
+    [
+      "fallback:forum_or_community_source_not_allowed",
+      1
+    ]
+  ],
+  "fetch_error_summary": {
+    "total_fetch_attempts": 4,
+    "successful_fetches": 4,
+    "failed_fetches": 0,
+    "permanent_failures": 0,
+    "failure_count_by_domain": {},
+    "failure_count_by_reason": {}
+  },
+  "estimated_brightdata_calls": 31
+}

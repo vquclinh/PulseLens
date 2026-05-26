@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
 from app.config.companies import COMPANIES
+from app.config.demo_scope import get_scope_config
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
 from app.db.database import load_report, list_report_facts, latest_report_id
 from app.pipeline.graph import pipeline_graph
@@ -22,10 +23,16 @@ class RunPipelineRequest(BaseModel):
 
 @router.post("/run")
 async def run_pipeline(request: RunPipelineRequest):
+    scope = get_scope_config()
+    companies = request.companies or (scope.companies if scope.demo_scope_enabled else [company.name for company in COMPANIES])
     state = {
         "market": request.market or DEFAULT_MARKET,
-        "companies": request.companies or [company.name for company in COMPANIES],
+        "companies": companies,
         "time_window": request.time_window or DEFAULT_TIME_WINDOW,
+        "demo_scope_enabled": scope.demo_scope_enabled,
+        "target_signal_types": scope.core_signal_types if scope.demo_scope_enabled else [],
+        "core_signal_types": scope.core_signal_types if scope.demo_scope_enabled else [],
+        "optional_signal_types": scope.optional_signal_types if scope.demo_scope_enabled else [],
         "queries": [],
         "pending_queries": [],
         "query_planner_audit": {},

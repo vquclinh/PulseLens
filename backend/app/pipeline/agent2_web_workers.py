@@ -19,7 +19,7 @@ from app.config.source_tiers import TIER_2_DOMAINS, assign_tier
 from app.schemas.models import RawDocument, SearchQuery
 from app.utils.brightdata_client import BrightDataClient, BrightDataError, DEFAULT_NUM_RESULTS
 from app.utils.helpers import extract_domain, generate_uuid, now_iso
-from app.utils.url_scorer import URLScorer
+from app.utils.url_scorer import PRICING_HARDWARE_TERMS, PRICING_SIGNAL_TERMS, URLScorer
 
 logger = logging.getLogger(__name__)
 
@@ -125,6 +125,12 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
             len(all_docs) - len(useful), len(all_docs),
         )
     _LAST_COLLECTION_AUDIT["accepted_doc_count"] = len(useful)
+    _LAST_COLLECTION_AUDIT["metadata_only_count"] = sum(1 for d in useful if d.content_quality == "metadata_only")
+    _LAST_COLLECTION_AUDIT["full_text_count"] = sum(1 for d in useful if d.content_quality == "full_text")
+    _LAST_COLLECTION_AUDIT["snippet_only_count"] = sum(1 for d in useful if d.content_quality == "snippet_only")
+    _LAST_COLLECTION_AUDIT["extraction_allowed_doc_count"] = sum(
+        1 for d in useful if getattr(d, "extraction_allowed", True)
+    )
     _LAST_COLLECTION_AUDIT["failed_query_count"] = sum(
         1 for q in _LAST_COLLECTION_AUDIT["queries"] if q.get("accepted_doc_count", 0) == 0
     )
@@ -172,6 +178,12 @@ async def collect_documents_for_query(
                         {"url": candidate.get("url") or candidate.get("link") or "", "reason": reason}
                     )
                     continue
+                query_audit["accepted_urls"].append(
+                    {
+                        "url": candidate.get("url") or candidate.get("link") or "",
+                        "reason": scorer.acceptance_reason(candidate, query),
+                    }
+                )
                 kept.append(candidate)
             candidates = kept
             skipped = pre_filter - len(candidates)
@@ -191,6 +203,7 @@ async def collect_documents_for_query(
             if _prefer_metadata_only(url, query):
                 metadata_doc = _metadata_only_document(candidate, query, url)
                 if metadata_doc is not None:
+                    query_audit["accepted_urls"].append({"url": url, "reason": "pricing_metadata_only_accepted" if query.source_type == "pricing_pages" else "metadata_only_accepted"})
                     docs.append(metadata_doc)
                     continue
             try:
@@ -239,6 +252,7 @@ async def collect_documents_for_query(
                     fetched_at=now_iso(),
                     source_tier=assign_tier(final_url),
                     content_quality=content_quality,
+                    extraction_allowed=content_quality != "metadata_only",
                     collection_query=query.query_text,
                     signal_type_hint=query.signal_type,
                 )
@@ -248,6 +262,7 @@ async def collect_documents_for_query(
             fallback_docs = await _run_per_query_fallbacks(client, query, scorer, fetch_summary, query_audit)
             if fallback_docs:
                 docs.extend(fallback_docs)
+                query_audit["fallback_produced_documents"] = True
 
         query_audit["accepted_doc_count"] = len(docs)
         _record_query_audit(query_audit)
@@ -272,9 +287,15 @@ async def _run_per_query_fallbacks(
     if not fallback_queries:
         return []
     query_audit["fallback_used"] = True
+    query_audit["fallback_policy"] = (
+        "pricing_relaxed_site_constraint"
+        if query.signal_type.value == "pricing_pressure" or query.source_type == "pricing_pages"
+        else "standard"
+    )
     docs: list[RawDocument] = []
 
     for fallback_query in fallback_queries:
+        scoring_query = query.model_copy(update={"query_text": fallback_query})
         try:
             candidates = await client.serp_search(fallback_query, num_results=NUM_RESULTS_PER_QUERY)
         except Exception as exc:
@@ -285,18 +306,25 @@ async def _run_per_query_fallbacks(
 
         for candidate in candidates:
             if scorer is not None:
-                reason = scorer.rejection_reason(candidate, query)
+                reason = scorer.rejection_reason(candidate, scoring_query)
                 if reason:
                     query_audit["rejected_urls"].append(
                         {"url": candidate.get("url") or candidate.get("link") or "", "reason": f"fallback:{reason}"}
                     )
                     continue
+                query_audit["accepted_urls"].append(
+                    {
+                        "url": candidate.get("url") or candidate.get("link") or "",
+                        "reason": f"fallback:{scorer.acceptance_reason(candidate, scoring_query)}",
+                    }
+                )
             url = _normalize_url(candidate.get("url", ""))
             if not url:
                 continue
             if _prefer_metadata_only(url, query):
                 metadata_doc = _metadata_only_document(candidate, query, url)
                 if metadata_doc is not None:
+                    query_audit["accepted_urls"].append({"url": url, "reason": "fallback:pricing_metadata_only_accepted" if query.source_type == "pricing_pages" else "fallback:metadata_only_accepted"})
                     docs.append(metadata_doc)
                     continue
             try:
@@ -340,6 +368,7 @@ async def _run_per_query_fallbacks(
                     fetched_at=now_iso(),
                     source_tier=assign_tier(final_url),
                     content_quality=content_quality,
+                    extraction_allowed=content_quality != "metadata_only",
                     collection_query=fallback_query,
                     signal_type_hint=query.signal_type,
                 )
@@ -440,6 +469,26 @@ def _per_query_fallbacks(query: SearchQuery) -> list[str]:
     company = query.target_entity if query.target_entity != "market" else "AI hardware semiconductor market"
     time_anchor = _extract_time_anchor(query.query_text) or "last 7 days"
     signal_phrase = query.signal_type.value.replace("_", " ")
+    if query.signal_type.value == "pricing_pressure" or query.source_type == "pricing_pages":
+        if company == "Nvidia":
+            return [
+                f"Nvidia H100 H200 B200 GPU cloud pricing availability {time_anchor}",
+                f"Nvidia GPU instance discount availability AWS Azure CoreWeave Lambda Labs {time_anchor}",
+            ]
+        if company == "AMD":
+            return [
+                f"AMD Instinct MI300X MI325X cloud GPU pricing availability {time_anchor}",
+                f"AMD MI300X MI325X AI server pricing availability Dell Supermicro Oracle Azure {time_anchor}",
+            ]
+        if company == "Supermicro":
+            return [
+                f"Supermicro GPU server AI server pricing availability H100 H200 B200 MI300X {time_anchor}",
+                f"Supermicro Blackwell AMD Instinct GPU server lead time delivery availability {time_anchor}",
+            ]
+        return [
+            f"cloud GPU pricing availability H100 H200 B200 MI300X {time_anchor}",
+            f"AI server lead time GPU availability distributor pricing {time_anchor}",
+        ]
     ir_fallback = f'{company} investor relations press release {signal_phrase} {time_anchor}'
     news_fallback = f'{company} {signal_phrase} AI hardware semiconductor Reuters Bloomberg {time_anchor}'
     if query.source_type == "job_pages":
@@ -468,10 +517,16 @@ def _metadata_only_document(candidate: dict[str, Any], query: SearchQuery, url: 
     domain = extract_domain(url)
     allowed_metadata_domain = any(domain == d or domain.endswith("." + d) for d in TIER2_METADATA_DOMAINS)
     allowed_linkedin_job = query.source_type == "job_pages" and domain == "linkedin.com" and "/jobs/" in urlparse(url).path
-    if not allowed_metadata_domain and not allowed_linkedin_job:
-        return None
-    snippet = str(candidate.get("snippet") or candidate.get("description") or "").strip()
     title = str(candidate.get("title") or "").strip()
+    snippet = str(candidate.get("snippet") or candidate.get("description") or "").strip()
+    haystack = f"{url} {title} {snippet}".lower()
+    allowed_pricing_metadata = (
+        (query.signal_type.value == "pricing_pressure" or query.source_type == "pricing_pages")
+        and any(term in haystack for term in PRICING_HARDWARE_TERMS)
+        and any(term in haystack for term in PRICING_SIGNAL_TERMS)
+    )
+    if not allowed_metadata_domain and not allowed_linkedin_job and not allowed_pricing_metadata:
+        return None
     content = "\n".join(part for part in [title, snippet] if part).strip()
     if len(content) < 30:
         return None
@@ -485,6 +540,7 @@ def _metadata_only_document(candidate: dict[str, Any], query: SearchQuery, url: 
         fetched_at=now_iso(),
         source_tier=assign_tier(url),
         content_quality="metadata_only",
+        extraction_allowed=False,
         collection_query=query.query_text,
         signal_type_hint=query.signal_type,
     )
@@ -504,10 +560,13 @@ def _new_query_audit(query: SearchQuery) -> dict[str, Any]:
         "signal_type": query.signal_type.value,
         "source_type": query.source_type,
         "attempted_urls": [],
+        "accepted_urls": [],
         "rejected_urls": [],
         "fetch_errors": [],
         "accepted_doc_count": 0,
         "fallback_used": False,
+        "fallback_policy": None,
+        "fallback_produced_documents": False,
     }
 
 

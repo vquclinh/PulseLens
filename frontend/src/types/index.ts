@@ -36,6 +36,7 @@ export interface RawDocument {
   fetched_at: string
   source_tier: 1 | 2 | 3 | 4
   content_quality: 'full_text' | 'metadata_only' | 'snippet_only'
+  extraction_allowed: boolean
   collection_query: string
   signal_type_hint: SignalType | null
 }

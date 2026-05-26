@@ -7,6 +7,7 @@ import os
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from app.config.companies import COMPANIES
+from app.config.demo_scope import get_scope_config
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
 from app.pipeline.agent1_query_planner import QueryPlanner
 from app.pipeline.agent2_web_workers import collect_documents, collect_documents_for_query
@@ -44,6 +45,10 @@ def _merge_web_audit(previous: dict | None, current: dict | None) -> dict:
         "failed_query_count": int(previous.get("failed_query_count") or 0) + int(current.get("failed_query_count") or 0),
         "zero_doc_query_count": int(previous.get("zero_doc_query_count") or 0) + int(current.get("zero_doc_query_count") or 0),
         "low_quality_discard_count": int(previous.get("low_quality_discard_count") or 0) + int(current.get("low_quality_discard_count") or 0),
+        "metadata_only_count": int(previous.get("metadata_only_count") or 0) + int(current.get("metadata_only_count") or 0),
+        "full_text_count": int(previous.get("full_text_count") or 0) + int(current.get("full_text_count") or 0),
+        "snippet_only_count": int(previous.get("snippet_only_count") or 0) + int(current.get("snippet_only_count") or 0),
+        "extraction_allowed_doc_count": int(previous.get("extraction_allowed_doc_count") or 0) + int(current.get("extraction_allowed_doc_count") or 0),
     }
 
 
@@ -77,13 +82,22 @@ async def query_planner(state: PipelineState) -> dict:
     logger.info("node: query_planner (round=%d)", expansion_round)
     planner = QueryPlanner()
     low_signal_types = state.get("low_signal_types") or None
-    companies = state.get("companies") or [c.name for c in COMPANIES]
+    scope = get_scope_config()
+    demo_enabled = bool(state.get("demo_scope_enabled", scope.demo_scope_enabled))
+    if not demo_enabled and scope.demo_scope_enabled:
+        scope = get_scope_config(force_full=True)
+    companies = state.get("companies") or (scope.companies if demo_enabled else [c.name for c in COMPANIES])
+    target_signal_types = state.get("target_signal_types") or (scope.core_signal_types if demo_enabled else None)
     queries = planner.run(
         market=state.get("market", DEFAULT_MARKET),
         companies=companies,
         time_window=state.get("time_window", DEFAULT_TIME_WINDOW),
         expansion_round=expansion_round,
         low_signal_types=low_signal_types,
+        target_signal_types=target_signal_types,
+        min_queries=scope.min_queries if demo_enabled else None,
+        max_queries=scope.max_queries if demo_enabled else None,
+        demo_scope_enabled=demo_enabled,
     )
     existing = list(state.get("queries") or [])
     round_audit = dict(planner.last_query_telemetry)
@@ -127,8 +141,10 @@ async def web_worker(state: PipelineState) -> dict:
 
 async def fact_extractor(state: PipelineState) -> dict:
     """Agent 3 — Fact Extractors (RASG schema-constrained extraction, parallel fan-out)"""
-    documents = state.get("raw_documents") or []
-    logger.info("node: fact_extractor documents=%d", len(documents))
+    all_documents = state.get("raw_documents") or []
+    documents = [doc for doc in all_documents if getattr(doc, "extraction_allowed", True)]
+    skipped = len(all_documents) - len(documents)
+    logger.info("node: fact_extractor documents=%d skipped_metadata_only=%d", len(documents), skipped)
     raw_facts = await extract_facts_from_documents(documents)
     logger.info(
         "node: fact_extractor extracted %d raw facts from %d documents",

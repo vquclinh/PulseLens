@@ -25,10 +25,12 @@ def run_quality_gate(state: PipelineState) -> dict:
     companies = state.get("companies") or []
     web_audit = state.get("web_collection_audit") or {}
     fetch_summary = state.get("fetch_error_summary") or {}
+    required_signal_values = _required_signal_values(state)
 
     covered_signals = {f.signal_type for f in facts}
     covered_signal_values = sorted(st.value for st in covered_signals)
-    missing_signal_values = sorted(st.value for st in SignalType if st not in covered_signals)
+    covered_required_values = sorted(st.value for st in covered_signals if st.value in required_signal_values)
+    missing_signal_values = sorted(required_signal_values - {st.value for st in covered_signals})
     source_count = len({getattr(f, "source_url", "") for f in facts if getattr(f, "source_url", "")})
 
     fact_entities = {getattr(f, "entity", "") for f in facts}
@@ -54,8 +56,9 @@ def run_quality_gate(state: PipelineState) -> dict:
     cfg = QUALITY_GATE_CONFIG
     if len(facts) < cfg.min_facts:
         reasons.append(f"fact_count {len(facts)} < {cfg.min_facts}")
-    if len(covered_signals) < cfg.min_signal_types:
-        reasons.append(f"signal_types {len(covered_signals)} < {cfg.min_signal_types}")
+    required_signal_count = len(required_signal_values) or cfg.min_signal_types
+    if len(covered_required_values) < required_signal_count:
+        reasons.append(f"required_signal_types {len(covered_required_values)} < {required_signal_count}")
     if company_coverage < cfg.min_company_coverage_ratio:
         reasons.append(f"company_coverage {company_coverage:.2f} < {cfg.min_company_coverage_ratio:.2f}")
     if zero_doc_query_rate > cfg.max_zero_doc_query_rate:
@@ -119,6 +122,12 @@ def quality_gate_router(state: PipelineState) -> Literal["expand_queries", "proc
     if state.get("quality_status") == "FAIL_EXPAND" or not state.get("quality_passed", True):
         return "expand_queries"
     return "proceed"
+
+
+def _required_signal_values(state: PipelineState) -> set[str]:
+    configured = state.get("core_signal_types") or state.get("target_signal_types") or []
+    values = {str(value) for value in configured if str(value) in {signal.value for signal in SignalType}}
+    return values or {signal.value for signal in SignalType}
 
 
 # ── Standalone test ────────────────────────────────────────────────────────────

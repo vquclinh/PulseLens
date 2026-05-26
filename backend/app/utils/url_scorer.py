@@ -1,6 +1,7 @@
 # URL relevance scoring — filters SERP results before Bright Data fetch.
 # All domain knowledge from source_tiers.py; all entity knowledge from companies.py.
-# No domain names hardcoded here.
+# Pricing source families are intentionally explicit for the hackathon demo
+# playbook; company/IR domain knowledge still comes from config.
 from __future__ import annotations
 
 import re
@@ -69,6 +70,52 @@ TRACKING_MARKERS = [
 UNRELATED_VENDOR_TERMS = [
     "symantec", "antivirus", "endpoint security", "cybersecurity", "cdw.com/product",
 ]
+
+PRICING_SIGNAL_TERMS = [
+    "price", "pricing", "discount", "availability", "available", "lead time",
+    "on-demand", "reserved", "spot", "rental", "cost", "quote", "buy",
+]
+
+PRICING_HARDWARE_TERMS = [
+    "gpu", "accelerator", "h100", "h200", "b200", "l40s", "a100",
+    "mi300", "mi300x", "mi325", "mi325x", "mi350", "blackwell",
+    "instinct", "ec2", "vm", "instance", "compute", "ai server",
+    "gpu server", "rack-scale", "liquid cooling",
+]
+
+CLOUD_PRICING_DOMAINS = {
+    "aws.amazon.com",
+    "azure.microsoft.com",
+    "cloud.google.com",
+    "oracle.com",
+    "coreweave.com",
+    "lambdalabs.com",
+    "runpod.io",
+}
+
+COMPANY_PRODUCT_DOMAINS = {company.domain for company in COMPANIES}
+
+OEM_DISTRIBUTOR_DOMAINS = {
+    "supermicro.com",
+    "store.supermicro.com",
+    "dell.com",
+    "hpe.com",
+    "cdw.com",
+    "exxactcorp.com",
+    "thinkmate.com",
+    "connection.com",
+    "insight.com",
+}
+
+PRICING_CONTEXT_DOMAINS = {
+    "reuters.com",
+    "bloomberg.com",
+    "theregister.com",
+    "semianalysis.com",
+    "servethehome.com",
+    "tomshardware.com",
+    "anandtech.com",
+}
 
 
 # ── Source-type affinity: derived from company config, not hardcoded ───────────
@@ -168,6 +215,10 @@ def _url_matches_site(url: str, site: str) -> bool:
     return host == site or host.endswith("." + site)
 
 
+def _domain_in_family(domain: str, family: set[str]) -> bool:
+    return any(domain == item or domain.endswith("." + item) for item in family)
+
+
 # ── Error memory ───────────────────────────────────────────────────────────────
 
 class DomainErrorMemory:
@@ -231,15 +282,15 @@ class URLScorer:
             if host not in career_domains and not jobish:
                 return "job_pages_requires_careers_or_jobs_domain"
 
-        if source_type == "pricing_pages":
-            if any(term in haystack for term in UNRELATED_VENDOR_TERMS):
-                return "unrelated_vendor_product_page"
-            if not any(term in haystack for term in MARKET_RELEVANCE_TERMS + SIGNAL_EVIDENCE_TERMS["pricing_pressure"]):
-                return "pricing_page_lacks_market_relevance"
+        sig_key = query.signal_type.value if hasattr(query.signal_type, "value") else str(query.signal_type)
+
+        if source_type == "pricing_pages" or sig_key == "pricing_pressure":
+            pricing_reason = self._pricing_rejection_reason(domain, haystack)
+            if pricing_reason:
+                return pricing_reason
 
         if source_type == "serp_news" and assign_tier(url) == 4:
             trusted_news = domain in TIER_2_DOMAINS or domain in TIER_3_DOMAINS
-            sig_key = query.signal_type.value if hasattr(query.signal_type, "value") else str(query.signal_type)
             relevance_terms = MARKET_RELEVANCE_TERMS + SIGNAL_EVIDENCE_TERMS.get(sig_key, [])
             if not trusted_news and not any(term in haystack for term in relevance_terms):
                 return "serp_news_irrelevant_tier4_domain"
@@ -248,6 +299,40 @@ class URLScorer:
             return "domain_repeated_permanent_failures"
 
         return None
+
+    def _pricing_rejection_reason(self, domain: str, haystack: str) -> str | None:
+        if any(term in haystack for term in UNRELATED_VENDOR_TERMS):
+            return "pricing_irrelevant_vendor_page"
+        if any(marker in haystack for marker in ("login", "signin", "auth", "/support/", "support/download", "cdn.")):
+            return "pricing_source_family_mismatch"
+
+        has_pricing_signal = any(term in haystack for term in PRICING_SIGNAL_TERMS)
+        has_hardware_signal = any(term in haystack for term in PRICING_HARDWARE_TERMS)
+        is_cloud = _domain_in_family(domain, CLOUD_PRICING_DOMAINS)
+        is_company = _domain_in_family(domain, COMPANY_PRODUCT_DOMAINS)
+        is_oem = _domain_in_family(domain, OEM_DISTRIBUTOR_DOMAINS)
+        is_context = _domain_in_family(domain, PRICING_CONTEXT_DOMAINS)
+
+        if is_cloud or is_company:
+            if not has_hardware_signal:
+                return "pricing_missing_hardware_terms"
+            if not has_pricing_signal:
+                return "pricing_source_family_mismatch"
+            return None
+
+        if is_oem:
+            if not has_hardware_signal:
+                return "pricing_missing_hardware_terms"
+            if not has_pricing_signal and "server" not in haystack:
+                return "pricing_source_family_mismatch"
+            return None
+
+        if is_context:
+            if not has_hardware_signal:
+                return "pricing_missing_hardware_terms"
+            return None
+
+        return "pricing_source_family_mismatch"
 
     def score(self, serp_result: dict, query: "SearchQuery") -> float:
         # Accept both "url"/"link" and "snippet"/"description" key conventions.
@@ -268,6 +353,11 @@ class URLScorer:
         snippet        = (url + " " + title + " " + description).lower()
         matched_entity = any(_term_matches(t, snippet) for t in entity_terms)
         entity_score   = 1.0 if matched_entity else 0.0
+        pricing_hardware_match = source_type == "pricing_pages" and any(
+            term in snippet for term in PRICING_HARDWARE_TERMS
+        )
+        if pricing_hardware_match and entity_score == 0.0:
+            entity_score = 0.6
 
         sig_key      = query.signal_type.value if hasattr(query.signal_type, "value") else str(query.signal_type)
         sig_terms    = SIGNAL_EVIDENCE_TERMS.get(sig_key, [])
@@ -301,6 +391,7 @@ class URLScorer:
             query.target_entity != "market"
             and entity_score == 0.0
             and not (source_type == "ir_pages" and assign_tier(url) == 1)
+            and not pricing_hardware_match
         ):
             return 0.0
 
@@ -319,6 +410,28 @@ class URLScorer:
         if score < min_score:
             return f"below_relevance_threshold:{score:.3f}"
         return None
+
+    def acceptance_reason(self, serp_result: dict, query: "SearchQuery") -> str:
+        url = serp_result.get("url") or serp_result.get("link", "")
+        title = serp_result.get("title", "")
+        description = serp_result.get("snippet") or serp_result.get("description", "")
+        domain = extract_domain(url)
+        haystack = f"{url} {title} {description}".lower()
+        source_type = getattr(query, "source_type", "") or ""
+        sig_key = query.signal_type.value if hasattr(query.signal_type, "value") else str(query.signal_type)
+
+        if sig_key == "pricing_pressure" or source_type == "pricing_pages":
+            if _domain_in_family(domain, CLOUD_PRICING_DOMAINS):
+                return "pricing_cloud_provider_accept"
+            if _domain_in_family(domain, COMPANY_PRODUCT_DOMAINS):
+                return "pricing_playbook_accept"
+            if _domain_in_family(domain, OEM_DISTRIBUTOR_DOMAINS):
+                return "pricing_oem_distributor_accept"
+            if _domain_in_family(domain, PRICING_CONTEXT_DOMAINS):
+                return "pricing_playbook_accept"
+            if any(term in haystack for term in PRICING_HARDWARE_TERMS):
+                return "pricing_playbook_accept"
+        return "accepted"
 
     def should_fetch(
         self,

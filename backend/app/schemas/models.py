@@ -48,6 +48,7 @@ class RawDocument(BaseModel):
     fetched_at: str
     source_tier: Literal[1, 2, 3, 4]
     content_quality: Literal["full_text", "metadata_only", "snippet_only"] = "full_text"
+    extraction_allowed: bool = True
     collection_query: str
     signal_type_hint: Optional[SignalType]
 

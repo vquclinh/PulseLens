@@ -1,0 +1,121 @@
+{
+  "report": {
+    "report_id": "report_dfd5e69a3a42",
+    "quality_status": "PASS",
+    "quality_reasons": [],
+    "pulse_score": 44.3,
+    "pulse_status": "risk_rising",
+    "pulse_confidence": 0.66,
+    "evidence_count": 63,
+    "source_count": 23,
+    "top_signals": [
+      {
+        "signal_type": "pricing_pressure",
+        "score": -0.9717,
+        "source_count": 2,
+        "confidence": 0.593,
+        "narrative": "SemiAnalysis launched an H100 1-Year Rental Price Index on April 2, 2026.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "strategic_messaging",
+        "score": 0.4218,
+        "source_count": 9,
+        "confidence": 0.762,
+        "narrative": "AMD plans to invest over $10 billion in the Taiwan ecosystem to accelerate AI infrastructure development.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "supplier_risk",
+        "score": -0.1875,
+        "source_count": 3,
+        "confidence": 0.613,
+        "narrative": "There are ongoing High Bandwidth Memory (HBM) shortages in the market.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "product_launch",
+        "score": 0.0396,
+        "source_count": 10,
+        "confidence": 0.799,
+        "narrative": "AMD Instinct MI300X accelerators are now available on Oracle Cloud Infrastructure for AI applications.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "investor_signal",
+        "score": 0.0,
+        "source_count": 7,
+        "confidence": 0.742,
+        "narrative": "AMD's GAAP gross margin increased by 3 percentage points year-over-year to 53% in Q1 2026.",
+        "is_contradicted": true
+      }
+    ],
+    "watch_list": [
+      {
+        "title": "AMD's Q1 2026 Financial Clarity",
+        "rationale": "There are conflicting reports regarding AMD's Q1 2026 GAAP gross margin and operating income. Clarifying these figures will provide a clearer picture of AMD's recent financial health.",
+        "trigger": "AMD releases further clarification on its Q1 2026 financial reporting, specifically addressing the contradiction between increased gross margin/operating income and reported operating loss due to export controls.",
+        "signals_pointing_there": [
+          "claim_00a5d81b6eaa"
+        ],
+        "urgency": "next_2_weeks"
+      },
+      {
+        "title": "Supermicro's Q3 FY2026 Financial Performance",
+        "rationale": "Discrepancies exist between Supermicro's reported GAAP Net Income for Q3 FY2026 and previous record revenue claims. Resolving this will provide insight into Supermicro's recent financial trajectory.",
+        "trigger": "Supermicro provides additional context or revised figures for its Q3 FY2026 GAAP Net Income, or reconciles it with earlier record revenue and diluted net income per share for fiscal Q2 2024.",
+        "signals_pointing_there": [
+          "claim_4b7c91aed3d6"
+        ],
+        "urgency": "next_2_weeks"
+      },
+      {
+        "title": "Impact of HBM Shortages on AI Development",
+        "rationale": "High Bandwidth Memory (HBM) shortages are an ongoing concern for AI development, despite new product launches. Monitoring how this impacts production and availability for leading AI hardware providers is crucial.",
+        "trigger": "Reports emerge detailing the quantitative impact of HBM shortages on product shipment targets or pricing for AI accelerators from major manufacturers like NVIDIA or AMD.",
+        "signals_pointing_there": [
+          "claim_86a63456975c"
+        ],
+        "urgency": "this_week"
+      }
+    ],
+    "audit_summary": {
+      "query_count": 36,
+      "accepted_doc_count": 56,
+      "failed_query_count": 3,
+      "zero_doc_query_count": 3,
+      "fetch_error_count": 0,
+      "covered_signal_types": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "missing_signal_types": [],
+      "source_count": 23,
+      "evidence_count": 63
+    }
+  },
+  "companies_covered": [
+    "AMD",
+    "Nvidia",
+    "Supermicro"
+  ],
+  "core_signals_covered": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "core_signals_missing": [],
+  "optional_signals_covered": [
+    "strategic_messaging"
+  ],
+  "optional_signals_missing": [
+    "hiring_momentum",
+    "news_sentiment"
+  ],
+  "pricing_pressure_document_count": 18,
+  "estimated_brightdata_calls": 108
+}

@@ -16,6 +16,7 @@ from urllib.parse import urlparse as _urlparse
 
 from app.config.companies import COMPANIES
 from app.config.markets import DEFAULT_MARKET, DEFAULT_TIME_WINDOW
+from app.config.demo_scope import get_scope_config, is_demo_scope_enabled
 from app.config.quality_gates import (
     MAX_EXPANSION_QUERIES,
     MAX_EXPANSION_ROUNDS,
@@ -27,6 +28,11 @@ from app.config.quality_gates import (
 )
 from app.config.signal_types import SIGNAL_DESCRIPTIONS, SIGNAL_WEIGHTS
 from app.config.source_tiers import TOOL_MAPPING
+from app.pipeline.pricing_pressure_playbook import (
+    build_pricing_playbook_specs,
+    pricing_playbook_audit_payload,
+    specs_to_search_queries,
+)
 from app.schemas.models import SearchQuery, SignalType
 from app.utils.helpers import generate_uuid
 from app.utils.llm_client import LLMClient
@@ -276,6 +282,10 @@ class QueryPlanner:
         time_window: str,
         expansion_round: int = 0,
         low_signal_types: Optional[List[str]] = None,
+        target_signal_types: Optional[List[str]] = None,
+        min_queries: Optional[int] = None,
+        max_queries: Optional[int] = None,
+        demo_scope_enabled: Optional[bool] = None,
     ) -> List[SearchQuery]:
         """
         Full query planning pipeline:
@@ -292,26 +302,60 @@ class QueryPlanner:
                 "Hard stop — do not call run() again."
             )
 
-        expansion_signal_types = low_signal_types or []
+        demo_scope = is_demo_scope_enabled() if demo_scope_enabled is None else demo_scope_enabled
+        scope = get_scope_config() if demo_scope else get_scope_config(force_full=True)
+        requested_signal_types = _normalize_requested_signal_types(
+            target_signal_types or (scope.core_signal_types if demo_scope else _ALL_SIGNAL_TYPES)
+        )
+        if not requested_signal_types:
+            requested_signal_types = list(_ALL_SIGNAL_TYPES)
+
+        expansion_signal_types = [
+            signal_type for signal_type in _normalize_requested_signal_types(low_signal_types or [])
+            if signal_type in set(requested_signal_types)
+        ]
         is_expansion = expansion_round > 0
-        signal_types = expansion_signal_types if is_expansion else _ALL_SIGNAL_TYPES
+        signal_types = expansion_signal_types if is_expansion else requested_signal_types
         if is_expansion and not signal_types:
-            signal_types = _ALL_SIGNAL_TYPES
+            signal_types = requested_signal_types
+        normal_min_queries = min_queries or (scope.min_queries if demo_scope else MIN_QUERIES)
+        normal_max_queries = max_queries or (scope.max_queries if demo_scope else MAX_QUERIES)
         target_count = (
             f"{MIN_EXPANSION_QUERIES} to {MAX_EXPANSION_QUERIES}"
             if is_expansion
-            else f"{MIN_QUERIES} to {MAX_QUERIES}"
+            else f"{normal_min_queries} to {normal_max_queries}"
         )
-        min_queries = MIN_EXPANSION_QUERIES if is_expansion else MIN_QUERIES
+        validation_min_queries = MIN_EXPANSION_QUERIES if is_expansion else normal_min_queries
         required_signal_types = set(signal_types)
         require_all_companies = not is_expansion
         company_coverage_rule = (
-            "cover all 8 tracked companies with at least 1 query each, plus at least 1 market-level query"
+            f"cover all {len(companies)} configured companies with at least 1 query each, plus at least 1 market-level query"
             if require_all_companies
-            else "target only the low-coverage gaps; choose the most relevant tracked companies, and do not force all 8"
+            else f"target only the low-coverage gaps; choose the most relevant configured companies, and do not force all {len(companies)}"
         )
 
+        pricing_playbook_specs = []
+        pricing_playbook_queries: list[SearchQuery] = []
+        pricing_playbook_payload: list[dict[str, object]] = []
+        if demo_scope and SignalType.pricing_pressure.value in required_signal_types:
+            pricing_playbook_specs = build_pricing_playbook_specs(companies, time_window, include_market=not is_expansion)
+            pricing_playbook_queries = specs_to_search_queries(pricing_playbook_specs)
+            pricing_playbook_payload = pricing_playbook_audit_payload(
+                pricing_playbook_specs,
+                pricing_playbook_queries,
+            )
+            logger.info("Agent 1 injected %d deterministic pricing playbook queries", len(pricing_playbook_queries))
+            if not is_expansion:
+                llm_min = max(8, normal_min_queries - len(pricing_playbook_queries))
+                llm_max = max(llm_min, normal_max_queries - len(pricing_playbook_queries))
+                target_count = (
+                    f"{llm_min} to {llm_max} LLM-generated queries, plus "
+                    f"{len(pricing_playbook_queries)} deterministic pricing_pressure playbook queries"
+                )
+
         companies_str = ", ".join(companies)
+        entity_enum = " | ".join(f'"{company}"' for company in companies) + ' | "market"'
+        company_context_block = _company_context_block_for(companies)
         current_date = datetime.now().strftime("%B %d, %Y")
 
         # ── Phase 1: Step-Back abstraction (arXiv:2310.06117) — runs once ─────
@@ -364,9 +408,9 @@ class QueryPlanner:
                 expansion_note=expansion_note,
                 low_coverage_note=low_coverage_note,
                 quality_retry_note=quality_retry_note,
-                company_context_block=_COMPANY_CONTEXT_BLOCK,
+                company_context_block=company_context_block,
                 signal_playbook_block=_SIGNAL_PLAYBOOK_BLOCK,
-                entity_enum=_ENTITY_ENUM,
+                entity_enum=entity_enum,
                 signal_type_enum=_SIGNAL_TYPE_ENUM,
                 source_type_enum=_SOURCE_TYPE_ENUM,
             )
@@ -380,13 +424,20 @@ class QueryPlanner:
                     raw_queries,
                     multihyde_system,
                     companies,
-                    min_queries,
+                    validation_min_queries,
+                    allowed_entities=set(companies) | {"market"},
+                    max_queries=MAX_EXPANSION_QUERIES if is_expansion else normal_max_queries,
                     required_signal_types=required_signal_types,
-                    allowed_signal_types=required_signal_types if is_expansion else _VALID_SIGNAL_TYPES,
+                    allowed_signal_types=required_signal_types if (is_expansion or demo_scope or target_signal_types) else _VALID_SIGNAL_TYPES,
                     require_all_companies=require_all_companies,
                     require_market_query=not is_expansion,
                     require_priority_investor_signals=not is_expansion,
-                    signal_minimums=None if is_expansion else _NORMAL_SIGNAL_QUERY_MINIMUMS,
+                    signal_minimums=None if is_expansion else _signal_minimums_for(required_signal_types),
+                    seed_queries=pricing_playbook_queries,
+                    seed_telemetry={
+                        "pricing_playbook_query_count": len(pricing_playbook_queries),
+                        "pricing_playbook_queries": pricing_playbook_payload,
+                    },
                 )
                 break
             except _CoverageValidationError as exc:
@@ -472,14 +523,23 @@ class QueryPlanner:
         generation_system_prompt: str,
         expected_companies: List[str],
         min_queries: int = MIN_QUERIES,
+        allowed_entities: Optional[set[str]] = None,
+        max_queries: Optional[int] = None,
         required_signal_types: Optional[set[str]] = None,
         allowed_signal_types: Optional[set[str]] = None,
         require_all_companies: bool = True,
         require_market_query: bool = False,
         require_priority_investor_signals: bool = False,
         signal_minimums: Optional[dict[str, int]] = None,
+        seed_queries: Optional[list[SearchQuery]] = None,
+        seed_telemetry: Optional[dict[str, object]] = None,
     ) -> List[SearchQuery]:
-        queries, telemetry = self._parse_candidates(raw, allowed_signal_types=allowed_signal_types)
+        queries, telemetry = self._parse_candidates(
+            raw,
+            allowed_signal_types=allowed_signal_types,
+            allowed_entities=allowed_entities,
+        )
+        queries = _merge_seed_queries(seed_queries or [], queries, telemetry, seed_telemetry or {})
         malformed_rate = _rejection_rate(telemetry)
 
         if malformed_rate > MAX_MALFORMED_QUERY_RATE:
@@ -492,6 +552,7 @@ class QueryPlanner:
                 user=self._replacement_prompt(
                     accepted=queries,
                     min_queries=min_queries,
+                    max_queries=max_queries,
                     required_signal_types=required_signal_types or set(),
                     signal_minimums=signal_minimums or {},
                     expected_companies=expected_companies,
@@ -503,6 +564,7 @@ class QueryPlanner:
             replacements, replacement_telemetry = self._parse_candidates(
                 replacement_raw,
                 allowed_signal_types=allowed_signal_types,
+                allowed_entities=allowed_entities,
                 existing_queries=queries,
             )
             telemetry = _merge_telemetry(telemetry, replacement_telemetry)
@@ -520,6 +582,7 @@ class QueryPlanner:
             telemetry=telemetry,
             expected_companies=expected_companies,
             min_queries=min_queries,
+            max_queries=max_queries,
             required_signal_types=required_signal_types,
             require_all_companies=require_all_companies,
             require_market_query=require_market_query,
@@ -533,6 +596,8 @@ class QueryPlanner:
         raw: list,
         expected_companies: List[str],
         min_queries: int = MIN_QUERIES,
+        allowed_entities: Optional[set[str]] = None,
+        max_queries: Optional[int] = None,
         required_signal_types: Optional[set[str]] = None,
         allowed_signal_types: Optional[set[str]] = None,
         require_all_companies: bool = True,
@@ -540,12 +605,17 @@ class QueryPlanner:
         require_priority_investor_signals: bool = False,
         signal_minimums: Optional[dict[str, int]] = None,
     ) -> List[SearchQuery]:
-        queries, telemetry = self._parse_candidates(raw, allowed_signal_types=allowed_signal_types)
+        queries, telemetry = self._parse_candidates(
+            raw,
+            allowed_signal_types=allowed_signal_types,
+            allowed_entities=allowed_entities,
+        )
         return self._enforce_final_quality(
             queries=queries,
             telemetry=telemetry,
             expected_companies=expected_companies,
             min_queries=min_queries,
+            max_queries=max_queries,
             required_signal_types=required_signal_types,
             require_all_companies=require_all_companies,
             require_market_query=require_market_query,
@@ -557,6 +627,7 @@ class QueryPlanner:
         self,
         raw: object,
         allowed_signal_types: Optional[set[str]] = None,
+        allowed_entities: Optional[set[str]] = None,
         existing_queries: Optional[list[SearchQuery]] = None,
     ) -> tuple[list[SearchQuery], dict[str, Any]]:
         telemetry: dict[str, Any] = {
@@ -596,6 +667,9 @@ class QueryPlanner:
                 continue
             if target_entity not in _VALID_ENTITIES:
                 reject("invalid_target_entity", i, target_entity)
+                continue
+            if allowed_entities and target_entity not in allowed_entities:
+                reject("target_entity_outside_requested_scope", i, target_entity)
                 continue
             if signal_type_raw not in _VALID_SIGNAL_TYPES:
                 reject("unsupported_signal_type", i, signal_type_raw)
@@ -662,12 +736,30 @@ class QueryPlanner:
         telemetry: dict[str, Any],
         expected_companies: list[str],
         min_queries: int,
+        max_queries: Optional[int],
         required_signal_types: Optional[set[str]],
         require_all_companies: bool,
         require_market_query: bool,
         require_priority_investor_signals: bool,
         signal_minimums: Optional[dict[str, int]],
     ) -> list[SearchQuery]:
+        if max_queries and len(queries) > max_queries:
+            before_trim = len(queries)
+            queries = _trim_queries_to_limit(
+                queries,
+                max_queries=max_queries,
+                expected_companies=expected_companies,
+                required_signal_types=required_signal_types or set(),
+                require_market_query=require_market_query,
+                require_priority_investor_signals=require_priority_investor_signals,
+                signal_minimums=signal_minimums or {},
+            )
+            telemetry["trimmed_query_count"] = before_trim - len(queries)
+            if len(queries) < before_trim:
+                logger.info("Trimmed query plan from %d to %d queries", before_trim, len(queries))
+        else:
+            telemetry["trimmed_query_count"] = 0
+
         telemetry["accepted_query_count"] = len(queries)
         telemetry["signal_coverage_after_planning"] = sorted({q.signal_type.value for q in queries})
         self.last_query_telemetry = _finalize_telemetry_dict(telemetry)
@@ -735,6 +827,7 @@ class QueryPlanner:
         self,
         accepted: list[SearchQuery],
         min_queries: int,
+        max_queries: Optional[int],
         required_signal_types: set[str],
         signal_minimums: dict[str, int],
         expected_companies: list[str],
@@ -776,7 +869,7 @@ class QueryPlanner:
             "The previous JSON array contained malformed, duplicate, or unusable queries. "
             "Generate ONLY replacement queries for the invalid/missing slots. Do not repeat any accepted query.\n"
             f"Accepted query count: {len(accepted)}\n"
-            f"Replacement target: {needed_count} to {max(needed_count + 5, needed_count)} queries\n"
+            f"Replacement target: {needed_count} to {min(max(needed_count + 5, needed_count), max_queries or 999)} queries\n"
             f"Missing signal types: {sorted(required_signal_types - covered_signals)}\n"
             f"Signal minimum deficits: {signal_deficits}\n"
             f"Missing company coverage: {missing_companies}\n"
@@ -842,6 +935,149 @@ def _merge_telemetry(base: dict[str, Any], extra: dict[str, Any]) -> dict[str, A
             reasons[str(key)] += int(count)
     merged["rejected_reasons_by_type"] = reasons
     return merged
+
+
+def _normalize_requested_signal_types(values: list[str] | tuple[str, ...] | None) -> list[str]:
+    normalized: list[str] = []
+    seen: set[str] = set()
+    for value in values or []:
+        signal_type = str(value).strip()
+        if signal_type in _VALID_SIGNAL_TYPES and signal_type not in seen:
+            normalized.append(signal_type)
+            seen.add(signal_type)
+    return normalized
+
+
+def _signal_minimums_for(required_signal_types: set[str]) -> dict[str, int]:
+    return {
+        signal_type: minimum
+        for signal_type, minimum in _NORMAL_SIGNAL_QUERY_MINIMUMS.items()
+        if signal_type in required_signal_types
+    }
+
+
+def _company_context_block_for(companies: list[str]) -> str:
+    requested = set(companies)
+    rows = []
+    for company in COMPANIES:
+        if company.name not in requested:
+            continue
+        rows.append(
+            f"  {company.name} ({company.ticker}): primary_domain={company.domain}; "
+            f"ir_domain={_urlparse(company.ir_url).netloc}; "
+            f"careers_domain={_urlparse(company.careers_url).netloc}; "
+            f"aliases={', '.join(company.known_aliases)}"
+        )
+    return "\n".join(rows) if rows else _COMPANY_CONTEXT_BLOCK
+
+
+def _merge_seed_queries(
+    seed_queries: list[SearchQuery],
+    generated_queries: list[SearchQuery],
+    telemetry: dict[str, Any],
+    seed_telemetry: dict[str, object],
+) -> list[SearchQuery]:
+    if not seed_queries:
+        return generated_queries
+
+    merged: list[SearchQuery] = []
+    seen: list[str] = []
+    for query in seed_queries + generated_queries:
+        normalized = _normalize_query_text(query.query_text)
+        if _is_near_duplicate(normalized, seen):
+            if query in generated_queries:
+                telemetry["rejected_reasons_by_type"]["duplicate_or_near_duplicate_query_text"] += 1
+                telemetry["rejected_query_count"] += 1
+            continue
+        seen.append(normalized)
+        merged.append(query)
+
+    telemetry["accepted_query_count"] = len(merged)
+    telemetry["signal_coverage_after_planning"] = sorted({q.signal_type.value for q in merged})
+    telemetry.update(seed_telemetry)
+    return merged
+
+
+def _trim_queries_to_limit(
+    queries: list[SearchQuery],
+    *,
+    max_queries: int,
+    expected_companies: list[str],
+    required_signal_types: set[str],
+    require_market_query: bool,
+    require_priority_investor_signals: bool,
+    signal_minimums: dict[str, int],
+) -> list[SearchQuery]:
+    """Keep the most important coverage-preserving queries when an LLM overshoots."""
+    if len(queries) <= max_queries:
+        return queries
+
+    selected: list[SearchQuery] = []
+    selected_ids: set[str] = set()
+
+    def add(query: SearchQuery) -> None:
+        if len(selected) >= max_queries or query.query_id in selected_ids:
+            return
+        selected.append(query)
+        selected_ids.add(query.query_id)
+
+    # Deterministic playbook queries carry the fragile pricing coverage.
+    for query in queries:
+        if query.query_id.startswith("q_price_"):
+            add(query)
+
+    for signal_type in required_signal_types:
+        if any(q.signal_type.value == signal_type for q in selected):
+            continue
+        for query in queries:
+            if query.signal_type.value == signal_type:
+                add(query)
+                break
+
+    for company in expected_companies:
+        if any(q.target_entity == company for q in selected):
+            continue
+        for query in queries:
+            if query.target_entity == company:
+                add(query)
+                break
+
+    if require_market_query and not any(q.target_entity == "market" for q in selected):
+        for query in queries:
+            if query.target_entity == "market":
+                add(query)
+                break
+
+    if require_priority_investor_signals:
+        expected_priority = _PRIORITY_INVESTOR_COMPANIES & set(expected_companies)
+        for company in expected_priority:
+            if any(q.target_entity == company and q.signal_type == SignalType.investor_signal for q in selected):
+                continue
+            for query in queries:
+                if query.target_entity == company and query.signal_type == SignalType.investor_signal:
+                    add(query)
+                    break
+
+    for signal_type, minimum in signal_minimums.items():
+        while sum(1 for q in selected if q.signal_type.value == signal_type) < minimum:
+            before = len(selected)
+            for query in queries:
+                if query.signal_type.value == signal_type and query.query_id not in selected_ids:
+                    add(query)
+                    break
+            if len(selected) == before:
+                break
+
+    weighted_remaining = sorted(
+        (query for query in queries if query.query_id not in selected_ids),
+        key=lambda q: (q.priority, -SIGNAL_WEIGHTS.get(q.signal_type.value, 0.0)),
+    )
+    for query in weighted_remaining:
+        add(query)
+        if len(selected) >= max_queries:
+            break
+
+    return selected
 
 
 def _finalize_telemetry_dict(telemetry: dict[str, Any]) -> dict[str, Any]:

@@ -1,0 +1,552 @@
+[
+  {
+    "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_b778b389"
+  },
+  {
+    "url": "https://altstreet.investments/tools/gpu/gpu-price-comparison",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_b778b389"
+  },
+  {
+    "url": "https://computeprices.com/compare/lambda-vs-runpod",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_b778b389"
+  },
+  {
+    "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_fd7bacad"
+  },
+  {
+    "url": "https://jarvislabs.ai/blog/h100-price",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_fd7bacad"
+  },
+  {
+    "url": "https://computeprices.com/providers/coreweave",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_fd7bacad"
+  },
+  {
+    "url": "https://azure.microsoft.com/en-us/pricing/details/virtual-machines/windows/",
+    "reason": "pricing_missing_hardware_terms",
+    "query_id": "q_price_f26ed0ec"
+  },
+  {
+    "url": "https://azure.microsoft.com/en-us/blog/microsoft-launches-latest-azure-virtual-machines-optimized-for-ai-supercomputing-the-nd-h200-v5-series/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_f26ed0ec"
+  },
+  {
+    "url": "https://azure.microsoft.com/updates?id=562010",
+    "reason": "pricing_missing_hardware_terms",
+    "query_id": "q_price_f26ed0ec"
+  },
+  {
+    "url": "https://azure.microsoft.com/updates?id=557517?utm_source=bluesky&utm_medium=social&utm_campaign=azureweekly",
+    "reason": "tracking_or_email_redirect_url",
+    "query_id": "q_price_f26ed0ec"
+  },
+  {
+    "url": "https://aws.amazon.com/ec2/instance-types/p5/",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://aws.amazon.com/ec2/capacityblocks/",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/ec2/latest/instancetypes/ac.html",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://aws.amazon.com/ec2/capacityblocks/pricing/",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://aws.amazon.com/ec2/instance-types/accelerated-computing/",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://jarvislabs.ai/blog/h200-price",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://lambda.ai/pricing",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://www.spheron.network/pricing/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://getdeploying.com/gpus",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://computeprices.com/compare/coreweave-vs-lambda",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://northflank.com/blog/12-best-gpu-cloud-providers",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://www.siliconflow.com/articles/en/the-best-on-demand-gpu-instances-service",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_bb86de93"
+  },
+  {
+    "url": "https://www.digitalocean.com/blog/now-available-amd-instinct-mi325x-gpus",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/amd",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://blogs.vultr.com/MI325X",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://gpuperhour.com/rent/mi325x",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://getdeploying.com/gpus/amd-mi325x",
+    "reason": "site_constraint_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://blogs.vultr.com/MI325X",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://gpuperhour.com/rent/mi325x",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://getdeploying.com/gpus/amd-mi325x",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.hpcwire.com/bigdatawire/this-just-in/vultr-announces-availability-of-amd-instinct-mi325x-gpus-to-power-enterprise-ai/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.amd.com/en/products/accelerators/instinct/mi300/mi325x.html",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://ir.amd.com/news-events/press-releases/detail/1218/amd-unveils-leadership-ai-solutions-at-advancing-ai-2024",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/amd",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.amd.com/en/partner/articles/instinct-mi325x-accelerators.html",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.facebook.com/interestingengineering/posts/amd-went-all-in-on-ai-at-ces-2026-unveiling-the-helios-rack-platform-that-can-de/1322205829950851/",
+    "reason": "fallback:social_or_low_signal_page_not_allowed",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://slyd.com/hardware/ai-infrastructure",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_dd8e0dbb"
+  },
+  {
+    "url": "https://www.amd.com/en/products/accelerators/instinct.html",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_687eb9eb"
+  },
+  {
+    "url": "https://www.enterpriseitworld.com/amd-instinct-mi300x-accelerators-available-on-oracle-cloud/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_687eb9eb"
+  },
+  {
+    "url": "https://getdeploying.com/gpus/amd-mi300x",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_687eb9eb"
+  },
+  {
+    "url": "https://www.sdxcentral.com/news/amd-instinct-mi300x-gpus-now-available-on-oci/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_687eb9eb"
+  },
+  {
+    "url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_1310ff08"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/amd",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_1310ff08"
+  },
+  {
+    "url": "https://www.hpcwire.com/off-the-wire/vultr-announces-availability-of-amd-instinct-mi325x-gpus-to-power-enterprise-ai/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_1310ff08"
+  },
+  {
+    "url": "https://www.facebook.com/tomshardware/posts/amd-announces-mi325x-ai-accelerator-reveals-mi350-and-mi400-plans-at-computex/846508510846902/",
+    "reason": "social_or_low_signal_page_not_allowed",
+    "query_id": "q_price_1310ff08"
+  },
+  {
+    "url": "https://www.supermicro.com/en/products/gpu",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_f068e971"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/nvidia",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_f068e971"
+  },
+  {
+    "url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Now-Accepting-Orders-on-Portfolio-of-More-Than-20-Systems-Optimized-for-the-New-NVIDIA-RTX-PRO-6000-Blackwell-Server-Edition-GPUs-Accelerating-the-Deployment-of-Enterprise-AI-Factories/default.aspx",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_f068e971"
+  },
+  {
+    "url": "https://www.supermicro.com/en/solutions/ai-supercluster",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_f068e971"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/nvidia",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://www.instagram.com/p/DGAj1x3ylNC/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://introl.com/blog/nvidia-b200-vs-gb200-deployment-guide",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://www.engineering.com/supermicro-expands-enterprise-ai-solutions-for-nvidia-blackwell-in-europe/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Ramps-Full-Production-of-NVIDIA-Blackwell-Rack-Scale-Solutions-with-NVIDIA-HGX-B200/default.aspx",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://www.supermicro.com/en/products/gpu",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://slyd.com/hardware/supermicro",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/nvidia/hopper-ada-lovelace",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://www.arccompute.io/solutions/hardware/gpu-servers/supermicro-hgx-h200-gpu-server",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_5a20f5a5"
+  },
+  {
+    "url": "https://www.facebook.com/rundownnewsletter/posts/amd-has-raised-the-price-of-its-instinct-mi350-ai-chip-by-70-from-15000-to-25000/626998483755274/",
+    "reason": "social_or_low_signal_page_not_allowed",
+    "query_id": "q_price_45aff5f7"
+  },
+  {
+    "url": "https://gpus.io/en/gpus/mi325",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_45aff5f7"
+  },
+  {
+    "url": "https://getdeploying.com/gpus/amd-mi325x",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_45aff5f7"
+  },
+  {
+    "url": "https://northflank.com/blog/cheapest-cloud-gpu-providers",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_c0be1d13"
+  },
+  {
+    "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_c0be1d13"
+  },
+  {
+    "url": "https://getdeploying.com/gpus",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_c0be1d13"
+  },
+  {
+    "url": "https://www.clarifai.com/blog/cheapest-cloud-gpus",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_c0be1d13"
+  },
+  {
+    "url": "https://www.spheron.network/blog/gpu-cloud-pricing-comparison-2026/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_7b07c472"
+  },
+  {
+    "url": "https://aimultiple.com/gpu-index",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_7b07c472"
+  },
+  {
+    "url": "https://www.linkedin.com/posts/semianalysis_gpu-price-increase-alert-finding-gpu-compute-activity-7445495460737331201-pvDa",
+    "reason": "social_or_low_signal_page_not_allowed",
+    "query_id": "q_price_7b07c472"
+  },
+  {
+    "url": "https://www.silicondata.com/blog/b200-rental-price-march-2026-update",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_7b07c472"
+  },
+  {
+    "url": "https://www.clarifai.com/blog/gpu-shortages-2026",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.bloomberg.com/graphics/2026-ai-boom-memory-chip-shortage/",
+    "reason": "pricing_missing_hardware_terms",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://support.firstbase.com/hc/en-us/articles/36981286643223-Understanding-the-Global-Chip-Shortage-Why-GPU-Memory-Prices-Are-Rising-and-Lead-Times-Are-Increasing",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.spheron.network/blog/gpu-shortage-2026/",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.bloomberg.com/news/videos/2026-05-07/amd-rallies-after-ai-demand-fuels-blockbuster-forecast",
+    "reason": "pricing_missing_hardware_terms",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://getdeploying.com/gpus",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://jarvislabs.ai/blog/h200-price",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.cloudzero.com/blog/h100-gpu-cost/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.spheron.network/pricing/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://aimultiple.com/gpu-index",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.clarifai.com/blog/gpu-shortages-2026",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.linkedin.com/posts/james-marks-32a4b373_a-customer-asked-us-for-a-quote-on-gpu-infrastructure-activity-7426573117164068864-fJXo",
+    "reason": "fallback:social_or_low_signal_page_not_allowed",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.spheron.network/blog/gpu-shortage-2026/",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://vast.ai/hosting?srsltid=AfmBOoqqv39K9oIPpF2-an2_-vTDqkm39tBnCfk6WDxc47K8ZMetwms-",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.reddit.com/r/gpu/comments/1o79gxd/need_to_rent_a_gpu_server_best_options_in_2026/",
+    "reason": "fallback:forum_or_community_source_not_allowed",
+    "query_id": "q_price_e6b417e9"
+  },
+  {
+    "url": "https://www.supermicro.com/en/products/gpu",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://intuitionlabs.ai/articles/nvidia-ai-gpu-pricing-guide",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://store.supermicro.com/us_en/systems/gpu.html?srsltid=AfmBOopT9ZYJbVn7UB63PoPp-p2fXPgAxGbInf2JGeUx8xZcFh2mDjVT",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=dmOCYFVLi2M",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://www.arccompute.io/solutions/hardware/gpu-servers/supermicro-hgx-h200-gpu-server",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://www.supermicro.com/en/products/gpu",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://slyd.com/hardware/supermicro",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=4oTl1dG1Fz8",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://marketplace.uvation.com/supermicro-as-8125gs-tnhr-gpu-a-plus-server-amd-8u-nvidia-hgx-h100-h200/?srsltid=AfmBOoqoId80pRzFFHVyaQQNzWd2WRlDuWkzdBkw7oRsYVGhx9QP3vc2",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_31ac42bc"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/amd",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.techpowerup.com/316489/supermicro-extends-ai-and-gpu-rack-scale-solutions-with-support-for-amd-instinct-mi300-series-accelerators",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.supermicro.com/datasheet/h14/datasheet_H14_8U_8GPU_MI325X.pdf",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=wBmHWcPYUKE",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.storagereview.com/review/supermicro-jumpstart-review-h14-with-amd-instinct-mi350x",
+    "reason": "pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/products/gpu",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://slyd.com/hardware/supermicro",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/nvidia/hopper-ada-lovelace",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=CHEbom4opXg&vl=en",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/support/resources/gpu",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.facebook.com/Supermicro/posts/join-supermicros-upcoming-webinar-where-well-introduce-the-latest-5u-gpu-solutio/1415171520655551/",
+    "reason": "fallback:social_or_low_signal_page_not_allowed",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/accelerators/amd",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.supermicro.com/en/support/resources/gpu",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://slyd.com/hardware/supermicro",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  },
+  {
+    "url": "https://www.performance-intensive-computing.com/objectives/meet-supermicro-s-newest-ai-servers-powered-by-amd-instinct-mi350-series-gpus",
+    "reason": "fallback:pricing_source_family_mismatch",
+    "query_id": "q_price_4deac6cb"
+  }
+]

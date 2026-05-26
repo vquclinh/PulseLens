@@ -1,0 +1,28 @@
+{
+  "demo_scope_enabled": true,
+  "market": "US AI Hardware / Semiconductor",
+  "companies": [
+    "Nvidia",
+    "AMD",
+    "Supermicro"
+  ],
+  "core_signal_types": [
+    "investor_signal",
+    "product_launch",
+    "pricing_pressure",
+    "supplier_risk"
+  ],
+  "optional_signal_types": [
+    "hiring_momentum",
+    "news_sentiment",
+    "strategic_messaging"
+  ],
+  "target_signal_types": [
+    "investor_signal",
+    "product_launch",
+    "pricing_pressure",
+    "supplier_risk"
+  ],
+  "min_queries": 22,
+  "max_queries": 32
+}
