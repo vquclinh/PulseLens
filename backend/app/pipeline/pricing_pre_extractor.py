@@ -66,7 +66,15 @@ _PRICING_REJECT_RE = re.compile(
     r"|starting\s+price(?!\s+of\s+\$)"
     r"|\bprice\s+index\b"
     r"|\bprice\s+tracker\b"
-    r"|\bprice\s+benchmark\b",
+    r"|\bprice\s+benchmark\b"
+    # DX / networking products — not GPU compute (CoreWeave facts [1] and [2])
+    r"|dedicated\s+dx\b|virtual\s+dx\b"
+    # vCPU add-on column headers, Kubernetes service — not instance pricing (facts [3] and [5])
+    r"|vcpus?\s+per\s+gpu\s*\(?\s*\$"
+    r"|\bkubernetes\s+service\s+pricing\b"
+    # JSON-LD / schema.org structured metadata — not body text (RunPod facts [11] and [12])
+    r'|"description"\s*:\s*"'
+    r'|\\"description\\"',
     re.IGNORECASE,
 )
 
@@ -256,7 +264,14 @@ def extract_pricing_context_windows(
         if _PRICING_REJECT_RE.search(window):
             continue
 
-        gpu_model = infer_gpu_model(window)
+        # Build evidence_quote before GPU model search — GPU model must be within ±200 chars
+        eq_start = max(0, pos - 200)
+        eq_end = min(len(content), pos + 200)
+        raw_eq = content[eq_start:eq_end]
+        evidence_quote = _sentence_trim(raw_eq, _MAX_EVIDENCE_CHARS).strip()
+
+        # Search GPU model only within evidence window (tight proximity prevents mismatch)
+        gpu_model = infer_gpu_model(raw_eq)
 
         # Require GPU/product context unless we're on a known pricing domain
         if gpu_model is None and domain not in _PRICING_DOMAINS:
@@ -274,12 +289,6 @@ def extract_pricing_context_windows(
 
         if entity not in KNOWN_ENTITIES:
             entity = "market"
-
-        # Build evidence_quote from a tighter window
-        eq_start = max(0, pos - 200)
-        eq_end = min(len(content), pos + 200)
-        raw_eq = content[eq_start:eq_end]
-        evidence_quote = _sentence_trim(raw_eq, _MAX_EVIDENCE_CHARS).strip()
 
         # Must be non-empty and actually present as substring
         if not evidence_quote or evidence_quote not in content:

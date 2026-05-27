@@ -319,6 +319,132 @@ for i, f in enumerate(facts_t14):
     _check(f"T14: fact[{i}].confidence in [0,1]", 0.0 <= f.confidence <= 1.0)
 
 
+# ── T15: Dedicated DX networking → no fact ──────────────────────────────────
+
+print("\n── T15: Dedicated DX networking → no fact ──────────────────────────")
+_dx_text = (
+    "Dedicated DX 1 Price Not Available Virtual DX 2 Price 100G $12,500 $15,000. "
+    "Upgrade your connectivity. Dedicated DX provides 1G port at $1,250/mo. " * 20
+)
+facts_t15 = extract_pricing_facts_from_document(_make_doc(_dx_text))
+_check("T15: zero facts (Dedicated DX networking reject)", len(facts_t15) == 0, f"got {len(facts_t15)}")
+
+
+# ── T16: vCPU add-on column header → no fact ────────────────────────────────
+
+print("\n── T16: vCPU add-on column header → no fact ────────────────────────")
+_vcpu_text = (
+    "GPU Model VRAM (GB) Max vCPUs per GPU ($0.01/hr) H100 80GB 48 ($0.01/hr) "
+    "H200 SXM5 141GB 96 ($0.01/hr) A100 SXM4 80GB 32 ($0.005/hr) " * 20
+)
+facts_t16 = extract_pricing_facts_from_document(_make_doc(_vcpu_text))
+_check("T16: zero facts (vCPU add-on column header reject)", len(facts_t16) == 0, f"got {len(facts_t16)}")
+
+
+# ── T17: Kubernetes service pricing → no fact ───────────────────────────────
+
+print("\n── T17: Kubernetes service pricing → no fact ───────────────────────")
+_k8s_text = (
+    "Kubernetes Service pricing. Control plane $0.10/hr. "
+    "CoreWeave Kubernetes Service pricing includes persistent volume at $0.005/hr. " * 20
+)
+facts_t17 = extract_pricing_facts_from_document(_make_doc(_k8s_text))
+_check("T17: zero facts (Kubernetes Service pricing reject)", len(facts_t17) == 0, f"got {len(facts_t17)}")
+
+
+# ── T18: JSON-LD "description": field → no fact ─────────────────────────────
+
+print('\n── T18: JSON-LD "description": field → no fact ────────────────────')
+_jsonld_text = (
+    '"description": "H100 GPU instances from $2.49/hr on CoreWeave. '
+    'H200 at $3.20/hr. L40S at $0.76/hr. MI300X $2.20/hr. B200 $14/hr. " '
+) * 4
+facts_t18 = extract_pricing_facts_from_document(_make_doc(_jsonld_text))
+_check('T18: zero facts (JSON-LD "description": reject)', len(facts_t18) == 0, f"got {len(facts_t18)}")
+
+
+# ── T19: Escaped JSON-LD → no fact ──────────────────────────────────────────
+
+print("\n── T19: Escaped JSON-LD → no fact ──────────────────────────────────")
+_jsonld_esc_text = (
+    r'\"description\": \"H100 GPU from $2.49/hr. H200 at $3.20/hr. '
+    r'L40S $0.76/hr. MI300X $2.20/hr. B200 $14/hr.\" '
+) * 4
+facts_t19 = extract_pricing_facts_from_document(_make_doc(_jsonld_esc_text))
+_check("T19: zero facts (escaped JSON-LD reject)", len(facts_t19) == 0, f"got {len(facts_t19)}")
+
+
+# ── T20: Valid H100 pricing table row (regression) ──────────────────────────
+
+print("\n── T20: Valid H100 table row → fact extracted (regression) ─────────")
+_table_text = (
+    "H100 SXM5 80GB On-demand $2.49/hr Reserved $1.80/hr Spot $1.20/hr. "
+    "NVIDIA H100 SXM5 available at $2.49 per GPU hour on-demand. " * 40
+)
+facts_t20 = extract_pricing_facts_from_document(_make_doc(_table_text))
+_check("T20: at least 1 fact extracted (regression)", len(facts_t20) >= 1, f"got {len(facts_t20)}")
+if facts_t20:
+    _check("T20: entity=Nvidia", facts_t20[0].entity == "Nvidia", f"got {facts_t20[0].entity!r}")
+
+
+# ── T21: GPU model >200 chars from price, non-pricing domain → no fact ──────
+
+print("\n── T21: GPU >200 chars from price, non-pricing domain → no fact ────")
+_prox_intro = "H100 SXM5 80GB is available in multiple configurations. "
+_prox_spacer = "Our cloud infrastructure is designed for enterprise AI workloads. " * 4
+_prox_prices = (
+    "On-demand pricing: $2.49/hr. Reserved: $1.80/hr. Spot: $1.20/hr. "
+    "Monthly: $1.65/hr. Annual plan: $1.50/hr. "
+)
+_prox_content = _prox_intro + _prox_spacer + _prox_prices
+_prox_doc_nonpricing = RawDocument(
+    doc_id="doc_test_0021",
+    url="https://example-cloud.com/gpu",
+    domain="example-cloud.com",
+    title="GPU Pricing",
+    content=_prox_content,
+    published_date=None,
+    fetched_at="2026-05-27T00:00:00Z",
+    source_tier=3,
+    content_quality="full_text",
+    extraction_allowed=True,
+    collection_query="gpu pricing",
+    signal_type_hint=SignalType.pricing_pressure,
+)
+facts_t21 = extract_pricing_facts_from_document(_prox_doc_nonpricing)
+_check(
+    "T21: zero facts (GPU >200 chars from price, non-pricing domain)",
+    len(facts_t21) == 0,
+    f"got {len(facts_t21)}",
+)
+
+
+# ── T22: GPU model >200 chars from price, pricing domain → entity=market ────
+
+print("\n── T22: GPU >200 chars from price, pricing domain → entity=market ──")
+_prox_doc_pricing = RawDocument(
+    doc_id="doc_test_0022",
+    url="https://coreweave.com/pricing",
+    domain="coreweave.com",
+    title="GPU Pricing",
+    content=_prox_content,
+    published_date=None,
+    fetched_at="2026-05-27T00:00:00Z",
+    source_tier=2,
+    content_quality="full_text",
+    extraction_allowed=True,
+    collection_query="coreweave gpu pricing",
+    signal_type_hint=SignalType.pricing_pressure,
+)
+facts_t22 = extract_pricing_facts_from_document(_prox_doc_pricing)
+nvidia_facts_t22 = [f for f in facts_t22 if f.entity == "Nvidia"]
+_check(
+    "T22: no fact wrongly attributed to Nvidia (proximity fix)",
+    len(nvidia_facts_t22) == 0,
+    f"found {len(nvidia_facts_t22)} Nvidia facts out of {len(facts_t22)} total",
+)
+
+
 # ── Summary ───────────────────────────────────────────────────────────────────
 
 print(f"\n{'─' * 60}")
@@ -328,5 +454,5 @@ if _failures:
         print(f"   • {msg}")
     sys.exit(1)
 else:
-    print("✅ All 14 pricing pre-extractor tests passed")
+    print("✅ All 22 pricing pre-extractor tests passed")
     sys.exit(0)
