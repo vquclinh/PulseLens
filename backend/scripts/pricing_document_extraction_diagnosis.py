@@ -124,6 +124,62 @@ def load_pricing_fact_urls(db_path: Path, report_id: str) -> set[str]:
         return set()
 
 
+# ── Browser escalation stats loader ───────────────────────────────────────────
+
+def load_browser_escalation_stats(artifact_dir: Path) -> dict:
+    """
+    Read pricing_escalations from web_collection_audit.json.
+    Returns aggregated counts and per-domain tallies.
+    """
+    audit_path = artifact_dir / "web_collection_audit.json"
+    if not audit_path.exists():
+        return {}
+    try:
+        with open(audit_path) as f:
+            audit = json.load(f)
+    except Exception as exc:
+        logger.error("Failed to read web_collection_audit.json for browser stats: %s", exc)
+        return {}
+
+    all_escalations: list[dict] = []
+    for q in audit.get("queries") or []:
+        all_escalations.extend(q.get("pricing_escalations") or [])
+
+    if not all_escalations:
+        return {
+            "browser_escalated_count": 0,
+            "browser_improved_count": 0,
+            "browser_failed_count": 0,
+            "top_domains_browser_helped": [],
+            "top_domains_browser_did_not_help": [],
+        }
+
+    helped_domains: dict[str, int] = {}
+    not_helped_domains: dict[str, int] = {}
+    for e in all_escalations:
+        if not e.get("escalated_to_browser"):
+            continue
+        try:
+            from urllib.parse import urlparse
+            domain = urlparse(e.get("url", "")).netloc.lower().lstrip("www.")
+        except Exception:
+            domain = "unknown"
+        if e.get("pricing_escalation_improved_content"):
+            helped_domains[domain] = helped_domains.get(domain, 0) + 1
+        else:
+            not_helped_domains[domain] = not_helped_domains.get(domain, 0) + 1
+
+    return {
+        "browser_escalated_count": sum(1 for e in all_escalations if e.get("escalated_to_browser")),
+        "browser_improved_count": sum(1 for e in all_escalations if e.get("pricing_escalation_improved_content")),
+        "browser_failed_count": sum(
+            1 for e in all_escalations if e.get("escalated_to_browser") and e.get("browser_error")
+        ),
+        "top_domains_browser_helped": sorted(helped_domains, key=lambda d: -helped_domains[d]),
+        "top_domains_browser_did_not_help": sorted(not_helped_domains, key=lambda d: -not_helped_domains[d]),
+    }
+
+
 # ── Web collection audit loader ────────────────────────────────────────────────
 
 def load_accepted_pricing_urls(artifact_dir: Path) -> list[dict]:
@@ -236,6 +292,8 @@ def run_diagnosis(report_id: str, artifact_dir: str, output_dir: str | None = No
             gap_by_domain[d]["gap_causes"].append(entry["gap_cause"])
             gap_by_cause[entry["gap_cause"]] = gap_by_cause.get(entry["gap_cause"], 0) + 1
 
+    browser_stats = load_browser_escalation_stats(artifact_path)
+
     summary = {
         "report_id": report_id,
         "artifact_dir": str(artifact_path),
@@ -248,6 +306,7 @@ def run_diagnosis(report_id: str, artifact_dir: str, output_dir: str | None = No
         "gap_count_by_domain": {d: v["url_count"] for d, v in sorted(gap_by_domain.items(), key=lambda x: -x[1]["url_count"])},
         "gap_count_by_cause": dict(sorted(gap_by_cause.items(), key=lambda x: -x[1])),
         "domain_detail": gap_by_domain,
+        "browser_escalation": browser_stats,
     }
 
     # Write outputs
@@ -270,6 +329,19 @@ def run_diagnosis(report_id: str, artifact_dir: str, output_dir: str | None = No
     print(f"\n  Gap causes:")
     for cause, count in summary["gap_count_by_cause"].items():
         print(f"    {cause}: {count}")
+    if browser_stats:
+        print(f"\n  Browser escalation stats:")
+        print(f"    escalated:  {browser_stats.get('browser_escalated_count', 0)}")
+        print(f"    improved:   {browser_stats.get('browser_improved_count', 0)}")
+        print(f"    failed:     {browser_stats.get('browser_failed_count', 0)}")
+        helped = browser_stats.get("top_domains_browser_helped", [])
+        if helped:
+            print(f"    helped domains: {helped}")
+        not_helped = browser_stats.get("top_domains_browser_did_not_help", [])
+        if not_helped:
+            print(f"    did not help:   {not_helped}")
+    else:
+        print(f"\n  Browser escalation: no data (web_collection_audit.json missing or no escalations recorded)")
     print(f"\n  Output: {out_dir}")
 
     return out_dir

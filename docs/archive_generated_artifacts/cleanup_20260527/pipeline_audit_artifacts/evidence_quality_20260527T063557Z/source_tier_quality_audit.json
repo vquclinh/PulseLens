@@ -1,0 +1,213 @@
+{
+  "total_domains": 11,
+  "rating_summary": {
+    "acceptable": 6,
+    "authoritative": 3,
+    "unknown": 2
+  },
+  "suspicious_or_low_signal_count": 0,
+  "reject_next_time_candidate_count": 0,
+  "domains": [
+    {
+      "domain": "ir.amd.com",
+      "quality_rating": "authoritative",
+      "fact_count": 19,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD",
+        "Dell",
+        "HPE",
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.amd.com/",
+        "https://ir.amd.com/news-events/press-releases/detail/1201/amd-accelerates-pace-of-data-center-ai-innovation-and-leadership-with-expanded-amd-instinct-gpu-roadmap"
+      ]
+    },
+    {
+      "domain": "reuters.com",
+      "quality_rating": "acceptable",
+      "fact_count": 6,
+      "signal_types": [
+        "pricing_pressure",
+        "supplier_risk"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "Nvidia",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.reuters.com/world/asia-pacific/samsung-sk-hynix-warn-squeezed-chip-supplies-pcs-phones-due-ai-boom-2026-01-29/",
+        "https://www.reuters.com/world/china/ai-frenzy-is-driving-new-global-supply-chain-crisis-2025-12-03/"
+      ]
+    },
+    {
+      "domain": "sec.gov",
+      "quality_rating": "authoritative",
+      "fact_count": 5,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Nvidia",
+        "Supermicro",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.sec.gov/edgar/browse/?CIK=0001039565",
+        "https://www.sec.gov/edgar/browse/?CIK=0001084208"
+      ]
+    },
+    {
+      "domain": "ir.supermicro.com",
+      "quality_rating": "authoritative",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx"
+      ]
+    },
+    {
+      "domain": "bloomberg.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.bloomberg.com/news/articles/2026-05-05/amd-gives-upbeat-forecast-after-ai-data-center-demand-surges",
+        "https://www.bloomberg.com/news/videos/2026-02-03/amd-forecast-disappoints-as-investors-look-for-ai-payoff-video"
+      ]
+    },
+    {
+      "domain": "tomshardware.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        3
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidias-h100-ai-gpus-cost-up-to-four-times-more-than-amds-competing-mi300x-amds-chips-cost-dollar10-to-dollar15k-apiece-nvidias-h100-has-peaked-beyond-dollar40000"
+      ]
+    },
+    {
+      "domain": "blogs.oracle.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus"
+      ]
+    },
+    {
+      "domain": "amd.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-accelerates-pace-of-data-center-ai-innovation-.html"
+      ]
+    },
+    {
+      "domain": "businesswire.com",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://www.businesswire.com/news/home/20260203844970/en/Supermicro-Announces-Second-Quarter-Fiscal-Year-2026-Financial-Results"
+      ]
+    },
+    {
+      "domain": "medium.com",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "supplier_risk"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "market"
+      ],
+      "sample_urls": [
+        "https://medium.com/@Elongated_musk/cowos-not-hbm-is-the-real-ai-supply-bottleneck-d0ae8f3f7ce4"
+      ]
+    },
+    {
+      "domain": "dell.com",
+      "quality_rating": "acceptable",
+      "fact_count": 1,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Dell"
+      ],
+      "sample_urls": [
+        "https://www.dell.com/en-us/blog/generative-ai-release-updates-with-dell-and-amd/"
+      ]
+    }
+  ]
+}

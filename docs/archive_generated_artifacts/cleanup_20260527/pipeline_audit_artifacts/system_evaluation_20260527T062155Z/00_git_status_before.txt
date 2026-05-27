@@ -1,0 +1,25 @@
+=== git status ===
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	SYSTEM_EVALUATION_RUN_PLAN.md
+	pipeline_audit_artifacts/system_evaluation_20260527T062155Z/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+=== git log --oneline -10 ===
+09ec913 docs: add Claude Code project guide
+c552f56 clean structure file
+a214ce1 fix all pylance issues
+7bdb884 balance query planning + full stage logging
+f8e8b4c fix bug in agent1 and agent4
+339123f fix agent 1 and 2
+68c86a2 test full pipeline audit artifacts
+67b4f63 improve evidence finding
+4feb46a improve langgraph system
+10f06a3 enhance langgraph system
+
+=== git diff --stat HEAD ===

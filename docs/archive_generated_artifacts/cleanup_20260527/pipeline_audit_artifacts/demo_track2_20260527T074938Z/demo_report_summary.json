@@ -1,0 +1,125 @@
+{
+  "report": {
+    "report_id": "report_1df9ca6a1014",
+    "quality_status": "PARTIAL_PASS",
+    "quality_reasons": [
+      "fact_count 35 < 50"
+    ],
+    "pulse_score": 50.8,
+    "pulse_status": "risk_rising",
+    "pulse_confidence": 0.5,
+    "evidence_count": 35,
+    "source_count": 24,
+    "top_signals": [
+      {
+        "signal_type": "supplier_risk",
+        "score": 0.513,
+        "source_count": 5,
+        "confidence": 0.723,
+        "narrative": "A global supply shortage of memory chips is impacting the market due to surging demand for artificial-intelligence infrastructure.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "investor_signal",
+        "score": 0.0,
+        "source_count": 7,
+        "confidence": 0.798,
+        "narrative": "Nvidia will distribute a quarterly cash dividend of $0.01 per share on April 1, 2026.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "news_sentiment",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "pricing_pressure",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "strategic_messaging",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      }
+    ],
+    "watch_list": [
+      {
+        "title": "Memory Chip Supply Shortage Duration",
+        "rationale": "The global demand for AI infrastructure is currently causing a memory chip supply shortage. How this shortage evolves will directly impact the AI market's growth and profitability.",
+        "trigger": "Reports or statements indicating a change in the memory chip supply-demand balance.",
+        "signals_pointing_there": [
+          "claim_afaca277632e"
+        ],
+        "urgency": "this_week"
+      },
+      {
+        "title": "Nvidia Supply Chain Diversification Progress",
+        "rationale": "Nvidia is actively trying to diversify its supply chain away from its current Asian concentration. Progress on this crucial initiative will impact future supply stability and geopolitical risks.",
+        "trigger": "Announcements or reports detailing new supply chain partnerships or manufacturing locations for Nvidia.",
+        "signals_pointing_there": [
+          "claim_7422c052372d"
+        ],
+        "urgency": "next_2_weeks"
+      },
+      {
+        "title": "AI Infrastructure Demand Impact on Competitors",
+        "rationale": "Strong demand for AI infrastructure has been noted, with several companies launching new products. Assessing how this demand translates into sales and new deals for companies like Supermicro and AMD will indicate market share dynamics.",
+        "trigger": "Earnings calls or product adoption reports from Supermicro and AMD specifically mentioning AI-related sales figures or new partnerships.",
+        "signals_pointing_there": [
+          "claim_599cde6645e4",
+          "claim_c5fb2f5768b9"
+        ],
+        "urgency": "this_week"
+      }
+    ],
+    "audit_summary": {
+      "query_count": 42,
+      "accepted_doc_count": 84,
+      "failed_query_count": 4,
+      "zero_doc_query_count": 4,
+      "fetch_error_count": 3,
+      "covered_signal_types": [
+        "investor_signal",
+        "news_sentiment",
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "missing_signal_types": [],
+      "source_count": 24,
+      "evidence_count": 35
+    }
+  },
+  "companies_covered": [
+    "AMD",
+    "Nvidia",
+    "Supermicro"
+  ],
+  "core_signals_covered": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "core_signals_missing": [],
+  "optional_signals_covered": [
+    "news_sentiment",
+    "strategic_messaging"
+  ],
+  "optional_signals_missing": [
+    "hiring_momentum"
+  ],
+  "pricing_pressure_document_count": 28,
+  "estimated_brightdata_calls": 136
+}

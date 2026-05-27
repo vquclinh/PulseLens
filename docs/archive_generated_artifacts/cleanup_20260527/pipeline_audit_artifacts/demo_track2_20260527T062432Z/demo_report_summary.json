@@ -1,0 +1,133 @@
+{
+  "report": {
+    "report_id": "report_5760ae7b9861",
+    "quality_status": "PARTIAL_PASS",
+    "quality_reasons": [
+      "fact_count 41 < 50"
+    ],
+    "pulse_score": 49.9,
+    "pulse_status": "risk_rising",
+    "pulse_confidence": 0.5,
+    "evidence_count": 41,
+    "source_count": 19,
+    "top_signals": [
+      {
+        "signal_type": "investor_signal",
+        "score": -0.1343,
+        "source_count": 7,
+        "confidence": 0.744,
+        "narrative": "Institutional managers are required to file quarterly reports known as 13F-HR.",
+        "is_contradicted": true
+      },
+      {
+        "signal_type": "strategic_messaging",
+        "score": 0.2142,
+        "source_count": 3,
+        "confidence": 0.662,
+        "narrative": "AMD announced investments exceeding $10 billion in the Taiwan ecosystem to accelerate AI infrastructure development on May 21, 2026.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "news_sentiment",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      },
+      {
+        "signal_type": "pricing_pressure",
+        "score": 0.0,
+        "source_count": 2,
+        "confidence": 0.673,
+        "narrative": "Nvidia's H100 AI GPUs have peaked in price beyond $40,000 per unit.",
+        "is_contradicted": true
+      },
+      {
+        "signal_type": "hiring_momentum",
+        "score": 0.0,
+        "source_count": 0,
+        "confidence": 0.0,
+        "narrative": "No verified claims yet for this signal.",
+        "is_contradicted": false
+      }
+    ],
+    "watch_list": [
+      {
+        "title": "AMD Investor Sentiment Reassessment",
+        "rationale": "AMD's Q2 2026 revenue guidance, boosted by AI, unexpectedly failed to fully satisfy investors. Monitoring this situation could provide insight into evolving investor expectations for AI-driven growth.",
+        "trigger": "Further analyst reports or institutional investor commentary clarifying the reasons behind the lukewarm reaction to AMD's positive AI-driven guidance.",
+        "signals_pointing_there": [
+          "claim_23914eb110a5"
+        ],
+        "urgency": "this_week"
+      },
+      {
+        "title": "Nvidia H200 Chinese Pre-Payment Implications",
+        "rationale": "Nvidia is demanding full upfront payment for its H200 AI chips from Chinese customers, despite high demand for previous models. This could signal unique market risks or altered payment strategies worth understanding.",
+        "trigger": "Any news or company statements clarifying the rationale for the upfront payment policy for Chinese customers or indicating a shift in this policy.",
+        "signals_pointing_there": [
+          "claim_e38e36da4130"
+        ],
+        "urgency": "next_2_weeks"
+      },
+      {
+        "title": "AI Chip Shortage Trends",
+        "rationale": "The global AI frenzy is causing a memory chip shortage, impacting supply chains and pricing. Continuous monitoring of this shortage will highlight potential bottlenecks or normalization in the AI hardware market.",
+        "trigger": "Reports from chip manufacturers, industry analysts, or major AI hardware integrators indicating a worsening or easing of the global memory chip shortage.",
+        "signals_pointing_there": [
+          "claim_835c071d70a5"
+        ],
+        "urgency": "this_week"
+      },
+      {
+        "title": "Supermicro's AI Liquid-Cooled Solutions Adoption",
+        "rationale": "Supermicro is experiencing significant customer engagement with its new AI liquid-cooled solutions and is shipping new products. This indicates potential shifts in AI infrastructure preferences and market leadership.",
+        "trigger": "New customer acquisition announcements, sales figures, or critical reviews for Supermicro's liquid-cooled AI solutions.",
+        "signals_pointing_there": [
+          "claim_ce3ce193f144",
+          "claim_38100bc3777f"
+        ],
+        "urgency": "next_2_weeks"
+      }
+    ],
+    "audit_summary": {
+      "query_count": 42,
+      "accepted_doc_count": 57,
+      "failed_query_count": 13,
+      "zero_doc_query_count": 13,
+      "fetch_error_count": 2,
+      "covered_signal_types": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "strategic_messaging",
+        "supplier_risk"
+      ],
+      "missing_signal_types": [],
+      "source_count": 19,
+      "evidence_count": 41
+    }
+  },
+  "companies_covered": [
+    "AMD",
+    "Nvidia",
+    "Supermicro"
+  ],
+  "core_signals_covered": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "core_signals_missing": [],
+  "optional_signals_covered": [
+    "strategic_messaging"
+  ],
+  "optional_signals_missing": [
+    "hiring_momentum",
+    "news_sentiment"
+  ],
+  "pricing_pressure_document_count": 22,
+  "estimated_brightdata_calls": 125
+}

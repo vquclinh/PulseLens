@@ -44,8 +44,95 @@ def _resolve_cache_dir() -> Path:
 MIN_CONTENT_CHARS = int(os.getenv("BRIGHTDATA_MIN_CONTENT_CHARS", "120"))
 MAX_CONTENT_CHARS = int(os.getenv("BRIGHTDATA_MAX_CONTENT_CHARS", "200000"))
 
+_PRICING_USE_UNLOCKER = os.getenv("PRICING_USE_UNLOCKER", "true").lower() == "true"
+_PRICING_USE_BROWSER_FALLBACK = os.getenv("PRICING_USE_BROWSER_FALLBACK", "true").lower() == "true"
+_PRICING_UNLOCKER_MIN_CONTENT_CHARS = int(os.getenv("PRICING_UNLOCKER_MIN_CONTENT_CHARS", "1500"))
+_PRICING_MIN_PRICE_PATTERN_COUNT = int(os.getenv("PRICING_MIN_PRICE_PATTERN_COUNT", "1"))
+
 # Keywords that identify EDGAR index pages — they list filing metadata, not filing content.
 _EDGAR_INDEX_MARKERS = ("13F-HR", "13F-NT", "filed by", "Accession Number", "Filing Date", "Form Type")
+
+# ── Pricing escalation helpers ────────────────────────────────────────────────
+
+_PRICE_PATTERNS = re.compile(
+    r"\$[\d,]+(?:\.\d+)?(?:/hr|/hour|/mo|/month)?\b"
+    r"|\b[\d,]+\s*(?:USD|EUR|cents?)\b"
+    r"|\bper.{0,20}hour\b"
+    r"|\bper.{0,20}month\b",
+    re.IGNORECASE,
+)
+
+_BROWSER_ALLOWED_PRICING_DOMAINS: frozenset[str] = frozenset({
+    "coreweave.com",
+    "runpod.io",
+    "lambdalabs.com",
+    "lambda.ai",
+    "aws.amazon.com",
+    "azure.microsoft.com",
+    "cloud.google.com",
+    "oracle.com",
+    "supermicro.com",
+    "thinkmate.com",
+})
+
+_NEVER_ESCALATE_DOMAINS: frozenset[str] = frozenset({
+    "sec.gov",
+    "ir.nvidia.com",
+    "ir.amd.com",
+    "ir.supermicro.com",
+    "investor.nvidia.com",
+})
+
+
+def count_pricing_patterns(content: str) -> int:
+    """Count distinct price-like patterns in content. Deterministic, no I/O."""
+    return len(_PRICE_PATTERNS.findall(content))
+
+
+def should_allow_browser_pricing_domain(url: str) -> bool:
+    """True only for domains where browser rendering can improve pricing content."""
+    domain = extract_domain(url)
+    if any(domain == d or domain.endswith("." + d) for d in _NEVER_ESCALATE_DOMAINS):
+        return False
+    return any(domain == d or domain.endswith("." + d) for d in _BROWSER_ALLOWED_PRICING_DOMAINS)
+
+
+def should_escalate_pricing_page(
+    content: str,
+    url: str,
+    source_type: str,
+    price_count: int,
+) -> tuple[bool, str]:
+    """
+    Returns (should_escalate, reason). True when content quality is insufficient
+    for a pricing page and browser rendering might help.
+    Does NOT check domain allowlist — call should_allow_browser_pricing_domain separately.
+    """
+    if source_type != "pricing_pages":
+        return False, "not_pricing_pages"
+    if len(content) < MIN_CONTENT_CHARS:
+        return True, "snippet_only"
+    if len(content) < _PRICING_UNLOCKER_MIN_CONTENT_CHARS:
+        return True, "content_too_short"
+    if price_count < _PRICING_MIN_PRICE_PATTERN_COUNT:
+        return True, "no_pricing_patterns"
+    return False, "sufficient_content"
+
+
+def choose_better_pricing_payload(
+    normal_payload: dict[str, Any],
+    browser_payload: dict[str, Any],
+) -> dict[str, Any]:
+    """Prefer browser payload only when it yields more price patterns or materially longer content."""
+    normal_content = str(normal_payload.get("content") or "")
+    browser_content = str(browser_payload.get("content") or "")
+    normal_price_count = count_pricing_patterns(normal_content)
+    browser_price_count = count_pricing_patterns(browser_content)
+    if browser_price_count > normal_price_count:
+        return browser_payload
+    if len(browser_content) > len(normal_content) * 1.2 and len(browser_content) >= MIN_CONTENT_CHARS:
+        return browser_payload
+    return normal_payload
 
 
 def is_useful_document(doc: RawDocument) -> bool:
@@ -64,6 +151,72 @@ def is_useful_document(doc: RawDocument) -> bool:
     if "sec.gov" in doc.domain and any(marker in content for marker in _EDGAR_INDEX_MARKERS):
         return False
     return True
+
+async def _maybe_browser_escalate_pricing(
+    client: BrightDataClient,
+    url: str,
+    normal_payload: dict[str, Any],
+    query_audit: dict[str, Any],
+) -> dict[str, Any]:
+    """
+    Attempt Browser API fetch for a pricing page when normal fetch yielded thin content.
+    Returns the better of the two payloads. Never raises — failures are recorded in query_audit.
+    """
+    normal_content = str(normal_payload.get("content") or "")
+    normal_price_count = count_pricing_patterns(normal_content)
+    quality = "snippet_only" if len(normal_content) < MIN_CONTENT_CHARS else "full_text"
+
+    escalation_record: dict[str, Any] = {
+        "url": url,
+        "normal_scrape_content_length": len(normal_content),
+        "normal_scrape_content_quality": quality,
+        "normal_scrape_price_pattern_count": normal_price_count,
+        "escalated_to_browser": False,
+        "browser_content_length": 0,
+        "browser_price_pattern_count": 0,
+        "browser_error": None,
+        "final_scrape_method": "normal",
+        "pricing_escalation_reason": "",
+        "pricing_escalation_improved_content": False,
+    }
+
+    should_esc, reason = should_escalate_pricing_page(
+        normal_content, url, "pricing_pages", normal_price_count
+    )
+    escalation_record["pricing_escalation_reason"] = reason
+
+    if not should_esc:
+        query_audit.setdefault("pricing_escalations", []).append(escalation_record)
+        return normal_payload
+
+    escalation_record["escalated_to_browser"] = True
+    try:
+        browser_payload = await client.scrape_dynamic_page(url)
+        browser_content = str(browser_payload.get("content") or "")
+        browser_price_count = count_pricing_patterns(browser_content)
+        escalation_record["browser_content_length"] = len(browser_content)
+        escalation_record["browser_price_pattern_count"] = browser_price_count
+
+        better = choose_better_pricing_payload(normal_payload, browser_payload)
+        if better is browser_payload:
+            escalation_record["final_scrape_method"] = "browser"
+            escalation_record["pricing_escalation_improved_content"] = True
+            logger.info(
+                "Pricing browser escalation improved %s: %d→%d price patterns, %d→%d chars",
+                url, normal_price_count, browser_price_count,
+                len(normal_content), len(browser_content),
+            )
+            query_audit.setdefault("pricing_escalations", []).append(escalation_record)
+            return browser_payload
+        else:
+            logger.info("Pricing browser escalation did NOT improve content for %s", url)
+    except Exception as exc:
+        escalation_record["browser_error"] = f"{type(exc).__name__}: {exc}"
+        logger.warning("Pricing browser escalation failed for %s: %s", url, exc)
+
+    query_audit.setdefault("pricing_escalations", []).append(escalation_record)
+    return normal_payload
+
 
 _cache: diskcache.Cache | None = None
 _url_locks: dict[str, asyncio.Lock] = {}
@@ -136,6 +289,23 @@ async def collect_documents(queries: list[SearchQuery]) -> list[RawDocument]:
     )
     _LAST_COLLECTION_AUDIT["zero_doc_query_count"] = _LAST_COLLECTION_AUDIT["failed_query_count"]
     _LAST_COLLECTION_AUDIT["low_quality_discard_count"] = len(all_docs) - len(useful)
+    all_escalations = [
+        e
+        for q in _LAST_COLLECTION_AUDIT.get("queries", [])
+        for e in q.get("pricing_escalations", [])
+    ]
+    _LAST_COLLECTION_AUDIT["pricing_browser_escalation_attempts"] = sum(
+        1 for e in all_escalations if e.get("escalated_to_browser")
+    )
+    _LAST_COLLECTION_AUDIT["pricing_browser_escalation_successes"] = sum(
+        1 for e in all_escalations if e.get("pricing_escalation_improved_content")
+    )
+    _LAST_COLLECTION_AUDIT["pricing_browser_escalation_failures"] = sum(
+        1 for e in all_escalations if e.get("escalated_to_browser") and e.get("browser_error")
+    )
+    _LAST_COLLECTION_AUDIT["pricing_browser_improved_docs"] = (
+        _LAST_COLLECTION_AUDIT["pricing_browser_escalation_successes"]
+    )
     _LAST_FETCH_ERROR_SUMMARY = _finalize_fetch_summary(_LAST_FETCH_ERROR_SUMMARY)
     return useful
 
@@ -232,6 +402,18 @@ async def collect_documents_for_query(
 
             content = str(payload.get("content") or "").strip()
             content_quality = "full_text"
+
+            # Browser escalation for pricing pages (only for allowed domains)
+            if (
+                query.source_type == "pricing_pages"
+                and _PRICING_USE_BROWSER_FALLBACK
+                and client.has_browser_zone
+                and should_allow_browser_pricing_domain(url)
+            ):
+                payload = await _maybe_browser_escalate_pricing(client, url, payload, query_audit)
+                content = str(payload.get("content") or "").strip()
+                content_quality = "full_text"
+
             if len(content) < MIN_CONTENT_CHARS:
                 content = str(candidate.get("snippet") or content).strip()
                 content_quality = "snippet_only"
@@ -431,6 +613,8 @@ async def _scrape_by_source_type(client: BrightDataClient, url: str, source_type
     if source_type == "dynamic_pages":
         return await client.scrape_dynamic_page(url)
     if source_type == "protected":
+        return await client.scrape_protected_page(url)
+    if source_type == "pricing_pages" and _PRICING_USE_UNLOCKER:
         return await client.scrape_protected_page(url)
     return await client.scrape_page(url)
 

@@ -197,6 +197,8 @@ async def extract_facts_from_documents(documents: list[RawDocument]) -> list[Fac
     """
     Async batch extraction — runs LLM calls in thread pool (LLMClient is sync).
     Bounded to _MAX_CONCURRENT simultaneous LLM calls.
+    After LLM extraction, runs the deterministic pricing pre-extractor for
+    pricing documents to recover facts missed due to content truncation.
     """
     if not documents:
         return []
@@ -214,9 +216,37 @@ async def extract_facts_from_documents(documents: list[RawDocument]) -> list[Fac
     for facts in results:
         all_facts.extend(facts)
 
+    llm_fact_count = len(all_facts)
     logger.info(
-        "Agent 3 extracted %d raw facts from %d documents", len(all_facts), len(documents)
+        "Agent 3 extracted %d raw facts from %d documents", llm_fact_count, len(documents)
     )
+
+    # Deterministic pricing pre-extractor — supplements LLM facts for pricing docs
+    from app.pipeline.pricing_pre_extractor import (
+        extract_pricing_facts_from_document,
+        _should_run_pre_extractor,
+    )
+    pre_extractor_facts: list[FactObject] = []
+    for doc in documents:
+        if _should_run_pre_extractor(doc):
+            pre_extractor_facts.extend(extract_pricing_facts_from_document(doc))
+
+    if pre_extractor_facts:
+        seen_quotes: set[str] = {f.evidence_quote for f in all_facts}
+        added = 0
+        for fact in pre_extractor_facts:
+            if fact.evidence_quote not in seen_quotes:
+                seen_quotes.add(fact.evidence_quote)
+                all_facts.append(fact)
+                added += 1
+            else:
+                from app.pipeline.pricing_pre_extractor import _PRE_EXTRACTOR_AUDIT
+                _PRE_EXTRACTOR_AUDIT["pricing_pre_extractor_duplicate_count"] += 1
+        logger.info(
+            "Pricing pre-extractor: %d candidates, %d new facts added (total facts now %d)",
+            len(pre_extractor_facts), added, len(all_facts),
+        )
+
     return all_facts
 
 

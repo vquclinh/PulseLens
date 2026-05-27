@@ -1,0 +1,17 @@
+{
+  "report_id": "report_1df9ca6a1014",
+  "pricing_docs_accepted": 14,
+  "pricing_docs_with_facts": 2,
+  "pricing_docs_zero_facts": 12,
+  "zero_fact_rate": 0.8571,
+  "high_pattern_zero_fact_count": 5,
+  "bottleneck_breakdown": {
+    "truncation": 6,
+    "tabular_format": 5,
+    "entity_mismatch": 6,
+    "thin_content": 6
+  },
+  "primary_bottleneck": "truncation",
+  "recommended_fix": "Option B \u2014 deterministic pricing pre-extractor (scan full doc, extract price-context windows)",
+  "estimated_facts_recoverable": 10
+}

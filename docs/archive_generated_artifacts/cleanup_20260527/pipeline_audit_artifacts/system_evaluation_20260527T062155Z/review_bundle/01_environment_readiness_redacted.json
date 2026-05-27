@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-05-27T06:22:14.476518+00:00",
+  "git_commit": "09ec913f121986d60101eaa00e12f8e824655267",
+  "git_status_summary": "2 untracked/modified files",
+  "env_vars": {
+    "OPENROUTER_API_KEY": "set",
+    "BRIGHTDATA_API_KEY": "set",
+    "BRIGHTDATA_SERP_ZONE": "set",
+    "BRIGHTDATA_SCRAPER_ZONE": "set",
+    "PULSELENS_DEMO_SCOPE": "true",
+    "QUALITY_MIN_FACTS": "50",
+    "QUALITY_MIN_SOURCE_COUNT": "15",
+    "AGENT1_MODEL": "google/gemini-2.5-flash",
+    "FINBERT_MODEL": "ProsusAI/finbert"
+  }
+}

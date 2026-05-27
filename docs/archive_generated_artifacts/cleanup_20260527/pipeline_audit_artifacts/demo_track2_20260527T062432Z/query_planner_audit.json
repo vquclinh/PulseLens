@@ -1,0 +1,521 @@
+{
+  "original_query_count": 8,
+  "accepted_query_count": 10,
+  "rejected_query_count": 3,
+  "rejected_reasons_by_type": {
+    "signal_type_outside_requested_set": 3
+  },
+  "signal_coverage_after_planning": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "pricing_playbook_query_count": 12,
+  "pricing_playbook_queries": [
+    {
+      "query_id": "q_price_c7fd44f2",
+      "template_id": "nvda_aws_h100_h200_pricing",
+      "family": "cloud_pricing",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "query_text": "site:aws.amazon.com/ec2 Nvidia H100 H200 GPU instance pricing availability May 2026"
+    },
+    {
+      "query_id": "q_price_f121dc52",
+      "template_id": "nvda_azure_nc_h100_pricing",
+      "family": "cloud_pricing",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "query_text": "site:azure.microsoft.com Nvidia H100 H200 GPU VM pricing availability May 2026"
+    },
+    {
+      "query_id": "q_price_bb368a3a",
+      "template_id": "nvda_coreweave_blackwell_availability",
+      "family": "cloud_pricing",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "query_text": "CoreWeave Nvidia H100 H200 B200 Blackwell GPU cloud pricing availability May 2026"
+    },
+    {
+      "query_id": "q_price_cc6a14c9",
+      "template_id": "nvda_lambda_runpod_gpu_pricing",
+      "family": "cloud_pricing",
+      "target_entity": "Nvidia",
+      "source_type": "pricing_pages",
+      "query_text": "Lambda Labs RunPod Nvidia H100 H200 L40S GPU pricing availability May 2026"
+    },
+    {
+      "query_id": "q_price_94839aac",
+      "template_id": "amd_azure_mi300x_pricing",
+      "family": "cloud_pricing",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "query_text": "site:azure.microsoft.com AMD Instinct MI300X MI325X GPU VM pricing availability May 2026"
+    },
+    {
+      "query_id": "q_price_42d48938",
+      "template_id": "amd_oracle_mi300x_availability",
+      "family": "cloud_pricing",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "query_text": "Oracle Cloud AMD Instinct MI300X MI325X GPU instance pricing availability May 2026"
+    },
+    {
+      "query_id": "q_price_63de7fb8",
+      "template_id": "amd_dell_mi300x_server_availability",
+      "family": "oem_distributor",
+      "target_entity": "AMD",
+      "source_type": "pricing_pages",
+      "query_text": "AMD MI300X MI325X Instinct AI server pricing availability Dell Supermicro May 2026"
+    },
+    {
+      "query_id": "q_price_27ec3d60",
+      "template_id": "amd_mi350_cloud_availability",
+      "family": "pricing_news_context",
+      "target_entity": "AMD",
+      "source_type": "serp_news",
+      "query_text": "AMD MI350 MI325X Instinct cloud GPU availability pricing May 2026 Reuters ServeTheHome"
+    },
+    {
+      "query_id": "q_price_16232b75",
+      "template_id": "smci_store_ai_gpu_server",
+      "family": "oem_distributor",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "query_text": "site:supermicro.com Supermicro GPU server AI server pricing availability H100 H200 B200 May 2026"
+    },
+    {
+      "query_id": "q_price_9dd5bcd4",
+      "template_id": "smci_blackwell_server_availability",
+      "family": "oem_distributor",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "query_text": "Supermicro Nvidia Blackwell B200 GPU server availability lead time liquid cooling May 2026"
+    },
+    {
+      "query_id": "q_price_58bf07cc",
+      "template_id": "smci_amd_instinct_server_availability",
+      "family": "oem_distributor",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "query_text": "Supermicro AMD Instinct MI300 MI325 GPU server availability pricing May 2026"
+    },
+    {
+      "query_id": "q_price_c01f9415",
+      "template_id": "smci_distributor_gpu_server_pricing",
+      "family": "oem_distributor",
+      "target_entity": "Supermicro",
+      "source_type": "pricing_pages",
+      "query_text": "Supermicro AI GPU server distributor pricing availability H100 H200 B200 May 2026"
+    }
+  ],
+  "regeneration_attempted": true,
+  "regeneration_query_count": 5,
+  "query_distribution_before_trim": {
+    "pricing_pressure": 12,
+    "product_launch": 3,
+    "supplier_risk": 3,
+    "investor_signal": 2
+  },
+  "query_distribution_after_trim": {
+    "supplier_risk": 1,
+    "product_launch": 1,
+    "pricing_pressure": 7,
+    "investor_signal": 1
+  },
+  "trimmed_query_count": 10,
+  "llm_generated_query_counts_by_signal": {
+    "supplier_risk": 1,
+    "product_launch": 1,
+    "investor_signal": 1
+  },
+  "deterministic_query_counts_by_signal": {
+    "pricing_pressure": 7
+  },
+  "final_query_counts_by_signal": {
+    "supplier_risk": 1,
+    "product_launch": 1,
+    "pricing_pressure": 7,
+    "investor_signal": 1
+  },
+  "per_signal_minimums_used": {},
+  "per_signal_caps_used": {},
+  "targeted_regeneration_attempts": [],
+  "targeted_regeneration_success_by_signal": {},
+  "expansion_requested_missing_signals": [
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "supplier_risk"
+  ],
+  "expansion_generated_signal_counts": {
+    "supplier_risk": 1,
+    "product_launch": 1,
+    "pricing_pressure": 7,
+    "investor_signal": 1
+  },
+  "expansion_trimmed_signal_counts": {
+    "supplier_risk": 1,
+    "product_launch": 1,
+    "pricing_pressure": 7,
+    "investor_signal": 1
+  },
+  "expansion_unsatisfied_signals": [],
+  "expansion_failure_recovered": false,
+  "query_cap_before_after": {
+    "max_expansion_queries": 10,
+    "queries_returned": 10
+  },
+  "expansion_round": 1,
+  "rounds": [
+    {
+      "original_query_count": 28,
+      "accepted_query_count": 32,
+      "rejected_query_count": 0,
+      "rejected_reasons_by_type": {},
+      "signal_coverage_after_planning": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "supplier_risk"
+      ],
+      "pricing_playbook_query_count": 15,
+      "pricing_playbook_queries": [
+        {
+          "query_id": "q_price_69d5e23f",
+          "template_id": "nvda_aws_h100_h200_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "site:aws.amazon.com/ec2 Nvidia H100 H200 GPU instance pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_0b5efab0",
+          "template_id": "nvda_azure_nc_h100_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "site:azure.microsoft.com Nvidia H100 H200 GPU VM pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_eb136dc8",
+          "template_id": "nvda_coreweave_blackwell_availability",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "CoreWeave Nvidia H100 H200 B200 Blackwell GPU cloud pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_3ebdeba0",
+          "template_id": "nvda_lambda_runpod_gpu_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "Lambda Labs RunPod Nvidia H100 H200 L40S GPU pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_e32f5264",
+          "template_id": "amd_azure_mi300x_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "AMD",
+          "source_type": "pricing_pages",
+          "query_text": "site:azure.microsoft.com AMD Instinct MI300X MI325X GPU VM pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_5fc5aa4d",
+          "template_id": "amd_oracle_mi300x_availability",
+          "family": "cloud_pricing",
+          "target_entity": "AMD",
+          "source_type": "pricing_pages",
+          "query_text": "Oracle Cloud AMD Instinct MI300X MI325X GPU instance pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_0e697dc1",
+          "template_id": "amd_dell_mi300x_server_availability",
+          "family": "oem_distributor",
+          "target_entity": "AMD",
+          "source_type": "pricing_pages",
+          "query_text": "AMD MI300X MI325X Instinct AI server pricing availability Dell Supermicro May 2026"
+        },
+        {
+          "query_id": "q_price_1ea1f3ce",
+          "template_id": "amd_mi350_cloud_availability",
+          "family": "pricing_news_context",
+          "target_entity": "AMD",
+          "source_type": "serp_news",
+          "query_text": "AMD MI350 MI325X Instinct cloud GPU availability pricing May 2026 Reuters ServeTheHome"
+        },
+        {
+          "query_id": "q_price_7158bcf0",
+          "template_id": "smci_store_ai_gpu_server",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "site:supermicro.com Supermicro GPU server AI server pricing availability H100 H200 B200 May 2026"
+        },
+        {
+          "query_id": "q_price_c3b93546",
+          "template_id": "smci_blackwell_server_availability",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "Supermicro Nvidia Blackwell B200 GPU server availability lead time liquid cooling May 2026"
+        },
+        {
+          "query_id": "q_price_cfcf7592",
+          "template_id": "smci_amd_instinct_server_availability",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "Supermicro AMD Instinct MI300 MI325 GPU server availability pricing May 2026"
+        },
+        {
+          "query_id": "q_price_306bce25",
+          "template_id": "smci_distributor_gpu_server_pricing",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "Supermicro AI GPU server distributor pricing availability H100 H200 B200 May 2026"
+        },
+        {
+          "query_id": "q_price_c2bfe043",
+          "template_id": "market_cloud_gpu_price_changes",
+          "family": "pricing_news_context",
+          "target_entity": "market",
+          "source_type": "serp_news",
+          "query_text": "cloud GPU rental price changes H100 H200 B200 MI300X May 2026 SemiAnalysis ServeTheHome"
+        },
+        {
+          "query_id": "q_price_88605a64",
+          "template_id": "market_ai_server_lead_times",
+          "family": "pricing_news_context",
+          "target_entity": "market",
+          "source_type": "serp_news",
+          "query_text": "AI server lead times GPU availability supply shortage oversupply May 2026 Reuters Bloomberg"
+        },
+        {
+          "query_id": "q_price_a4edf9b1",
+          "template_id": "market_gpu_instance_discounts",
+          "family": "cloud_pricing",
+          "target_entity": "market",
+          "source_type": "pricing_pages",
+          "query_text": "GPU instance discounts pricing availability H100 H200 L40S MI300X May 2026 AWS Azure Google Cloud"
+        }
+      ],
+      "regeneration_attempted": false,
+      "regeneration_query_count": 0,
+      "query_distribution_before_trim": {
+        "pricing_pressure": 29,
+        "investor_signal": 5,
+        "product_launch": 4,
+        "supplier_risk": 3
+      },
+      "signal_budget_violations": {},
+      "query_distribution_after_trim": {
+        "supplier_risk": 3,
+        "product_launch": 4,
+        "pricing_pressure": 20,
+        "investor_signal": 5
+      },
+      "trimmed_query_count": 9,
+      "llm_generated_query_counts_by_signal": {
+        "supplier_risk": 3,
+        "product_launch": 4,
+        "investor_signal": 5,
+        "pricing_pressure": 7
+      },
+      "deterministic_query_counts_by_signal": {
+        "pricing_pressure": 13
+      },
+      "final_query_counts_by_signal": {
+        "supplier_risk": 3,
+        "product_launch": 4,
+        "pricing_pressure": 20,
+        "investor_signal": 5
+      },
+      "per_signal_minimums_used": {
+        "investor_signal": 4,
+        "product_launch": 4,
+        "supplier_risk": 3
+      },
+      "per_signal_caps_used": {
+        "investor_signal": 7
+      },
+      "targeted_regeneration_attempts": [],
+      "targeted_regeneration_success_by_signal": {},
+      "expansion_round": 0
+    },
+    {
+      "original_query_count": 8,
+      "accepted_query_count": 10,
+      "rejected_query_count": 3,
+      "rejected_reasons_by_type": {
+        "signal_type_outside_requested_set": 3
+      },
+      "signal_coverage_after_planning": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "supplier_risk"
+      ],
+      "pricing_playbook_query_count": 12,
+      "pricing_playbook_queries": [
+        {
+          "query_id": "q_price_c7fd44f2",
+          "template_id": "nvda_aws_h100_h200_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "site:aws.amazon.com/ec2 Nvidia H100 H200 GPU instance pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_f121dc52",
+          "template_id": "nvda_azure_nc_h100_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "site:azure.microsoft.com Nvidia H100 H200 GPU VM pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_bb368a3a",
+          "template_id": "nvda_coreweave_blackwell_availability",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "CoreWeave Nvidia H100 H200 B200 Blackwell GPU cloud pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_cc6a14c9",
+          "template_id": "nvda_lambda_runpod_gpu_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "Nvidia",
+          "source_type": "pricing_pages",
+          "query_text": "Lambda Labs RunPod Nvidia H100 H200 L40S GPU pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_94839aac",
+          "template_id": "amd_azure_mi300x_pricing",
+          "family": "cloud_pricing",
+          "target_entity": "AMD",
+          "source_type": "pricing_pages",
+          "query_text": "site:azure.microsoft.com AMD Instinct MI300X MI325X GPU VM pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_42d48938",
+          "template_id": "amd_oracle_mi300x_availability",
+          "family": "cloud_pricing",
+          "target_entity": "AMD",
+          "source_type": "pricing_pages",
+          "query_text": "Oracle Cloud AMD Instinct MI300X MI325X GPU instance pricing availability May 2026"
+        },
+        {
+          "query_id": "q_price_63de7fb8",
+          "template_id": "amd_dell_mi300x_server_availability",
+          "family": "oem_distributor",
+          "target_entity": "AMD",
+          "source_type": "pricing_pages",
+          "query_text": "AMD MI300X MI325X Instinct AI server pricing availability Dell Supermicro May 2026"
+        },
+        {
+          "query_id": "q_price_27ec3d60",
+          "template_id": "amd_mi350_cloud_availability",
+          "family": "pricing_news_context",
+          "target_entity": "AMD",
+          "source_type": "serp_news",
+          "query_text": "AMD MI350 MI325X Instinct cloud GPU availability pricing May 2026 Reuters ServeTheHome"
+        },
+        {
+          "query_id": "q_price_16232b75",
+          "template_id": "smci_store_ai_gpu_server",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "site:supermicro.com Supermicro GPU server AI server pricing availability H100 H200 B200 May 2026"
+        },
+        {
+          "query_id": "q_price_9dd5bcd4",
+          "template_id": "smci_blackwell_server_availability",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "Supermicro Nvidia Blackwell B200 GPU server availability lead time liquid cooling May 2026"
+        },
+        {
+          "query_id": "q_price_58bf07cc",
+          "template_id": "smci_amd_instinct_server_availability",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "Supermicro AMD Instinct MI300 MI325 GPU server availability pricing May 2026"
+        },
+        {
+          "query_id": "q_price_c01f9415",
+          "template_id": "smci_distributor_gpu_server_pricing",
+          "family": "oem_distributor",
+          "target_entity": "Supermicro",
+          "source_type": "pricing_pages",
+          "query_text": "Supermicro AI GPU server distributor pricing availability H100 H200 B200 May 2026"
+        }
+      ],
+      "regeneration_attempted": true,
+      "regeneration_query_count": 5,
+      "query_distribution_before_trim": {
+        "pricing_pressure": 12,
+        "product_launch": 3,
+        "supplier_risk": 3,
+        "investor_signal": 2
+      },
+      "query_distribution_after_trim": {
+        "supplier_risk": 1,
+        "product_launch": 1,
+        "pricing_pressure": 7,
+        "investor_signal": 1
+      },
+      "trimmed_query_count": 10,
+      "llm_generated_query_counts_by_signal": {
+        "supplier_risk": 1,
+        "product_launch": 1,
+        "investor_signal": 1
+      },
+      "deterministic_query_counts_by_signal": {
+        "pricing_pressure": 7
+      },
+      "final_query_counts_by_signal": {
+        "supplier_risk": 1,
+        "product_launch": 1,
+        "pricing_pressure": 7,
+        "investor_signal": 1
+      },
+      "per_signal_minimums_used": {},
+      "per_signal_caps_used": {},
+      "targeted_regeneration_attempts": [],
+      "targeted_regeneration_success_by_signal": {},
+      "expansion_requested_missing_signals": [
+        "investor_signal",
+        "pricing_pressure",
+        "product_launch",
+        "supplier_risk"
+      ],
+      "expansion_generated_signal_counts": {
+        "supplier_risk": 1,
+        "product_launch": 1,
+        "pricing_pressure": 7,
+        "investor_signal": 1
+      },
+      "expansion_trimmed_signal_counts": {
+        "supplier_risk": 1,
+        "product_launch": 1,
+        "pricing_pressure": 7,
+        "investor_signal": 1
+      },
+      "expansion_unsatisfied_signals": [],
+      "expansion_failure_recovered": false,
+      "query_cap_before_after": {
+        "max_expansion_queries": 10,
+        "queries_returned": 10
+      },
+      "expansion_round": 1
+    }
+  ]
+}

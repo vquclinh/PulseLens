@@ -1,0 +1,12 @@
+{
+  "total_fetch_attempts": 35,
+  "successful_fetches": 33,
+  "failed_fetches": 2,
+  "permanent_failures": 0,
+  "failure_count_by_domain": {
+    "nvidianews.nvidia.com": 2
+  },
+  "failure_count_by_reason": {
+    "timeout": 2
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "total_pricing_facts": 4,
+  "strong_pricing_signal_count": 1,
+  "weak_pricing_signal_count": 0,
+  "misclassified_pricing_signal_count": 0,
+  "insufficient_evidence_count": 3,
+  "strong_fraction": 0.25,
+  "verdict": "WEAK — fewer than 50% of pricing facts are strong signals",
+  "facts": [
+    {
+      "fact_id": "fact_aad0bd18d14c",
+      "entity": "market",
+      "claim": "The global shortage of memory chips is causing prices to soar for these essential components.",
+      "evidence_quote": "prices soar for the unglamorous but essential components that allow devices to store data.",
+      "source_url": "https://www.reuters.com/world/china/ai-frenzy-is-driving-new-global-supply-chain-crisis-2025-12-03/",
+      "source_tier": 2,
+      "confidence": 0.9,
+      "sentiment": "negative",
+      "label": "insufficient_evidence",
+      "reason": "Cannot determine pricing relevance from claim or evidence quote",
+      "matched_patterns": []
+    },
+    {
+      "fact_id": "fact_186622ddd8d6",
+      "entity": "Nvidia",
+      "claim": "Nvidia is requiring full upfront payment for its H200 artificial intelligence chips from Chinese customers.",
+      "evidence_quote": "Nvidia is requiring full upfront payment from Chinese customers seeking its H200 artificial intelligence chips",
+      "source_url": "https://www.reuters.com/world/china/nvidia-requires-full-upfront-payment-h200-chips-china-sources-say-2026-01-08/",
+      "source_tier": 2,
+      "confidence": 0.9,
+      "sentiment": "negative",
+      "label": "insufficient_evidence",
+      "reason": "Cannot determine pricing relevance from claim or evidence quote",
+      "matched_patterns": []
+    },
+    {
+      "fact_id": "fact_313b11f74075",
+      "entity": "Nvidia",
+      "claim": "Nvidia's H100 AI GPUs have peaked in price beyond $40,000 per unit.",
+      "evidence_quote": "Nvidia's H100 has peaked beyond $40,000",
+      "source_url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidias-h100-ai-gpus-cost-up-to-four-times-more-than-amds-competing-mi300x-amds-chips-cost-dollar10-to-dollar15k-apiece-nvidias-h100-has-peaked-beyond-dollar40000",
+      "source_tier": 3,
+      "confidence": 1.0,
+      "sentiment": "positive",
+      "label": "strong_pricing_signal",
+      "reason": "Contains explicit price/rate/change data",
+      "matched_patterns": [
+        "\\$[\\d,]+\\.?\\d*\\s*(?:per\\s+hour|/\\s*hr|/\\s*hour|/\\s*month|/\\s*year)?"
+      ]
+    },
+    {
+      "fact_id": "fact_9144d41578ea",
+      "entity": "Nvidia",
+      "claim": "Nvidia's H100 AI GPUs can cost up to four times more than AMD's competing MI300X.",
+      "evidence_quote": "Nvidia's H100 AI GPUs cost up to four times more than AMD's competing MI300X",
+      "source_url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/nvidias-h100-ai-gpus-cost-up-to-four-times-more-than-amds-competing-mi300x-amds-chips-cost-dollar10-to-dollar15k-apiece-nvidias-h100-has-peaked-beyond-dollar40000",
+      "source_tier": 3,
+      "confidence": 0.9,
+      "sentiment": "neutral",
+      "label": "insufficient_evidence",
+      "reason": "Cannot determine pricing relevance from claim or evidence quote",
+      "matched_patterns": []
+    }
+  ]
+}

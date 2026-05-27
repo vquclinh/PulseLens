@@ -59,11 +59,17 @@ class BrightDataClient:
         self.api_key = api_key
         self.serp_zone = serp_zone
         self.scraper_zone = scraper_zone
+        self._explicit_browser_zone: bool = browser_zone is not None
         self.browser_zone = browser_zone or scraper_zone
         self.unlocker_zone = unlocker_zone or scraper_zone
         self.api_url = api_url
         self.timeout_seconds = timeout_seconds
         self.retry_delays = retry_delays
+
+    @property
+    def has_browser_zone(self) -> bool:
+        """True only when BRIGHTDATA_BROWSER_ZONE was explicitly configured."""
+        return self._explicit_browser_zone
 
     @classmethod
     def from_env(cls) -> "BrightDataClient":

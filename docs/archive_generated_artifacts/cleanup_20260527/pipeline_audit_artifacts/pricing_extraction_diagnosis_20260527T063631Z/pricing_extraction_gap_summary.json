@@ -1,0 +1,150 @@
+{
+  "report_id": "report_5760ae7b9861",
+  "artifact_dir": "/mnt/vquclinh/PROJECT-CMAKE/PULSE-LENS/PulseLens/pipeline_audit_artifacts/demo_track2_20260527T062432Z",
+  "run_at": "20260527T063631Z",
+  "total_accepted_pricing_urls": 27,
+  "urls_that_produced_pricing_facts": 3,
+  "urls_with_zero_pricing_facts": 25,
+  "zero_fact_urls_with_explicit_price_in_url_or_title": 0,
+  "zero_fact_urls_without_explicit_price": 25,
+  "gap_count_by_domain": {
+    "runpod.io": 8,
+    "coreweave.com": 4,
+    "dell.com": 3,
+    "amd.com": 2,
+    "blogs.oracle.com": 2,
+    "ir.amd.com": 2,
+    "servethehome.com": 1,
+    "oracle.com": 1,
+    "thinkmate.com": 1,
+    "newsletter.semianalysis.com": 1
+  },
+  "gap_count_by_cause": {
+    "likely_comparison_guide_not_primary_price_source": 11,
+    "unknown": 9,
+    "likely_no_explicit_price_table_in_scraped_html": 4,
+    "likely_paywall_partial_content": 1
+  },
+  "domain_detail": {
+    "coreweave.com": {
+      "url_count": 4,
+      "url_types": [
+        "direct_pricing_page",
+        "direct_pricing_page",
+        "direct_pricing_page",
+        "direct_pricing_page"
+      ],
+      "gap_causes": [
+        "likely_no_explicit_price_table_in_scraped_html",
+        "likely_no_explicit_price_table_in_scraped_html",
+        "likely_no_explicit_price_table_in_scraped_html",
+        "likely_no_explicit_price_table_in_scraped_html"
+      ]
+    },
+    "runpod.io": {
+      "url_count": 8,
+      "url_types": [
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide"
+      ],
+      "gap_causes": [
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source"
+      ]
+    },
+    "servethehome.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "amd.com": {
+      "url_count": 2,
+      "url_types": [
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    "blogs.oracle.com": {
+      "url_count": 2,
+      "url_types": [
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    "ir.amd.com": {
+      "url_count": 2,
+      "url_types": [
+        "unknown",
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown",
+        "unknown"
+      ]
+    },
+    "oracle.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "dell.com": {
+      "url_count": 3,
+      "url_types": [
+        "blog_or_guide",
+        "blog_or_guide",
+        "blog_or_guide"
+      ],
+      "gap_causes": [
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source",
+        "likely_comparison_guide_not_primary_price_source"
+      ]
+    },
+    "thinkmate.com": {
+      "url_count": 1,
+      "url_types": [
+        "unknown"
+      ],
+      "gap_causes": [
+        "unknown"
+      ]
+    },
+    "newsletter.semianalysis.com": {
+      "url_count": 1,
+      "url_types": [
+        "newsletter"
+      ],
+      "gap_causes": [
+        "likely_paywall_partial_content"
+      ]
+    }
+  }
+}

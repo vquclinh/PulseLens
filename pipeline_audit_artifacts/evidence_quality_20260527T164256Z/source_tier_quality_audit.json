@@ -1,0 +1,200 @@
+{
+  "total_domains": 10,
+  "rating_summary": {
+    "authoritative": 2,
+    "acceptable": 5,
+    "unknown": 2,
+    "weak_but_usable": 1
+  },
+  "suspicious_or_low_signal_count": 0,
+  "reject_next_time_candidate_count": 0,
+  "domains": [
+    {
+      "domain": "ir.amd.com",
+      "quality_rating": "authoritative",
+      "fact_count": 41,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://ir.amd.com/",
+        "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000014/amd-20260203.htm"
+      ]
+    },
+    {
+      "domain": "reuters.com",
+      "quality_rating": "acceptable",
+      "fact_count": 8,
+      "signal_types": [
+        "investor_signal",
+        "product_launch",
+        "supplier_risk"
+      ],
+      "tiers": [
+        2
+      ],
+      "entities": [
+        "Nvidia",
+        "Supermicro",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.reuters.com/business/super-micro-computer-raises-annual-revenue-forecast-2026-02-03/",
+        "https://www.reuters.com/technology/nvidia-supplier-sk-hynix-says-hbm-chips-almost-sold-out-2025-2024-05-02/"
+      ]
+    },
+    {
+      "domain": "runpod.io",
+      "quality_rating": "acceptable",
+      "fact_count": 7,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.runpod.io/articles/alternatives/lambda-labs",
+        "https://www.runpod.io/pricing"
+      ]
+    },
+    {
+      "domain": "coreweave.com",
+      "quality_rating": "acceptable",
+      "fact_count": 6,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia",
+        "market"
+      ],
+      "sample_urls": [
+        "https://www.coreweave.com/pricing",
+        "https://www.coreweave.com/pricing/classic"
+      ]
+    },
+    {
+      "domain": "servethehome.com",
+      "quality_rating": "acceptable",
+      "fact_count": 4,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/"
+      ]
+    },
+    {
+      "domain": "ir.supermicro.com",
+      "quality_rating": "authoritative",
+      "fact_count": 3,
+      "signal_types": [
+        "news_sentiment",
+        "product_launch"
+      ],
+      "tiers": [
+        1
+      ],
+      "entities": [
+        "Nvidia",
+        "Supermicro"
+      ],
+      "sample_urls": [
+        "https://ir.supermicro.com/news/default.aspx",
+        "https://ir.supermicro.com/news/news-details/2025/Supermicro-Expands-Enterprise-AI-Portfolio-of-over-100-GPU-Optimized-Systems-Supporting-the-Upcoming-NVIDIA-RTX-PRO-6000-Blackwell-Server-Edition-and-NVIDIA-H200-NVL-Platform/default.aspx"
+      ]
+    },
+    {
+      "domain": "blogs.oracle.com",
+      "quality_rating": "acceptable",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus"
+      ]
+    },
+    {
+      "domain": "marketchameleon.com",
+      "quality_rating": "unknown",
+      "fact_count": 2,
+      "signal_types": [
+        "product_launch",
+        "strategic_messaging"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "AMD"
+      ],
+      "sample_urls": [
+        "https://marketchameleon.com/Overview/AMD/PressReleases/"
+      ]
+    },
+    {
+      "domain": "finance.yahoo.com",
+      "quality_rating": "unknown",
+      "fact_count": 1,
+      "signal_types": [
+        "investor_signal"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://finance.yahoo.com/quote/NVDA/"
+      ]
+    },
+    {
+      "domain": "newsletter.semianalysis.com",
+      "quality_rating": "weak_but_usable",
+      "fact_count": 1,
+      "signal_types": [
+        "pricing_pressure"
+      ],
+      "tiers": [
+        4
+      ],
+      "entities": [
+        "Nvidia"
+      ],
+      "sample_urls": [
+        "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "hiring_momentum": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "product_launch": {
+    "fact_count": 15,
+    "verified_claim_count": 2,
+    "average_confidence": 0.94,
+    "source_count": 5,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 11
+      },
+      {
+        "domain": "blogs.oracle.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "amd.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "dell.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 3,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_3f8659be573b",
+        "entity": "AMD",
+        "claim": "AMD expanded its Ryzen™ AI 400 Series Portfolio to offer more AI PC options for consumers and businesses on March 2, 2026.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_f401529d6e7f",
+        "entity": "AMD",
+        "claim": "AMD anticipates the AMD Instinct MI400 series, based on the AMD CDNA “Next” architecture, to arrive in 2026.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1201/amd-accelerates-pace-of-data-center-ai-innovation-and-leadership-with-expanded-amd-instinct-gpu-roadmap",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_8a36158559f6",
+        "entity": "AMD",
+        "claim": "AMD introduced the AMD Pensando Salina DPU for the front-end and the AMD Pensando Pollara 400 for the back-end of AI networking.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      }
+    ]
+  },
+  "pricing_pressure": {
+    "fact_count": 4,
+    "verified_claim_count": 1,
+    "average_confidence": 0.925,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "reuters.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "tomshardware.com",
+        "fact_count": 2
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_186622ddd8d6",
+        "entity": "Nvidia",
+        "claim": "Nvidia is requiring full upfront payment for its H200 artificial intelligence chips from Chinese customers.",
+        "source_url": "https://www.reuters.com/world/china/nvidia-requires-full-upfront-payment-h200-chips-china-sources-say-2026-01-08/",
+        "reason": "zero vocab matches from ['price', 'pricing', 'cost', 'rental']"
+      }
+    ]
+  },
+  "strategic_messaging": {
+    "fact_count": 8,
+    "verified_claim_count": 4,
+    "average_confidence": 0.863,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 7
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 5,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_778e44116bd1",
+        "entity": "AMD",
+        "claim": "AMD and TCS will bring the 'Helios' rack-scale AI architecture to India on February 16, 2026.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_e58cb29b73ae",
+        "entity": "Supermicro",
+        "claim": "Supermicro is experiencing outstanding customer engagement for its newly released AI liquid-cooled solutions.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Provides-First-Quarter-of-Fiscal-Year-2026-Business-Update/default.aspx",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_0800a212f882",
+        "entity": "Dell",
+        "claim": "Dell Technologies is a partner supporting AMD's latest accelerators.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_7b7cb1e8a2bc",
+        "entity": "HPE",
+        "claim": "HPE is a partner supporting AMD's latest accelerators.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_66f05f2f4d97",
+        "entity": "Supermicro",
+        "claim": "Supermicro is a partner supporting AMD's latest accelerators.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1220/amd-delivers-leadership-ai-performance-with-amd-instinct-mi325x-accelerators",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      }
+    ]
+  },
+  "investor_signal": {
+    "fact_count": 9,
+    "verified_claim_count": 4,
+    "average_confidence": 0.967,
+    "source_count": 4,
+    "top_domains": [
+      {
+        "domain": "sec.gov",
+        "fact_count": 5
+      },
+      {
+        "domain": "bloomberg.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 1
+      },
+      {
+        "domain": "businesswire.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_26ffc8628e56",
+        "entity": "AMD",
+        "claim": "AMD's better-than-expected outlook was fueled by AI demand.",
+        "source_url": "https://www.bloomberg.com/news/articles/2026-05-05/amd-gives-upbeat-forecast-after-ai-data-center-demand-surges",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      }
+    ]
+  },
+  "news_sentiment": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "supplier_risk": {
+    "fact_count": 5,
+    "verified_claim_count": 1,
+    "average_confidence": 0.9,
+    "source_count": 2,
+    "top_domains": [
+      {
+        "domain": "reuters.com",
+        "fact_count": 4
+      },
+      {
+        "domain": "medium.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  }
+}

@@ -1,0 +1,315 @@
+{
+  "hiring_momentum": {
+    "fact_count": 0,
+    "verified_claim_count": 0,
+    "average_confidence": 0.0,
+    "source_count": 0,
+    "top_domains": [],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "product_launch": {
+    "fact_count": 17,
+    "verified_claim_count": 3,
+    "average_confidence": 0.924,
+    "source_count": 6,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 9
+      },
+      {
+        "domain": "blogs.oracle.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "reuters.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 4,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_7b0a9bce9c7e",
+        "entity": "AMD",
+        "claim": "AMD introduced the Instinct MI350 Series GPUs and systems, designed for generative AI and high-performance computing.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_08929cabcb4a",
+        "entity": "AMD",
+        "claim": "AMD unveiled the next-generation \"Helios\" rack-scale solution, powered by AMD Instinct MI400 GPUs and other AMD components.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1257/amd-reports-second-quarter-2025-financial-results",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_39f11b902c0e",
+        "entity": "AMD",
+        "claim": "AMD expanded its Ryzen™ AI 400 Series Portfolio to offer more AI PC options for consumers and businesses.",
+        "source_url": "https://ir.amd.com/news-events/press-releases",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      },
+      {
+        "fact_id": "fact_e04136425ab1",
+        "entity": "Supermicro",
+        "claim": "Chinese universities purchased Super Micro Computer servers equipped with restricted AI chips over the past year.",
+        "source_url": "https://www.reuters.com/world/china/chinese-universities-with-military-links-bought-super-micro-servers-with-2026-03-27/",
+        "reason": "zero vocab matches from ['launch', 'announced', 'available', 'release']"
+      }
+    ]
+  },
+  "pricing_pressure": {
+    "fact_count": 14,
+    "verified_claim_count": 2,
+    "average_confidence": 0.843,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "runpod.io",
+        "fact_count": 7
+      },
+      {
+        "domain": "coreweave.com",
+        "fact_count": 6
+      },
+      {
+        "domain": "newsletter.semianalysis.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 0,
+    "suspicious_claims": []
+  },
+  "strategic_messaging": {
+    "fact_count": 13,
+    "verified_claim_count": 1,
+    "average_confidence": 0.862,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 10
+      },
+      {
+        "domain": "servethehome.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "marketchameleon.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 10,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_8a770a294b17",
+        "entity": "AMD",
+        "claim": "AMD is expanding its solutions into growing AI-intensive markets.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_d5b03227cf57",
+        "entity": "AMD",
+        "claim": "AMD discussed the upcoming MI355X accelerator for 2025.",
+        "source_url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_a8b10bb0c855",
+        "entity": "AMD",
+        "claim": "AMD expects server growth to accelerate significantly as it ramps up supply to meet increasing demand.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_3e2f56ae566d",
+        "entity": "AMD",
+        "claim": "AMD announced an event titled “Advancing AI 2026” on April 28, 2026.",
+        "source_url": "https://ir.amd.com/news-events/press-releases",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_c847c0e0c9e8",
+        "entity": "AMD",
+        "claim": "AMD and TCS will bring the state-of-the-art ‘Helios’ rack-scale AI architecture to India.",
+        "source_url": "https://ir.amd.com/news-events/press-releases",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_c4c966a9a966",
+        "entity": "AMD",
+        "claim": "Meta and AMD plan to deploy up to 6 gigawatts of AMD Instinct GPUs, with the first 1-GW powered by custom MI450-based GPUs.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_b5f64b062bc0",
+        "entity": "AMD",
+        "claim": "AMD and Celestica's collaboration aims to advance the next era of AI with their \"Helios\" platform.",
+        "source_url": "https://marketchameleon.com/Overview/AMD/PressReleases/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_18b63e53cd18",
+        "entity": "AMD",
+        "claim": "AMD aims for high performance, efficiency, and greater system design flexibility for OCI customers with its MI300X and ROCm solutions.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_8fcf64dc7e84",
+        "entity": "AMD",
+        "claim": "Oracle Cloud Infrastructure is offering more choices for customers to accelerate AI workloads at a competitive price point.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      },
+      {
+        "fact_id": "fact_e81c37b9140b",
+        "entity": "AMD",
+        "claim": "AMD announced the upcoming MI355X in 2025.",
+        "source_url": "https://www.servethehome.com/amd-instinct-mi325x-launched-and-the-mi355x-is-coming/",
+        "reason": "zero vocab matches from ['strategy', 'investment', 'partnership', 'roadmap']"
+      }
+    ]
+  },
+  "investor_signal": {
+    "fact_count": 25,
+    "verified_claim_count": 1,
+    "average_confidence": 0.96,
+    "source_count": 3,
+    "top_domains": [
+      {
+        "domain": "ir.amd.com",
+        "fact_count": 22
+      },
+      {
+        "domain": "reuters.com",
+        "fact_count": 2
+      },
+      {
+        "domain": "finance.yahoo.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 9,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_e1b9a1a3307d",
+        "entity": "AMD",
+        "claim": "AMD will report its first quarter 2026 financial results on May 5, 2026.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_a3f995cd6fc0",
+        "entity": "AMD",
+        "claim": "AMD announced over $10 billion in Taiwan ecosystem investments to accelerate AI infrastructure on May 21, 2026.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_ff8e8a50b131",
+        "entity": "AMD",
+        "claim": "On May 21, 2026, AMD announced the production ramp of its next-generation AMD EPYC Processor “Venice” on TSMC 2nm process technology.",
+        "source_url": "https://ir.amd.com/",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_4af07f0f4378",
+        "entity": "AMD",
+        "claim": "AMD reported its First Quarter 2026 Financial Results on May 5, 2026.",
+        "source_url": "https://ir.amd.com/news-events/press-releases",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_7abe3213c856",
+        "entity": "AMD",
+        "claim": "AMD management will conduct a conference call to discuss Q1 2026 results at 5:00 p.m. ET / 2:00 p.m. PT.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1282/amd-to-report-fiscal-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_690b6d8d4dfe",
+        "entity": "AMD",
+        "claim": "Jean Hu, AMD's executive vice president, CFO, and treasurer, will present at the Bank of America Global Technology Conference.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1282/amd-to-report-fiscal-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_aed437307a11",
+        "entity": "AMD",
+        "claim": "Jean Hu will present at the Bank of America Global Technology Conference on Tuesday, June 2, 2026.",
+        "source_url": "https://ir.amd.com/news-events/press-releases/detail/1282/amd-to-report-fiscal-first-quarter-2026-financial-results",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_76d8c6ecd705",
+        "entity": "Nvidia",
+        "claim": "The fair value for Nvidia has been increased to $260 from $240.",
+        "source_url": "https://finance.yahoo.com/quote/NVDA/",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      },
+      {
+        "fact_id": "fact_47060511c10d",
+        "entity": "AMD",
+        "claim": "Advanced Micro Devices, Inc. announced its financial results for the first quarter of 2026 on May 5, 2026.",
+        "source_url": "https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000072/amd-20260505.htm",
+        "reason": "zero vocab matches from ['earnings', 'revenue', 'margin', 'guidance']"
+      }
+    ]
+  },
+  "news_sentiment": {
+    "fact_count": 1,
+    "verified_claim_count": 1,
+    "average_confidence": 0.9,
+    "source_count": 1,
+    "top_domains": [
+      {
+        "domain": "ir.supermicro.com",
+        "fact_count": 1
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_2b5b2f3973a4",
+        "entity": "Supermicro",
+        "claim": "Supermicro offers an expanded enterprise AI portfolio with over 100 GPU-optimized systems.",
+        "source_url": "https://ir.supermicro.com/news/news-details/2025/Supermicro-Expands-Enterprise-AI-Portfolio-of-over-100-GPU-Optimized-Systems-Supporting-the-Upcoming-NVIDIA-RTX-PRO-6000-Blackwell-Server-Edition-and-NVIDIA-H200-NVL-Platform/default.aspx",
+        "reason": "zero vocab matches from ['news', 'report', 'coverage', 'analyst']"
+      }
+    ]
+  },
+  "supplier_risk": {
+    "fact_count": 5,
+    "verified_claim_count": 0,
+    "average_confidence": 0.9,
+    "source_count": 1,
+    "top_domains": [
+      {
+        "domain": "reuters.com",
+        "fact_count": 5
+      }
+    ],
+    "suspicious_claim_count": 1,
+    "suspicious_claims": [
+      {
+        "fact_id": "fact_bb19a64161d2",
+        "entity": "market",
+        "claim": "The U.S. government is advocating for tighter curbs on China's access to semiconductor technology from allies.",
+        "source_url": "https://www.reuters.com/technology/us-urges-allies-tighten-chinas-access-chip-technology-bloomberg-reports-2024-03-06/",
+        "reason": "zero vocab matches from ['shortage', 'supply', 'dependency', 'hbm']"
+      }
+    ]
+  }
+}

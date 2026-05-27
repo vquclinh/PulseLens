@@ -1,0 +1,152 @@
+{
+  "replay_type": "projection_only",
+  "reason_no_live_replay": "Full document text was not persisted in audit artifacts. web_collection_audit.json stores content_length and price_pattern_count but not the actual document content. Live replay requires a new pipeline run.",
+  "artifact_dir": "../docs/archive_generated_artifacts/cleanup_20260527/pipeline_audit_artifacts/demo_track2_20260527T074938Z",
+  "report_id": "report_1df9ca6a1014",
+  "pricing_docs_analyzed": 14,
+  "high_pattern_zero_fact_docs": 5,
+  "total_projected_new_facts": 11,
+  "projection_assumption": "1 fact per 20 price patterns, max 4 per URL",
+  "url_projections": [
+    {
+      "url": "https://www.coreweave.com/pricing",
+      "domain": "coreweave.com",
+      "content_length": 98904,
+      "price_pattern_count": 166,
+      "existing_fact_count": 0,
+      "projected_new_facts": 4,
+      "recovery_status": "high_pattern_recoverable",
+      "bottleneck": "truncation+tabular_format+entity_mismatch"
+    },
+    {
+      "url": "https://www.coreweave.com/pricing/classic",
+      "domain": "coreweave.com",
+      "content_length": 86661,
+      "price_pattern_count": 62,
+      "existing_fact_count": 0,
+      "projected_new_facts": 3,
+      "recovery_status": "high_pattern_recoverable",
+      "bottleneck": "truncation+tabular_format+entity_mismatch"
+    },
+    {
+      "url": "https://www.runpod.io/pricing",
+      "domain": "runpod.io",
+      "content_length": 51417,
+      "price_pattern_count": 55,
+      "existing_fact_count": 0,
+      "projected_new_facts": 2,
+      "recovery_status": "high_pattern_recoverable",
+      "bottleneck": "truncation+tabular_format+entity_mismatch"
+    },
+    {
+      "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+      "domain": "runpod.io",
+      "content_length": 116377,
+      "price_pattern_count": 39,
+      "existing_fact_count": 0,
+      "projected_new_facts": 1,
+      "recovery_status": "high_pattern_recoverable",
+      "bottleneck": "truncation+tabular_format+entity_mismatch"
+    },
+    {
+      "url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+      "domain": "runpod.io",
+      "content_length": 86897,
+      "price_pattern_count": 39,
+      "existing_fact_count": 0,
+      "projected_new_facts": 1,
+      "recovery_status": "high_pattern_recoverable",
+      "bottleneck": "truncation+tabular_format+entity_mismatch"
+    },
+    {
+      "url": "https://blogs.oracle.com/cloud-infrastructure/announcing-ga-oci-compute-amd-mi300x-gpus",
+      "domain": "oracle.com",
+      "content_length": 26773,
+      "price_pattern_count": 4,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "low_pattern_uncertain",
+      "bottleneck": "truncation+entity_mismatch"
+    },
+    {
+      "url": "https://www.amd.com/en/where-to-buy/accelerators/instinct.html",
+      "domain": "amd.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "no_patterns",
+      "bottleneck": "thin_content"
+    },
+    {
+      "url": "https://ir.amd.com/news-events/press-releases/detail/1217/amd-instinct-mi300x-accelerators-available-on-oracle-cloud-infrastructure-for-demanding-ai-applications",
+      "domain": "amd.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "no_patterns",
+      "bottleneck": "thin_content"
+    },
+    {
+      "url": "https://www.dell.com/en-us/blog/dell-generative-ai-open-ecosystem-with-amd-instinct-accelerators/",
+      "domain": "dell.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "no_patterns",
+      "bottleneck": "thin_content"
+    },
+    {
+      "url": "https://ir.supermicro.com/news/news-details/2024/Supermicros-Rack-Scale-Liquid-Cooled-Solutions-with-the-Industrys-Latest-Accelerators-Target-AI-and-HPC-Convergence/default.aspx",
+      "domain": "supermicro.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "no_patterns",
+      "bottleneck": "thin_content"
+    },
+    {
+      "url": "https://cloud.google.com/compute/gpus-pricing",
+      "domain": "google.com",
+      "content_length": 30,
+      "price_pattern_count": 0,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "no_patterns",
+      "bottleneck": "thin_content"
+    },
+    {
+      "url": "https://www.nvidia.com/en-us/data-center/h100/",
+      "domain": "nvidia.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 0,
+      "projected_new_facts": 0,
+      "recovery_status": "no_patterns",
+      "bottleneck": "thin_content"
+    },
+    {
+      "url": "https://newsletter.semianalysis.com/p/the-great-gpu-shortage-rental-capacity",
+      "domain": "semianalysis.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 1,
+      "projected_new_facts": 0,
+      "recovery_status": "already_has_facts",
+      "bottleneck": "n/a"
+    },
+    {
+      "url": "https://www.thinkmate.com/systems/supermicro/superserver/gpu?b&srsltid=AfmBOoolJYAIn18hmXTP483LmaRSDvDsG_e-P1EoPkKEDQL-Fsp-GLaR",
+      "domain": "thinkmate.com",
+      "content_length": 0,
+      "price_pattern_count": 0,
+      "existing_fact_count": 2,
+      "projected_new_facts": 0,
+      "recovery_status": "already_has_facts",
+      "bottleneck": "n/a"
+    }
+  ]
+}

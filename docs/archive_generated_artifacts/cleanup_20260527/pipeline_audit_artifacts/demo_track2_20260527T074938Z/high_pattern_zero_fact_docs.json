@@ -1,0 +1,67 @@
+[
+  {
+    "url": "https://www.coreweave.com/pricing",
+    "domain": "coreweave.com",
+    "content_length": 98904,
+    "price_pattern_count": 166,
+    "fact_count": 0,
+    "yield_status": "zero_yield",
+    "likely_bottleneck": "truncation+tabular_format+entity_mismatch",
+    "escalation_reason": "sufficient_content",
+    "final_method": "normal",
+    "escalated_to_browser": false,
+    "browser_failed": false
+  },
+  {
+    "url": "https://www.coreweave.com/pricing/classic",
+    "domain": "coreweave.com",
+    "content_length": 86661,
+    "price_pattern_count": 62,
+    "fact_count": 0,
+    "yield_status": "zero_yield",
+    "likely_bottleneck": "truncation+tabular_format+entity_mismatch",
+    "escalation_reason": "sufficient_content",
+    "final_method": "normal",
+    "escalated_to_browser": false,
+    "browser_failed": false
+  },
+  {
+    "url": "https://www.runpod.io/pricing",
+    "domain": "runpod.io",
+    "content_length": 51417,
+    "price_pattern_count": 55,
+    "fact_count": 0,
+    "yield_status": "zero_yield",
+    "likely_bottleneck": "truncation+tabular_format+entity_mismatch",
+    "escalation_reason": "sufficient_content",
+    "final_method": "normal",
+    "escalated_to_browser": false,
+    "browser_failed": false
+  },
+  {
+    "url": "https://www.runpod.io/articles/guides/top-cloud-gpu-providers",
+    "domain": "runpod.io",
+    "content_length": 116377,
+    "price_pattern_count": 39,
+    "fact_count": 0,
+    "yield_status": "zero_yield",
+    "likely_bottleneck": "truncation+tabular_format+entity_mismatch",
+    "escalation_reason": "sufficient_content",
+    "final_method": "normal",
+    "escalated_to_browser": false,
+    "browser_failed": false
+  },
+  {
+    "url": "https://www.runpod.io/articles/alternatives/lambda-labs",
+    "domain": "runpod.io",
+    "content_length": 86897,
+    "price_pattern_count": 39,
+    "fact_count": 0,
+    "yield_status": "zero_yield",
+    "likely_bottleneck": "truncation+tabular_format+entity_mismatch",
+    "escalation_reason": "sufficient_content",
+    "final_method": "normal",
+    "escalated_to_browser": false,
+    "browser_failed": false
+  }
+]

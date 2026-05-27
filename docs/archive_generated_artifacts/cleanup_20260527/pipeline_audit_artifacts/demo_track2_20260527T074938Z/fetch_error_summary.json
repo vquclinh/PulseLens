@@ -1,0 +1,12 @@
+{
+  "total_fetch_attempts": 62,
+  "successful_fetches": 59,
+  "failed_fetches": 3,
+  "permanent_failures": 0,
+  "failure_count_by_domain": {
+    "sec.gov": 3
+  },
+  "failure_count_by_reason": {
+    "timeout": 3
+  }
+}

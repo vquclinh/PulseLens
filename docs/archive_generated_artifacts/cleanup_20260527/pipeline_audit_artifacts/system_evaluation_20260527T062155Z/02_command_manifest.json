@@ -1,0 +1,79 @@
+{
+  "evaluation_id": "system_evaluation_20260527T062155Z",
+  "commands": [
+    {
+      "phase": "B1",
+      "purpose": "Pipeline import check",
+      "command": "python -c \"from app.pipeline import graph; print('pipeline import OK')\"",
+      "cost_tier": "zero",
+      "log_file": "backend_import_check.log",
+      "abort_if_fail": true
+    },
+    {
+      "phase": "B2",
+      "purpose": "FastAPI import check",
+      "command": "python -c \"from main import app; print('FastAPI import OK')\"",
+      "cost_tier": "zero",
+      "log_file": "fastapi_import_check.log",
+      "abort_if_fail": true
+    },
+    {
+      "phase": "B3",
+      "purpose": "Agent 1 Sprint 5 expansion stability test",
+      "command": "python tests/pipeline/test_agent1_expansion_stability.py",
+      "cost_tier": "zero",
+      "log_file": "agent1_expansion_stability_test.log",
+      "abort_if_fail": true
+    },
+    {
+      "phase": "B4",
+      "purpose": "Agent 1 Sprint 7 signal balance test",
+      "command": "python tests/pipeline/test_agent1_signal_balance.py",
+      "cost_tier": "zero",
+      "log_file": "agent1_signal_balance_test.log",
+      "abort_if_fail": true
+    },
+    {
+      "phase": "B5",
+      "purpose": "Frontend build check",
+      "command": "cd ../frontend && npm run build",
+      "cost_tier": "zero",
+      "log_file": "frontend_build.log",
+      "abort_if_fail": true
+    },
+    {
+      "phase": "C",
+      "purpose": "Static safety scan",
+      "command": "grep -rn patterns in backend/app/ (excludes .venv, __pycache__, tests, *.md)",
+      "cost_tier": "zero",
+      "output_files": ["static_safety_scan.json", "static_safety_scan.md"],
+      "abort_if_fail": false
+    },
+    {
+      "phase": "D",
+      "purpose": "Live demo-scope pipeline run",
+      "command": "PULSELENS_DEMO_SCOPE=true python scripts/demo_track2_ai_hardware_audit.py",
+      "cost_tier": "live_api",
+      "estimated_cost_usd": "0.50-1.60",
+      "log_file": "live_pipeline_terminal.log",
+      "runs_at_most_once": true,
+      "abort_if_fail": false
+    },
+    {
+      "phase": "E",
+      "purpose": "Evidence quality audit (zero-cost, reads DB only)",
+      "command": "python scripts/evidence_quality_audit.py --report-id <id> --artifact-dir <dir>",
+      "cost_tier": "zero",
+      "condition": "new report_id was created",
+      "log_file": "evidence_quality_terminal.log"
+    },
+    {
+      "phase": "F",
+      "purpose": "Pricing extraction diagnosis (zero-cost, reads DB + artifacts)",
+      "command": "python scripts/pricing_document_extraction_diagnosis.py --report-id <id> --artifact-dir <dir>",
+      "cost_tier": "zero",
+      "condition": "new report_id was created",
+      "log_file": "pricing_diagnosis_terminal.log"
+    }
+  ]
+}

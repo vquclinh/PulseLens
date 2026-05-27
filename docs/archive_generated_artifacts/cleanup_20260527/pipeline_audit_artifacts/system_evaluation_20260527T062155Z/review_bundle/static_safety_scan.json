@@ -1,0 +1,17 @@
+{
+  "scan_timestamp": "2026-05-27T06:24:00Z",
+  "scan_dir": "backend/app/",
+  "excluded": [".venv/", "__pycache__/", "tests/", "scripts/archive_pre_submission/", "*.md"],
+  "verdict": "CLEAN",
+  "findings": [
+    {"pattern": "force_pass", "matches": 0, "flagged": false},
+    {"pattern": "bypass_quality", "matches": 0, "flagged": false},
+    {"pattern": "skip_gate", "matches": 0, "flagged": false},
+    {"pattern": "fake_evidence", "matches": 0, "flagged": false},
+    {"pattern": "PULSELENS_FORENSIC_TRACE.*true (hardcoded default)", "matches": 0, "flagged": false},
+    {"pattern": "forensic_tracer in app/ runtime", "matches": 0, "flagged": false},
+    {"pattern": "report_[0-9a-f]{8,} in pipeline/ or config/", "matches": 0, "flagged": false},
+    {"pattern": "test_*.py files in app/pipeline/", "matches": 0, "flagged": false}
+  ],
+  "summary": "All 8 patterns returned zero matches in runtime code. No bypass mechanisms, no hardcoded report IDs, no forensic instrumentation detected in app/ runtime."
+}
