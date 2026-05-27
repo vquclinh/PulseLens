@@ -94,12 +94,18 @@ Full list of archived files: `CLEANUP_MANIFEST.md`
 
 | Directory | Contents |
 |---|---|
-| `backend/app/pipeline/` | LangGraph agents (agents 1-8), graph.py, quality_gate.py |
-| `backend/app/utils/` | url_scorer.py, helpers |
-| `backend/app/config/` | Settings, signal definitions |
+| `backend/app/pipeline/` | LangGraph agents (1-8), graph.py, quality_gate.py — no test files |
+| `backend/app/utils/` | url_scorer.py, helpers, llm_client, brightdata_client |
+| `backend/app/config/` | Settings, signal/company/scope definitions |
 | `backend/app/api/` | FastAPI routes |
 | `backend/app/schemas/` | Pydantic models |
-| `backend/scripts/` | Diagnostic and audit scripts (non-pipeline) |
+| `backend/scripts/` | 3 primary entrypoints: demo_track2, evidence_quality_audit, pricing_diagnosis |
+| `backend/scripts/diagnostics/` | 3 live diagnostic scripts (require API keys) |
+| `backend/scripts/archive_pre_submission/` | Archived test_a2_a3.py (live A2→A3 integration test) |
+| `backend/tests/` | test_chat.py, test_pipeline_live.py, test_pipeline_quality.py |
+| `backend/tests/pipeline/` | Zero-cost static tests: test_agent1_expansion_stability.py (4 tests), test_agent1_signal_balance.py (15 tests) |
 | `frontend/` | React frontend |
 
 Key Sprint 7 change: `backend/app/pipeline/agent1_query_planner.py` — signal balance minimums, caps, domain-specificity rules, targeted regeneration, B6 telemetry. No other pipeline files modified in Sprint 7.
+
+See `CLEAN_REPOSITORY_STRUCTURE.md` for the full annotated directory tree.

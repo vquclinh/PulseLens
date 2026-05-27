@@ -15,7 +15,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime, timezone
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
 from app.pipeline.agent1_query_planner import (
     QueryPlanner,
@@ -284,7 +284,7 @@ def run_tests() -> dict:
 def main() -> None:
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output_dir = os.path.join(
-        os.path.dirname(__file__), "..", "..",
+        os.path.dirname(__file__), "..", "..", "..",
         "pipeline_audit_artifacts", f"agent1_expansion_test_{ts}"
     )
     os.makedirs(output_dir, exist_ok=True)

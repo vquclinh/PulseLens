@@ -1,16 +1,17 @@
 # Source Hygiene Audit Report
 
 **Date:** 2026-05-27
-**Scope:** backend/app/, backend/scripts/ — all Python source files
-**Audit type:** Read-only scan. No pipeline execution. No API calls.
+**Pass 1 scope:** backend/app/, backend/scripts/ — classification of print(), TODO, hardcoded IDs, misplaced test files
+**Pass 2 scope:** backend/scripts/ and backend/tests/ — structural reorganization of scripts into primary/diagnostics/archive/tests
+**Audit type:** Read-only scan + path updates. No pipeline execution. No API calls.
 
 ---
 
-## Audit Findings
+## Pass 1 Audit Findings (backend/app/ and backend/scripts/)
 
 | File | Finding | Classification | Action |
 |---|---|---|---|
-| `backend/app/pipeline/test_a2_a3.py` | Test file inside production app/ package; 70+ print() statements; hardcoded `/tmp/test_a2_a3` path | SHOULD MOVE | Moved to `backend/scripts/test_a2_a3.py` |
+| `backend/app/pipeline/test_a2_a3.py` | Test file inside production app/ package; 70+ print() statements; hardcoded `/tmp/test_a2_a3` path | SHOULD MOVE | Moved to `backend/scripts/test_a2_a3.py` (Pass 1), then to `backend/scripts/archive_pre_submission/` (Pass 2) |
 | `backend/scripts/evidence_quality_audit.py` L49-50 | `DEFAULT_REPORT_ID = "report_dfd5e69a3a42"` — stale Sprint 5/6 report ID | STALE DEFAULT | Updated to Sprint 7 report_id `report_05aacb872fda` |
 | `backend/scripts/pricing_document_extraction_diagnosis.py` L46-47 | `_DEFAULT_REPORT_ID = "report_dfd5e69a3a42"` — stale Sprint 5/6 report ID | STALE DEFAULT | Updated to Sprint 7 report_id `report_05aacb872fda` |
 | All `app/pipeline/*.py` — print() calls | All print() calls are inside `if __name__ == "__main__"` guards | PRODUCTION SAFE | Leave unchanged |
@@ -18,6 +19,38 @@
 | `app/pipeline/graph.py` — 2× TODO comments | MemorySaver TODO + Send fan-out TODO — both are planned future improvements, not debug code | LEAVE UNCHANGED | Noted only |
 | `backend/scripts/test_agent1_signal_balance.py` — sprint7_ prefix in logger name | Logger name `sprint7_signal_balance_test` — runtime-irrelevant naming artifact | PRODUCTION SAFE | Leave unchanged |
 | `backend/scripts/test_agent1_signal_balance.py` — `_MockLLM` class | Static test mock appropriate for offline signal balance verification; not in production pipeline | PRODUCTION SAFE | Leave unchanged |
+
+---
+
+## Pass 2 Audit Findings (backend/scripts/ and backend/tests/ structural reorganization)
+
+### Target Structure
+
+| Directory | Contents | Classification |
+|---|---|---|
+| `backend/scripts/` | `demo_track2_ai_hardware_audit.py`, `evidence_quality_audit.py`, `pricing_document_extraction_diagnosis.py` | Primary demo/audit entrypoints |
+| `backend/tests/pipeline/` | `test_agent1_expansion_stability.py`, `test_agent1_signal_balance.py` | Zero-cost static regression tests |
+| `backend/scripts/diagnostics/` | `full_pipeline_live_audit.py`, `full_pipeline_retrieval_quality_audit.py`, `pricing_pressure_retrieval_audit.py` | Useful diagnostic scripts (require live API) |
+| `backend/scripts/archive_pre_submission/` | `test_a2_a3.py` | Stale live integration test |
+
+### Pass 2 Actions
+
+| File | From | To | Path changes |
+|---|---|---|---|
+| `test_agent1_expansion_stability.py` | `scripts/` | `tests/pipeline/` | `sys.path "../"` → `"../.."` ; artifact dir `"../.."`→ `"../../.."` |
+| `test_agent1_signal_balance.py` | `scripts/` | `tests/pipeline/` | `sys.path "../"` → `"../.."` ; `.env "../"` → `"../.."` ; artifact dir `"../.."`→ `"../../.."` ; agent1 source path `"../app"` → `"../../app"` |
+| `full_pipeline_live_audit.py` | `scripts/` | `scripts/diagnostics/` | `BACKEND_DIR parents[1]` → `parents[2]` |
+| `full_pipeline_retrieval_quality_audit.py` | `scripts/` | `scripts/diagnostics/` | `ROOT parents[2]` → `parents[3]` |
+| `pricing_pressure_retrieval_audit.py` | `scripts/` | `scripts/diagnostics/` | `ROOT parents[2]` → `parents[3]` |
+| `test_a2_a3.py` | `scripts/` | `scripts/archive_pre_submission/` | No path changes (archived, not run) |
+
+### Pass 2 Verification
+
+| Check | Result |
+|---|---|
+| Backend import check (`from app.pipeline import graph`) | PASS |
+| `tests/pipeline/test_agent1_expansion_stability.py` | PASS (4/4) |
+| `tests/pipeline/test_agent1_signal_balance.py` | PASS (15/15) |
 | `app/config/` | No violations found | CLEAN | No action |
 | `app/api/` | No violations found | CLEAN | No action |
 | `app/schemas/` | No violations found | CLEAN | No action |

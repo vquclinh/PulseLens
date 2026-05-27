@@ -24,7 +24,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, cast
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "../.."))
 
 from app.pipeline.agent1_query_planner import (
     QueryPlanner,
@@ -275,7 +275,7 @@ def test_07_quality_thresholds_unchanged(results: dict) -> bool:
 def test_08_no_hardcoded_report_ids(results: dict) -> bool:
     """No report IDs (report_XXXX pattern) hardcoded in agent1_query_planner.py."""
     agent1_path = os.path.join(
-        os.path.dirname(__file__), "..", "app", "pipeline", "agent1_query_planner.py"
+        os.path.dirname(__file__), "..", "..", "app", "pipeline", "agent1_query_planner.py"
     )
     source = Path(agent1_path).read_text()
     matches = re.findall(r"\breport_[0-9a-f]{8,}\b", source)
@@ -417,7 +417,7 @@ def test_12_multihyde_system_balance_placeholder_and_content(results: dict) -> b
 def test_13_no_new_playbooks_in_agent1(results: dict) -> bool:
     """No supplier_risk_playbook or all_seed_queries references in agent1 source."""
     agent1_path = os.path.join(
-        os.path.dirname(__file__), "..", "app", "pipeline", "agent1_query_planner.py"
+        os.path.dirname(__file__), "..", "..", "app", "pipeline", "agent1_query_planner.py"
     )
     source = Path(agent1_path).read_text()
     forbidden = ["supplier_risk_playbook", "all_seed_queries"]
@@ -601,11 +601,11 @@ def run_all() -> dict:
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
-    load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"), override=False)
+    load_dotenv(os.path.join(os.path.dirname(__file__), "../..", ".env"), override=False)
 
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     output_dir = Path(
-        os.path.join(os.path.dirname(__file__), "..", "..", "pipeline_audit_artifacts",
+        os.path.join(os.path.dirname(__file__), "..", "..", "..", "pipeline_audit_artifacts",
                      f"sprint7_signal_balance_tests_{ts}")
     )
     output_dir.mkdir(parents=True, exist_ok=True)

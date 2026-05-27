@@ -77,13 +77,26 @@
 
 ---
 
-## Source Files Changed
+## Source Files Changed — Pass 1
 
 | File | Change |
 |---|---|
-| `backend/app/pipeline/test_a2_a3.py` | MOVED to `backend/scripts/test_a2_a3.py`; docstring run command updated |
+| `backend/app/pipeline/test_a2_a3.py` | MOVED to `backend/scripts/test_a2_a3.py` (Pass 1); then to `backend/scripts/archive_pre_submission/test_a2_a3.py` (Pass 2) |
 | `backend/scripts/evidence_quality_audit.py` L49-50 | DEFAULT_REPORT_ID updated to `report_05aacb872fda`; DEFAULT_ARTIFACT_DIR updated to `demo_track2_20260526T165950Z` |
 | `backend/scripts/pricing_document_extraction_diagnosis.py` L46-47 | _DEFAULT_REPORT_ID updated to `report_05aacb872fda`; _DEFAULT_ARTIFACT_DIR updated to `demo_track2_20260526T165950Z` |
+
+---
+
+## Source Files Changed — Pass 2 (scripts reorganization)
+
+| File | From | To | Path fixes |
+|---|---|---|---|
+| `test_agent1_expansion_stability.py` | `scripts/` | `tests/pipeline/` | sys.path `".."` → `"../.."` ; artifact dir `"../.."` → `"../../.."` |
+| `test_agent1_signal_balance.py` | `scripts/` | `tests/pipeline/` | sys.path `".."` → `"../.."` ; .env `".."` → `"../.."` ; artifact dir `"../.."` → `"../../.."` ; agent1 path `"../app"` → `"../../app"` |
+| `full_pipeline_live_audit.py` | `scripts/` | `scripts/diagnostics/` | `BACKEND_DIR parents[1]` → `parents[2]` |
+| `full_pipeline_retrieval_quality_audit.py` | `scripts/` | `scripts/diagnostics/` | `ROOT parents[2]` → `parents[3]` |
+| `pricing_pressure_retrieval_audit.py` | `scripts/` | `scripts/diagnostics/` | `ROOT parents[2]` → `parents[3]` |
+| `test_a2_a3.py` | `scripts/` | `scripts/archive_pre_submission/` | No path changes (archived) |
 
 ---
 
@@ -93,7 +106,10 @@
 |---|---|
 | `docs/submission/` | Copies of 8 judge-facing documents |
 | `docs/archive_sprints/` | Archive of 35 stale sprint documents |
-| `pipeline_audit_artifacts/archive_pre_submission_<ts>/` | Archive of 23 stale pipeline artifact directories |
+| `pipeline_audit_artifacts/archive_pre_submission_20260527T175900Z/` | Archive of 23 stale pipeline artifact directories |
+| `backend/tests/pipeline/` | Zero-cost static pipeline regression tests |
+| `backend/scripts/diagnostics/` | Useful but non-primary diagnostic scripts |
+| `backend/scripts/archive_pre_submission/` | Archived live integration test |
 
 ---
 

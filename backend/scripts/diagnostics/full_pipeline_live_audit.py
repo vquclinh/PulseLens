@@ -30,7 +30,7 @@ from typing import Any, Sequence
 from dotenv import load_dotenv
 
 
-BACKEND_DIR = Path(__file__).resolve().parents[1]
+BACKEND_DIR = Path(__file__).resolve().parents[2]
 PROJECT_ROOT = BACKEND_DIR.parent
 REPORT_PATH = PROJECT_ROOT / "FULL_PIPELINE_TEST_REPORT.md"
 ARTIFACT_ROOT = PROJECT_ROOT / "pipeline_audit_artifacts"
