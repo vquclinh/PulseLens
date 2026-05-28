@@ -14,7 +14,7 @@ const EvidenceTab: FC<EvidenceTabProps> = ({ report }) => {
   const [filters, setFilters] = useState<Record<string, string>>({})
 
   const { data: facts = [], isLoading } = useQuery({
-    queryKey: ['facts', report?.report_id],
+    queryKey: ['workspaceFacts', report?.report_id],
     queryFn: () => fetchReportFacts(report!.report_id),
     enabled: !!report?.report_id,
     staleTime: 10 * 60 * 1000,

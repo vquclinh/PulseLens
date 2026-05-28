@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { useState } from 'react'
 import Navbar from '@/shared/components/navbar'
 import SectorCard from '@/modules/sector-select/components/sector-card'
 import Hero from '../components/hero'
@@ -7,7 +8,10 @@ import MarketSnapshot from '../components/market-snapshot'
 import SignalCoverage from '../components/signal-coverage'
 import CompanyCoverage from '../components/company-coverage'
 import FactPreview from '../components/fact-preview'
+import type { DisplayFact } from '../components/fact-preview'
 import HowItWorks from '../components/how-it-works'
+import TrustProvenance from '../components/trust-provenance'
+import WhatToWatch from '../components/what-to-watch'
 import {
   DEMO_REPORT_ID,
   DEMO_DATE,
@@ -29,8 +33,21 @@ const SECTORS = [
   { name: 'Biotech / Pharma',   description: 'Moderna, BioNTech, Vertex, Regeneron',                      isLive: false, slug: '' },
 ]
 
+const SIGNAL_ORDER: SignalType[] = [
+  'strategic_messaging',
+  'product_launch',
+  'pricing_pressure',
+  'investor_signal',
+  'supplier_risk',
+  'news_sentiment',
+  'hiring_momentum',
+]
+
 export default function HomePage() {
   const navigate = useNavigate()
+  const [activeSignal, setActiveSignal] = useState<SignalType | 'all'>('all')
+  const [activeCompany, setActiveCompany] = useState<string>('all')
+  const [factSortMode, setFactSortMode] = useState<'confidence' | 'tier'>('confidence')
 
   const { data: latestMeta, isError: latestIdError, isLoading: latestIdLoading } = useQuery({
     queryKey: ['latestReportId'],
@@ -100,13 +117,31 @@ export default function HomePage() {
   // Accepted doc count from audit_summary (for HowItWorks step 1)
   const acceptedDocCount = report?.audit_summary?.accepted_doc_count ?? DEMO_COUNTS.evidenceCount
 
-  // Top 4 facts by confidence for FactPreview — live when available, fallback only on API failure
-  const previewFacts = facts
-    ? [...facts].sort((a, b) => b.confidence - a.confidence).slice(0, 4)
-    : factsFallback
-    ? DEMO_FACTS
-    : []
-  const previewReportId = factsFallback ? DEMO_REPORT_ID : displayReportId
+  const candidateFacts: DisplayFact[] = facts ?? (factsFallback ? DEMO_FACTS : [])
+  const companyEvidenceCounts = candidateFacts.reduce((acc, fact) => {
+    acc[fact.entity] = (acc[fact.entity] ?? 0) + 1
+    return acc
+  }, {} as Record<string, number>)
+
+  // Featured facts are live when available, with fallback only on API failure.
+  const activeCompanyKey = activeCompany.toLowerCase()
+  const filteredFacts = candidateFacts
+    .filter(f => activeSignal === 'all' || f.signal_type === activeSignal)
+    .filter(f => activeCompany === 'all' || f.entity.toLowerCase() === activeCompanyKey)
+    .sort((a, b) => {
+      if (factSortMode === 'tier') {
+        return a.source_tier - b.source_tier || b.confidence - a.confidence
+      }
+      return b.confidence - a.confidence || a.source_tier - b.source_tier
+    })
+    .slice(0, 4)
+
+  const strongestSignal = SIGNAL_ORDER.reduce<SignalType | null>((best, signal) => {
+    if (best == null) return signal
+    return (signalFactCounts[signal] ?? 0) > (signalFactCounts[best] ?? 0) ? signal : best
+  }, null)
+  const strongestSignalWithEvidence =
+    strongestSignal && (signalFactCounts[strongestSignal] ?? 0) > 0 ? strongestSignal : null
 
   const companies =
     report?.company_narratives?.map(n => ({
@@ -114,18 +149,24 @@ export default function HomePage() {
       ticker: n.ticker,
       momentum: n.momentum,
       key_drivers: n.key_drivers ?? [],
+      evidenceCount: companyEvidenceCounts[n.company] ?? 0,
     })) ?? DEMO_COMPANIES
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <Navbar />
       <Hero
+        pulseScore={pulseScore}
+        pulseStatus={pulseStatus}
+        pulseConfidence={pulseConfidence}
+        qualityStatus={report?.quality_status}
         evidenceCount={evidenceCount}
         sourceCount={sourceCount}
+        generatedAt={displayDate}
         isLive={isLive}
       />
 
-      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-10">
+      <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col gap-12">
 
         {/* Demo baseline banner — only when API is unavailable */}
         {reportFallback && (
@@ -136,6 +177,16 @@ export default function HomePage() {
             <span className="ml-auto text-amber-600">Start the backend to load live data</span>
           </div>
         )}
+
+        <TrustProvenance
+          reportId={displayReportId}
+          qualityStatus={report?.quality_status}
+          evidenceCount={evidenceCount}
+          sourceCount={sourceCount}
+          safeVerifiedFactCount={safeVerifiedFactCount}
+          isLive={isLive}
+          factsFallback={factsFallback}
+        />
 
         {/* Market snapshot */}
         <MarketSnapshot
@@ -150,7 +201,6 @@ export default function HomePage() {
           factsUnavailable={factsFallback}
           qualityStatus={report?.quality_status}
           isLive={isLive}
-          reportId={displayReportId}
           generatedAt={displayDate}
         />
 
@@ -158,18 +208,36 @@ export default function HomePage() {
         <div className="grid grid-cols-2 gap-6">
           <SignalCoverage
             signalFactCounts={signalFactCounts}
+            activeSignal={activeSignal}
+            onSignalChange={setActiveSignal}
             isFallback={factsFallback}
             isLoading={isLive && factsLoading && !facts}
           />
-          <CompanyCoverage companies={companies} />
+          <CompanyCoverage
+            companies={companies}
+            activeCompany={activeCompany}
+            onCompanyChange={setActiveCompany}
+            isFallback={reportFallback}
+          />
         </div>
 
         {/* Featured insights — live facts when available, demo fallback labeled */}
         <FactPreview
-          facts={previewFacts}
-          reportId={previewReportId}
+          facts={filteredFacts}
+          activeSignal={activeSignal}
+          activeCompany={activeCompany}
+          sortMode={factSortMode}
+          onSortChange={setFactSortMode}
           isFallback={factsFallback}
           isLoading={isLive && factsLoading && !facts}
+        />
+
+        <WhatToWatch
+          watchList={report?.market_narrative?.watch_list}
+          signalFactCounts={signalFactCounts}
+          strongestSignal={strongestSignalWithEvidence}
+          companies={companies}
+          onOpenDashboard={() => navigate('/workspace')}
         />
 
         {/* How it works */}
@@ -187,8 +255,8 @@ export default function HomePage() {
         <div>
           <div className="flex items-center justify-between mb-3">
             <div>
-              <h2 className="text-sm font-semibold text-gray-900">Explore Markets</h2>
-              <p className="text-xs text-gray-400 mt-0.5">
+              <h2 className="text-2xl font-semibold text-gray-950">Explore Markets</h2>
+              <p className="text-sm text-gray-500 mt-1">
                 One market is live for this demo. Additional sectors are being instrumented.
               </p>
             </div>
@@ -200,7 +268,7 @@ export default function HomePage() {
                 name={s.name}
                 description={s.description}
                 isLive={s.isLive}
-                onClick={s.isLive ? () => navigate(`/dashboard/${s.slug}`) : undefined}
+                onClick={s.isLive ? () => navigate('/workspace') : undefined}
               />
             ))}
           </div>

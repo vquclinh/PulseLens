@@ -1,5 +1,6 @@
 // Clickable fact ID chip — [fact_xxxx] inline citation that highlights fact in Evidence tab
 import type { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDashboardStore } from '@/store/dashboard-store'
 
 interface FactIdChipProps {
@@ -7,11 +8,13 @@ interface FactIdChipProps {
 }
 
 const FactIdChip: FC<FactIdChipProps> = ({ factId }) => {
+  const navigate = useNavigate()
   const { setHighlightedFactId, setActiveTab } = useDashboardStore()
 
   function handleClick() {
     setHighlightedFactId(factId)
     setActiveTab('evidence')
+    navigate('/workspace/evidence')
   }
 
   return (

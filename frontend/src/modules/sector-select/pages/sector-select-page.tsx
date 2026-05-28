@@ -165,10 +165,10 @@ export default function SectorSelectPage() {
             </p>
           </div>
           <button
-            onClick={() => navigate('/dashboard/us-ai-hardware')}
+            onClick={() => navigate('/workspace')}
             className="shrink-0 px-5 py-2.5 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Open Dashboard →
+            Open Workspace →
           </button>
         </div>
 
@@ -247,7 +247,7 @@ export default function SectorSelectPage() {
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold text-gray-900">Recent Signals</h2>
             <button
-              onClick={() => navigate('/dashboard/us-ai-hardware')}
+              onClick={() => navigate('/workspace/evidence')}
               className="text-xs text-blue-600 hover:text-blue-700 font-medium"
             >
               View all {'>'}
@@ -299,7 +299,7 @@ export default function SectorSelectPage() {
                 name={s.name}
                 description={s.description}
                 isLive={s.isLive}
-                onClick={s.isLive ? () => navigate(`/dashboard/${s.slug}`) : undefined}
+                onClick={s.isLive ? () => navigate('/workspace') : undefined}
               />
             ))}
           </div>

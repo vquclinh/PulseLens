@@ -28,7 +28,6 @@ interface MarketSnapshotProps {
   factsUnavailable: boolean
   qualityStatus?: string
   isLive: boolean
-  reportId: string
   generatedAt: string
 }
 
@@ -44,7 +43,6 @@ export default function MarketSnapshot({
   factsUnavailable,
   qualityStatus,
   isLive,
-  reportId,
   generatedAt,
 }: MarketSnapshotProps) {
   const statusLabel = PULSE_STATUS_LABELS[pulseStatus] ?? pulseStatus
@@ -72,9 +70,12 @@ export default function MarketSnapshot({
     : 'Evidence quotes checked against source text'
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-gray-900">Market Snapshot</h2>
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-950">Market Snapshot</h2>
+          <p className="text-sm text-gray-500 mt-1">Live report health, evidence depth, and verification state.</p>
+        </div>
         {isLive ? (
           <span className="text-xs text-green-600 font-medium flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block" />
@@ -85,10 +86,10 @@ export default function MarketSnapshot({
         )}
       </div>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-5">
         {/* Pulse score card */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3">
-          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Pulse Score</span>
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Pulse Score</span>
           <div className="flex items-end gap-3">
             <span className="text-5xl font-bold text-gray-900 leading-none tabular-nums">
               {pulseScore.toFixed(1)}
@@ -99,51 +100,46 @@ export default function MarketSnapshot({
             <span className={`w-2.5 h-2.5 rounded-full ${statusColor}`} />
             <span className="text-sm font-medium text-gray-700">{statusLabel}</span>
           </div>
-          <div className="text-xs text-gray-400 border-t border-gray-100 pt-2">
+          <div className="text-sm text-gray-500 border-t border-gray-100 pt-3">
             Confidence {(pulseConfidence * 100).toFixed(0)}% · US AI Hardware
           </div>
         </div>
 
         {/* Evidence card */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3">
-          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Evidence</span>
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">Evidence / Sources</span>
           <div className="flex items-end gap-2">
             <span className="text-5xl font-bold text-gray-900 leading-none tabular-nums">
               {evidenceCount}
             </span>
             <span className="text-sm text-gray-400 mb-1">facts</span>
           </div>
-          <div className="text-sm font-medium text-gray-700">
+          <div className="text-base font-medium text-gray-700">
             from {sourceCount} unique sources
           </div>
-          <div className="text-xs text-gray-400 border-t border-gray-100 pt-2">
+          <div className="text-sm text-gray-500 border-t border-gray-100 pt-3">
             {evidenceSubStat}
           </div>
         </div>
 
         {/* SAFE verified facts card */}
-        <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3">
-          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">SAFE-verified Facts</span>
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">SAFE-verified Facts</span>
           <div className="flex items-end gap-2">
             <span className="text-5xl font-bold text-gray-900 leading-none tabular-nums">
               {safeFactDisplay}
             </span>
             <span className="text-sm text-gray-400 mb-1">facts</span>
           </div>
-          <div className="text-sm font-medium text-gray-700">
+          <div className="text-base font-medium text-gray-700">
             {safeFactCopy}
           </div>
-          <div className="text-xs text-gray-400 border-t border-gray-100 pt-2">
+          <div className="text-sm text-gray-500 border-t border-gray-100 pt-3">
             {safeFactDetail} · Quality: {qualityLabel}
           </div>
         </div>
       </div>
-
-      <div className="text-xs text-gray-400">
-        Report ID:{' '}
-        <span className="font-mono text-gray-500">{reportId}</span>
-        {!isLive && ' · Demo baseline — not investment advice'}
-      </div>
+      {!isLive && <div className="text-xs text-amber-600">Demo baseline — not investment advice</div>}
     </div>
   )
 }

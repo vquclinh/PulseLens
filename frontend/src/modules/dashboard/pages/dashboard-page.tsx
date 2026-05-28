@@ -102,7 +102,7 @@ export default function DashboardPage() {
   const [runError, setRunError] = useState<string | null>(null)
 
   // When localStorage is empty, ask the backend for the most recent pipeline report.
-  // This makes "Open Dashboard" auto-load existing data without triggering a new run.
+  // This makes the legacy dashboard route auto-load existing data without triggering a new run.
   const { data: latestMeta, isLoading: isResolvingLatest } = useQuery({
     queryKey: ['latest-report-id'],
     queryFn: fetchLatestReportId,

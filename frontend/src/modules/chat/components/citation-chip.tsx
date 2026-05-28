@@ -1,5 +1,6 @@
 // Inline citation chip — renders [fact_id] as a clickable badge that jumps to Evidence tab
 import type { FC } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDashboardStore } from '@/store/dashboard-store'
 
 interface CitationChipProps {
@@ -7,11 +8,13 @@ interface CitationChipProps {
 }
 
 const CitationChip: FC<CitationChipProps> = ({ factId }) => {
+  const navigate = useNavigate()
   const { setHighlightedFactId, setActiveTab } = useDashboardStore()
 
   function handleClick() {
     setHighlightedFactId(factId)
     setActiveTab('evidence')
+    navigate('/workspace/evidence')
   }
 
   return (

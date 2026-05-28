@@ -1,28 +1,20 @@
-// Top navigation — Home, Dashboard, Evidence, Pricing, Signals, Companies, Pipeline, Chat
+// Top navigation — primary site sections only. Workspace views live inside /workspace.
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const NAV_LINKS = [
-  { label: 'Home',      to: '/',                          exact: true },
-  { label: 'Dashboard', to: '/dashboard/us-ai-hardware',  exact: false, dashboardTab: true },
-  { label: 'Evidence',  to: '/dashboard/us-ai-hardware',  exact: false, dashboardOnly: true },
-  { label: 'Pricing',   to: '/dashboard/us-ai-hardware',  exact: false, dashboardOnly: true },
-  { label: 'Signals',   to: '/dashboard/us-ai-hardware',  exact: false, dashboardOnly: true },
-  { label: 'Companies', to: '/dashboard/us-ai-hardware',  exact: false, dashboardOnly: true },
-  { label: 'Pipeline',  to: '/about',                     exact: false },
-  { label: 'Chat',      to: '/dashboard/us-ai-hardware',  exact: false, dashboardOnly: true },
+  { label: 'Home', to: '/', exact: true },
+  { label: 'Intelligence Workspace', to: '/workspace', workspace: true },
+  { label: 'Chat', to: '/chat', exact: true },
 ] as const
 
 export default function Navbar() {
   const location = useLocation()
   const navigate = useNavigate()
-  const isDashboard = location.pathname.startsWith('/dashboard/')
+  const isWorkspace = location.pathname === '/workspace' || location.pathname.startsWith('/workspace/')
 
   const isActive = (link: typeof NAV_LINKS[number]) => {
-    // dashboard-only links highlight only when "Dashboard" tab is active and
-    // link is "Dashboard" itself — prevents all 5 dashboard links lighting up
-    if ('dashboardOnly' in link && link.dashboardOnly) return false
-    if ('dashboardTab' in link && link.dashboardTab) return isDashboard
-    if (link.exact) return location.pathname === link.to
+    if ('workspace' in link && link.workspace) return isWorkspace
+    if ('exact' in link && link.exact) return location.pathname === link.to
     return location.pathname.startsWith(link.to)
   }
 
@@ -54,13 +46,13 @@ export default function Navbar() {
         ))}
       </div>
 
-      {/* Right — Open Dashboard CTA */}
+      {/* Right — workspace CTA */}
       <div className="ml-auto shrink-0">
         <button
-          onClick={() => navigate('/dashboard/us-ai-hardware')}
+          onClick={() => navigate('/workspace')}
           className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
         >
-          Open Dashboard →
+          {isWorkspace ? 'View latest report' : 'Open Workspace →'}
         </button>
       </div>
 

@@ -38,6 +38,7 @@ export interface DisplayFact {
   fact_id: string
   signal_type: SignalType
   entity: string
+  claim?: string
   evidence_quote: string
   source_tier: 1 | 2 | 3 | 4
   sentiment: 'positive' | 'negative' | 'neutral'
@@ -48,7 +49,10 @@ export interface DisplayFact {
 
 interface FactPreviewProps {
   facts: DisplayFact[]
-  reportId: string
+  activeSignal: SignalType | 'all'
+  activeCompany: string
+  sortMode: 'confidence' | 'tier'
+  onSortChange: (sortMode: 'confidence' | 'tier') => void
   isFallback?: boolean
   isLoading?: boolean
 }
@@ -61,53 +65,89 @@ function deriveDomain(f: DisplayFact): string {
   return 'unknown'
 }
 
-export default function FactPreview({ facts, reportId, isFallback = false, isLoading = false }: FactPreviewProps) {
+export default function FactPreview({
+  facts,
+  activeSignal,
+  activeCompany,
+  sortMode,
+  onSortChange,
+  isFallback = false,
+  isLoading = false,
+}: FactPreviewProps) {
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-gray-900">Featured Insights</h2>
-        <span className="text-xs text-gray-400">
+    <div className="flex flex-col gap-4">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-950">Featured Insights</h2>
+          <p className="text-sm text-gray-500 mt-1">
+            Filtered by {activeSignal === 'all' ? 'all signals' : SIGNAL_LABELS[activeSignal]} and {activeCompany === 'all' ? 'all companies' : activeCompany}.
+          </p>
+        </div>
+        <div className="flex items-center gap-3">
+          <select
+            value={sortMode}
+            onChange={event => onSortChange(event.target.value as 'confidence' | 'tier')}
+            className="h-9 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700"
+          >
+            <option value="confidence">Sort by confidence</option>
+            <option value="tier">Sort by source tier</option>
+          </select>
+          <span className="text-xs text-gray-400 whitespace-nowrap">
           {isFallback ? (
-            <span className="text-amber-600">Demo baseline facts · </span>
+            <span className="text-amber-600">Demo baseline facts</span>
           ) : (
-            'Live facts · '
+            'Live facts'
           )}
-          <span className="font-mono">{reportId}</span>
         </span>
+        </div>
       </div>
       {isLoading && (
-        <div className="bg-white border border-gray-200 rounded-xl p-4 text-xs text-gray-500">
+        <div className="bg-white border border-gray-200 rounded-2xl p-5 text-sm text-gray-500">
           Loading live facts from the backend...
         </div>
       )}
-      <div className="grid grid-cols-2 gap-3">
+      {!isLoading && facts.length === 0 && (
+        <div className="bg-white border border-gray-200 rounded-2xl p-6 text-sm text-gray-500">
+          No facts match the active filters. Choose All signals or All companies to broaden the evidence set.
+        </div>
+      )}
+      <div className="grid grid-cols-2 gap-4">
         {facts.map(f => (
-          <div key={f.fact_id} className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col gap-2.5">
+          <div key={f.fact_id} className="bg-white border border-gray-200 rounded-2xl p-5 flex flex-col gap-4 shadow-sm">
             <div className="flex items-center gap-2 flex-wrap">
-              <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${TIER_COLORS[f.source_tier]}`}>
+              <span className={`text-xs font-semibold px-2 py-1 rounded border ${TIER_COLORS[f.source_tier]}`}>
                 T{f.source_tier}
               </span>
-              <span className="text-xs text-gray-400">{deriveDomain(f)}</span>
+              <span className="text-sm text-gray-500">{deriveDomain(f)}</span>
               <div className="ml-auto flex items-center gap-1.5">
                 <span className={`w-2 h-2 rounded-full inline-block ${SENTIMENT_DOT[f.sentiment] ?? 'bg-gray-400'}`} />
-                <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${SIGNAL_CHIP_CLS[f.signal_type]}`}>
+                <span className={`text-xs font-semibold px-2 py-1 rounded border ${SIGNAL_CHIP_CLS[f.signal_type]}`}>
                   {SIGNAL_LABELS[f.signal_type]}
                 </span>
               </div>
             </div>
-            <p className="text-xs text-gray-700 leading-relaxed border-l-2 border-gray-200 pl-2.5 italic">
+            {f.claim && (
+              <h3 className="text-base font-semibold leading-snug text-gray-950">{f.claim}</h3>
+            )}
+            <p className="text-sm text-gray-700 leading-relaxed border-l-2 border-blue-200 pl-3 italic">
               "{f.evidence_quote}"
             </p>
-            <div className="flex items-center gap-2 pt-0.5">
-              <span className="text-[10px] font-mono text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">
-                [{f.fact_id}]
-              </span>
-              <span className="text-[10px] text-gray-400">
-                {f.entity} · confidence {f.confidence.toFixed(2)}
+            <div className="flex items-center gap-2 pt-1">
+              <span className="text-xs text-gray-500">
+                {f.entity} · confidence {(f.confidence * 100).toFixed(0)}%
               </span>
             </div>
           </div>
         ))}
+      </div>
+      <div className="pt-1">
+        <button
+          type="button"
+          className="text-sm font-semibold text-blue-600 hover:text-blue-700"
+          onClick={() => window.location.assign('/workspace/evidence')}
+        >
+          View all evidence →
+        </button>
       </div>
     </div>
   )
