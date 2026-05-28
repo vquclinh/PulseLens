@@ -1,4 +1,5 @@
 // Top navigation — primary site sections only. Workspace views live inside /workspace.
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const NAV_LINKS = [
@@ -18,6 +19,35 @@ export default function Navbar() {
     return location.pathname.startsWith(link.to)
   }
 
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 })
+  const navContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const updateIndicator = () => {
+      const activeIndex = NAV_LINKS.findIndex(isActive)
+      if (activeIndex >= 0 && navContainerRef.current) {
+        const activeEl = navContainerRef.current.children[activeIndex] as HTMLElement
+        setIndicatorStyle({
+          left: activeEl.offsetLeft,
+          width: activeEl.offsetWidth,
+          opacity: 1
+        })
+      } else {
+        setIndicatorStyle(prev => ({ ...prev, opacity: 0 }))
+      }
+    }
+
+    // Run once initially, and again slightly later to handle any font loading shifts
+    updateIndicator()
+    const timer = setTimeout(updateIndicator, 100)
+    
+    window.addEventListener('resize', updateIndicator)
+    return () => {
+      clearTimeout(timer)
+      window.removeEventListener('resize', updateIndicator)
+    }
+  }, [location.pathname])
+
   return (
     <nav className="h-[72px] bg-white border-b border-gray-200 sticky top-0 z-50 flex items-center px-8 gap-8">
 
@@ -29,21 +59,29 @@ export default function Navbar() {
       </Link>
 
       {/* Nav links */}
-      <div className="flex items-center gap-5">
-        {NAV_LINKS.map(link => (
-          <Link
-            key={link.label}
-            to={link.to}
-            className={[
-              'px-1 py-1 text-sm font-medium transition-colors border-b-2 whitespace-nowrap',
-              isActive(link)
-                ? 'text-blue-600 border-blue-600'
-                : 'text-gray-600 border-transparent hover:text-gray-950',
-            ].join(' ')}
-          >
-            {link.label}
-          </Link>
-        ))}
+      <div className="relative flex items-center gap-6 h-full" ref={navContainerRef}>
+        {NAV_LINKS.map(link => {
+          const active = isActive(link)
+          return (
+            <Link
+              key={link.label}
+              to={link.to}
+              className={[
+                'flex items-center h-full px-2 text-base font-semibold transition-colors whitespace-nowrap',
+                active
+                  ? 'text-blue-600'
+                  : 'text-gray-600 hover:text-gray-950',
+              ].join(' ')}
+            >
+              {link.label}
+            </Link>
+          )
+        })}
+        {/* Sliding underline */}
+        <div 
+          className="absolute bottom-[-1px] h-[2px] bg-blue-600 transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          style={{ left: indicatorStyle.left, width: indicatorStyle.width, opacity: indicatorStyle.opacity }}
+        />
       </div>
 
       {/* Right — workspace CTA */}
