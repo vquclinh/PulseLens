@@ -236,33 +236,13 @@ export default function WorkspacePage({ view }: WorkspacePageProps) {
     <WorkspaceLayout>
       <main className="mx-auto flex max-w-7xl flex-col gap-7 px-6 py-8">
         <section className="rounded-3xl border border-gray-200 bg-white p-7 shadow-sm">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">Intelligence Workspace</p>
               <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-950">{report.market}</h1>
               <p className="mt-3 max-w-3xl text-base leading-7 text-gray-600">
                 Analyst workspace for evidence, signals, company lenses, pricing pressure, and pipeline transparency.
               </p>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              <Link
-                to="/workspace/evidence"
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-              >
-                Open Evidence
-              </Link>
-              <Link
-                to="/workspace/pricing"
-                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
-              >
-                Review Pricing
-              </Link>
-              <Link
-                to="/chat?context=report"
-                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
-              >
-                Ask Chat
-              </Link>
             </div>
           </div>
 
