@@ -30,21 +30,25 @@ const SIGNAL_COLORS: Record<SignalType, string> = {
 }
 
 interface SignalCoverageProps {
-  signalBreakdown: Partial<Record<SignalType, number>>
+  signalFactCounts: Partial<Record<SignalType, number>>
+  isFallback?: boolean
+  isLoading?: boolean
 }
 
-export default function SignalCoverage({ signalBreakdown }: SignalCoverageProps) {
-  const maxCount = Math.max(...SIGNAL_ORDER.map(s => signalBreakdown[s] ?? 0), 1)
+export default function SignalCoverage({ signalFactCounts, isFallback = false, isLoading = false }: SignalCoverageProps) {
+  const maxCount = Math.max(...SIGNAL_ORDER.map(s => signalFactCounts[s] ?? 0), 1)
 
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Signal Coverage</span>
-        <span className="text-xs text-gray-400">facts per signal type</span>
+        <span className={isFallback ? 'text-xs text-amber-600' : 'text-xs text-gray-400'}>
+          {isLoading ? 'loading live facts' : isFallback ? 'fallback sample counts' : 'facts per signal type'}
+        </span>
       </div>
       <div className="flex flex-col gap-2.5">
         {SIGNAL_ORDER.map(signal => {
-          const count = signalBreakdown[signal] ?? 0
+          const count = signalFactCounts[signal] ?? 0
           const pct = maxCount > 0 ? (count / maxCount) * 100 : 0
           return (
             <div key={signal} className="flex items-center gap-3">

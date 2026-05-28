@@ -22,7 +22,11 @@ interface MarketSnapshotProps {
   pulseConfidence: number
   evidenceCount: number
   sourceCount: number
-  verifiedClaimsCount: number
+  avgFactConfidence: number | null
+  safeVerifiedFactCount: number | null
+  factsLoading: boolean
+  factsUnavailable: boolean
+  qualityStatus?: string
   isLive: boolean
   reportId: string
   generatedAt: string
@@ -34,13 +38,38 @@ export default function MarketSnapshot({
   pulseConfidence,
   evidenceCount,
   sourceCount,
-  verifiedClaimsCount,
+  avgFactConfidence,
+  safeVerifiedFactCount,
+  factsLoading,
+  factsUnavailable,
+  qualityStatus,
   isLive,
   reportId,
   generatedAt,
 }: MarketSnapshotProps) {
   const statusLabel = PULSE_STATUS_LABELS[pulseStatus] ?? pulseStatus
   const statusColor = PULSE_STATUS_COLORS[pulseStatus] ?? 'bg-gray-400'
+
+  const evidenceSubStat = avgFactConfidence != null
+    ? `Avg confidence ${(avgFactConfidence * 100).toFixed(0)}%${
+        safeVerifiedFactCount != null ? ` · ${safeVerifiedFactCount} SAFE verified` : ''
+      }`
+    : isLive
+    ? 'Fact confidence loads from live evidence'
+    : 'Demo baseline'
+
+  const qualityLabel = qualityStatus ?? (isLive ? 'PASS' : 'Demo baseline')
+  const safeFactDisplay = factsLoading ? '...' : safeVerifiedFactCount ?? '—'
+  const safeFactCopy = factsLoading
+    ? 'Checking fact-level verification'
+    : factsUnavailable
+    ? 'Fact-level verification unavailable'
+    : safeVerifiedFactCount == null
+    ? 'Waiting for fact evidence'
+    : 'evidence-anchored'
+  const safeFactDetail = factsUnavailable
+    ? 'Facts API unavailable'
+    : 'Evidence quotes checked against source text'
 
   return (
     <div className="flex flex-col gap-4">
@@ -88,24 +117,24 @@ export default function MarketSnapshot({
             from {sourceCount} unique sources
           </div>
           <div className="text-xs text-gray-400 border-t border-gray-100 pt-2">
-            Avg confidence 0.905 · SAFE verified
+            {evidenceSubStat}
           </div>
         </div>
 
-        {/* Verified claims card */}
+        {/* SAFE verified facts card */}
         <div className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3">
-          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">Verified Claims</span>
+          <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">SAFE-verified Facts</span>
           <div className="flex items-end gap-2">
             <span className="text-5xl font-bold text-gray-900 leading-none tabular-nums">
-              {verifiedClaimsCount}
+              {safeFactDisplay}
             </span>
-            <span className="text-sm text-gray-400 mb-1">triangulated</span>
+            <span className="text-sm text-gray-400 mb-1">facts</span>
           </div>
           <div className="text-sm font-medium text-gray-700">
-            ≥ 2 independent sources each
+            {safeFactCopy}
           </div>
           <div className="text-xs text-gray-400 border-t border-gray-100 pt-2">
-            0 suspicious claims · 0 false positives
+            {safeFactDetail} · Quality: {qualityLabel}
           </div>
         </div>
       </div>

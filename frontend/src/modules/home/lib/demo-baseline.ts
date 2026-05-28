@@ -12,10 +12,9 @@ export const DEMO_PULSE = {
 export const DEMO_COUNTS = {
   evidenceCount: 67,
   sourceCount: 23,
-  verifiedClaimsCount: 10,
 }
 
-export const DEMO_SIGNAL_BREAKDOWN: Record<SignalType, number> = {
+export const DEMO_SIGNAL_FACT_COUNTS: Record<SignalType, number> = {
   strategic_messaging: 17,
   product_launch: 16,
   pricing_pressure: 14,
@@ -34,19 +33,19 @@ export const DEMO_COMPANIES: Array<{
   {
     company: 'AMD',
     ticker: 'AMD',
-    momentum: 'positive',
+    momentum: 'neutral',
     key_drivers: ['TSMC 2nm EPYC ramp', '$10B Taiwan investment', 'Data center share gains'],
   },
   {
     company: 'Nvidia',
     ticker: 'NVDA',
-    momentum: 'strong_positive',
+    momentum: 'mixed',
     key_drivers: ['Blackwell B200/B300 demand', 'AI inference leadership', 'Hyperscaler buildout'],
   },
   {
     company: 'Supermicro',
     ticker: 'SMCI',
-    momentum: 'elevated_risk',
+    momentum: 'neutral',
     key_drivers: ['Supply chain expansion', 'IR compliance work', 'Rack-scale GPU systems'],
   },
 ]

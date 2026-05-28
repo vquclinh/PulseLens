@@ -1,5 +1,4 @@
 import type { SignalType } from '@/types'
-import type { DemoFact } from '../lib/demo-baseline'
 
 const SIGNAL_CHIP_CLS: Record<SignalType, string> = {
   pricing_pressure:   'bg-amber-50 text-amber-700 border-amber-200',
@@ -34,20 +33,53 @@ const SENTIMENT_DOT: Record<string, string> = {
   neutral:  'bg-amber-400',
 }
 
-interface FactPreviewProps {
-  facts: DemoFact[]
-  reportId: string
+// Minimal interface satisfied by both FactObject (live) and DemoFact (fallback)
+export interface DisplayFact {
+  fact_id: string
+  signal_type: SignalType
+  entity: string
+  evidence_quote: string
+  source_tier: 1 | 2 | 3 | 4
+  sentiment: 'positive' | 'negative' | 'neutral'
+  confidence: number
+  domain?: string       // present in DemoFact
+  source_url?: string   // present in FactObject — domain derived from this
 }
 
-export default function FactPreview({ facts, reportId }: FactPreviewProps) {
+interface FactPreviewProps {
+  facts: DisplayFact[]
+  reportId: string
+  isFallback?: boolean
+  isLoading?: boolean
+}
+
+function deriveDomain(f: DisplayFact): string {
+  if (f.domain) return f.domain
+  if (f.source_url) {
+    try { return new URL(f.source_url).hostname } catch { return f.source_url }
+  }
+  return 'unknown'
+}
+
+export default function FactPreview({ facts, reportId, isFallback = false, isLoading = false }: FactPreviewProps) {
   return (
     <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-semibold text-gray-900">Featured Insights</h2>
         <span className="text-xs text-gray-400">
-          Sample facts · <span className="font-mono">{reportId}</span>
+          {isFallback ? (
+            <span className="text-amber-600">Demo baseline facts · </span>
+          ) : (
+            'Live facts · '
+          )}
+          <span className="font-mono">{reportId}</span>
         </span>
       </div>
+      {isLoading && (
+        <div className="bg-white border border-gray-200 rounded-xl p-4 text-xs text-gray-500">
+          Loading live facts from the backend...
+        </div>
+      )}
       <div className="grid grid-cols-2 gap-3">
         {facts.map(f => (
           <div key={f.fact_id} className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col gap-2.5">
@@ -55,7 +87,7 @@ export default function FactPreview({ facts, reportId }: FactPreviewProps) {
               <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${TIER_COLORS[f.source_tier]}`}>
                 T{f.source_tier}
               </span>
-              <span className="text-xs text-gray-400">{f.domain}</span>
+              <span className="text-xs text-gray-400">{deriveDomain(f)}</span>
               <div className="ml-auto flex items-center gap-1.5">
                 <span className={`w-2 h-2 rounded-full inline-block ${SENTIMENT_DOT[f.sentiment] ?? 'bg-gray-400'}`} />
                 <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${SIGNAL_CHIP_CLS[f.signal_type]}`}>

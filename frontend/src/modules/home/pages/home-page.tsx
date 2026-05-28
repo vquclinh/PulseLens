@@ -13,11 +13,11 @@ import {
   DEMO_DATE,
   DEMO_PULSE,
   DEMO_COUNTS,
-  DEMO_SIGNAL_BREAKDOWN,
+  DEMO_SIGNAL_FACT_COUNTS,
   DEMO_COMPANIES,
   DEMO_FACTS,
 } from '../lib/demo-baseline'
-import { fetchLatestReportId, fetchReport } from '@/lib/api-client'
+import { fetchLatestReportId, fetchReport, fetchReportFacts } from '@/lib/api-client'
 import type { SignalType } from '@/types'
 
 const SECTORS = [
@@ -32,7 +32,7 @@ const SECTORS = [
 export default function HomePage() {
   const navigate = useNavigate()
 
-  const { data: latestMeta } = useQuery({
+  const { data: latestMeta, isError: latestIdError, isLoading: latestIdLoading } = useQuery({
     queryKey: ['latestReportId'],
     queryFn: fetchLatestReportId,
     retry: false,
@@ -41,14 +41,36 @@ export default function HomePage() {
 
   const reportId = latestMeta?.report_id
 
-  const { data: report } = useQuery({
+  const { data: report, isError: reportError, isLoading: reportLoading } = useQuery({
     queryKey: ['report', reportId],
     queryFn: () => fetchReport(reportId!),
     enabled: !!reportId,
     retry: false,
   })
 
+  const { data: facts, isError: factsError, isLoading: factsLoading } = useQuery({
+    queryKey: ['reportFacts', reportId],
+    queryFn: () => fetchReportFacts(reportId!),
+    enabled: !!reportId,
+    retry: false,
+  })
+
   const isLive = !!report
+  const reportFallback = latestIdError || reportError
+  const factsFallback = factsError || reportFallback
+
+  if (!report && !reportFallback && (latestIdLoading || reportLoading || !latestMeta)) {
+    return (
+      <div className="min-h-screen bg-gray-50 text-gray-900">
+        <Navbar />
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="bg-white border border-gray-200 rounded-xl p-6 text-sm text-gray-500">
+            Loading latest PulseLens report from the backend...
+          </div>
+        </div>
+      </div>
+    )
+  }
   const pulseScore = report?.pulse_score ?? DEMO_PULSE.score
   const pulseStatus = report?.pulse_status ?? DEMO_PULSE.status
   const pulseConfidence = report?.pulse_confidence ?? DEMO_PULSE.confidence
@@ -57,10 +79,34 @@ export default function HomePage() {
   const displayReportId = report?.report_id ?? DEMO_REPORT_ID
   const displayDate = report?.generated_at?.slice(0, 10) ?? DEMO_DATE
 
-  const signalBreakdown: Partial<Record<SignalType, number>> =
-    report?.signal_breakdown
-      ? (report.signal_breakdown as Partial<Record<SignalType, number>>)
-      : DEMO_SIGNAL_BREAKDOWN
+  // Signal fact counts: integer counts per signal type from /facts (not float scores from signal_breakdown)
+  const signalFactCounts: Partial<Record<SignalType, number>> = facts
+    ? facts.reduce((acc, f) => {
+        acc[f.signal_type] = (acc[f.signal_type] ?? 0) + 1
+        return acc
+      }, {} as Partial<Record<SignalType, number>>)
+    : factsFallback
+    ? DEMO_SIGNAL_FACT_COUNTS
+    : {}
+
+  // Average fact confidence from /facts endpoint
+  const avgFactConfidence: number | null = facts && facts.length > 0
+    ? facts.reduce((sum, f) => sum + f.confidence, 0) / facts.length
+    : null
+  const safeVerifiedFactCount = facts
+    ? facts.filter(f => f.safe_verified).length
+    : null
+
+  // Accepted doc count from audit_summary (for HowItWorks step 1)
+  const acceptedDocCount = report?.audit_summary?.accepted_doc_count ?? DEMO_COUNTS.evidenceCount
+
+  // Top 4 facts by confidence for FactPreview — live when available, fallback only on API failure
+  const previewFacts = facts
+    ? [...facts].sort((a, b) => b.confidence - a.confidence).slice(0, 4)
+    : factsFallback
+    ? DEMO_FACTS
+    : []
+  const previewReportId = factsFallback ? DEMO_REPORT_ID : displayReportId
 
   const companies =
     report?.company_narratives?.map(n => ({
@@ -73,12 +119,16 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <Navbar />
-      <Hero />
+      <Hero
+        evidenceCount={evidenceCount}
+        sourceCount={sourceCount}
+        isLive={isLive}
+      />
 
       <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col gap-10">
 
         {/* Demo baseline banner — only when API is unavailable */}
-        {!isLive && (
+        {reportFallback && (
           <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-xs text-amber-800 flex items-center gap-2">
             <span className="font-semibold">Demo baseline</span>
             <span className="text-amber-600">—</span>
@@ -94,7 +144,11 @@ export default function HomePage() {
           pulseConfidence={pulseConfidence}
           evidenceCount={evidenceCount}
           sourceCount={sourceCount}
-          verifiedClaimsCount={DEMO_COUNTS.verifiedClaimsCount}
+          avgFactConfidence={avgFactConfidence}
+          safeVerifiedFactCount={safeVerifiedFactCount}
+          factsLoading={isLive && factsLoading && !facts}
+          factsUnavailable={factsFallback}
+          qualityStatus={report?.quality_status}
           isLive={isLive}
           reportId={displayReportId}
           generatedAt={displayDate}
@@ -102,15 +156,32 @@ export default function HomePage() {
 
         {/* Signal coverage + company coverage side by side */}
         <div className="grid grid-cols-2 gap-6">
-          <SignalCoverage signalBreakdown={signalBreakdown} />
+          <SignalCoverage
+            signalFactCounts={signalFactCounts}
+            isFallback={factsFallback}
+            isLoading={isLive && factsLoading && !facts}
+          />
           <CompanyCoverage companies={companies} />
         </div>
 
-        {/* Featured insights */}
-        <FactPreview facts={DEMO_FACTS} reportId={DEMO_REPORT_ID} />
+        {/* Featured insights — live facts when available, demo fallback labeled */}
+        <FactPreview
+          facts={previewFacts}
+          reportId={previewReportId}
+          isFallback={factsFallback}
+          isLoading={isLive && factsLoading && !facts}
+        />
 
         {/* How it works */}
-        <HowItWorks />
+        <HowItWorks
+          sourceCount={sourceCount}
+          acceptedDocCount={acceptedDocCount}
+          evidenceCount={evidenceCount}
+          pulseScore={pulseScore}
+          safeVerifiedFactCount={safeVerifiedFactCount}
+          qualityStatus={report?.quality_status}
+          isLive={isLive}
+        />
 
         {/* Sector grid */}
         <div>

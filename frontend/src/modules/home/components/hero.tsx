@@ -1,6 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 
-export default function Hero() {
+interface HeroProps {
+  evidenceCount: number
+  sourceCount: number
+  isLive: boolean
+}
+
+export default function Hero({ evidenceCount, sourceCount, isLive }: HeroProps) {
   const navigate = useNavigate()
 
   return (
@@ -11,13 +17,19 @@ export default function Hero() {
             <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200 uppercase tracking-wide">
               US AI Hardware · Live
             </span>
+            {!isLive && (
+              <span className="text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                Demo baseline
+              </span>
+            )}
           </div>
           <h1 className="text-4xl font-bold text-gray-900 leading-tight">
             AI Hardware Market Intelligence
           </h1>
           <p className="text-lg text-gray-500 leading-relaxed">
-            Grounded signals, not AI summaries — every claim traces back to a source.
-            67 verified facts from 23 sources, triangulated and scored.
+            Grounded signals, not AI summaries — every claim traces back to a source.{' '}
+            {evidenceCount} evidence facts from {sourceCount} sources, triangulated and scored.
+            {!isLive && ' Demo baseline shown until the backend is available.'}
           </p>
           <div className="flex items-center gap-3 pt-2">
             <button
