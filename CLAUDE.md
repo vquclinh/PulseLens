@@ -113,13 +113,30 @@ Three endpoints:
 
 ### Frontend (`frontend/src/`)
 
-Vite + React 18 + TailwindCSS 4 + Recharts. Module structure under `src/modules/`:
-- `dashboard/` — main report view with charts and fact cards
-- `chat/` — chat interface over report facts
-- `sector-select/` — market/scope selector
-- `news/` — news items from report
+Vite + React 18 + TailwindCSS 4 + Recharts + TanStack Query + Zustand + react-router-dom v6. `@` alias resolves to `src/`.
 
-`vite.config.ts` proxies all `/api` requests to `http://localhost:8000`. No direct API key exposure in the frontend.
+**Current routes** (`App.tsx`):
+- `/` → `SectorSelectPage` — marketing/landing page with mock market snapshot data and sector grid
+- `/dashboard/:market` → `DashboardPage` — full report view; `:market` is currently always `us-ai-hardware`
+- `/news` → `NewsPage`
+- `/about` → `AboutPage`
+
+**Module structure:**
+- `modules/dashboard/` — report view with a two-layer nav: `Topbar` (brand + pulse score) stacked above `TabNav` (Overview / Companies / Signals / News / Evidence). Active tab is driven by Zustand `useDashboardStore`.
+- `modules/chat/` — collapsible `ChatPanel` that slides in from the right; opens via `isChatOpen` in the same store.
+- `modules/sector-select/` — current `/` page; contains entirely **mock data** (hardcoded `PULSE`, `COMPANIES`, `RECENT_SIGNALS`). This is the page targeted for Sprint 0 Home replacement.
+- `modules/about/` — methodology page with hardcoded content.
+- `modules/news/` — stub news page.
+- `shared/components/` — `Navbar` (cross-route), plus reusable `Badge`, `SentimentBadge`, `TierBadge`, `MomentumBadge`, `Sparkline`, `FactIdChip`.
+- `store/dashboard-store.ts` — single Zustand store: `activeTab`, `isChatOpen`, `highlightedFactId`, `report`.
+- `types/index.ts` — TypeScript interfaces mirroring all backend Pydantic models. **Keep in sync with `app/schemas/models.py`** when backend models change.
+- `lib/api-client.ts` — primary fetch wrapper used by `DashboardPage`. Has: `fetchReport`, `fetchLatestReportId`, `runPipeline`, `sendChatMessage`, `fetchStock`, `fetchReportFacts`.
+
+**Note:** `src/types/api.ts` is a legacy file that re-exports types from `index.ts` AND defines a duplicate set of fetch functions (`getReport`, `runPipeline`, etc.). The dashboard currently uses `lib/api-client.ts`. Do not add new API calls to `types/api.ts`.
+
+**DashboardPage data flow:** On mount, checks `localStorage` for `pulselens_report_id`. If missing, calls `GET /api/reports/latest` to auto-load the most recent report. Falls back to `NoReportView` with a "Generate Analysis" button that triggers `POST /api/run`.
+
+`vite.config.ts` proxies all `/api` requests to `http://localhost:8000`. `VITE_API_URL` env var overrides the base URL.
 
 ### Database (`backend/app/db/database.py`)
 
@@ -143,9 +160,11 @@ FINBERT_MODEL=ProsusAI/finbert
 
 ---
 
-## Sprint 7 Authoritative Baseline
+## Sprint 8 Authoritative Baseline (Final)
 
-The authoritative demo report is `report_05aacb872fda` (PARTIAL_PASS, 49/50 facts, pulse_score=55.8). All Sprint 7.1 reconciliation documents are at the repo root. Audit artifacts are in `pipeline_audit_artifacts/sprint7_review_bundle_20260527T001729Z/`.
+The authoritative demo report is **`report_e68e7289fc30`** (PASS, 67 facts, 23 sources, pulse_score=52.7, `risk_rising`). Full audit bundle at `pipeline_audit_artifacts/final_review_bundle_report_e68e7289fc30/`. Human-readable summaries: `AUTHORITATIVE_FINAL_DEMO_ARTIFACTS.md`, `FINAL_SYSTEM_QUALITY_REPORT.md`.
+
+Backend is frozen. All remaining work is frontend / demo polish.
 
 **Do not:**
 - Lower `QUALITY_MIN_FACTS` to fake PASS
@@ -175,4 +194,6 @@ backend/tests/pipeline/                  # zero-cost static tests (no API keys)
 
 ## Current Focus
 
-Sprint 8 — judge-facing demo dashboard and submission polish. Prefer frontend and report-presentation work. Do not optimize backend retrieval, rerun the live pipeline, or change Quality Gate thresholds unless explicitly instructed.
+Frontend productization (Sprint 0 onwards). Backend is frozen at `report_e68e7289fc30`. Prefer frontend-only changes. Do not optimize backend retrieval, rerun the live pipeline, or change Quality Gate thresholds unless explicitly instructed.
+
+**Sprint 0:** Replace `/` (currently `SectorSelectPage` with mock data) with a real Home page. Target nav: Home / Dashboard / Evidence / Pricing / Signals / Companies / Pipeline / Chat. The `PulseLens` brand text in the navbar must stay exactly as-is.
