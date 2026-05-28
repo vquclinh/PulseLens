@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import WorkspaceNav from '../components/workspace-nav'
 import WorkspaceLayout from '../layouts/workspace-layout'
-import { CompaniesTab, SignalsTab, EvidenceTab } from '@/modules/dashboard/components/tabs'
+import { CompaniesTab, SignalsTab } from '@/modules/dashboard/components/tabs'
 import { useDashboardStore } from '@/store/dashboard-store'
 import { fetchLatestReportId, fetchReport, fetchReportFacts } from '@/lib/api-client'
 import { formatDate } from '@/lib/utils'
 import PricingPage from './pricing-page'
 import PipelineAuditPage from './pipeline-audit-page'
 import WorkspaceOverview from './workspace-overview'
+import EvidenceExplorerPage from './evidence-explorer-page'
 import type { FactObject, MarketPulseReport, PulseStatus, SignalType } from '@/types/api'
 
 export type WorkspaceView = 'overview' | 'evidence' | 'pricing' | 'signals' | 'companies' | 'pipeline'
@@ -93,14 +94,34 @@ function WorkspaceContent({
   report,
   facts,
   factsLoading,
+  factsError,
 }: WorkspacePageProps & {
   report: MarketPulseReport
   facts: FactObject[]
   factsLoading: boolean
+  factsError: Error | null
 }) {
-  if (view === 'pricing') return <PricingPage report={report} />
+  if (view === 'pricing') {
+    return (
+      <PricingPage
+        report={report}
+        facts={facts}
+        factsLoading={factsLoading}
+        factsError={factsError}
+      />
+    )
+  }
   if (view === 'pipeline') return <PipelineAuditPage />
-  if (view === 'evidence') return <EvidenceTab report={report} />
+  if (view === 'evidence') {
+    return (
+      <EvidenceExplorerPage
+        report={report}
+        facts={facts}
+        factsLoading={factsLoading}
+        factsError={factsError}
+      />
+    )
+  }
   if (view === 'signals') return <SignalsTab report={report} />
   if (view === 'companies') return <CompaniesTab report={report} />
   return <WorkspaceOverview report={report} facts={facts} factsLoading={factsLoading} />
@@ -138,6 +159,7 @@ export default function WorkspacePage({ view }: WorkspacePageProps) {
   const {
     data: facts = [],
     isLoading: isLoadingFacts,
+    error: factsError,
   } = useQuery({
     queryKey: ['workspaceFacts', latestReportId],
     queryFn: () => fetchReportFacts(latestReportId!),
@@ -264,7 +286,13 @@ export default function WorkspacePage({ view }: WorkspacePageProps) {
           </div>
         </section>
 
-        <WorkspaceContent view={view} report={report} facts={facts} factsLoading={isLoadingFacts} />
+        <WorkspaceContent
+          view={view}
+          report={report}
+          facts={facts}
+          factsLoading={isLoadingFacts}
+          factsError={factsError as Error | null}
+        />
       </main>
     </WorkspaceLayout>
   )
