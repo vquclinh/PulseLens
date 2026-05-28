@@ -1,0 +1,19 @@
+{
+  "quality_status": "PASS",
+  "quality_reasons": [],
+  "covered_signal_types": [
+    "hiring_momentum",
+    "investor_signal",
+    "pricing_pressure",
+    "product_launch",
+    "strategic_messaging",
+    "supplier_risk"
+  ],
+  "missing_signal_types": [],
+  "company_coverage": 1.0,
+  "zero_doc_query_rate": 0.2857,
+  "fetch_error_rate": 0.0213,
+  "source_count": 29,
+  "fact_count": 64,
+  "query_expansion_rounds": 1
+}

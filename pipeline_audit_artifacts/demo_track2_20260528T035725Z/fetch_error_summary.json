@@ -1,0 +1,12 @@
+{
+  "total_fetch_attempts": 47,
+  "successful_fetches": 46,
+  "failed_fetches": 1,
+  "permanent_failures": 0,
+  "failure_count_by_domain": {
+    "finance.yahoo.com": 1
+  },
+  "failure_count_by_reason": {
+    "http_502": 1
+  }
+}

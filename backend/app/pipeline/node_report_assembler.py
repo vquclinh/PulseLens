@@ -6,7 +6,7 @@ from statistics import mean
 from typing import Any
 
 from app.config.signal_types import SIGNAL_WEIGHTS
-from app.db.database import save_report
+from app.db import db_adapter
 from app.pipeline.state import PipelineState
 from app.schemas.models import (
     CitedStatement,
@@ -204,5 +204,5 @@ async def report_assembler(state: PipelineState) -> dict:
         audit_summary=_build_audit_summary(state, facts),
     )
 
-    await save_report(report, facts, claims)
+    await db_adapter.save_report(report, facts, claims)
     return {"report": report}

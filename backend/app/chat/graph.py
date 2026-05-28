@@ -10,7 +10,7 @@ from langgraph.checkpoint.memory import MemorySaver
 
 from app.chat.agent8_analyst_chat import answer_question, build_evidence_block
 from app.chat.state import ChatState
-from app.db.database import load_report, search_facts
+from app.db import db_adapter
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ def retrieve_facts(state: ChatState) -> dict:
     report_id = state.get("report_id", "")
     query = state.get("current_query", "")
     logger.info("chat node: retrieve_facts report=%s", report_id)
-    facts = asyncio.run(search_facts(report_id, query, top_k=10))
+    facts = asyncio.run(db_adapter.search_facts(report_id, query, top_k=10))
     return {
         "retrieved_facts": facts,
         "retrieval_rounds": state.get("retrieval_rounds", 0),
@@ -38,7 +38,7 @@ def build_prompt(state: ChatState) -> dict:
 def analyst_chat(state: ChatState) -> dict:
     """Agent 8 — grounded answer over retrieved facts."""
     logger.info("chat node: analyst_chat")
-    report = asyncio.run(load_report(state.get("report_id", "")))
+    report = asyncio.run(db_adapter.load_report(state.get("report_id", "")))
     response = answer_question(
         query=state.get("current_query", ""),
         retrieved_facts=state.get("retrieved_facts") or [],
@@ -64,7 +64,7 @@ def validate_citations(state: ChatState) -> dict:
     if not invalid:
         return {"cited_fact_ids": cited, "invalid_citations": []}
 
-    report = asyncio.run(load_report(state.get("report_id", "")))
+    report = asyncio.run(db_adapter.load_report(state.get("report_id", "")))
     retry_note = (
         f"User question: {state.get('current_query', '')}\n\n"
         "The previous response cited fact IDs that are not in the retrieved "
