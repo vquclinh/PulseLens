@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import WorkspaceNav from '../components/workspace-nav'
 import WorkspaceLayout from '../layouts/workspace-layout'
-import { CompaniesTab, SignalsTab } from '@/modules/dashboard/components/tabs'
+import { CompaniesTab } from '@/modules/dashboard/components/tabs'
+import SignalsPage from './signals-page'
+import CompaniesPage from './companies-page'
 import { useDashboardStore } from '@/store/dashboard-store'
 import { fetchLatestReportId, fetchReport, fetchReportFacts } from '@/lib/api-client'
 import { formatDate } from '@/lib/utils'
@@ -111,7 +113,16 @@ function WorkspaceContent({
       />
     )
   }
-  if (view === 'pipeline') return <PipelineAuditPage />
+  if (view === 'pipeline') {
+    return (
+      <PipelineAuditPage
+        report={report}
+        facts={facts}
+        factsLoading={factsLoading}
+        factsError={factsError}
+      />
+    )
+  }
   if (view === 'evidence') {
     return (
       <EvidenceExplorerPage
@@ -122,8 +133,26 @@ function WorkspaceContent({
       />
     )
   }
-  if (view === 'signals') return <SignalsTab report={report} />
-  if (view === 'companies') return <CompaniesTab report={report} />
+  if (view === 'signals') {
+    return (
+      <SignalsPage
+        report={report}
+        facts={facts}
+        factsLoading={factsLoading}
+        factsError={factsError}
+      />
+    )
+  }
+  if (view === 'companies') {
+    return (
+      <CompaniesPage
+        report={report}
+        facts={facts}
+        factsLoading={factsLoading}
+        factsError={factsError}
+      />
+    )
+  }
   return <WorkspaceOverview report={report} facts={facts} factsLoading={factsLoading} />
 }
 
