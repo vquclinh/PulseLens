@@ -4,9 +4,18 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 const NAV_LINKS = [
   { label: 'Home', to: '/', exact: true },
-  { label: 'Intelligence Workspace', to: '/workspace', workspace: true },
+  { label: 'Intelligence Workspace', to: '/workspace', workspace: true, hasDropdown: true },
   { label: 'Chat', to: '/chat', exact: true },
 ] as const
+
+const MARKETS = [
+  { name: 'US AI Hardware / Semiconductor', status: 'live', path: '/workspace' },
+  { name: 'Cloud GPU Infra', status: 'coming_soon' },
+  { name: 'EV Supply Chain', status: 'coming_soon' },
+  { name: 'Cybersecurity', status: 'coming_soon' },
+  { name: 'Biotech / Pharma', status: 'coming_soon' },
+  { name: 'Vietnam E-commerce', status: 'coming_soon' },
+]
 
 export default function Navbar() {
   const location = useLocation()
@@ -20,6 +29,7 @@ export default function Navbar() {
   }
 
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 })
+  const [dropdownOpen, setDropdownOpen] = useState(false)
   const navContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -62,19 +72,57 @@ export default function Navbar() {
       <div className="relative flex items-center gap-6 h-full" ref={navContainerRef}>
         {NAV_LINKS.map(link => {
           const active = isActive(link)
+          const hasDropdown = 'hasDropdown' in link && link.hasDropdown
+
           return (
-            <Link
+            <div
               key={link.label}
-              to={link.to}
-              className={[
-                'flex items-center h-full px-2 text-base font-semibold transition-colors whitespace-nowrap',
-                active
-                  ? 'text-blue-600'
-                  : 'text-gray-600 hover:text-gray-950',
-              ].join(' ')}
+              className="relative h-full flex items-center"
+              onMouseEnter={hasDropdown ? () => setDropdownOpen(true) : undefined}
+              onMouseLeave={hasDropdown ? () => setDropdownOpen(false) : undefined}
             >
-              {link.label}
-            </Link>
+              <Link
+                to={link.to}
+                className={[
+                  'flex items-center h-full px-2 text-base font-semibold transition-colors whitespace-nowrap',
+                  active
+                    ? 'text-blue-600'
+                    : 'text-gray-600 hover:text-gray-950',
+                ].join(' ')}
+              >
+                {link.label}
+                {hasDropdown && (
+                  <svg className={`w-4 h-4 ml-1 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                )}
+              </Link>
+              
+              {hasDropdown && dropdownOpen && (
+                <div className="absolute top-full left-0 w-72 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-50">
+                  <div className="px-4 py-2 text-xs font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 mb-2">
+                    Markets
+                  </div>
+                  {MARKETS.map(m => {
+                    const isLive = m.status === 'live'
+                    return (
+                      <button
+                        key={m.name}
+                        onClick={isLive && m.path ? () => navigate(m.path) : undefined}
+                        className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors text-left ${isLive ? 'hover:bg-gray-50 text-gray-900 cursor-pointer' : 'text-gray-400 cursor-default'}`}
+                      >
+                        <span className="font-medium">{m.name}</span>
+                        {isLive ? (
+                          <span className="text-[10px] uppercase font-bold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">Live</span>
+                        ) : (
+                          <span className="text-[10px] uppercase font-bold text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded">Coming soon</span>
+                        )}
+                      </button>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
           )
         })}
         {/* Sliding underline */}

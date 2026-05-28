@@ -45,6 +45,7 @@ export interface DisplayFact {
   confidence: number
   domain?: string       // present in DemoFact
   source_url?: string   // present in FactObject — domain derived from this
+  safe_verified?: boolean // present in FactObject
 }
 
 interface FactPreviewProps {
