@@ -153,7 +153,12 @@ function ContextCard({
       {details}
       <div className="mt-4 flex flex-wrap gap-2">
         {prompts.map(p => (
-          <button key={p} onClick={() => onPromptClick(p)} className="rounded-full border border-blue-200 bg-white px-3 py-1.5 text-xs font-semibold text-blue-700 hover:bg-blue-50 transition-colors shadow-sm">
+          <button key={p} onClick={() => {
+            onPromptClick(p)
+            setTimeout(() => {
+              document.getElementById('chat-input-textarea')?.focus()
+            }, 10)
+          }} className="rounded-full border border-blue-200 bg-white px-3 py-1.5 text-xs font-semibold text-blue-700 hover:bg-blue-50 transition-colors shadow-sm">
             {p}
           </button>
         ))}
@@ -217,7 +222,12 @@ function ChatConsole({ reportId }: { reportId: string }) {
                   ].map((question) => (
                     <button
                       key={question}
-                      onClick={() => setInput(question)}
+                      onClick={() => {
+                        setInput(question)
+                        setTimeout(() => {
+                          document.getElementById('chat-input-textarea')?.focus()
+                        }, 10)
+                      }}
                       className="rounded-xl bg-white border border-gray-200 px-4 py-3 text-left text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 hover:border-blue-200"
                     >
                       {question}

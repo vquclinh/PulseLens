@@ -22,6 +22,7 @@ const ChatInput: FC<ChatInputProps> = ({ value, onChange, onSubmit, isLoading })
   return (
     <div className="flex items-end gap-2 p-3 border-t border-gray-200 bg-white">
       <textarea
+        id="chat-input-textarea"
         ref={inputRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
