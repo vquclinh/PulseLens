@@ -120,7 +120,7 @@ function EvidenceCard({ fact }: { fact: FactObject }) {
           className="flex items-center gap-1 rounded-lg border border-gray-200 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50">
           <ExternalLink className="h-3 w-3" /> Source
         </a>
-        <Link to="/chat"
+        <Link to={`/chat?context=fact&fact_id=${fact.fact_id}`}
           className="ml-auto flex items-center gap-1 rounded-lg bg-blue-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-blue-700">
           <MessageSquare className="h-3 w-3" /> Ask Chat
         </Link>
@@ -393,7 +393,7 @@ export default function CompaniesPage({ report, facts = [], factsLoading, factsE
                   >
                     View evidence
                   </button>
-                  <Link to="/chat"
+                  <Link to={`/chat?context=company&company=${encodeURIComponent(n.company)}`}
                     className="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors">
                     <MessageSquare className="h-3 w-3" /> Ask Chat
                   </Link>
@@ -527,7 +527,7 @@ export default function CompaniesPage({ report, facts = [], factsLoading, factsE
             Review signals <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
-        <Link to="/chat"
+        <Link to="/chat?context=report"
           className="rounded-2xl border border-gray-200 bg-gradient-to-br from-slate-50 to-gray-50 p-5 shadow-sm hover:shadow-md transition-shadow">
           <p className="text-sm font-bold text-gray-900">Ask PulseLens AI</p>
           <p className="mt-1 text-xs text-gray-600 leading-relaxed">Ask deep-reasoning questions about specific companies and signals.</p>

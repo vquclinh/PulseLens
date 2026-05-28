@@ -173,7 +173,7 @@ function EvidenceCard({ fact }: { fact: FactObject }) {
           Open source
         </a>
         <Link
-          to="/chat"
+          to={`/chat?context=fact&fact_id=${fact.fact_id}`}
           className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
         >
           Ask Chat

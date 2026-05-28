@@ -81,7 +81,7 @@ function ExecutiveBrief({ report }: { report: MarketPulseReport }) {
             Open Evidence
           </Link>
           <Link
-            to="/chat"
+            to="/chat?context=report"
             className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
           >
             Ask Chat

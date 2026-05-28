@@ -320,7 +320,7 @@ export default function PipelineAuditPage({ report, facts = [], factsLoading, fa
             View signals <ArrowRight className="h-3 w-3" />
           </span>
         </Link>
-        <Link to="/chat"
+        <Link to="/chat?context=report"
           className="rounded-2xl border border-gray-200 bg-gradient-to-br from-slate-50 to-gray-50 p-5 shadow-sm hover:shadow-md transition-shadow">
           <p className="text-sm font-bold text-gray-900">Ask Chat about this report</p>
           <p className="mt-1 text-xs text-gray-600 leading-relaxed">Query the knowledge base using natural language.</p>

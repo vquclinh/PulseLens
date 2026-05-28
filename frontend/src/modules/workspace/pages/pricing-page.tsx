@@ -206,7 +206,7 @@ function PricingFactCard({ fact }: { fact: FactObject }) {
           Open source
         </a>
         <Link
-          to="/chat"
+          to="/chat?context=pricing"
           className="ml-auto flex items-center gap-1 rounded-lg bg-blue-600 hover:bg-blue-700 px-3 py-1.5 text-xs font-semibold text-white transition-colors"
         >
           <MessageSquare className="h-3.5 w-3.5" />
@@ -379,7 +379,7 @@ export default function PricingPage({
               Open Evidence Explorer
             </Link>
             <Link
-              to="/chat"
+              to="/chat?context=pricing"
               className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
             >
               Consult AI Chat
@@ -655,7 +655,7 @@ export default function PricingPage({
                 Ask deep-reasoning questions about retail markups, specific hardware margins, or supplier pricing changes.
               </p>
               <Link
-                to="/chat"
+                to="/chat?context=pricing"
                 className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-indigo-600 hover:text-indigo-700 group"
               >
                 Consult chat assistant

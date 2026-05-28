@@ -90,7 +90,7 @@ function EvidenceCard({ fact }: { fact: FactObject }) {
           className="flex items-center gap-1 rounded-lg border border-gray-200 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50">
           <ExternalLink className="h-3 w-3" /> Source
         </a>
-        <Link to="/chat"
+        <Link to={`/chat?context=fact&fact_id=${fact.fact_id}`}
           className="ml-auto flex items-center gap-1 rounded-lg bg-blue-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-blue-700">
           <MessageSquare className="h-3 w-3" /> Ask Chat
         </Link>
@@ -295,7 +295,7 @@ export default function SignalsPage({ report, facts = [], factsLoading, factsErr
               <Link to="/workspace/evidence" className="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50">
                 Evidence Explorer
               </Link>
-              <Link to="/chat" className="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50">
+              <Link to={`/chat?context=signal&signal=${selectedSignalData.signal}`} className="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50">
                 <MessageSquare className="h-3 w-3" /> Ask Chat
               </Link>
             </div>
