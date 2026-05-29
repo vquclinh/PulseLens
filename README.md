@@ -1,26 +1,26 @@
 # PulseLens
 
-**AI-powered market intelligence that turns raw web signals into verified, traceable insights.**
+> Evidence-backed market intelligence for fast-moving sectors.
+
+PulseLens is an analyst workspace that turns live web signals into source-backed facts, market signals, company lenses, pricing intelligence, risk alerts, and grounded chat. Every claim traces back to an exact source quote — no black-box scores, no unattributed summaries.
+
+**Current demo market:** US AI Hardware / Semiconductor  
+**Tracked companies:** Nvidia · AMD · Supermicro
+
+> **Research demo:** PulseLens is not production-ready and is not intended for investment or trading decisions.
 
 ---
 
-## What is PulseLens?
+## The problem with current market intelligence
 
-PulseLens is a full-stack, multi-agent market intelligence platform. It autonomously scrapes the web, extracts structured financial facts, verifies every claim against its source, scores sentiment with FinBERT, triangulates across sources, and delivers a grounded market pulse report through a React workspace.
+Financial analysts spend most of their time locating, reading, and cross-checking sources before they can form a signal. Existing tools either surface raw headlines (high noise) or output black-box scores with no traceable evidence chain — leaving analysts unable to audit or challenge the output.
 
-The current demo targets the **US AI Hardware / Semiconductor** sector with three companies: **Nvidia, AMD, and Supermicro**. The demo is not production-ready and is not intended for financial decision-making.
+PulseLens approaches this differently:
 
----
-
-## Why it matters
-
-Financial analysts spend most of their time locating, reading, and cross-checking sources before they can produce a coherent signal. Existing tools either surface raw headlines (high noise) or provide black-box scores with no traceable evidence chain.
-
-PulseLens addresses this by:
-
-- Building an evidence trail from web document to atomic fact to verified claim to final narrative
-- Grounding every claim in peer-reviewed NLP methods (SAFE, FActScore, FinBERT, Multi-HyDE, STORM)
-- Exposing the full pipeline audit trail in the UI so analysts can inspect, challenge, and trust the output
+- Every fact is tied to a verbatim source quote and a canonical URL
+- Claims are triangulated across multiple independent sources before scoring
+- The full pipeline audit trail — queries, document counts, quality gates, expansion rounds — is exposed in the UI
+- The grounded chat assistant cites specific facts and refuses to fabricate when evidence is insufficient
 
 ---
 
