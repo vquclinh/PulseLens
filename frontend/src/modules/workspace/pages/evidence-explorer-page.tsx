@@ -5,6 +5,7 @@ import type { FactObject, MarketPulseReport, SignalType } from '@/types/api'
 import { formatDate } from '@/lib/utils'
 import SentimentBadge from '@/shared/components/sentiment-badge'
 import TierBadge from '@/shared/components/tier-badge'
+import { Check, Copy, ExternalLink, MessageSquare } from 'lucide-react'
 
 interface EvidenceExplorerPageProps {
   report: MarketPulseReport
@@ -28,7 +29,6 @@ const SIGNAL_OPTIONS: { value: SignalType | 'all'; label: string }[] = [
   { value: 'hiring_momentum', label: 'Hiring Momentum' },
 ]
 
-// Set of valid SignalType strings for query-param validation
 const VALID_SIGNALS: ReadonlySet<string> = new Set(
   SIGNAL_OPTIONS.filter(o => o.value !== 'all').map(o => o.value),
 )
@@ -36,22 +36,12 @@ const VALID_SIGNALS: ReadonlySet<string> = new Set(
 const ENTITY_BASE_OPTIONS = ['Nvidia', 'AMD', 'Supermicro', 'market']
 
 function sourceDomain(url: string): string {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '')
-  } catch {
-    return url
-  }
+  try { return new URL(url).hostname.replace(/^www\./, '') } catch { return url }
 }
 
 function normalizedText(fact: FactObject): string {
-  return [
-    fact.claim,
-    fact.evidence_quote,
-    fact.entity,
-    fact.source_url,
-    sourceDomain(fact.source_url),
-    fact.signal_type,
-  ].join(' ').toLowerCase()
+  return [fact.claim, fact.evidence_quote, fact.entity, fact.source_url, sourceDomain(fact.source_url), fact.signal_type]
+    .join(' ').toLowerCase()
 }
 
 function publishedTime(fact: FactObject): number {
@@ -62,47 +52,47 @@ function publishedTime(fact: FactObject): number {
 
 function sortFacts(facts: FactObject[], sortMode: SortMode): FactObject[] {
   return [...facts].sort((a, b) => {
-    if (sortMode === 'tier_asc') {
-      return a.source_tier - b.source_tier || b.confidence - a.confidence
-    }
-    if (sortMode === 'newest') {
-      return publishedTime(b) - publishedTime(a) || b.confidence - a.confidence
-    }
-    if (sortMode === 'signal_type') {
-      return a.signal_type.localeCompare(b.signal_type) || b.confidence - a.confidence
-    }
+    if (sortMode === 'tier_asc') return a.source_tier - b.source_tier || b.confidence - a.confidence
+    if (sortMode === 'newest') return publishedTime(b) - publishedTime(a) || b.confidence - a.confidence
+    if (sortMode === 'signal_type') return a.signal_type.localeCompare(b.signal_type) || b.confidence - a.confidence
     return b.confidence - a.confidence
   })
 }
 
-function SummaryCard({ label, value, detail }: { label: string; value: string | number; detail: string }) {
+// ─── Summary chips ────────────────────────────────────────────────────────────
+
+function SummaryChips({ total, safeCount, domainCount, tier12Count }: {
+  total: number; safeCount: number; domainCount: number; tier12Count: number
+}) {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">{label}</p>
-      <p className="mt-2 text-3xl font-bold text-gray-950">{value}</p>
-      <p className="mt-2 text-sm text-gray-500">{detail}</p>
+    <div className="flex flex-wrap gap-3">
+      {[
+        { label: 'Total facts', value: total },
+        { label: 'SAFE-verified', value: safeCount },
+        { label: 'Source domains', value: domainCount },
+        { label: 'Tier 1/2 sources', value: tier12Count },
+      ].map(({ label, value }) => (
+        <div key={label} className="flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 shadow-sm">
+          <span className="text-xl font-bold text-gray-900 tabular-nums">{value}</span>
+          <span className="text-xs text-gray-500">{label}</span>
+        </div>
+      ))}
     </div>
   )
 }
 
-function SelectControl({
-  label,
-  value,
-  onChange,
-  children,
-}: {
-  label: string
-  value: string
-  onChange: (value: string) => void
-  children: ReactNode
+// ─── Filter select control ────────────────────────────────────────────────────
+
+function SelectControl({ label, value, onChange, children }: {
+  label: string; value: string; onChange: (value: string) => void; children: ReactNode
 }) {
   return (
     <label className="flex flex-col gap-1.5">
       <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">{label}</span>
       <select
         value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+        onChange={e => onChange(e.target.value)}
+        className="h-9 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
       >
         {children}
       </select>
@@ -110,83 +100,130 @@ function SelectControl({
   )
 }
 
-function EvidenceCard({ fact }: { fact: FactObject }) {
+// ─── Evidence card — richer 2-column grid card ────────────────────────────────
+//
+// Default: claim clamped 2 lines, quote clamped 2 lines — enough to understand
+//          the evidence at a glance.
+// Selected (expanded): full unclamped claim + quote, blue ring.
+//
+// The grid uses default stretch (no items-start) for equal-height rows.
+// h-full + flex-col + mt-auto footer ensures both cards in a row stay the
+// same height and action buttons align at the bottom.
+// When a selected card expands, only its grid row grows; all other rows
+// are unaffected.
+
+function EvidenceCard({ fact, isSelected, onClick }: {
+  fact: FactObject; isSelected: boolean; onClick: () => void
+}) {
+  const [copied, setCopied] = useState(false)
   const domain = sourceDomain(fact.source_url)
 
-  function copyQuote() {
+  function handleCopy(e: React.MouseEvent) {
+    e.stopPropagation()
     void navigator.clipboard?.writeText(fact.evidence_quote)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
   }
 
   return (
-    <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">
+    <article
+      className={[
+        'rounded-2xl border bg-white p-5 shadow-sm flex flex-col gap-3 transition-shadow h-full',
+        isSelected
+          ? 'border-blue-400 ring-2 ring-blue-100 ring-offset-1 shadow-md'
+          : 'border-gray-200 hover:border-blue-200 hover:shadow',
+      ].join(' ')}
+    >
+      {/* ── Top row: badges ── */}
+      <div className="flex flex-wrap items-center gap-1.5">
+        <span className="rounded-full bg-blue-50 px-2 py-0.5 text-xs font-semibold text-blue-700 whitespace-nowrap">
           {fact.signal_type.replace(/_/g, ' ')}
         </span>
-        <span className="rounded-full bg-gray-100 px-2.5 py-1 text-xs font-semibold text-gray-700">
+        <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-semibold text-gray-700 whitespace-nowrap">
           {fact.entity}
         </span>
         {fact.safe_verified && (
-          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700">
-            SAFE verified
+          <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+            SAFE
           </span>
         )}
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex items-center gap-1.5 shrink-0">
           <TierBadge tier={fact.source_tier} />
           <SentimentBadge sentiment={fact.sentiment} />
         </div>
       </div>
 
-      <h3 className="mt-4 text-lg font-bold leading-snug text-gray-950">{fact.claim}</h3>
-      <blockquote className="mt-4 border-l-4 border-blue-200 pl-4 text-base leading-7 text-gray-700">
+      {/* ── Claim — clickable to expand/collapse ── */}
+      <h3
+        role="button"
+        tabIndex={0}
+        onClick={onClick}
+        onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick() } }}
+        aria-expanded={isSelected}
+        className={[
+          'cursor-pointer text-sm font-bold leading-snug text-gray-950',
+          isSelected ? '' : 'line-clamp-2',
+        ].join(' ')}
+      >
+        {fact.claim}
+      </h3>
+
+      {/* ── Evidence quote ── */}
+      <blockquote
+        className={[
+          'border-l-4 border-blue-200 pl-3 text-xs italic leading-5 text-gray-600',
+          isSelected ? '' : 'line-clamp-2',
+        ].join(' ')}
+      >
         "{fact.evidence_quote}"
       </blockquote>
 
-      <div className="mt-5 grid gap-3 text-sm text-gray-500 md:grid-cols-4">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Source</p>
-          <p className="mt-1 font-semibold text-gray-800">{domain}</p>
-        </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Confidence</p>
-          <p className="mt-1 font-semibold text-gray-800">{(fact.confidence * 100).toFixed(0)}%</p>
-        </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Published</p>
-          <p className="mt-1 font-semibold text-gray-800">{formatDate(fact.published_date) || 'Unavailable'}</p>
-        </div>
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Fact ID</p>
-          <p className="mt-1 truncate font-mono text-xs text-gray-500">{fact.fact_id}</p>
-        </div>
+      {/* ── Meta: source · confidence · date ── */}
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-gray-500">
+        <span className="font-semibold text-gray-700">{domain}</span>
+        <span>·</span>
+        <span>{(fact.confidence * 100).toFixed(0)}% conf</span>
+        {fact.published_date && (
+          <>
+            <span>·</span>
+            <span>{formatDate(fact.published_date)}</span>
+          </>
+        )}
       </div>
+      {/* fact_id kept internally for Ask Chat / context links — not shown in card UI */}
 
-      <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-gray-100 pt-4">
+      {/* ── Footer actions ── */}
+      <div className="flex flex-wrap items-center gap-2 border-t border-gray-100 pt-2.5 mt-auto">
         <button
           type="button"
-          onClick={copyQuote}
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+          onClick={handleCopy}
+          className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
         >
-          Copy quote
+          {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? 'Copied' : 'Copy'}
         </button>
         <a
           href={fact.source_url}
           target="_blank"
           rel="noreferrer"
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+          className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
         >
-          Open source
+          <ExternalLink className="h-3.5 w-3.5" />
+          Source
         </a>
         <Link
           to={`/chat?context=fact&fact_id=${fact.fact_id}`}
-          className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-700"
+          className="ml-auto flex items-center gap-1.5 rounded-lg bg-blue-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
         >
+          <MessageSquare className="h-3.5 w-3.5" />
           Ask Chat
         </Link>
       </div>
     </article>
   )
 }
+
+// ─── Main page ────────────────────────────────────────────────────────────────
 
 export default function EvidenceExplorerPage({
   report,
@@ -196,60 +233,50 @@ export default function EvidenceExplorerPage({
 }: EvidenceExplorerPageProps) {
   const [searchParams, setSearchParams] = useSearchParams()
 
-  // Read ?signal= query param once on mount to support deep-links from Signal Cockpit.
-  // Invalid or missing params default to 'all'.
   const signalParam = searchParams.get('signal')
   const initialLinkedSignal: SignalType | null =
     signalParam && VALID_SIGNALS.has(signalParam) ? (signalParam as SignalType) : null
 
   const [search, setSearch] = useState('')
-  const [signalFilter, setSignalFilter] = useState<SignalType | 'all'>(
-    initialLinkedSignal ?? 'all',
-  )
+  const [signalFilter, setSignalFilter] = useState<SignalType | 'all'>(initialLinkedSignal ?? 'all')
   const [linkedSignal, setLinkedSignal] = useState<SignalType | null>(initialLinkedSignal)
   const [entityFilter, setEntityFilter] = useState('all')
   const [tierFilter, setTierFilter] = useState<TierFilter>('all')
   const [safeFilter, setSafeFilter] = useState<SafeFilter>('all')
   const [sortMode, setSortMode] = useState<SortMode>('confidence_desc')
+  const [selectedFact, setSelectedFact] = useState<FactObject | null>(null)
 
-  // Scroll anchor for deep-link navigation.
-  // Placed between the summary cards and the linked-filter banner.
   const filterAreaRef = useRef<HTMLDivElement>(null)
-  const NAVBAR_H = 72  // sticky navbar height in px
+  const NAVBAR_H = 72
 
-  // On mount: scroll to the filter area when deep-linked (linked signal present),
-  // otherwise fall back to plain window top.  Runs once per mount — does NOT
-  // re-fire when the user types in search or changes filters manually.
   useEffect(() => {
     if (initialLinkedSignal && filterAreaRef.current) {
       const top =
         filterAreaRef.current.getBoundingClientRect().top +
-        window.scrollY -
-        NAVBAR_H -
-        8  // 8px breathing room above the banner
+        window.scrollY - NAVBAR_H - 8
       window.scrollTo({ top: Math.max(0, top) })
     } else {
       window.scrollTo(0, 0)
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const sourceDomains = useMemo(() => new Set(facts.map((fact) => sourceDomain(fact.source_url))), [facts])
+  const sourceDomains = useMemo(() => new Set(facts.map(f => sourceDomain(f.source_url))), [facts])
   const tierOneTwoDomains = useMemo(
-    () => new Set(facts.filter((fact) => fact.source_tier <= 2).map((fact) => sourceDomain(fact.source_url))),
+    () => new Set(facts.filter(f => f.source_tier <= 2).map(f => sourceDomain(f.source_url))),
     [facts],
   )
-  const safeVerifiedCount = facts.filter((fact) => fact.safe_verified).length
+  const safeVerifiedCount = facts.filter(f => f.safe_verified).length
 
   const entityOptions = useMemo(() => {
-    const liveEntities = Array.from(new Set(facts.map((fact) => fact.entity).filter(Boolean)))
-    return Array.from(new Set(['all', ...ENTITY_BASE_OPTIONS, ...liveEntities]))
+    const live = Array.from(new Set(facts.map(f => f.entity).filter(Boolean)))
+    return Array.from(new Set(['all', ...ENTITY_BASE_OPTIONS, ...live]))
   }, [facts])
 
   const filteredFacts = useMemo(() => {
-    const searchText = search.trim().toLowerCase()
+    const q = search.trim().toLowerCase()
     return sortFacts(
-      facts.filter((fact) => {
-        if (searchText && !normalizedText(fact).includes(searchText)) return false
+      facts.filter(fact => {
+        if (q && !normalizedText(fact).includes(q)) return false
         if (signalFilter !== 'all' && fact.signal_type !== signalFilter) return false
         if (entityFilter !== 'all' && fact.entity.toLowerCase() !== entityFilter.toLowerCase()) return false
         if (tierFilter !== 'all' && fact.source_tier !== Number(tierFilter)) return false
@@ -279,6 +306,10 @@ export default function EvidenceExplorerPage({
     setSearchParams(p => { p.delete('signal'); return p })
   }
 
+  function handleCardClick(fact: FactObject) {
+    setSelectedFact(prev => prev?.fact_id === fact.fact_id ? null : fact)
+  }
+
   const linkedSignalLabel = linkedSignal
     ? (SIGNAL_OPTIONS.find(o => o.value === linkedSignal)?.label ?? linkedSignal)
     : null
@@ -302,33 +333,30 @@ export default function EvidenceExplorerPage({
   }
 
   return (
-    <section className="flex flex-col gap-6">
-      <div className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <section className="flex flex-col gap-5">
+      {/* Page header */}
+      <div className="rounded-2xl border border-gray-200 bg-white px-6 py-5 shadow-sm">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">Evidence Explorer</p>
-            <h2 className="mt-2 text-3xl font-bold text-gray-950">Source-backed facts from the latest report</h2>
-            <p className="mt-3 max-w-3xl text-base leading-7 text-gray-600">
-              Every card below is loaded from <span className="font-mono">/api/report/{report.report_id}/facts</span>.
-              Use filters to inspect source quality, signal coverage, and the exact quoted evidence behind the report.
+            <h2 className="mt-1 text-2xl font-bold text-gray-950">Source-backed facts</h2>
+            <p className="mt-1 text-sm text-gray-500">
+              {facts.length} facts · <span className="font-mono text-xs">{report.report_id}</span>
             </p>
           </div>
-          <div className="text-sm text-gray-500">
-            Report <span className="font-mono">{report.report_id}</span>
-          </div>
+          <SummaryChips
+            total={facts.length}
+            safeCount={safeVerifiedCount}
+            domainCount={sourceDomains.size}
+            tier12Count={tierOneTwoDomains.size}
+          />
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-4">
-        <SummaryCard label="Total Facts" value={facts.length} detail="Loaded from facts endpoint" />
-        <SummaryCard label="SAFE-verified" value={safeVerifiedCount} detail="Evidence quote checked" />
-        <SummaryCard label="Source Domains" value={sourceDomains.size} detail="Unique domains represented" />
-        <SummaryCard label="Tier 1/2 Sources" value={tierOneTwoDomains.size} detail="High-credibility domains" />
-      </div>
-
-      {/* Zero-height scroll anchor — deep-link from Signal Cockpit targets this */}
+      {/* Scroll anchor for deep-link from Signal Cockpit */}
       <div ref={filterAreaRef} />
 
+      {/* Linked filter banner */}
       {linkedSignal && (
         <div className="flex items-center justify-between gap-4 rounded-xl border border-blue-200 bg-blue-50/60 px-5 py-3">
           <p className="text-sm text-blue-800">
@@ -345,33 +373,28 @@ export default function EvidenceExplorerPage({
         </div>
       )}
 
-      <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-        <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
+      {/* Filter controls */}
+      <div className="rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm">
+        <div className="grid gap-3 sm:grid-cols-[2fr_1fr_1fr_1fr_1fr]">
           <label className="flex flex-col gap-1.5">
             <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">Search</span>
             <input
               value={search}
-              onChange={(event) => setSearch(event.target.value)}
-              placeholder="Claim, quote, entity, domain, signal..."
-              className="h-10 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
+              onChange={e => setSearch(e.target.value)}
+              placeholder="Claim, quote, entity, domain…"
+              className="h-9 rounded-lg border border-gray-300 bg-white px-3 text-sm text-gray-700 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"
             />
           </label>
 
-          <SelectControl label="Signal" value={signalFilter} onChange={(value) => setSignalFilter(value as SignalType | 'all')}>
-            {SIGNAL_OPTIONS.map((option) => (
-              <option key={option.value} value={option.value}>{option.label}</option>
-            ))}
+          <SelectControl label="Signal" value={signalFilter} onChange={v => setSignalFilter(v as SignalType | 'all')}>
+            {SIGNAL_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
           </SelectControl>
 
           <SelectControl label="Entity" value={entityFilter} onChange={setEntityFilter}>
-            {entityOptions.map((entity) => (
-              <option key={entity} value={entity}>
-                {entity === 'all' ? 'All Entities' : entity}
-              </option>
-            ))}
+            {entityOptions.map(e => <option key={e} value={e}>{e === 'all' ? 'All Entities' : e}</option>)}
           </SelectControl>
 
-          <SelectControl label="Tier" value={tierFilter} onChange={(value) => setTierFilter(value as TierFilter)}>
+          <SelectControl label="Tier" value={tierFilter} onChange={v => setTierFilter(v as TierFilter)}>
             <option value="all">All Tiers</option>
             <option value="1">Tier 1</option>
             <option value="2">Tier 2</option>
@@ -379,17 +402,17 @@ export default function EvidenceExplorerPage({
             <option value="4">Tier 4</option>
           </SelectControl>
 
-          <SelectControl label="SAFE" value={safeFilter} onChange={(value) => setSafeFilter(value as SafeFilter)}>
+          <SelectControl label="SAFE" value={safeFilter} onChange={v => setSafeFilter(v as SafeFilter)}>
             <option value="all">All Facts</option>
             <option value="safe_only">SAFE only</option>
           </SelectControl>
         </div>
 
-        <div className="mt-4 flex flex-col gap-3 border-t border-gray-100 pt-4 sm:flex-row sm:items-end sm:justify-between">
-          <SelectControl label="Sort" value={sortMode} onChange={(value) => setSortMode(value as SortMode)}>
-            <option value="confidence_desc">Confidence descending</option>
-            <option value="tier_asc">Source tier ascending</option>
-            <option value="newest">Newest published date</option>
+        <div className="mt-3 flex flex-wrap items-end justify-between gap-3 border-t border-gray-100 pt-3">
+          <SelectControl label="Sort" value={sortMode} onChange={v => setSortMode(v as SortMode)}>
+            <option value="confidence_desc">Confidence ↓</option>
+            <option value="tier_asc">Source tier ↑</option>
+            <option value="newest">Newest date</option>
             <option value="signal_type">Signal type</option>
           </SelectControl>
           <div className="flex items-center gap-3">
@@ -397,7 +420,7 @@ export default function EvidenceExplorerPage({
             <button
               type="button"
               onClick={clearFilters}
-              className="rounded-lg border border-gray-300 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-50"
+              className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-semibold text-gray-700 hover:bg-gray-50"
             >
               Clear filters
             </button>
@@ -405,6 +428,7 @@ export default function EvidenceExplorerPage({
         </div>
       </div>
 
+      {/* Empty states */}
       {facts.length === 0 ? (
         <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
           <h3 className="text-xl font-bold text-gray-950">No evidence facts found</h3>
@@ -422,9 +446,20 @@ export default function EvidenceExplorerPage({
           </p>
         </div>
       ) : (
-        <div className="grid gap-4">
-          {filteredFacts.map((fact) => (
-            <EvidenceCard key={fact.fact_id} fact={fact} />
+        /*
+         * Equal-height 2-column grid — no items-start, default stretch.
+         * h-full on each article + flex-col + mt-auto footer = consistent height rows.
+         * When a card expands (selected), only its grid row grows; other rows
+         * are unaffected.
+         */
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredFacts.map(fact => (
+            <EvidenceCard
+              key={fact.fact_id}
+              fact={fact}
+              isSelected={selectedFact?.fact_id === fact.fact_id}
+              onClick={() => handleCardClick(fact)}
+            />
           ))}
         </div>
       )}

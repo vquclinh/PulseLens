@@ -34,9 +34,33 @@ Report summary:
 Evidence:
 {evidence}
 
+Attached context (selected by the analyst from the PulseLens Overview):
+{context_attachment_block}
+
 Recent history:
 {history}
 """
+
+
+def _build_attachment_block(attachment: dict | None) -> str:
+    if not attachment:
+        return "None"
+    lines = [f"Type: {attachment.get('type', 'unknown')}"]
+    for key in (
+        "title", "entity", "signal_type", "summary", "rationale", "trigger",
+        "urgency", "evidence_quote", "source_domain", "fact_id",
+    ):
+        val = attachment.get(key)
+        if val:
+            lines.append(f"{key.replace('_', ' ').title()}: {val}")
+    for key in ("supporting_count", "against_count", "source_tier"):
+        val = attachment.get(key)
+        if val is not None:
+            lines.append(f"{key.replace('_', ' ').title()}: {val}")
+    conf = attachment.get("confidence")
+    if conf is not None:
+        lines.append(f"Confidence: {conf:.0%}")
+    return "\n".join(lines)
 
 
 def build_evidence_block(facts: list[FactObject]) -> str:
@@ -87,6 +111,7 @@ def answer_question(
     history: list[ChatMessage] | None = None,
     report: MarketPulseReport | None = None,
     retry_note: str = "",
+    context_attachment: dict | None = None,
 ) -> str:
     if not retrieved_facts:
         return (
@@ -97,6 +122,7 @@ def answer_question(
     system = _SYSTEM.format(
         report_json=json.dumps(_report_context(report), ensure_ascii=False),
         evidence=build_evidence_block(retrieved_facts),
+        context_attachment_block=_build_attachment_block(context_attachment),
         history=build_history_block(history),
     )
     user = retry_note or query

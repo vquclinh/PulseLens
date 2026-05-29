@@ -176,7 +176,9 @@ class PostgresAdapter(DatabaseAdapter):
                 """
                 SELECT report_id FROM reports
                 WHERE report_id LIKE 'report_%'
-                ORDER BY created_at DESC LIMIT 1
+                ORDER BY generated_at DESC NULLS LAST,
+                         created_at  DESC NULLS LAST
+                LIMIT 1
                 """
             )
         return row["report_id"] if row else None

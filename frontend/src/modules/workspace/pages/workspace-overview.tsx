@@ -269,12 +269,12 @@ function WatchItemCard({
       <div className="flex items-center justify-between border-t border-gray-100 pt-3">
         <span className="text-xs text-gray-500">{item.signals_pointing_there.length} signal refs</span>
         <Link
-          to="/chat?context=report"
+          to={`/chat?context=watch_item&title=${encodeURIComponent(item.title)}`}
           className="flex items-center gap-1 rounded-lg bg-blue-600 px-2.5 py-1.5 text-xs font-semibold text-white hover:bg-blue-700"
           onClick={e => e.stopPropagation()}
           tabIndex={suppressKeyboard ? -1 : undefined}
         >
-          <MessageSquare className="h-3 w-3" /> Chat
+          <MessageSquare className="h-3 w-3" /> Ask Chat
         </Link>
       </div>
     </article>
@@ -341,7 +341,7 @@ function WatchItemPopover({
 
       <div className="flex flex-wrap gap-2 border-t border-gray-100 pt-4">
         <Link
-          to="/chat?context=report"
+          to={`/chat?context=watch_item&title=${encodeURIComponent(item.title)}`}
           className="flex items-center gap-1.5 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
         >
           <MessageSquare className="h-4 w-4" /> Ask Chat
@@ -546,7 +546,7 @@ function RiskAlertCard({
 
       <div className="flex items-center gap-1.5 border-t border-amber-100 pt-3">
         <Link
-          to={`/chat?context=signal&signal=${c.signal_type}`}
+          to={`/chat?context=risk_alert&entity=${encodeURIComponent(c.entity)}&signal=${encodeURIComponent(c.signal_type)}`}
           className="flex items-center gap-1 rounded-lg border border-amber-200 bg-amber-50 px-2.5 py-1.5 text-xs font-semibold text-amber-700 hover:bg-amber-100"
           onClick={e => e.stopPropagation()}
           tabIndex={suppressKeyboard ? -1 : undefined}
@@ -632,7 +632,7 @@ function RiskAlertPopover({
 
       <div className="flex flex-wrap gap-2 border-t border-amber-100 pt-4">
         <Link
-          to={`/chat?context=signal&signal=${c.signal_type}`}
+          to={`/chat?context=risk_alert&entity=${encodeURIComponent(c.entity)}&signal=${encodeURIComponent(c.signal_type)}`}
           className="flex items-center gap-1.5 rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-600"
         >
           <MessageSquare className="h-4 w-4" /> Ask Chat

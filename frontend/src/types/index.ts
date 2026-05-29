@@ -206,10 +206,31 @@ export interface ChatMessage {
   cited_fact_ids: string[] | null
 }
 
+export interface ContextAttachment {
+  type: 'watch_item' | 'risk_alert' | 'fact' | 'company' | 'signal' | 'pricing' | 'report'
+  title?: string
+  entity?: string
+  signal_type?: string
+  summary?: string
+  rationale?: string
+  trigger?: string
+  urgency?: string
+  supporting_count?: number
+  against_count?: number
+  // Evidence fact fields
+  evidence_quote?: string
+  confidence?: number
+  source_domain?: string
+  source_tier?: number
+  fact_id?: string
+}
+
 export interface ChatRequest {
   query: string
   report_id: string
   history: ChatMessage[] | null
+  session_id?: string
+  context_attachment?: ContextAttachment
 }
 
 export interface ChatResponse {

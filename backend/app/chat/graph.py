@@ -1,9 +1,12 @@
 # Chat LangGraph StateGraph — per-session analyst chat (Self-RAG + FLARE-inspired)
+#
+# Graph nodes that touch the DB are async so they can `await` db_adapter methods
+# directly.  This keeps all DB operations on the FastAPI event loop and eliminates
+# the asyncio.run() / asyncpg "attached to a different loop" errors.
 from __future__ import annotations
 
 import logging
 import re
-import asyncio
 
 from langgraph.graph import END, START, StateGraph
 from langgraph.checkpoint.memory import MemorySaver
@@ -17,12 +20,12 @@ logger = logging.getLogger(__name__)
 _FACT_REF_RE = re.compile(r"\[(fact_[A-Za-z0-9_]+)\]")
 
 
-def retrieve_facts(state: ChatState) -> dict:
+async def retrieve_facts(state: ChatState) -> dict:
     """Semantic search over fact embeddings for this report."""
     report_id = state.get("report_id", "")
     query = state.get("current_query", "")
     logger.info("chat node: retrieve_facts report=%s", report_id)
-    facts = asyncio.run(db_adapter.search_facts(report_id, query, top_k=10))
+    facts = await db_adapter.search_facts(report_id, query, top_k=10)
     return {
         "retrieved_facts": facts,
         "retrieval_rounds": state.get("retrieval_rounds", 0),
@@ -30,25 +33,26 @@ def retrieve_facts(state: ChatState) -> dict:
 
 
 def build_prompt(state: ChatState) -> dict:
-    """Store the evidence block for observability/debugging."""
+    """Store the evidence block for observability/debugging. No DB calls — sync OK."""
     logger.info("chat node: build_prompt facts=%d", len(state.get("retrieved_facts") or []))
     return {"prompt": build_evidence_block(state.get("retrieved_facts") or [])}
 
 
-def analyst_chat(state: ChatState) -> dict:
+async def analyst_chat(state: ChatState) -> dict:
     """Agent 8 — grounded answer over retrieved facts."""
     logger.info("chat node: analyst_chat")
-    report = asyncio.run(db_adapter.load_report(state.get("report_id", "")))
+    report = await db_adapter.load_report(state.get("report_id", ""))
     response = answer_question(
         query=state.get("current_query", ""),
         retrieved_facts=state.get("retrieved_facts") or [],
         history=state.get("history") or [],
         report=report,
+        context_attachment=state.get("context_attachment"),
     )
     return {"response": response}
 
 
-def validate_citations(state: ChatState) -> dict:
+async def validate_citations(state: ChatState) -> dict:
     """
     Validate all [fact_id] citations in the response.
 
@@ -64,7 +68,7 @@ def validate_citations(state: ChatState) -> dict:
     if not invalid:
         return {"cited_fact_ids": cited, "invalid_citations": []}
 
-    report = asyncio.run(db_adapter.load_report(state.get("report_id", "")))
+    report = await db_adapter.load_report(state.get("report_id", ""))
     retry_note = (
         f"User question: {state.get('current_query', '')}\n\n"
         "The previous response cited fact IDs that are not in the retrieved "
@@ -78,6 +82,7 @@ def validate_citations(state: ChatState) -> dict:
         history=state.get("history") or [],
         report=report,
         retry_note=retry_note,
+        context_attachment=state.get("context_attachment"),
     )
     cited = _extract_citations(response)
     invalid = sorted(set(cited) - valid_ids)

@@ -17,3 +17,4 @@ class ChatState(TypedDict, total=False):
     invalid_citations: List[str]
     retrieval_rounds: int           # tracks FLARE active retrieval iterations
     errors: List[str]
+    context_attachment: Optional[dict]  # serialised ContextAttachment; None if absent

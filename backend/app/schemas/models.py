@@ -228,11 +228,32 @@ class ChatMessage(BaseModel):
     cited_fact_ids: Optional[List[str]]
 
 
+class ContextAttachment(BaseModel):
+    """Optional context card selected by the user in the PulseLens Overview."""
+    type: str                         # watch_item | risk_alert | fact | signal | ...
+    title: Optional[str] = None
+    entity: Optional[str] = None
+    signal_type: Optional[str] = None
+    summary: Optional[str] = None
+    rationale: Optional[str] = None
+    trigger: Optional[str] = None
+    urgency: Optional[str] = None
+    supporting_count: Optional[int] = None
+    against_count: Optional[int] = None
+    # Evidence fact fields
+    evidence_quote: Optional[str] = None
+    confidence: Optional[float] = None
+    source_domain: Optional[str] = None
+    source_tier: Optional[int] = None
+    fact_id: Optional[str] = None
+
+
 class ChatRequest(BaseModel):
     query: str
     report_id: str
     session_id: Optional[str] = None
     history: Optional[List[ChatMessage]]
+    context_attachment: Optional[ContextAttachment] = None
 
 
 class ChatResponse(BaseModel):
