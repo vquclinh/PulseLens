@@ -1,1 +1,327 @@
 # PulseLens
+
+**AI-powered market intelligence that turns raw web signals into verified, traceable insights.**
+
+---
+
+## What is PulseLens?
+
+PulseLens is a full-stack, multi-agent market intelligence platform. It autonomously scrapes the web, extracts structured financial facts, verifies every claim against its source, scores sentiment with FinBERT, triangulates across sources, and delivers a grounded market pulse report through a React workspace.
+
+The current demo targets the **US AI Hardware / Semiconductor** sector with three companies: **Nvidia, AMD, and Supermicro**. The demo is not production-ready and is not intended for financial decision-making.
+
+---
+
+## Why it matters
+
+Financial analysts spend most of their time locating, reading, and cross-checking sources before they can produce a coherent signal. Existing tools either surface raw headlines (high noise) or provide black-box scores with no traceable evidence chain.
+
+PulseLens addresses this by:
+
+- Building an evidence trail from web document to atomic fact to verified claim to final narrative
+- Grounding every claim in peer-reviewed NLP methods (SAFE, FActScore, FinBERT, Multi-HyDE, STORM)
+- Exposing the full pipeline audit trail in the UI so analysts can inspect, challenge, and trust the output
+
+---
+
+## Key Features
+
+| Feature | Description |
+|---|---|
+| **Intelligence Workspace** | Tabbed analysis workspace: Overview, Evidence, Pricing, Signals, Companies, Pipeline |
+| **Evidence Explorer** | Browse and filter all extracted facts by signal type, confidence, and company |
+| **Pricing Intelligence** | Dedicated view for pricing_pressure signals across tracked companies |
+| **Signal Radar** | Cross-company signal coverage heatmap across all 7 signal types |
+| **Company Lens** | Per-company narrative, momentum label, and tier badge |
+| **Trust and Pipeline** | Full pipeline audit log: quality gate status, fact counts, source counts, expansion rounds |
+| **Grounded Chat** | RAG analyst chat (Agent 8) backed by retrieved facts; every answer cites fact IDs |
+| **Context Attachments** | Chat deeplinks accept URL params (`?context=...`) to pre-attach a watch item, risk alert, company, signal, or fact as chat context |
+| **SAFE-style Verification** | Every extracted fact is checked for atomic claim validity before entering the quality gate |
+| **Postgres / Supabase + SQLite** | Default SQLite; switch to Postgres/Supabase at runtime via `DATABASE_BACKEND=postgres` |
+| **Bright Data Collection** | Agent 2 uses Bright Data's web unlocker to collect IR pages, SEC filings, pricing pages, and news |
+
+---
+
+## Architecture
+
+```
+                        +-----------------------+
+                        |   React + Vite SPA    |
+                        |  (port 5173)          |
+                        |  Workspace / Chat     |
+                        +-----------+-----------+
+                                    | /api  (proxied)
+                        +-----------v-----------+
+                        |   FastAPI + Uvicorn   |
+                        |  (port 8000)          |
+                        |  /api/run             |
+                        |  /api/report/{id}     |
+                        |  /api/report/{id}/facts|
+                        |  /api/chat            |
+                        |  /api/stock/{ticker}  |
+                        +-----------+-----------+
+                                    |
+                    +---------------+---------------+
+                    |                               |
+        +-----------v-----------+   +---------------v---------+
+        |  LangGraph Pipeline   |   |  LangGraph Chat Graph   |
+        |  (app/pipeline/)      |   |  (app/chat/)            |
+        |                       |   |  Agent 8 Self-RAG       |
+        |  agent1 query planner |   +-------------------------+
+        |  agent2 web collector |
+        |  validate_and_split   |
+        |  quality_gate         |
+        |  agent4 FinBERT scorer|
+        |  agent5 triangulator  |
+        |  company_narratives   |
+        |  report_assembler     |
+        |  agent6 + agent7      |
+        |  (parallel)           |
+        +-----------+-----------+
+                    |
+        +-----------v-----------+
+        |  SQLite / Postgres    |
+        |  (aiosqlite /         |
+        |   asyncpg)            |
+        +-----------------------+
+```
+
+**Layer descriptions:**
+
+- **Frontend** — Vite 6 + React 18 + TypeScript 5.6 + TailwindCSS 4 SPA. Single Zustand store drives active tab and chat panel state. All API calls go through `src/lib/api-client.ts`.
+- **FastAPI layer** — Three routers (`report`, `chat`, `stock`) mounted under `/api`. CORS is configurable. Database adapter singleton is selected at startup via `DATABASE_BACKEND` env var.
+- **LangGraph pipeline** — Linear `StateGraph` with a conditional quality gate. The gate enforces `MIN_FACTS=50` and `MIN_SOURCE_COUNT=15`; on failure it routes back to Agent 1 for up to 2 regeneration rounds.
+- **LangGraph chat graph** — 4-node graph: `retrieve_facts → build_prompt → analyst_chat → validate_citations`. Retries once on hallucinated fact IDs (Self-RAG pattern).
+- **Storage** — Async SQLite by default (`backend/data/pulselens.db`). Switchable to Postgres/Supabase via env vars.
+
+---
+
+## Repository Structure
+
+```
+PulseLens/
+├── backend/
+│   ├── app/
+│   │   ├── api/          # FastAPI routers (report, chat, stock)
+│   │   ├── chat/         # Agent 8 chat graph + state
+│   │   ├── config/       # Demo scope config
+│   │   ├── db/           # SQLite + Postgres adapters
+│   │   ├── pipeline/     # LangGraph nodes + graph
+│   │   ├── schemas/      # Pydantic models
+│   │   └── utils/        # LLM client, helpers
+│   ├── data/             # pulselens.db (SQLite, git-tracked binary)
+│   ├── scripts/          # CLI audit and migration scripts
+│   ├── tests/            # Zero-cost static tests (pipeline/)
+│   ├── main.py           # FastAPI app entry point
+│   ├── run_pipeline.py   # CLI pipeline runner
+│   └── requirements.txt
+├── frontend/
+│   ├── src/
+│   │   ├── hooks/        # useChat, useReport
+│   │   ├── lib/          # api-client.ts
+│   │   ├── modules/      # chat/, workspace/ (overview, evidence, pricing, signals, companies, pipeline)
+│   │   ├── shared/       # Navbar, Badge, SentimentBadge, Sparkline, FactIdChip
+│   │   ├── store/        # dashboard-store.ts (Zustand)
+│   │   ├── types/        # index.ts mirrors backend Pydantic models
+│   │   └── App.tsx
+│   ├── package.json
+│   └── vite.config.ts
+├── docs/
+├── papers/               # Research papers referenced by the pipeline
+├── pipeline_audit_artifacts/
+├── ARCHITECTURE.md
+├── CLAUDE.md             # Authoritative codebase guide for contributors
+└── README.md
+```
+
+---
+
+## Local Setup
+
+### Prerequisites
+
+- Python (the project was developed against Python 3.14; Python 3.11+ should work)
+- Node.js 20+
+- An [OpenRouter](https://openrouter.ai) API key (required for LLM calls)
+- A [Bright Data](https://brightdata.com) API key (required to run the live pipeline)
+
+### Backend
+
+```bash
+cd backend
+
+# Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment
+cp .env.example .env
+# Edit .env and fill in your API keys (see Environment Variables below)
+
+# Start the API server
+uvicorn main:app --reload
+# Server listens on http://localhost:8000
+```
+
+### Frontend
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start the dev server (proxies /api to localhost:8000)
+npm run dev
+# Opens at http://localhost:5173
+```
+
+---
+
+## Environment Variables
+
+Copy `backend/.env.example` to `backend/.env` and fill in the values. **Never commit `.env`.**
+
+| Variable | Required | Description |
+|---|---|---|
+| `OPENROUTER_API_KEY` | Yes | LLM calls for all agents (routed via OpenRouter) |
+| `BRIGHTDATA_API_KEY` | Yes (pipeline) | Web collection — Bright Data unlocker |
+| `ALPHA_VANTAGE_API_KEY` | Optional | Stock price context for `/api/stock/{ticker}` |
+| `PULSELENS_DEMO_SCOPE` | Optional | `true` = Track 2 demo slice (Nvidia/AMD/Supermicro). Default: `true` |
+| `QUALITY_MIN_FACTS` | Optional | Minimum facts to pass quality gate. **Do not lower below 50.** |
+| `QUALITY_MIN_SOURCE_COUNT` | Optional | Minimum source domains to pass quality gate. **Do not lower below 15.** |
+| `AGENT1_MODEL` | Optional | LLM model for Agent 1 query planner. Default: `google/gemini-2.5-flash` |
+| `FINBERT_MODEL` | Optional | FinBERT model for Agent 4 sentiment scoring. Default: `ProsusAI/finbert` |
+| `DATABASE_BACKEND` | Optional | `sqlite` (default) or `postgres` |
+| `DATABASE_URL` | Postgres only | `postgresql://user:password@host:port/dbname` |
+| `CORS_ORIGINS` | Optional | Comma-separated allowed origins. Default: `http://localhost:5173` |
+
+---
+
+## Running the Pipeline
+
+> **Warning:** Running the live pipeline makes real API calls to OpenRouter and Bright Data. Both services bill per use. A full pipeline run costs a non-trivial amount and takes approximately 8-10 minutes.
+
+```bash
+cd backend
+
+# Full pipeline run (writes report_id to /tmp/pulselens_report_id.txt)
+python run_pipeline.py
+
+# Live demo runner (demo Track 2 AI hardware slice, writes full artifact bundle)
+python scripts/demo_track2_ai_hardware_audit.py
+
+# Zero-cost DB check (no API calls — reads existing database)
+python scripts/check_latest_report.py
+
+# Offline evidence quality audit against a stored report (no API calls)
+python scripts/evidence_quality_audit.py --report-id <report_id>
+```
+
+The pipeline auto-loads the most recent stored report in the frontend on startup. If no report exists in the database, the workspace shows a "Generate Analysis" button that triggers `POST /api/run`.
+
+---
+
+## Checks and Builds
+
+### Frontend
+
+```bash
+cd frontend
+
+# Type-check + production build
+npm run build
+
+# Serve the production build locally
+npm run preview
+```
+
+### Backend (zero-cost static tests)
+
+```bash
+cd backend
+
+# Agent 1 expansion stability guard (4 tests, no API keys needed)
+python tests/pipeline/test_agent1_expansion_stability.py
+
+# Agent 1 signal balance guard (15 tests, no API keys needed)
+python tests/pipeline/test_agent1_signal_balance.py
+
+# Syntax check a module quickly
+python -m py_compile app/pipeline/graph.py
+```
+
+Do not run `pytest` over the entire backend suite unless live API keys are available and the API cost is acceptable.
+
+---
+
+## API Overview
+
+All endpoints are prefixed with `/api`. The Vite dev proxy forwards requests from port 5173 to port 8000.
+
+| Method | Path | Description |
+|---|---|---|
+| `GET` | `/api/reports/latest` | Returns the most recent `report_id` stored in the database |
+| `GET` | `/api/report/{report_id}` | Returns the full `MarketPulseReport` JSON for a given report |
+| `GET` | `/api/report/{report_id}/facts` | Returns the list of `FactObject[]` for a given report |
+| `POST` | `/api/run` | Triggers the LangGraph pipeline asynchronously; returns a new `report_id` |
+| `POST` | `/api/chat` | Sends a message to the RAG analyst chat; returns `response`, `cited_facts`, `session_id` |
+| `GET` | `/api/stock/{ticker}` | Returns cached stock price context from Alpha Vantage (4-hour cache) |
+
+**Chat request** accepts an optional `context_attachment` field with `attachment_type` values: `watch_item`, `risk_alert`, `fact`, `company`, `signal`, `pricing`, `report`.
+
+---
+
+## Demo Limitations
+
+This is a research-grade demo, not a production system. Known limitations:
+
+- **Single demo market:** Only US AI Hardware (Nvidia, AMD, Supermicro) is covered. Multi-market support is planned.
+- **In-memory chat history:** Chat session history is stored in the browser only. Refreshing the page clears the conversation.
+- **Source URL quality:** The pipeline relies on Bright Data's web unlocker. Some source URLs may be inaccessible or low-quality depending on site structure and rate limits.
+- **No real-time data:** The pipeline must be run manually (or triggered via the UI). There is no scheduled refresh.
+- **Hiring momentum coverage:** The `hiring_momentum` signal type requires dedicated job-board collection that is not yet wired into the demo scope. Expect zero hiring facts.
+- **Backend is frozen for the current sprint:** The backend codebase is intentionally frozen at Sprint 8. All active development is on the frontend.
+- **Not for financial decisions:** PulseLens is a research prototype. Do not use its output for investment or trading decisions.
+
+---
+
+## Roadmap
+
+- Multi-market support (US Fintech, European Energy, etc.)
+- Persistent chat history stored in the database
+- Canonical source URL normalization and deduplication
+- Scheduled pipeline refresh (cron-triggered)
+- Streaming chat responses
+- User authentication and per-user report history
+- Hiring momentum signal via job-board integration
+- Export report to PDF / structured JSON
+- Configurable company watchlist
+
+---
+
+## Screenshots
+
+_Screenshots will be added here once the Sprint 0 Home page productization is complete._
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## Contributing
+
+Contributions are welcome. Before opening a pull request:
+
+1. Read `CLAUDE.md` — it is the authoritative guide for this codebase and documents hard constraints (quality gate thresholds, signal balance constants) that must not be changed.
+2. All frontend work should use `src/lib/api-client.ts` for API calls. Do not add new fetch functions to the legacy `src/types/api.ts`.
+3. Backend is currently frozen. Frontend-only changes are the active focus.
+4. Run the zero-cost static tests before submitting: `python tests/pipeline/test_agent1_expansion_stability.py` and `python tests/pipeline/test_agent1_signal_balance.py`.
+
+For questions, open an issue.
