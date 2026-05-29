@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import type { FactObject, MarketPulseReport, SignalType } from '@/types/api'
 import { formatDate } from '@/lib/utils'
 import SentimentBadge from '@/shared/components/sentiment-badge'
@@ -27,6 +27,11 @@ const SIGNAL_OPTIONS: { value: SignalType | 'all'; label: string }[] = [
   { value: 'news_sentiment', label: 'News Sentiment' },
   { value: 'hiring_momentum', label: 'Hiring Momentum' },
 ]
+
+// Set of valid SignalType strings for query-param validation
+const VALID_SIGNALS: ReadonlySet<string> = new Set(
+  SIGNAL_OPTIONS.filter(o => o.value !== 'all').map(o => o.value),
+)
 
 const ENTITY_BASE_OPTIONS = ['Nvidia', 'AMD', 'Supermicro', 'market']
 
@@ -189,12 +194,44 @@ export default function EvidenceExplorerPage({
   factsLoading,
   factsError,
 }: EvidenceExplorerPageProps) {
+  const [searchParams, setSearchParams] = useSearchParams()
+
+  // Read ?signal= query param once on mount to support deep-links from Signal Cockpit.
+  // Invalid or missing params default to 'all'.
+  const signalParam = searchParams.get('signal')
+  const initialLinkedSignal: SignalType | null =
+    signalParam && VALID_SIGNALS.has(signalParam) ? (signalParam as SignalType) : null
+
   const [search, setSearch] = useState('')
-  const [signalFilter, setSignalFilter] = useState<SignalType | 'all'>('all')
+  const [signalFilter, setSignalFilter] = useState<SignalType | 'all'>(
+    initialLinkedSignal ?? 'all',
+  )
+  const [linkedSignal, setLinkedSignal] = useState<SignalType | null>(initialLinkedSignal)
   const [entityFilter, setEntityFilter] = useState('all')
   const [tierFilter, setTierFilter] = useState<TierFilter>('all')
   const [safeFilter, setSafeFilter] = useState<SafeFilter>('all')
   const [sortMode, setSortMode] = useState<SortMode>('confidence_desc')
+
+  // Scroll anchor for deep-link navigation.
+  // Placed between the summary cards and the linked-filter banner.
+  const filterAreaRef = useRef<HTMLDivElement>(null)
+  const NAVBAR_H = 72  // sticky navbar height in px
+
+  // On mount: scroll to the filter area when deep-linked (linked signal present),
+  // otherwise fall back to plain window top.  Runs once per mount — does NOT
+  // re-fire when the user types in search or changes filters manually.
+  useEffect(() => {
+    if (initialLinkedSignal && filterAreaRef.current) {
+      const top =
+        filterAreaRef.current.getBoundingClientRect().top +
+        window.scrollY -
+        NAVBAR_H -
+        8  // 8px breathing room above the banner
+      window.scrollTo({ top: Math.max(0, top) })
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const sourceDomains = useMemo(() => new Set(facts.map((fact) => sourceDomain(fact.source_url))), [facts])
   const tierOneTwoDomains = useMemo(
@@ -230,7 +267,21 @@ export default function EvidenceExplorerPage({
     setTierFilter('all')
     setSafeFilter('all')
     setSortMode('confidence_desc')
+    if (linkedSignal) {
+      setLinkedSignal(null)
+      setSearchParams(p => { p.delete('signal'); return p })
+    }
   }
+
+  function clearLinkedFilter() {
+    setSignalFilter('all')
+    setLinkedSignal(null)
+    setSearchParams(p => { p.delete('signal'); return p })
+  }
+
+  const linkedSignalLabel = linkedSignal
+    ? (SIGNAL_OPTIONS.find(o => o.value === linkedSignal)?.label ?? linkedSignal)
+    : null
 
   if (factsLoading) {
     return (
@@ -274,6 +325,25 @@ export default function EvidenceExplorerPage({
         <SummaryCard label="Source Domains" value={sourceDomains.size} detail="Unique domains represented" />
         <SummaryCard label="Tier 1/2 Sources" value={tierOneTwoDomains.size} detail="High-credibility domains" />
       </div>
+
+      {/* Zero-height scroll anchor — deep-link from Signal Cockpit targets this */}
+      <div ref={filterAreaRef} />
+
+      {linkedSignal && (
+        <div className="flex items-center justify-between gap-4 rounded-xl border border-blue-200 bg-blue-50/60 px-5 py-3">
+          <p className="text-sm text-blue-800">
+            Showing evidence linked from Signal Cockpit:{' '}
+            <span className="font-semibold">{linkedSignalLabel}</span>
+          </p>
+          <button
+            type="button"
+            onClick={clearLinkedFilter}
+            className="shrink-0 rounded-lg border border-blue-300 bg-white px-3 py-1.5 text-xs font-semibold text-blue-700 hover:bg-blue-50"
+          >
+            Clear linked filter
+          </button>
+        </div>
+      )}
 
       <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="grid gap-4 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1fr]">
@@ -345,7 +415,11 @@ export default function EvidenceExplorerPage({
       ) : filteredFacts.length === 0 ? (
         <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
           <h3 className="text-xl font-bold text-gray-950">No facts match these filters</h3>
-          <p className="mt-2 text-sm text-gray-500">Clear filters or broaden the search query.</p>
+          <p className="mt-2 text-sm text-gray-500">
+            {linkedSignal
+              ? `No evidence facts for ${linkedSignalLabel} in the latest report.`
+              : 'Clear filters or broaden the search query.'}
+          </p>
         </div>
       ) : (
         <div className="grid gap-4">

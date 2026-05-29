@@ -7,6 +7,56 @@
   letter-spacing: 0.01em;
 }
 
+/* Infinite horizontal marquee — used by workspace overview rows */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-viewport {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  /* width: max-content is REQUIRED so translateX(-50%) measures the actual
+     content width, not the viewport.  Without it the browser constrains the
+     track to the parent width and the loop jump is visible. */
+  width: max-content;
+  animation: marquee-scroll linear infinite;
+  will-change: transform;
+}
+
+/*
+ * Each group renders one full copy of the card list.
+ * padding-right matches the gap so the seam between group-1 end and
+ * group-2 start has the same visual spacing as every other card gap.
+ */
+.marquee-group {
+  display: flex;
+  flex-shrink: 0;
+  gap: 1.25rem;          /* 20px between cards */
+  padding-right: 1.25rem;/* equal gap at loop boundary */
+}
+
+/* Pause when a parent adds .marquee-paused */
+.marquee-paused .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Respect user's reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+  .marquee-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 :root {
   --pulse-heating: #16a34a;
   --pulse-stable: #2563eb;
