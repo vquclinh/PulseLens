@@ -70,55 +70,9 @@ These documents feed the full downstream pipeline: fact extraction → SAFE-styl
 
 ## Architecture
 
-```
-                        +-----------------------+
-                        |   React + Vite SPA    |
-                        |  (port 5173)          |
-                        |  Workspace / Chat     |
-                        +-----------+-----------+
-                                    | /api  (proxied)
-                        +-----------v-----------+
-                        |   FastAPI + Uvicorn   |
-                        |  (port 8000)          |
-                        |  /api/run             |
-                        |  /api/report/{id}     |
-                        |  /api/report/{id}/facts|
-                        |  /api/chat            |
-                        |  /api/stock/{ticker}  |
-                        +-----------+-----------+
-                                    |
-                    +---------------+---------------+
-                    |                               |
-        +-----------v-----------+   +---------------v---------+
-        |  LangGraph Pipeline   |   |  LangGraph Chat Graph   |
-        |  (app/pipeline/)      |   |  (app/chat/)            |
-        |                       |   |  Agent 8 Self-RAG       |
-        |  agent1 query planner |   +-------------------------+
-        |  agent2 web collector |
-        |  validate_and_split   |
-        |  quality_gate         |
-        |  agent4 FinBERT scorer|
-        |  agent5 triangulator  |
-        |  company_narratives   |
-        |  report_assembler     |
-        |  agent6 + agent7      |
-        |  (parallel)           |
-        +-----------+-----------+
-                    |
-        +-----------v-----------+
-        |  SQLite / Postgres    |
-        |  (aiosqlite /         |
-        |   asyncpg)            |
-        +-----------------------+
-```
+PulseLens is structured as a full-stack market intelligence system: live web collection, agentic processing, source-backed fact storage, FastAPI endpoints, and a React analyst workspace.
 
-**Layer descriptions:**
-
-- **Frontend** — Vite 6 + React 18 + TypeScript 5.6 + TailwindCSS 4 SPA. Single Zustand store drives active tab and chat panel state. All API calls go through `src/lib/api-client.ts`.
-- **FastAPI layer** — Three routers (`report`, `chat`, `stock`) mounted under `/api`. CORS is configurable. Database adapter singleton is selected at startup via `DATABASE_BACKEND` env var.
-- **LangGraph pipeline** — Linear `StateGraph` with a conditional quality gate. The gate enforces `MIN_FACTS=50` and `MIN_SOURCE_COUNT=15`; on failure it routes back to Agent 1 for up to 2 regeneration rounds.
-- **LangGraph chat graph** — 4-node graph: `retrieve_facts → build_prompt → analyst_chat → validate_citations`. Retries once on hallucinated fact IDs (Self-RAG pattern).
-- **Storage** — Async SQLite by default (`backend/data/pulselens.db`). Switchable to Postgres/Supabase via env vars.
+![PulseLens Architecture](frontend/src/assets/architecture.png)
 
 ---
 
