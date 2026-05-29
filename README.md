@@ -11,9 +11,9 @@ PulseLens is an analyst workspace that turns live web signals into source-backed
 
 ---
 
-## The problem with current market intelligence
+## The Market Intelligence Gap
 
-Financial analysts spend most of their time locating, reading, and cross-checking sources before they can form a signal. Existing tools either surface raw headlines (high noise) or output black-box scores with no traceable evidence chain — leaving analysts unable to audit or challenge the output.
+Financial analysts spend most of their time locating, reading, and cross-checking sources before they can form a coherent signal. Existing tools either surface raw headlines (high noise) or output black-box scores with no traceable evidence chain — leaving analysts unable to audit or challenge the output.
 
 PulseLens approaches this differently:
 
@@ -21,6 +21,32 @@ PulseLens approaches this differently:
 - Claims are triangulated across multiple independent sources before scoring
 - The full pipeline audit trail — queries, document counts, quality gates, expansion rounds — is exposed in the UI
 - The grounded chat assistant cites specific facts and refuses to fabricate when evidence is insufficient
+
+---
+
+## Core Infrastructure
+
+| Layer | Tools |
+|---|---|
+| Web access | **Bright Data** — SERP API, Web Unlocker, Browser API |
+| Agent orchestration | LangGraph multi-agent pipeline |
+| LLM reasoning | OpenRouter-hosted models (Google Gemini 2.5 Flash by default) |
+| Sentiment scoring | FinBERT (`ProsusAI/finbert`) |
+| Backend API | FastAPI + Uvicorn |
+| Frontend | React 18, Vite 6, TypeScript 5.6, TailwindCSS 4 |
+| Storage | Supabase / Postgres with SQLite fallback |
+
+### Web collection via Bright Data
+
+Agent 2 (web collection) uses Bright Data as its exclusive web access layer:
+
+- **SERP API** — issues structured search queries across news, investor relations, pricing, and market coverage sources
+- **Web Unlocker** — fetches and unlocks individual source pages (IR pages, SEC filings, news articles)
+- **Browser API** — handles JavaScript-rendered pricing pages and sites that require browser-level rendering
+
+These documents feed the full downstream pipeline: fact extraction → SAFE-style verification → FinBERT scoring → cross-source triangulation → report assembly.
+
+> **Note:** The live pipeline should not be run casually. Bright Data and OpenRouter calls are billed per use. A full run costs a non-trivial amount and takes approximately 8–10 minutes.
 
 ---
 
