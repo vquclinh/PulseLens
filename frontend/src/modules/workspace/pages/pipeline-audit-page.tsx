@@ -121,9 +121,6 @@ export default function PipelineAuditPage({ report, facts = [], factsLoading, fa
               How PulseLens collects, verifies, scores, and stores market intelligence.
             </p>
           </div>
-          <span className="shrink-0 font-mono text-xs text-gray-400">
-            Report: <span className="font-semibold text-gray-600">{report.report_id}</span>
-          </span>
         </div>
       </div>
 

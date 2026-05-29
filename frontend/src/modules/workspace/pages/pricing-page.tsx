@@ -369,7 +369,7 @@ export default function PricingPage({
           <TrendingDown className="mx-auto h-10 w-10 text-gray-300" />
           <h3 className="mt-3 text-lg font-bold text-gray-900">No pricing-pressure facts found</h3>
           <p className="mt-2 text-sm text-gray-500 max-w-md mx-auto">
-            The latest report <span className="font-mono">{report.report_id}</span> is loaded, but it does not contain any evidence labeled with the <span className="font-semibold">pricing_pressure</span> signal type.
+            The latest report is loaded, but it does not contain any evidence labeled with the <span className="font-semibold">pricing_pressure</span> signal type.
           </p>
           <div className="mt-6 flex justify-center gap-3">
             <Link
@@ -404,11 +404,8 @@ export default function PricingPage({
             </div>
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-gray-950">Pricing Intelligence</h2>
             <p className="mt-3 max-w-3xl text-base leading-relaxed text-gray-600">
-              Live evidence-backed facts on cloud hardware pricing pressure, GPU rental rates, and semiconductor wholesale margins. Every statement is loaded from <span className="font-mono text-slate-800 bg-slate-100 px-1 py-0.5 rounded">/api/report/{report.report_id}/facts</span>.
+              Live evidence-backed facts on cloud hardware pricing pressure, GPU rental rates, and semiconductor wholesale margins.
             </p>
-          </div>
-          <div className="shrink-0 text-right text-xs text-gray-400 font-mono">
-            Report ID: <span className="font-semibold text-gray-600">{report.report_id}</span>
           </div>
         </div>
       </div>

@@ -358,7 +358,7 @@ export default function EvidenceExplorerPage({
             <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">Evidence Explorer</p>
             <h2 className="mt-1 text-2xl font-bold text-gray-950">Source-backed facts</h2>
             <p className="mt-1 text-sm text-gray-500">
-              {facts.length} facts · <span className="font-mono text-xs">{report.report_id}</span>
+              {facts.length} facts from the latest report
             </p>
           </div>
           <SummaryChips

@@ -213,9 +213,6 @@ export default function SignalsPage({ report, facts = [], factsLoading, factsErr
               </p>
             </div>
           </div>
-          <span className="shrink-0 font-mono text-xs text-gray-400">
-            Report: <span className="font-semibold text-gray-600">{report.report_id}</span>
-          </span>
         </div>
       </div>
 

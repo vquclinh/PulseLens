@@ -8,7 +8,7 @@ import { useChat } from '@/hooks/use-chat'
 import type { AttachmentSnippet, MessageWithFacts } from '@/hooks/use-chat'
 import { fetchLatestReportId, fetchReport, fetchReportFacts } from '@/lib/api-client'
 import type { ContextAttachment, MarketPulseReport, FactObject } from '@/types/api'
-import { FileText, Building2, Activity, Tag, BarChart2, Eye, AlertTriangle, X } from 'lucide-react'
+import { FileText, Building2, Activity, Tag, BarChart2, Eye, AlertTriangle, X, Info } from 'lucide-react'
 
 // Formats report.generated_at as "Report updated May 28, 2026 · 04:05 UTC"
 function formatReportTimestamp(ts: string | null | undefined): string {
@@ -533,7 +533,27 @@ export default function ChatPage() {
           </div>
         )}
 
-        {data?.report_id && <ChatConsole reportId={data.report_id} />}
+        {data?.report_id && (
+          /* Desktop: chat box left, notice card right.
+             Mobile/tablet: notice card stacks below the chat box. */
+          <div className="flex flex-col xl:flex-row xl:items-start gap-4 xl:gap-6">
+            <div className="flex-1 min-w-0">
+              <ChatConsole reportId={data.report_id} />
+            </div>
+
+            {/* Demo notice card — right side on xl+, below on smaller screens */}
+            <aside className="xl:w-64 shrink-0 rounded-2xl border border-blue-100 bg-blue-50/60 px-5 py-4 shadow-sm">
+              <div className="flex items-center gap-2 mb-2">
+                <Info className="h-4 w-4 text-blue-500 shrink-0" />
+                <p className="text-xs font-bold uppercase tracking-wide text-blue-600">Demo notice</p>
+              </div>
+              <p className="text-xs leading-relaxed text-gray-600">
+                Chat history is temporary in this demo. If you leave or refresh the chat page, this
+                conversation may be cleared. Persistent chat history is planned for a future version.
+              </p>
+            </aside>
+          </div>
+        )}
       </main>
     </div>
   )

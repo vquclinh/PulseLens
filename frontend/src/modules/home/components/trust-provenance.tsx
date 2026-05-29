@@ -43,7 +43,7 @@ export default function TrustProvenance({
         ))}
       </div>
       <div className="text-[11px] text-gray-400 max-w-[180px]">
-        Report <span className="font-mono">{reportId}</span>
+        Latest report
       </div>
     </section>
   )

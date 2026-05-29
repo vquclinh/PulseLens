@@ -254,15 +254,12 @@ export default function CompaniesPage({ report, facts = [], factsLoading, factsE
             <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-gray-950">Company Lens</h2>
             <p className="mt-2 max-w-2xl text-base leading-relaxed text-gray-600">
               Compare company momentum, risks, and evidence from the latest report.
-              All metrics are derived from live <span className="font-mono text-sm bg-slate-100 px-1 rounded">/api/report/{report.report_id}/facts</span>.
+              All metrics are derived from live report evidence.
             </p>
             <p className="mt-3 text-xs text-gray-400 max-w-2xl">
               Company reads are synthesized from the latest report. Evidence counts and signal distributions are computed from source-backed facts.
             </p>
           </div>
-          <span className="shrink-0 font-mono text-xs text-gray-400">
-            Report: <span className="font-semibold text-gray-600">{report.report_id}</span>
-          </span>
         </div>
 
         {/* Quick insight summary chips — derived from live companyStats */}

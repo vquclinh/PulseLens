@@ -255,7 +255,7 @@ export default function WorkspacePage({ view }: WorkspacePageProps) {
           <div className="flex flex-col gap-6">
             <div>
               <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">Intelligence Workspace</p>
-              <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-950">{report.market}</h1>
+              <h1 className="font-logo mt-2 text-4xl text-gray-950">{report.market}</h1>
               <p className="mt-3 max-w-3xl text-base leading-7 text-gray-600">
                 Analyst workspace for evidence, signals, company lenses, pricing pressure, and pipeline transparency.
               </p>
