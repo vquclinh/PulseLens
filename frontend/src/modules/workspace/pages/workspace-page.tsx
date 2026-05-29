@@ -281,7 +281,7 @@ export default function WorkspacePage({ view }: WorkspacePageProps) {
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-5">
             <div className="text-sm text-gray-500">
-              Generated {formatDate(report.generated_at)} · Report <span className="font-mono">{report.report_id}</span>
+              Generated {formatDate(report.generated_at)}
             </div>
             {report.quality_reasons.length > 0 && (
               <div className="max-w-3xl text-sm text-amber-700">

@@ -112,11 +112,22 @@ function SelectControl({ label, value, onChange, children }: {
 // When a selected card expands, only its grid row grows; all other rows
 // are unaffected.
 
+/** True when a source_url points only to a root domain (no meaningful article path). */
+function isGenericSourceUrl(url: string): boolean {
+  try {
+    const { pathname } = new URL(url)
+    return pathname === '/' || pathname === '' || pathname === '//'
+  } catch {
+    return false
+  }
+}
+
 function EvidenceCard({ fact, isSelected, onClick }: {
   fact: FactObject; isSelected: boolean; onClick: () => void
 }) {
   const [copied, setCopied] = useState(false)
   const domain = sourceDomain(fact.source_url)
+  const genericUrl = isGenericSourceUrl(fact.source_url)
 
   function handleCopy(e: React.MouseEvent) {
     e.stopPropagation()
@@ -206,10 +217,16 @@ function EvidenceCard({ fact, isSelected, onClick }: {
           href={fact.source_url}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-1.5 rounded-lg border border-gray-300 px-2.5 py-1.5 text-xs font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
+          title={genericUrl ? 'Domain-only source link — may not link to the exact article' : fact.source_url}
+          className={[
+            'flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-semibold transition-colors',
+            genericUrl
+              ? 'border-amber-200 text-amber-700 hover:bg-amber-50'
+              : 'border-gray-300 text-gray-700 hover:bg-gray-50',
+          ].join(' ')}
         >
           <ExternalLink className="h-3.5 w-3.5" />
-          Source
+          {genericUrl ? 'Domain link' : 'Source'}
         </a>
         <Link
           to={`/chat?context=fact&fact_id=${fact.fact_id}`}

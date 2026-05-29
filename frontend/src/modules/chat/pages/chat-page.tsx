@@ -10,6 +10,23 @@ import { fetchLatestReportId, fetchReport, fetchReportFacts } from '@/lib/api-cl
 import type { ContextAttachment, MarketPulseReport, FactObject } from '@/types/api'
 import { FileText, Building2, Activity, Tag, BarChart2, Eye, AlertTriangle, X } from 'lucide-react'
 
+// Formats report.generated_at as "Report updated May 28, 2026 · 04:05 UTC"
+function formatReportTimestamp(ts: string | null | undefined): string {
+  if (!ts) return 'Latest report loaded'
+  try {
+    const d = new Date(ts)
+    const date = d.toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+    })
+    const time = d.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC',
+    })
+    return `Report updated ${date} · ${time} UTC`
+  } catch {
+    return 'Latest report loaded'
+  }
+}
+
 // ─── Context card (shown for all context types) ───────────────────────────────
 
 function ContextCard({
@@ -385,7 +402,7 @@ function ChatConsole({ reportId }: { reportId: string }) {
           <p className="text-xs font-semibold uppercase tracking-wide text-blue-600">Analyst Chat</p>
           <h1 className="mt-1 text-2xl font-bold text-gray-950">Ask questions grounded in latest report evidence</h1>
         </div>
-        <p className="text-xs text-gray-400">Report ID: <span className="font-mono font-medium">{reportId}</span></p>
+        <p className="text-xs text-gray-400">{formatReportTimestamp(report?.generated_at)}</p>
       </div>
 
       {/* Scrollable message area */}
@@ -436,6 +453,7 @@ function ChatConsole({ reportId }: { reportId: string }) {
                 key={index}
                 message={message}
                 attachmentSnippet={(message as MessageWithFacts).attachmentSnippet}
+                citedFacts={(message as MessageWithFacts).cited_facts}
               />
             ))}
             {isPending && (

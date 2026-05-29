@@ -1,6 +1,8 @@
 # Chat API — POST /api/chat runs RAG over stored facts and returns grounded response.
 from __future__ import annotations
 
+import re
+
 from fastapi import APIRouter, HTTPException
 from langchain_core.runnables import RunnableConfig
 
@@ -11,6 +13,29 @@ from app.schemas.models import ChatRequest, ChatResponse
 from app.utils.helpers import generate_uuid
 
 router = APIRouter(prefix="/api")
+
+# Match [fact_xxx] and [claim_xxx] in LLM output
+_FACT_REF_RE = re.compile(r"\[(fact_[A-Za-z0-9_]+)\]")
+_CLAIM_REF_RE = re.compile(r"\[(claim_[A-Za-z0-9_-]+)\]")
+
+
+def _number_citations(text: str, cited_fact_ids: list[str]) -> str:
+    """
+    Replace internal [fact_xxx] refs with user-friendly [1], [2], … citations.
+    claim_xxx refs (from citation-validation retry notes) are stripped entirely.
+    The order of cited_fact_ids determines the citation numbers so the
+    returned cited_facts list stays in sync: cited_facts[0] ↔ [1], etc.
+    """
+    mapping = {fid: str(i + 1) for i, fid in enumerate(cited_fact_ids)}
+
+    def _sub_fact(m: re.Match) -> str:
+        num = mapping.get(m.group(1))
+        return f"[{num}]" if num else ""          # drop unknown refs silently
+
+    text = _FACT_REF_RE.sub(_sub_fact, text)
+    text = _CLAIM_REF_RE.sub("", text)            # strip claim refs unconditionally
+    text = re.sub(r"  +", " ", text).strip()
+    return text
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -44,16 +69,23 @@ async def chat(request: ChatRequest):
     }
     config: RunnableConfig = {"configurable": {"thread_id": session_id}}
 
-    # ainvoke instead of invoke — runs async graph nodes in the same event loop.
+    # ainvoke keeps all DB calls on the FastAPI event loop.
     result = await chat_graph.ainvoke(state, config=config)
 
+    cited_fact_ids: list[str] = result.get("cited_fact_ids", [])
+
     cited_facts = []
-    for fact_id in result.get("cited_fact_ids", []):
+    for fact_id in cited_fact_ids:
         fact = await db_adapter.get_fact(request.report_id, fact_id)
         if fact is not None:
             cited_facts.append(fact)
 
-    response = result.get("response", "")
+    raw_response = result.get("response", "")
+
+    # Replace internal [fact_xxx] refs with numbered [1], [2], … for the user.
+    # cited_facts is built in the same order as cited_fact_ids so the indices align.
+    response = _number_citations(raw_response, cited_fact_ids)
+
     await db_adapter.save_chat_message(session_id, "user", request.query)
     await db_adapter.save_chat_message(session_id, "assistant", response)
 
