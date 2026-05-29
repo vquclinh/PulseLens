@@ -14,27 +14,55 @@ from app.utils.helpers import generate_uuid
 
 router = APIRouter(prefix="/api")
 
-# Match [fact_xxx] and [claim_xxx] in LLM output
-_FACT_REF_RE = re.compile(r"\[(fact_[A-Za-z0-9_]+)\]")
-_CLAIM_REF_RE = re.compile(r"\[(claim_[A-Za-z0-9_-]+)\]")
-
-
-def _number_citations(text: str, cited_fact_ids: list[str]) -> str:
+def _sanitize_response(text: str, cited_fact_ids: list[str]) -> str:
     """
-    Replace internal [fact_xxx] refs with user-friendly [1], [2], … citations.
-    claim_xxx refs (from citation-validation retry notes) are stripped entirely.
-    The order of cited_fact_ids determines the citation numbers so the
-    returned cited_facts list stays in sync: cited_facts[0] ↔ [1], etc.
+    Convert every internal ID reference to a user-facing form — or remove it.
+
+    Handles all leakage patterns observed in the wild:
+      [fact_abc123]                   → [N]  (single fact ref)
+      [fact_abc, fact_def]            → [N][M]  (comma-separated multi-fact)
+      [claim_xxx]                     → removed
+      [report_264d6be13e24]           → removed  (refer to "this report" instead)
+      [fcf22aae99ba]                  → removed  (bare hex hash ≥ 8 chars)
+
+    Preserved (never touched):
+      [1], [2], [3]                   → numbered citations already converted
+      [text](url)                     → markdown links
     """
     mapping = {fid: str(i + 1) for i, fid in enumerate(cited_fact_ids)}
 
-    def _sub_fact(m: re.Match) -> str:
-        num = mapping.get(m.group(1))
-        return f"[{num}]" if num else ""          # drop unknown refs silently
+    # ── Step 1: Multi-fact bracket  [fact_abc, fact_def, ...] ────────────────
+    def _expand_multi(m: re.Match) -> str:
+        ids = re.findall(r"fact_[A-Za-z0-9_]+", m.group(0))
+        parts = [f"[{mapping[fid]}]" for fid in ids if fid in mapping]
+        return "".join(parts)
 
-    text = _FACT_REF_RE.sub(_sub_fact, text)
-    text = _CLAIM_REF_RE.sub("", text)            # strip claim refs unconditionally
-    text = re.sub(r"  +", " ", text).strip()
+    text = re.sub(
+        r"\[fact_[A-Za-z0-9_]+(?:\s*,\s*fact_[A-Za-z0-9_]+)+\]",
+        _expand_multi, text,
+    )
+
+    # ── Step 2: Single fact ref  [fact_xxx] ──────────────────────────────────
+    def _single_fact(m: re.Match) -> str:
+        num = mapping.get(m.group(1))
+        return f"[{num}]" if num else ""
+
+    text = re.sub(r"\[(fact_[A-Za-z0-9_]+)\]", _single_fact, text)
+
+    # ── Step 3: Claim refs  [claim_xxx, ...] ────────────────────────────────
+    text = re.sub(r"\[claim_[A-Za-z0-9_-]+(?:\s*,\s*[A-Za-z0-9_-]+)*\]", "", text)
+
+    # ── Step 4: Report refs  [report_xxx] ───────────────────────────────────
+    text = re.sub(r"\[report_[A-Za-z0-9_-]+\]", "", text)
+
+    # ── Step 5: Bare hex hashes  [fcf22aae99ba]  (≥8 hex chars, not Markdown links)
+    # Negative lookahead (?!\() keeps Markdown [text](url) untouched.
+    text = re.sub(r"\[[a-f0-9]{8,}\](?!\()", "", text)
+
+    # ── Step 6: Tidy up artifacts ────────────────────────────────────────────
+    text = re.sub(r"  +", " ", text)           # collapse extra spaces
+    text = re.sub(r"\s+([,\.;:!?])", r"\1", text)  # remove space before punctuation
+    text = text.strip()
     return text
 
 
@@ -82,9 +110,9 @@ async def chat(request: ChatRequest):
 
     raw_response = result.get("response", "")
 
-    # Replace internal [fact_xxx] refs with numbered [1], [2], … for the user.
-    # cited_facts is built in the same order as cited_fact_ids so the indices align.
-    response = _number_citations(raw_response, cited_fact_ids)
+    # Convert all internal ID refs to user-facing form (or remove them).
+    # cited_facts stays in sync: cited_facts[0] ↔ [1], etc.
+    response = _sanitize_response(raw_response, cited_fact_ids)
 
     await db_adapter.save_chat_message(session_id, "user", request.query)
     await db_adapter.save_chat_message(session_id, "assistant", response)

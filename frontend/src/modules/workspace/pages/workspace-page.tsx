@@ -9,6 +9,22 @@ import CompaniesPage from './companies-page'
 import { useDashboardStore } from '@/store/dashboard-store'
 import { fetchLatestReportId, fetchReport, fetchReportFacts } from '@/lib/api-client'
 import { formatDate } from '@/lib/utils'
+
+function formatWorkspaceTimestamp(ts: string | null | undefined): string {
+  if (!ts) return 'Latest report loaded'
+  try {
+    const d = new Date(ts)
+    const date = d.toLocaleDateString('en-US', {
+      month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+    })
+    const time = d.toLocaleTimeString('en-US', {
+      hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC',
+    })
+    return `Report updated ${date} · ${time} UTC`
+  } catch {
+    return 'Latest report loaded'
+  }
+}
 import PricingPage from './pricing-page'
 import PipelineAuditPage from './pipeline-audit-page'
 import WorkspaceOverview from './workspace-overview'
@@ -281,7 +297,7 @@ export default function WorkspacePage({ view }: WorkspacePageProps) {
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-gray-100 pt-5">
             <div className="text-sm text-gray-500">
-              Generated {formatDate(report.generated_at)}
+              {formatWorkspaceTimestamp(report.generated_at)}
             </div>
             {report.quality_reasons.length > 0 && (
               <div className="max-w-3xl text-sm text-amber-700">

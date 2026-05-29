@@ -14,6 +14,29 @@ interface ChatMessageBubbleProps {
 // Matches [1], [2], … [12] — numbered citations produced by the backend.
 const CITATION_NUM_RE = /\[(\d{1,2})\]/g
 
+/**
+ * Frontend display-only safety net.
+ * Strips any raw internal IDs that slipped through the backend sanitizer.
+ * Never mutates the underlying message object — display text only.
+ * Preserves [N] numbered citations and markdown links [text](url).
+ */
+function sanitizeDisplayText(text: string): string {
+  return text
+    // Multi-fact brackets: [fact_abc, fact_def]
+    .replace(/\[fact_[a-zA-Z0-9_]+(?:\s*,\s*fact_[a-zA-Z0-9_]+)*\]/g, '')
+    // Single fact refs not already converted to numbers
+    .replace(/\[fact_[a-zA-Z0-9_]+\]/g, '')
+    // Claim refs
+    .replace(/\[claim_[a-zA-Z0-9_-]+(?:\s*,\s*[a-zA-Z0-9_-]+)*\]/g, '')
+    // Report refs
+    .replace(/\[report_[a-zA-Z0-9_-]+\]/g, '')
+    // Bare hex hashes ≥8 chars — not followed by "(" to preserve markdown links
+    .replace(/\[[a-f0-9]{8,}\](?!\()/g, '')
+    // Collapse extra spaces left by removed refs
+    .replace(/  +/g, ' ')
+    .trim()
+}
+
 /** True if the URL points only to a root domain with no meaningful path. */
 function isGenericUrl(url: string): boolean {
   try {
@@ -28,8 +51,10 @@ function sourceDomain(url: string): string {
   try { return new URL(url).hostname.replace(/^www\./, '') } catch { return url }
 }
 
-/** Replace [N] with small superscript badges inside the message prose. */
+/** Replace [N] with small superscript badges inside the message prose.
+ *  Runs sanitizeDisplayText first as a safety net for any leaked raw IDs. */
 function renderWithNumberedCitations(content: string) {
+  content = sanitizeDisplayText(content)
   const parts: (string | JSX.Element)[] = []
   let lastIndex = 0
   let match: RegExpExecArray | null
