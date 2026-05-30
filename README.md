@@ -36,18 +36,6 @@ PulseLens approaches this differently:
 | Frontend | React 18, Vite 6, TypeScript 5.6, TailwindCSS 4 |
 | Storage | Supabase / Postgres with SQLite fallback |
 
-### Web collection via Bright Data
-
-Agent 2 (web collection) uses Bright Data as its exclusive web access layer:
-
-- **SERP API** — issues structured search queries across news, investor relations, pricing, and market coverage sources
-- **Web Unlocker** — fetches and unlocks individual source pages (IR pages, SEC filings, news articles)
-- **Browser API** — handles JavaScript-rendered pricing pages and sites that require browser-level rendering
-
-These documents feed the full downstream pipeline: fact extraction → SAFE-style verification → FinBERT scoring → cross-source triangulation → report assembly.
-
-> **Note:** The live pipeline should not be run casually. Bright Data and OpenRouter calls are billed per use. A full run costs a non-trivial amount and takes approximately 8–10 minutes.
-
 ---
 
 ## Key Features
@@ -280,12 +268,6 @@ This is a research-grade demo, not a production system. Known limitations:
 - Hiring momentum signal via job-board integration
 - Export report to PDF / structured JSON
 - Configurable company watchlist
-
----
-
-## Screenshots
-
-_Screenshots will be added here once the Sprint 0 Home page productization is complete._
 
 ---
 

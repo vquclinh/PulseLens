@@ -1,6 +1,6 @@
 # PulseLens — System Architecture
 
-> **Version:** 1.0  
+> **Version:** 2.0 (updated to reflect Sprint 8 codebase)  
 > **Purpose:** Architecture reference with full research paper methodology mapping  
 > **Principle:** Every non-trivial component is grounded in a peer-reviewed method
 > from a top-tier venue (EMNLP, ACL, NeurIPS, Google DeepMind, Stanford).
@@ -42,14 +42,17 @@ Each paper applied here solves a specific failure mode:
 7. [Agent 4 — FinBERT Scorer](#7-agent-4--finbert-scorer)
 8. [Node — Quality Gate](#8-node--quality-gate)
 9. [Node — M4 Triangulator](#9-node--m4-triangulator)
-10. [Agent 5 — Contradiction Writers](#10-agent-5--contradiction-writers)
+10. [Node — Contradiction Writer](#10-node--contradiction-writer)
 11. [Node — M5 Signal Scorer](#11-node--m5-signal-scorer)
-12. [Agent 6 — Narrative Synthesizer](#12-agent-6--narrative-synthesizer)
-13. [Agent 7 — Watch List Builder](#13-agent-7--watch-list-builder)
-14. [Node — Report Assembler](#14-node--report-assembler)
-15. [Chat Graph — Analyst Chat](#15-chat-graph--analyst-chat)
-16. [Data flow diagram](#16-data-flow-diagram)
-17. [Paper reference index](#17-paper-reference-index)
+12. [Node — Company Narratives](#12-node--company-narratives)
+13. [Agent 6 — Narrative Synthesizer](#13-agent-6--narrative-synthesizer)
+14. [Agent 7 — Watch List Builder](#14-agent-7--watch-list-builder)
+15. [Node — Report Assembler](#15-node--report-assembler)
+16. [Pricing Nodes — Pre-extractor and Playbook](#16-pricing-nodes--pre-extractor-and-playbook)
+17. [Database Adapter Layer](#17-database-adapter-layer)
+18. [Chat Graph — Analyst Chat](#18-chat-graph--analyst-chat)
+19. [Data flow diagram](#19-data-flow-diagram)
+20. [Paper reference index](#20-paper-reference-index)
 
 ---
 
@@ -57,48 +60,60 @@ Each paper applied here solves a specific failure mode:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│  FRONTEND  TypeScript + Vite + React  (port 5173)                  │
-│  Homepage · Dashboard (5 tabs) · Chat Panel                        │
+│  FRONTEND  TypeScript + Vite 6 + React 18 + TailwindCSS 4          │
+│  /            Home page                                             │
+│  /workspace   Intelligence Workspace (6 URL-driven views):         │
+│               Overview · Evidence · Pricing · Signals ·            │
+│               Companies · Pipeline                                  │
+│  /chat        Standalone analyst chat page                         │
 └────────────────────────┬────────────────────────────────────────────┘
-                         │ REST + SSE streaming
+                         │ REST (no SSE streaming in current release)
 ┌────────────────────────▼────────────────────────────────────────────┐
-│  API LAYER  FastAPI  (port 8000)                                    │
-│  POST /api/run  ·  GET /api/report  ·  POST /api/chat  ·  /stock   │
+│  API LAYER  FastAPI + Uvicorn  (port 8000)                         │
+│  POST /api/run  ·  GET /api/report/{id}  ·  GET /api/report/{id}/facts │
+│  POST /api/chat  ·  GET /api/reports/latest  ·  GET /api/stock/{ticker} │
 └────────────────────────┬────────────────────────────────────────────┘
                          │
 ┌────────────────────────▼────────────────────────────────────────────┐
-│  PIPELINE GRAPH  LangGraph StateGraph                               │
-│  (DAG with parallel fan-out, checkpointing, quality gate loop)      │
+│  PIPELINE GRAPH  LangGraph StateGraph  (ainvoke, MemorySaver)       │
+│  14 sequential nodes with 1 conditional quality-gate loop           │
+│  Agent 2 batches internally (no Send API fan-out in current release)│
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────────────────────────┐
+│  CHAT GRAPH  Separate LangGraph StateGraph  (ainvoke, per-session)  │
+│  4 nodes: retrieve_facts → build_prompt → analyst_chat →            │
+│           validate_citations  (one built-in retry inside last node)  │
+│  Synchronous request/response — no token streaming.                 │
+└────────────────────────┬────────────────────────────────────────────┘
+                         │
+┌────────────────────────▼────────────────────────────────────────────┐
+│  DATABASE ADAPTER  (selected by DATABASE_BACKEND env var)           │
+│  SQLite    aiosqlite  →  backend/data/pulselens.db  (default)       │
+│  Postgres  asyncpg   →  Supabase or any Postgres instance           │
 │                                                                     │
-│  8 nodes  ·  5 LLM agents  ·  3 non-LLM workers                   │
-└────────────────────────┬────────────────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────────────────┐
-│  CHAT GRAPH  Separate LangGraph StateGraph  (per-session)           │
-│  1 LLM agent  ·  Self-RAG + FLARE  ·  citation validation          │
-└────────────────────────┬────────────────────────────────────────────┘
-                         │
-┌────────────────────────▼────────────────────────────────────────────┐
 │  EXTERNAL SERVICES                                                  │
-│  Bright Data  ·  OpenRouter API  ·  HuggingFace  ·  Alpha Vantage │
-│  SQLite  (reports + facts + chat history; checkpoints planned)     │
+│  Bright Data (SERP API · Web Unlocker · Browser API)               │
+│  OpenRouter API  ·  HuggingFace  ·  Alpha Vantage                  │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Why LangGraph — not plain Python, not LangChain
 
 LangChain is built for linear chains (A → B → C).
-PulseLens is a DAG with parallel fan-out, conditional cycles, and checkpointing.
+PulseLens is a DAG with conditional cycles and checkpointing.
 LangChain handles this poorly. LangGraph handles it natively.
 
 | Requirement | LangGraph capability |
 |---|---|
-| Parallel M2/M3 fan-out (25+ URLs simultaneously) | `Send` API — true parallel node execution |
-| Resume after failure without restarting | Built-in checkpointing; SQLite persistence is planned |
+| Resume after failure without restarting | Built-in checkpointing (MemorySaver in current release; SqliteSaver planned) |
 | Re-query when signal coverage is low | Conditional edges with cycle support |
 | Persistent chat conversation history | StateGraph with thread-level state |
-| Streaming chat tokens to frontend | First-class token streaming |
 | Typed state shared across all nodes | `TypedDict` — enforced at every node boundary |
+
+> **Note on fan-out:** Agent 2 batches URL fetches internally using `asyncio.gather`
+> rather than LangGraph `Send` API fan-out. The same applies to Agent 3 fact extraction.
+> True Send-based fan-out is architecturally planned but not yet wired in the graph edges.
 
 **Critical:** LangGraph does not require LangChain abstractions.
 Every LLM call in PulseLens uses the **OpenRouter API via `LLMClient`**.
@@ -116,42 +131,38 @@ START
 │  Agent 1 — Query Planner              [LLM: OpenRouter]  │
 │  Step-Back Prompting + Multi-HyDE                        │
 │  arXiv:2310.06117 + arXiv:2509.16369                     │
+│  Also injects 15 deterministic pricing playbook queries  │
 └──────────────────────────┬───────────────────────────────┘
-                           │ 40–50 SearchQuery[]
-                           │ LangGraph Send API (fan-out)
-          ┌────────────────┼────────────────┐
-          ▼                ▼                ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Agent 2     │  │  Agent 2     │  │  Agent 2     │
-│  Web Worker  │  │  Web Worker  │  │  Web Worker  │  × N batches
-│  Bright Data │  │  Bright Data │  │  Bright Data │  (parallel)
-└──────┬───────┘  └──────┬───────┘  └──────┬───────┘
-       └──────────────────┴──────────────────┘
-                           │ RawDocument[] (~200 docs)
-                           │ LangGraph Send API (fan-out)
-          ┌────────────────┼────────────────┐
-          ▼                ▼                ▼
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Agent 3     │  │  Agent 3     │  │  Agent 3     │
-│  Fact        │  │  Fact        │  │  Fact        │  × 20 parallel
-│  Extractor   │  │  Extractor   │  │  Extractor   │
-│  RASG        │  │  RASG        │  │  RASG        │
-│  arXiv:      │  │  arXiv:      │  │  arXiv:      │
-│  2405.20245  │  │  2405.20245  │  │  2405.20245  │
-└──────┬───────┘  └──────┬───────┘  └──────┬───────┘
-       └──────────────────┴──────────────────┘
-                           │ FactObject[] (~500, pre-validation)
+                           │ 22–50 SearchQuery[]
+                           │ (includes pricing playbook queries)
                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Node — validate_fact()                   [Pure Python]  │
+│  Agent 2 — Web Workers             [Non-LLM: Bright Data]│
+│  Batches internally via asyncio.gather (10 concurrent)   │
+│  SERP API · Web Unlocker · Browser API                   │
+│  Output: RawDocument[] (~100–200 docs)                   │
+└──────────────────────────┬───────────────────────────────┘
+                           │ RawDocument[]
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│  Agent 3 — Fact Extractor             [LLM: OpenRouter]  │
+│  RASG schema extraction   arXiv:2405.20245               │
+│  Batches internally; also runs pricing_pre_extractor     │
+│  (regex extractor for full pricing documents)            │
+│  Output: FactObject[] (raw, ~500)                        │
+└──────────────────────────┬───────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────┐
+│  Node — validate_fact                     [Pure Python]  │
 │  evidence_quote must exist verbatim in source.content    │
-│  Discard: quote hallucinated / confidence < 0.6          │
+│  Discard: hallucinated quote / confidence < 0.6          │
 │  → ~200 validated FactObject[]                           │
 └──────────────────────────┬───────────────────────────────┘
                            │
                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Node — SAFE Atomic Verification     [LLM: OpenRouter]  │
+│  Node — validate_and_split (SAFE)    [LLM: OpenRouter]   │
 │  SAFE: Search-Augmented Factuality Evaluator             │
 │  arXiv:2403.18802  (Google DeepMind, 2024)               │
 │  Decompose claim → atomic sub-claims                     │
@@ -161,9 +172,8 @@ START
                            │
                            ▼
 ┌──────────────────────────────────────────────────────────┐
-│  Agent 4 — FinBERT Scorer          [HuggingFace, no LLM] │
+│  Agent 4 — FinBERT Scorer        [HuggingFace, no LLM]   │
 │  FinBERT: ProsusAI/finbert                               │
-│  Yang et al., 2020  (HuggingFace)                        │
 │  Batch sentiment scoring on every fact.claim             │
 │  Output: sentiment label + score (-1.0 to 1.0)           │
 └──────────────────────────┬───────────────────────────────┘
@@ -171,66 +181,73 @@ START
                            ▼
 ┌──────────────────────────────────────────────────────────┐
 │  Node — Quality Gate                      [Pure Python]  │
-│  Conditional edge: pass → proceed                        │
+│  Conditional edge: pass → triangulator                   │
 │              fail → loop back to Agent 1 (max 2×)        │
-│  Fail if: facts < 50 OR signal coverage < 4 types        │
+│  Fail if: facts < 50 OR source_count < 15               │
+│           OR signal coverage < 4 types                   │
 └──────────────┬─────────────────────────┬─────────────────┘
           expand_queries             proceed
                │                         │
                ▼                         ▼
-         Agent 1 again            ┌──────────────────────────────────────────┐
-         (round 2 max)            │  Node — M4 Triangulator    [Pure Python] │
-                                  │  ClaimCheck  ACL 2025                    │
-                                  │  MiniCheck   arXiv:2404.10774            │
-                                  │  FActScore   arXiv:2305.14251            │
-                                  └──────────────────────────┬───────────────┘
-                                                             │
-                                        ┌────────────────────┼─────────────────┐
-                                        ▼                    ▼                 ▼
-                               ┌──────────────┐  ┌──────────────┐  ┌──────────┐
-                               │  Agent 5     │  │  Agent 5     │  │ Agent 5  │
-                               │  Contradiction│  │  Contradiction│ │  ...     │
-                               │  Writer      │  │  Writer      │ │          │
-                               │ [OpenRouter] │  │ [OpenRouter] │ │          │
-                               └──────┬───────┘  └──────┬───────┘ └────┬─────┘
-                                      └──────────────────┴──────────────┘
-                                                         │ VerifiedClaim[]
-                                                         │ ContradictionFlag[]
-                                                         ▼
-                                  ┌──────────────────────────────────────────┐
-                                  │  Node — M5 Signal Scorer   [Pure Python] │
-                                  │  Weighted formula: tier × recency        │
-                                  │  × factscore × corroboration             │
-                                  │  Pulse score 0–100                       │
-                                  │  Company momentum ranking                │
-                                  └──────────────────────────┬───────────────┘
-                                                             │
-                                                             ▼
-                                  ┌──────────────────────────────────────────┐
-                                  │  Agent 6 — Narrative Synthesizer         │
-                                  │                      [LLM: OpenRouter]   │
-                                  │  STORM: Multi-perspective synthesis       │
-                                  │  arXiv:2402.14207  (Stanford, 2024)      │
-                                  │  Output: MarketNarrative (Layer 3)       │
-                                  └──────────────────────────┬───────────────┘
-                                                             │
-                                                             ▼
-                                  ┌──────────────────────────────────────────┐
-                                  │  Agent 7 — Watch List Builder            │
-                                  │                      [LLM: OpenRouter]   │
-                                  │  Forward indicators from unresolved       │
-                                  │  developing signals                       │
-                                  │  Output: WatchItem[] (Layer 4)           │
-                                  └──────────────────────────┬───────────────┘
-                                                             │
-                                                             ▼
-                                  ┌──────────────────────────────────────────┐
-                                  │  Node — Report Assembler   [Pure Python] │
-                                  │  Assemble MarketPulseReport              │
-                                  │  Save to SQLite                          │
-                                  └──────────────────────────┬───────────────┘
-                                                             │
-                                                            END
+         Agent 1 again       ┌───────────────────────────────────────┐
+         (round 2 max)       │  Node — M4 Triangulator  [Pure Python]│
+                             │  ClaimCheck  ACL 2025                 │
+                             │  MiniCheck   arXiv:2404.10774         │
+                             │  FActScore   arXiv:2305.14251         │
+                             │  Also calls write_contradiction_notes │
+                             │  (async, bounded semaphore, ≤5 conc.) │
+                             │  → VerifiedClaim[] + ContradictionFlag│
+                             └──────────────────┬────────────────────┘
+                                                │
+                                                ▼
+                             ┌───────────────────────────────────────┐
+                             │  Node — M5 Signal Scorer  [Pure Python│
+                             │  Weighted formula:                    │
+                             │    tier × recency × factscore ×       │
+                             │    corroboration                      │
+                             │    × 0.5 if contradicted              │
+                             │  Pulse score 0–100                    │
+                             │  Per-company breakdown for narratives │
+                             └──────────────────┬────────────────────┘
+                                                │
+                                                ▼
+                             ┌───────────────────────────────────────┐
+                             │  Node — Company Narratives            │
+                             │                   [LLM: OpenRouter]   │
+                             │  Per-company analyst card builder     │
+                             │  asyncio.gather (all companies conc.) │
+                             │  → CompanyNarrative[] with:           │
+                             │    narrative, key_events, key_drivers │
+                             │    competitive_position, momentum     │
+                             └──────────────────┬────────────────────┘
+                                                │
+                                                ▼
+                             ┌───────────────────────────────────────┐
+                             │  Agent 6 — Narrative Synthesizer      │
+                             │                   [LLM: OpenRouter]   │
+                             │  STORM multi-perspective synthesis    │
+                             │  arXiv:2402.14207  (Stanford, 2024)   │
+                             │  → MarketNarrative                    │
+                             └──────────────────┬────────────────────┘
+                                                │
+                                                ▼
+                             ┌───────────────────────────────────────┐
+                             │  Agent 7 — Watch List Builder         │
+                             │                   [LLM: OpenRouter]   │
+                             │  Forward indicators from developing   │
+                             │  signals → WatchItem[]                │
+                             └──────────────────┬────────────────────┘
+                                                │
+                                                ▼
+                             ┌───────────────────────────────────────┐
+                             │  Node — Report Assembler  [Pure Python│
+                             │  Assembles MarketPulseReport          │
+                             │  Saves via db_adapter.save_report()   │
+                             │  PARTIAL_PASS: caps confidence 0.5,  │
+                             │  prepends warning to narrative_body   │
+                             └──────────────────┬────────────────────┘
+                                                │
+                                               END
 ```
 
 ---
@@ -303,6 +320,10 @@ same signal, collectively recovering evidence that no single query finds.
 Main query generation loop in `agent1_query_planner.py`. Every
 `(company, signal_type, source_type)` triple spawns 2–3 non-equivalent queries.
 
+Agent 1 also merges in the 15 deterministic queries from
+`pricing_pressure_playbook.py` for pricing signal coverage
+(see [Section 16](#16-pricing-nodes--pre-extractor-and-playbook)).
+
 ---
 
 ### Prompt design
@@ -345,8 +366,8 @@ MAX_EXPANSION_ROUNDS = 2      # hard stop to prevent infinite loops
 ## 4. Agent 2 — Web Collection Workers
 
 **File:** `app/pipeline/agent2_web_workers.py`  
-**Type:** Non-LLM — async Python + Bright Data SDK  
-**LangGraph node:** `web_worker` (fanned out via `Send` API)  
+**Type:** Non-LLM — async Python + Bright Data API  
+**LangGraph node:** `web_worker`  
 **Research methods applied:** None — pure engineering
 
 ### Source tiering (assigned at collection time, never retroactively)
@@ -368,17 +389,19 @@ TIER_3_DOMAINS = {                      # weight: 0.5
 # Tier 4 = default for job boards, pricing pages, company blogs  # weight: 0.4
 ```
 
-### Bright Data tool mapping
+### Bright Data product mapping
 
 ```python
 TOOL_MAPPING = {
-    "serp_news":     "SERP API",           # news, general search
-    "job_pages":     "Web Scraper API",    # LinkedIn, Glassdoor, Indeed
-    "ir_pages":      "Web Scraper API",    # SEC EDGAR, IR pages
-    "pricing_pages": "Web Scraper API",    # pricing, distributor listings
-    "dynamic_pages": "Scraping Browser",   # JavaScript-rendered pages
-    "protected":     "Web Unlocker",       # anti-bot protected sites
+    "serp_news":     "SERP API",       # news and general web search
+    "job_pages":     "Web Unlocker",   # LinkedIn, Glassdoor, Indeed
+    "ir_pages":      "Web Unlocker",   # SEC EDGAR, investor relations pages
+    "pricing_pages": "Browser API",   # JavaScript-rendered pricing pages
+    "dynamic_pages": "Browser API",   # other JS-heavy sites
+    "protected":     "Web Unlocker",  # anti-bot protected sites
 }
+# Zone configuration via: BRIGHTDATA_SERP_ZONE, BRIGHTDATA_UNLOCKER_ZONE,
+#                         BRIGHTDATA_BROWSER_ZONE
 ```
 
 ### Parallelism and resilience
@@ -403,8 +426,13 @@ fetched twice in a single pipeline run.
 
 **File:** `app/pipeline/agent3_fact_extractors.py`  
 **Type:** LLM — OpenRouter via `LLMClient`  
-**LangGraph node:** `fact_extractor` (fanned out via `Send` — 20 concurrent)  
+**LangGraph node:** `fact_extractor`  
 **Research methods applied:** RASG-inspired schema extraction
+
+This node also invokes `pricing_pre_extractor.extract_pricing_facts_from_document()`
+on every document before the LLM step, to capture price/rate data from full
+document content that would otherwise be truncated (see
+[Section 16](#16-pricing-nodes--pre-extractor-and-playbook)).
 
 ### [PAPER 3] RASG — Retrieval Augmented Structured Generation
 ```
@@ -536,7 +564,7 @@ Evidence quote presence only checks that the quote exists.
 SAFE checks that the claim accurately represents what the quote says.
 
 **Applied at:**
-Between Agent 3 output and FinBERT scoring. Every validated FactObject
+Between `validate_fact` and FinBERT scoring. Every validated FactObject
 goes through SAFE before its sentiment is scored.
 
 ---
@@ -681,7 +709,7 @@ only the underrepresented signal types.
 ## 9. Node — M4 Triangulator
 
 **File:** `app/pipeline/node_triangulator.py`  
-**Type:** Pure Python  
+**Type:** Pure Python + async contradiction writing  
 **LangGraph node:** `triangulator`
 
 ### [PAPER 6] ClaimCheck
@@ -804,7 +832,7 @@ def triangulate(
             final_confidence     = confidence,
             factscore            = factscore,
             is_contradicted      = is_contradicted,
-            contradiction_note   = None,  # written by Agent 5
+            contradiction_note   = None,  # written by write_contradiction_notes
         ))
 
         if is_contradicted:
@@ -837,14 +865,20 @@ own judgment. Blending contradictory signals is a form of misinformation.
 
 ---
 
-## 10. Agent 5 — Contradiction Writers
+## 10. Node — Contradiction Writer
 
 **File:** `app/pipeline/agent5_contradiction_writer.py`  
-**Type:** LLM — OpenRouter via `LLMClient`
-**LangGraph node:** `contradiction_writer` (parallel, one per flagged pair)  
+**Type:** LLM — OpenRouter via `LLMClient`; called from within the `triangulator` node  
 **Research methods applied:** None — requires LLM judgment
 
-**Why a separate agent:**
+> **Implementation note:** The contradiction writer is NOT a separate LangGraph
+> node in the current implementation. `write_contradiction_notes()` is an async
+> function called at the end of the `triangulator` node using `asyncio.gather`
+> with a bounded semaphore (`MAX_CONCURRENT = 5`). Each call wraps the sync
+> LLM via `asyncio.to_thread`. This is equivalent to parallel fan-out behavior
+> without using the LangGraph `Send` API.
+
+**Why a separate function:**
 Contradiction *detection* is pure Python (comparing sentiment labels across
 domains). Writing a precise, analyst-grade note that accurately and
 symmetrically represents both sides requires language understanding.
@@ -905,7 +939,7 @@ def calculate_signal_score(
       - final_confidence   (corroboration depth)
       - factscore          (FActScore atomic precision — arXiv:2305.14251)
       - source tier        (Tier 1 evidence contributes more)
-      - contradiction penalty (contradicted claims weighted 50% less)
+      - contradiction penalty: contradicted claims are weighted at 50%
     """
     relevant = [c for c in claims if c.signal_type == signal_type]
     if not relevant:
@@ -947,9 +981,66 @@ def classify_pulse_status(
     return PulseStatus.COOLING_DOWN
 ```
 
+The scorer also produces a **per-company breakdown** (pulse_score, pulse_status,
+signal_scores, contradiction_rate per company) that feeds the Company Narratives
+node downstream.
+
 ---
 
-## 12. Agent 6 — Narrative Synthesizer
+## 12. Node — Company Narratives
+
+**File:** `app/pipeline/node_company_narratives.py`  
+**Type:** LLM — OpenRouter via `LLMClient` (agent_name `"agent6"`)  
+**LangGraph node:** `company_narratives`  
+**Position in DAG:** After M5 Signal Scorer, before Narrative Synthesizer
+
+This node was not present in the original architecture design. It was added to
+produce structured per-company analyst cards that are consumed by both the
+Narrative Synthesizer (Agent 6) and surfaced directly in the Company Lens
+workspace tab.
+
+### What it produces
+
+For each tracked company, the node generates a `CompanyNarrative` object:
+
+```python
+@dataclass
+class CompanyNarrative:
+    company:              str
+    ticker:               str
+    momentum:             MomentumLabel     # strong_positive | positive | neutral
+                                            #   | mixed | negative | elevated_risk
+    momentum_score:       float             # -1.0 to 1.0
+    narrative:            str               # analyst prose with [claim_id] citations
+    key_events:           List[str]         # max 3 events from evidence
+    key_drivers:          List[str]         # max 3 signal drivers
+    competitive_position: str               # "gaining" | "holding" | "losing"
+    supporting_claim_ids: List[str]
+    evidence_count:       int
+    price_current:        Optional[float]   # from Alpha Vantage if available
+    price_change_7d_pct:  Optional[float]
+    signal_lead_days:     Optional[int]
+```
+
+### Concurrency model
+
+```python
+# All companies are processed concurrently
+narratives = await asyncio.gather(
+    *[build_company_narrative(company, claims, signal_scores) for company in companies]
+)
+```
+
+### Validation and retry
+
+The LLM output is validated: citation IDs in `narrative` must exist in
+`supporting_claim_ids`, and `competitive_position` must be one of the three
+allowed values. On validation failure, the node sends a correction prompt
+once before falling back to a pure-Python deterministic fallback narrative.
+
+---
+
+## 13. Agent 6 — Narrative Synthesizer
 
 **File:** `app/pipeline/agent6_narrative_synthesizer.py`  
 **Type:** LLM — OpenRouter via `LLMClient`  
@@ -958,7 +1049,7 @@ def classify_pulse_status(
 ### [PAPER 9] STORM — Synthesis Through Outline, Research, and Multi-perspective
 ```
 Authors:  Shao et al., Stanford University
-Venue:    2024
+Venue:    NAACL 2024
 Citation: arXiv:2402.14207
 ```
 
@@ -977,6 +1068,7 @@ Each of the 4 signal layers (hiring, pricing, product, investor) is treated
 as a distinct perspective. Agent 6 reasons through each independently, then
 synthesizes the interactions — where they confirm each other, where they
 create tension, and what that tension means for the market outlook.
+Company narratives produced by the previous node are also provided as context.
 
 ---
 
@@ -1010,9 +1102,9 @@ Rules:
 
 Return ONLY valid JSON matching the MarketNarrative schema.
 
-Verified claims:  {verified_claims_json}
-Signal scores:    {signal_scores_json}
-Company rankings: {company_rankings_json}
+Verified claims:       {verified_claims_json}
+Signal scores:         {signal_scores_json}
+Company narratives:    {company_narratives_json}
 ```
 
 ### Post-generation validation
@@ -1038,7 +1130,7 @@ def validate_narrative(
 
 ---
 
-## 13. Agent 7 — Watch List Builder
+## 14. Agent 7 — Watch List Builder
 
 **File:** `app/pipeline/agent7_watch_list_builder.py`  
 **Type:** LLM — OpenRouter via `LLMClient`  
@@ -1071,7 +1163,7 @@ Verified claims:   {verified_claims_json}
 
 ---
 
-## 14. Node — Report Assembler
+## 15. Node — Report Assembler
 
 **File:** `app/pipeline/node_report_assembler.py`  
 **Type:** Pure Python  
@@ -1079,11 +1171,19 @@ Verified claims:   {verified_claims_json}
 **Research methods applied:** None
 
 Assembles all pipeline outputs into a single `MarketPulseReport` object
-and saves it to SQLite. LangGraph currently uses `MemorySaver`; SQLite
-checkpoint persistence is still a follow-up.
+and persists it via the database adapter.
 
 ```python
 def assemble_report(state: PipelineState) -> MarketPulseReport:
+    quality_status = _quality_status(state.get("quality_status", ...))
+
+    # PARTIAL_PASS handling:
+    # Cap pulse_confidence at 0.5 and prepend a warning to narrative_body
+    pulse_confidence = float(scores.get("pulse_confidence", 0.0))
+    if quality_status == QualityStatus.PARTIAL_PASS:
+        pulse_confidence = min(pulse_confidence, 0.5)
+        market_narrative = _mark_partial_narrative(market_narrative, quality_reasons)
+
     report = MarketPulseReport(
         report_id   = generate_uuid(),
         market      = state["market"],
@@ -1093,36 +1193,226 @@ def assemble_report(state: PipelineState) -> MarketPulseReport:
         # Layer 1
         pulse_score         = state["signal_scores"]["pulse_score"],
         pulse_status        = state["signal_scores"]["pulse_status"],
-        pulse_confidence    = state["signal_scores"]["pulse_confidence"],
-        trend_vs_previous   = None,   # MVP: no historical data
+        pulse_confidence    = pulse_confidence,
+        trend_vs_previous   = None,   # no historical data in current release
 
         # Layer 2
-        top_signals         = build_top_signals(state["verified_claims"]),
+        top_signals         = build_top_signals(verified_claims, scores, facts),
         company_narratives  = state["company_narratives"],
-        news_items          = build_news_items(state["scored_facts"]),
+        news_items          = build_news_items(facts),
 
         # Layer 3 + 4
         market_narrative    = state["market_narrative"],
         contradictions      = state["contradictions"],
-        grounded_brief      = build_grounded_brief(state),
+        grounded_brief      = build_grounded_brief(claims, quality_status, reasons),
 
         # Meta
-        evidence_count  = len(state["scored_facts"]),
-        source_count    = len({f.source_url for f in state["scored_facts"]}),
+        evidence_count  = len(facts),
+        source_count    = len({f.source_url for f in facts}),
         signal_breakdown= state["signal_scores"]["breakdown"],
+        quality_status  = quality_status,
+        quality_reasons = quality_reasons,
+        audit_summary   = _build_audit_summary(state, facts),
     )
 
-    save_to_sqlite(report)
+    await db_adapter.save_report(report, facts, claims)
     return report
 ```
 
 ---
 
-## 15. Chat Graph — Analyst Chat
+## 16. Pricing Nodes — Pre-extractor and Playbook
 
-**File:** `app/chat/graph.py` + `app/chat/agent8_analyst_chat.py`  
+These two modules are not agents (no LLM calls) but provide specialized pricing
+signal coverage that Agent 3 alone would miss.
+
+### `pricing_pre_extractor.py` — Regex extractor for full pricing documents
+
+**Problem it solves:**
+Agent 3 truncates `doc.content` to ~8000 characters before sending to the LLM.
+Cloud GPU pricing pages can be 50–100 KB and their price tables often fall
+outside the truncation window, so Agent 3 extracts zero pricing facts from
+them.
+
+**How it works:**
+Runs regex patterns (`_PRICE_AMOUNT_RE`) over the **full** `doc.content` before
+truncation. For each price/rate match:
+1. Extracts a ±400-character context window around the match
+2. Infers GPU model from the window (H100, H200, B200, MI300X, A100, L40S, etc.)
+3. Infers entity (Nvidia, AMD, Supermicro, or "market")
+4. Rejects vague patterns via `_PRICING_REJECT_RE`
+5. Deduplicates by `(url, gpu_model, normalized_price)`
+6. Produces `FactObject` with `signal_type=pricing_pressure`, `safe_verified=False`
+7. Caps at 8 facts per document
+
+**Entry point:** `extract_pricing_facts_from_document(doc: RawDocument) -> List[FactObject]`
+
+Called from `agent3_fact_extractors.py` for every document before the LLM
+extraction step. Resulting facts are merged into the fact pool alongside
+LLM-extracted facts.
+
+---
+
+### `pricing_pressure_playbook.py` — Deterministic pricing query generator
+
+**Problem it solves:**
+Agent 1 generates queries via LLM, which may underweight specific cloud pricing
+sources (AWS, Azure, CoreWeave, RunPod, etc.) or may not know to target them
+by current month. A fixed set of pricing queries ensures consistent coverage
+regardless of LLM behavior on any given run.
+
+**How it works:**
+Produces 15 fixed `SearchQuery` objects for the demo scope:
+- Nvidia × 4 queries (AWS, Azure, CoreWeave, RunPod GPU rental pages)
+- AMD × 4 queries (same cloud providers targeting MI300X)
+- Supermicro × 4 queries (wholesale GPU pricing, rack-scale pricing)
+- market × 3 queries (GPU cloud pricing news, market-wide price trends)
+
+Queries are anchored to the current month and targeted at specific domains
+(`site:aws.amazon.com/ec2/`, `coreweave.com/pricing`, etc.).
+
+**Entry points:**
+- `build_pricing_playbook_specs()` → spec dicts
+- `specs_to_search_queries()` → `List[SearchQuery]`
+
+These queries are merged into Agent 1's output before being passed to Agent 2.
+They form the "15 deterministic playbook queries" that guarantee pricing
+signal coverage across every run.
+
+---
+
+## 17. Database Adapter Layer
+
+**Files:** `app/db/adapter.py`, `app/db/sqlite_adapter.py`, `app/db/postgres_adapter.py`, `app/db/__init__.py`
+
+The storage layer is abstracted behind a `DatabaseAdapter` ABC. The concrete
+implementation is selected at startup via the `DATABASE_BACKEND` environment
+variable.
+
+### Abstract interface
+
+```python
+class DatabaseAdapter(ABC):
+    async def save_report(self, report, facts=None, claims=None) -> None
+    async def load_report(self, report_id: str) -> MarketPulseReport | None
+    async def latest_report_id(self) -> str | None
+    async def list_report_facts(self, report_id: str) -> list[FactObject]
+    async def get_fact(self, report_id: str, fact_id: str) -> FactObject | None
+    async def get_claim(self, report_id: str, claim_id: str) -> VerifiedClaim | None
+    async def search_facts(self, report_id: str, query: str, top_k: int = 10) -> list[FactObject]
+    async def get_company_narrative(self, report_id: str, ticker_or_company: str) -> CompanyNarrative | None
+    async def save_chat_message(self, session_id: str, role: str, content: str) -> None
+```
+
+### Backend selection
+
+```python
+# app/db/__init__.py
+def _build_adapter() -> DatabaseAdapter:
+    backend = os.getenv("DATABASE_BACKEND", "sqlite").lower()
+    if backend == "postgres":
+        from app.db.postgres_adapter import PostgresAdapter
+        return PostgresAdapter(os.environ["DATABASE_URL"])
+    from app.db.sqlite_adapter import SQLiteAdapter
+    return SQLiteAdapter()
+
+db_adapter: DatabaseAdapter = _build_adapter()
+```
+
+| Backend | Adapter | Connection | Notes |
+|---|---|---|---|
+| `sqlite` (default) | `SQLiteAdapter` | `aiosqlite` → `backend/data/pulselens.db` | Thin wrapper around `database.py` |
+| `postgres` | `PostgresAdapter` | `asyncpg` pool → Supabase or any Postgres | Lazy pool init, JSONB codec, pgvector for `search_facts` |
+
+### Checkpointing
+
+Both the pipeline graph and chat graph use `MemorySaver` for LangGraph
+checkpoints. This means state is in-memory only and does not survive process
+restarts. Replacing with `AsyncSqliteSaver` (or Postgres-backed saver) is
+a planned follow-up.
+
+---
+
+## 18. Chat Graph — Analyst Chat
+
+**Files:** `app/chat/graph.py` + `app/chat/agent8_analyst_chat.py`  
 **Type:** Separate LangGraph StateGraph — runs on demand per user query  
-**Does NOT re-run the pipeline** — queries from existing SQLite report
+**Does NOT re-run the pipeline** — queries from existing stored report
+
+> **Current release:** Chat is synchronous request/response. The API endpoint
+> (`POST /api/chat`) is an `async def` route that `await`s `chat_graph.ainvoke()`.
+> Token streaming is not implemented; the full response is returned at once.
+
+### Node sequence
+
+```
+[retrieve_facts]     semantic search over fact embeddings for the report
+      ↓
+[build_prompt]       inject evidence block + last 5 history exchanges
+      ↓
+[analyst_chat]       Agent 8: Self-RAG + FLARE patterns (see below)
+                     Citations converted: [fact_xxx] → [1], [2], etc.
+      ↓
+[validate_citations] all [fact_id] refs must exist in retrieved facts
+      ↓ valid                    ↓ invalid (1 built-in retry — same node)
+return response      [retry: correction prompt with hallucinated IDs listed]
+                     (no graph loop — retry is inside validate_citations node)
+```
+
+### Chat state
+
+```python
+class ChatState(TypedDict, total=False):
+    report_id:          str
+    session_id:         str
+    history:            List[ChatMessage]    # last 5 exchanges only
+    current_query:      str
+    retrieved_facts:    List[FactObject]
+    prompt:             str
+    response:           str
+    cited_fact_ids:     List[str]
+    invalid_citations:  List[str]
+    retrieval_rounds:   int                  # for FLARE tracking
+    errors:             List[str]
+    context_attachment: Optional[dict]       # see Context attachments below
+```
+
+### Context attachments
+
+The frontend supports pre-attaching a selected card as context for the chat
+query. When the user clicks "Ask Chat" from a workspace card, the URL carries
+context params (e.g. `?context=watch_item&title=...`, `?context=fact&fact_id=...`).
+The `ChatRequest` carries this as:
+
+```python
+class ContextAttachment(BaseModel):
+    type:            str          # watch_item | risk_alert | fact | company | signal | pricing | report
+    title:           Optional[str]
+    entity:          Optional[str]
+    signal_type:     Optional[str]
+    summary:         Optional[str]
+    rationale:       Optional[str]
+    trigger:         Optional[str]
+    urgency:         Optional[str]
+    supporting_count: Optional[int]
+    against_count:   Optional[int]
+    evidence_quote:  Optional[str]
+    confidence:      Optional[float]
+    source_domain:   Optional[str]
+    source_tier:     Optional[int]
+    fact_id:         Optional[str]
+```
+
+The serialised attachment is injected into `ChatState.context_attachment` and
+surfaced in the Agent 8 system prompt under:
+```
+Attached context (selected by the analyst from the PulseLens Overview):
+{context_attachment_block}
+```
+
+This allows Agent 8 to answer specifically about the attached card
+(watch item rationale, risk alert contradiction, evidence fact detail, etc.)
+in addition to retrieved report facts.
 
 ### [PAPER 10] Self-RAG — Self-Reflective Retrieval Augmented Generation
 ```
@@ -1170,52 +1460,6 @@ FLARE fetches the second piece of evidence when it realizes it needs it.
 
 ---
 
-### Chat state
-
-```python
-class ChatState(TypedDict):
-    report_id:       str
-    history:         List[ChatMessage]    # last 5 exchanges only
-    current_query:   str
-    retrieved_facts: List[FactObject]
-    response:        str
-    cited_fact_ids:  List[str]
-    retrieval_rounds: int                 # for FLARE tracking
-```
-
-### Chat tools
-
-```python
-@tool
-def search_facts(query: str, top_k: int = 10) -> List[FactObject]:
-    """
-    Semantic search over fact embeddings for this report.
-    Uses sentence-transformers embeddings stored in SQLite.
-    """
-
-@tool
-def get_claim(claim_id: str) -> VerifiedClaim:
-    """Retrieve a specific verified claim by ID."""
-
-@tool
-def get_company_narrative(ticker: str) -> CompanyNarrative:
-    """Get the full company narrative for a specific company."""
-```
-
-### Node sequence
-
-```
-[retrieve_facts] 
-      ↓
-[build_prompt]        inject evidence + last 5 history exchanges
-      ↓
-[Agent 8: Analyst Chat]    Self-RAG + FLARE
-      ↓
-[validate_citations]       all [fact_id] must exist in DB
-      ↓ valid                    ↓ invalid (1 retry max)
-[stream to frontend]    [retry with hallucinated IDs listed in prompt]
-```
-
 ### Citation validation
 
 ```python
@@ -1229,37 +1473,33 @@ def validate_citations(response: str, valid_ids: set[str]) -> tuple[bool, list]:
 #  Revise your response using only the evidence provided."
 ```
 
-### Context overflow management
+### Citation formatting for users
 
-```python
-MAX_CONTEXT_TOKENS = 2000
-
-def trim_context(history, facts):
-    """
-    When history + evidence exceeds limit:
-    Keep the 3 most-cited facts + 3 most recent exchanges.
-    Drop everything else.
-    """
-```
+After citation validation, the backend converts internal `[fact_id]` references
+to user-friendly numbered citations (`[1]`, `[2]`, etc.) before returning the
+response. The `cited_facts` array in the API response is ordered to match:
+`cited_facts[0]` → `[1]`, `cited_facts[1]` → `[2]`, etc.
+The frontend renders numbered superscript badges inline and a "Sources used"
+section below the assistant message.
 
 ---
 
-## 16. Data flow diagram
+## 19. Data flow diagram
 
 ```
 Raw Query
     │
     ▼
 SearchQuery[]          ← Step-Back + Multi-HyDE (arXiv:2310.06117, 2509.16369)
-    │
+    │                     + 15 deterministic pricing playbook queries
     ▼
-RawDocument[]          ← Bright Data (SERP API, Web Scraper, Scraping Browser)
+RawDocument[]          ← Bright Data (SERP API, Web Unlocker, Browser API)
     │
     ▼
 FactObject[] (raw)     ← RASG schema extraction (arXiv:2405.20245)
-    │
+    │                  ← pricing_pre_extractor regex pass (merged in)
     ▼
-FactObject[] (validated)  ← validate_fact() — evidence_quote presence check
+FactObject[] (validated)  ← validate_fact() — verbatim quote presence check
     │
     ▼
 FactObject[] (atomic)  ← SAFE atomic verification (arXiv:2403.18802)
@@ -1275,11 +1515,14 @@ VerifiedClaim[]        ← ClaimCheck corroboration (ACL 2025)
                           MiniCheck per-fact validation (arXiv:2404.10774)
                           FActScore atomic precision (arXiv:2305.14251)
     │
-    ├── ContradictionFlag[]  ← Contradiction Writer (LLM)
+    ├── ContradictionFlag[]  ← write_contradiction_notes() (async, LLM)
     │
     ▼
 SignalScores{}         ← Weighted formula (tier × recency × factscore)
 PulseScore (0–100)
+    │
+    ▼
+CompanyNarrative[]     ← Company Narratives node (LLM, async per company)
     │
     ▼
 MarketNarrative        ← STORM multi-perspective (arXiv:2402.14207)
@@ -1288,25 +1531,29 @@ MarketNarrative        ← STORM multi-perspective (arXiv:2402.14207)
 WatchItem[]            ← Watch List Builder (LLM)
     │
     ▼
-MarketPulseReport      ← Report Assembler → SQLite
+MarketPulseReport      ← Report Assembler → db_adapter.save_report()
+                          (SQLite or Postgres, selected by DATABASE_BACKEND)
     │
     └──────────────────────────────────────────┐
                                                │
                                      User Chat Query
+                                     + optional ContextAttachment
                                                │
                                                ▼
                                retrieved FactObject[]  ← Self-RAG (arXiv:2310.11511)
                                                │           FLARE (arXiv:2305.06983)
                                                ▼
-                               Grounded Response + [fact_id] citations
+                               Grounded Response + [1][2] numbered citations
+                               + context attachment injected in prompt
                                                │
                                                ▼
-                               Citation validation → stream to frontend
+                               Citation validation → return to frontend
+                               frontend renders: numbered superscripts + Sources section
 ```
 
 ---
 
-## 17. Paper reference index
+## 20. Paper reference index
 
 Complete reference list — every paper used in PulseLens.
 
@@ -1445,5 +1692,10 @@ Applied:  Agent 8 — Analyst Chat (sentence-level active retrieval for multi-ho
 
 ---
 
-*Version 1.0 — Architecture reference with full paper methodology mapping.*  
-*Every non-trivial design decision traces back to a peer-reviewed method.*
+*Version 2.0 — Updated to reflect Sprint 8 codebase.*  
+*Every non-trivial design decision traces back to a peer-reviewed method.*  
+*Changes from v1.0: corrected pipeline DAG order; added Company Narratives node;*  
+*added Pricing nodes; corrected Agent 2 fan-out (internal batching, not Send API);*  
+*corrected Agent 6/7 sequencing (not parallel); added DB Adapter layer;*  
+*updated Chat section (sync, no streaming, context attachments, citation formatting);*  
+*updated Frontend section (Workspace with 6 URL-driven views, standalone Chat page).*
