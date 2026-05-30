@@ -3,9 +3,15 @@ from __future__ import annotations
 from datetime import date, datetime, timezone
 import json
 import logging
-from typing import Any
+from typing import Any, Union
 
 import asyncpg
+from asyncpg.pool import PoolConnectionProxy as _PoolProxy
+
+# asyncpg.pool.acquire() returns PoolConnectionProxy, not Connection directly.
+# Pylance's stubs don't express the inheritance correctly, so we use this alias
+# in all helper function signatures to satisfy the type checker at zero runtime cost.
+_Conn = Union[asyncpg.Connection, _PoolProxy]
 
 from app.db.adapter import DatabaseAdapter
 from app.schemas.models import (
@@ -329,7 +335,7 @@ async def _init_connection(conn: asyncpg.Connection) -> None:
 
 # ─── INSERT helpers ──────────────────────────────────────────────────────────
 
-async def _upsert_report(conn: asyncpg.Connection, report: MarketPulseReport) -> None:
+async def _upsert_report(conn: _Conn, report: MarketPulseReport) -> None:
     await conn.execute(
         """
         INSERT INTO reports (
@@ -388,7 +394,7 @@ async def _upsert_report(conn: asyncpg.Connection, report: MarketPulseReport) ->
 
 
 async def _upsert_fact(
-    conn: asyncpg.Connection, report_id: str, fact: FactObject, embedding: list[float] | None = None
+    conn: _Conn, report_id: str, fact: FactObject, embedding: list[float] | None = None
 ) -> None:
     embed_str = _list_to_vector_str(embedding) if embedding else None
     await conn.execute(
@@ -427,7 +433,7 @@ async def _upsert_fact(
 
 
 async def _upsert_claim(
-    conn: asyncpg.Connection, report_id: str, claim: VerifiedClaim
+    conn: _Conn, report_id: str, claim: VerifiedClaim
 ) -> None:
     await conn.execute(
         """
@@ -462,7 +468,7 @@ async def _upsert_claim(
 
 
 async def _upsert_narrative(
-    conn: asyncpg.Connection, report_id: str, narrative: CompanyNarrative
+    conn: _Conn, report_id: str, narrative: CompanyNarrative
 ) -> None:
     await conn.execute(
         """
@@ -549,7 +555,7 @@ def _row_to_fact(row: asyncpg.Record) -> FactObject:
         claim=row["claim"],
         evidence_quote=row["evidence_quote"],
         source_url=row["source_url"],
-        source_tier=int(row["source_tier"]),
+        source_tier=int(row["source_tier"]),  # type: ignore[arg-type]
         published_date=str(row["published_date"]) if row["published_date"] else None,
         sentiment=row["sentiment"],  # type: ignore[arg-type]
         sentiment_score=float(row["sentiment_score"]),
