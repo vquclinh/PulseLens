@@ -1,13 +1,55 @@
-# PulseLens
+# 🔍 PulseLens
 
-> Evidence-backed market intelligence for fast-moving sectors.
+### Evidence-Backed Market Intelligence for Fast-Moving Sectors
 
-PulseLens is an analyst workspace that turns live web signals into source-backed facts, market signals, company lenses, pricing intelligence, risk alerts, and grounded chat. Every claim traces back to an exact source quote — no black-box scores, no unattributed summaries.
+<p align="center">
+  <a href="https://pulse-lens.vercel.app"><img src="https://img.shields.io/badge/🚀%20Live%20Demo-pulse--lens.vercel.app-blue?style=for-the-badge" alt="Live Demo"/></a>
+  <a href="https://pulselens-backend.onrender.com"><img src="https://img.shields.io/badge/API-pulselens--backend.onrender.com-orange?style=for-the-badge" alt="Backend API"/></a>
+</p>
 
-**Current demo market:** US AI Hardware / Semiconductor  
-**Tracked companies:** Nvidia · AMD · Supermicro
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/FastAPI-0.115-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React"/>
+  <img src="https://img.shields.io/badge/LangGraph-1.0-FF6B35?style=flat-square" alt="LangGraph"/>
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="MIT License"/>
+</p>
+
+<p align="center">
+  PulseLens turns live web signals into source-backed facts, market signals, company lenses,<br/>
+  pricing intelligence, risk alerts, and grounded chat.<br/>
+  Every claim traces back to an exact source quote — no black-box scores, no unattributed summaries.
+</p>
+
+<p align="center">
+  <strong>Current demo market:</strong> US AI Hardware / Semiconductor &nbsp;·&nbsp;
+  <strong>Tracked companies:</strong> Nvidia · AMD · Supermicro
+</p>
+
+<p align="center">
+  <a href="https://pulse-lens.vercel.app">🚀 Try Live Demo</a> &nbsp;·&nbsp;
+  <a href="https://github.com/vquclinh/PulseLens/issues">🐛 Report Bug</a> &nbsp;·&nbsp;
+  <a href="https://github.com/vquclinh/PulseLens/issues">✨ Request Feature</a>
+</p>
 
 > **Research demo:** PulseLens is not production-ready and is not intended for investment or trading decisions.
+
+---
+
+## 📚 Table of Contents
+
+- [The Market Intelligence Gap](#the-market-intelligence-gap)
+- [Core Infrastructure](#core-infrastructure)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Repository Structure](#repository-structure)
+- [Local Setup](#local-setup)
+- [Environment Variables](#environment-variables)
+- [Running the Pipeline](#running-the-pipeline)
+- [Demo Limitations](#demo-limitations)
+- [Roadmap](#roadmap)
+- [License](#license)
 
 ---
 
@@ -169,23 +211,6 @@ Copy `backend/.env.example` to `backend/.env` and fill in the values. **Never co
 
 ---
 
-## API Overview
-
-All endpoints are prefixed with `/api`. The Vite dev proxy forwards requests from port 5173 to port 8000.
-
-| Method | Path | Description |
-|---|---|---|
-| `GET` | `/api/reports/latest` | Returns the most recent `report_id` stored in the database |
-| `GET` | `/api/report/{report_id}` | Returns the full `MarketPulseReport` JSON for a given report |
-| `GET` | `/api/report/{report_id}/facts` | Returns the list of `FactObject[]` for a given report |
-| `POST` | `/api/run` | Triggers the LangGraph pipeline asynchronously; returns a new `report_id` |
-| `POST` | `/api/chat` | Sends a message to the RAG analyst chat; returns `response`, `cited_facts`, `session_id` |
-| `GET` | `/api/stock/{ticker}` | Returns cached stock price context from Alpha Vantage (4-hour cache) |
-
-**Chat request** accepts an optional `context_attachment` field with `attachment_type` values: `watch_item`, `risk_alert`, `fact`, `company`, `signal`, `pricing`, `report`.
-
----
-
 ## Demo Limitations
 
 This is a research-grade demo, not a production system. Known limitations:
@@ -217,16 +242,3 @@ This is a research-grade demo, not a production system. Known limitations:
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
----
-
-## Contributing
-
-Contributions are welcome. Before opening a pull request:
-
-1. Read `CLAUDE.md` — it is the authoritative guide for this codebase and documents hard constraints (quality gate thresholds, signal balance constants) that must not be changed.
-2. All frontend work should use `src/lib/api-client.ts` for API calls. Do not add new fetch functions to the legacy `src/types/api.ts`.
-3. Backend is currently frozen. Frontend-only changes are the active focus.
-4. Run the zero-cost static tests before submitting: `python tests/pipeline/test_agent1_expansion_stability.py` and `python tests/pipeline/test_agent1_signal_balance.py`.
-
-For questions, open an issue.
