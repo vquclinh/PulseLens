@@ -23,7 +23,7 @@ export default function WorkspaceLayout({ children, isLoading = false }: Workspa
             <p className="text-xs leading-relaxed text-red-700">
               <span className="font-semibold block mb-0.5">⚠ Demo deployment</span>
               Backend runs on Render's free tier — first load may take
-              20–60 s to wake up. Please wait patiently.
+              20-60 s to wake up. Please wait patiently.
             </p>
             <button
               type="button"

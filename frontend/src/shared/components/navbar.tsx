@@ -132,15 +132,10 @@ export default function Navbar() {
         />
       </div>
 
-      {/* Right — workspace CTA */}
-      <div className="ml-auto shrink-0">
-        <button
-          onClick={() => navigate('/workspace')}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-colors"
-        >
-          {isWorkspace ? 'View latest report' : 'Open Workspace →'}
-        </button>
-      </div>
+      {/* Demo badge */}
+      <span className="ml-auto shrink-0 text-xs font-semibold text-red-500 bg-red-50 border border-red-200 rounded-full px-3 py-1">
+        Demo Web
+      </span>
 
     </nav>
   )
