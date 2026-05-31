@@ -78,7 +78,7 @@ function strongestSignalFromFacts(facts: FactObject[]): { signal: SignalType; co
 
 function LoadingView({ message }: { message: string }) {
   return (
-    <WorkspaceLayout>
+    <WorkspaceLayout isLoading>
       <div className="flex min-h-[calc(100vh-72px)] items-center justify-center">
         <p className="text-sm text-gray-400 animate-pulse">{message}</p>
       </div>
