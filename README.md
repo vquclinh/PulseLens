@@ -214,14 +214,14 @@ PulseLens is built on top of methods from 11 peer-reviewed research papers. We s
 | Method | Paper | Venue | Applied in |
 |---|---|---|---|
 | **[Step-Back Prompting](https://arxiv.org/abs/2310.06117)** | *Take a Step Back: Evoking Reasoning via Abstraction in LLMs* | Google DeepMind, 2023 | Agent 1 — Query Planner |
-| **[Multi-HyDE](https://arxiv.org/abs/2509.16369)** | *Enhancing Financial RAG with Agentic AI and Multi-HyDE* | EMNLP 2025, IIT Madras | Agent 1 — Query Planner |
-| **[RASG](https://arxiv.org/abs/2405.20245)** | *RASG: Retrieval Augmented Structured Generation* | 2024 | Agent 3 — Fact Extractor |
+| **[Multi-HyDE](https://arxiv.org/abs/2509.16369)** | *Enhancing Financial RAG with Agentic AI and Multi-HyDE: A Novel Approach to Knowledge Retrieval and Hallucination Reduction* | EMNLP 2025, IIT Madras | Agent 1 — Query Planner |
+| **[RASG](https://arxiv.org/abs/2405.20245)** | *Retrieval Augmented Structured Generation: Business Document Information Extraction As Tool Use* | 2024 | Agent 3 — Fact Extractor |
 | **[SAFE](https://arxiv.org/abs/2403.18802)** | *Long-form Factuality in Large Language Models* | Google DeepMind, 2024 | Node — SAFE Atomic Verification |
 | **[FinBERT](https://arxiv.org/abs/1908.10063)** | *FinBERT: Financial Sentiment Analysis with Pre-trained Language Models* | HuggingFace, 2020 | Agent 4 — Sentiment Scorer |
-| **[ClaimCheck](https://aclanthology.org/2025.knowledgenlp-1.26/)** | *ClaimCheck: Automated Fact-Checking via Web Evidence* | ACL / KnowledgeNLP 2025 | Node — M4 Triangulator |
+| **[ClaimCheck](https://aclanthology.org/2025.knowledgenlp-1.26/)** | *ClaimCheck: Automatic Fact-Checking of Textual Claims using Web Evidence* | ACL / KnowledgeNLP 2025 | Node — M4 Triangulator |
 | **[MiniCheck](https://aclanthology.org/2024.emnlp-main.499/)** | *MiniCheck: Efficient Fact-Checking of LLMs on Grounding Documents* | EMNLP 2024 | Node — M4 Triangulator |
-| **[FActScore](https://aclanthology.org/2023.emnlp-main.741/)** | *FActScore: Fine-grained Atomic Evaluation of Factual Precision* | EMNLP 2023 | Node — M4 Triangulator & M5 Scorer |
-| **[STORM](https://aclanthology.org/2024.naacl-long.347/)** | *Assisting in Writing Wikipedia-like Articles From Scratch with LLMs* | NAACL 2024, Stanford | Agent 6 — Narrative Synthesizer |
+| **[FActScore](https://aclanthology.org/2023.emnlp-main.741/)** | *FActScore: Fine-grained Atomic Evaluation of Factual Precision in Long Form Text Generation* | EMNLP 2023 | Node — M4 Triangulator & M5 Scorer |
+| **[STORM](https://aclanthology.org/2024.naacl-long.347/)** | *Assisting in Writing Wikipedia-like Articles From Scratch with Large Language Models* | NAACL 2024, Stanford | Agent 6 — Narrative Synthesizer |
 | **[Self-RAG](https://openreview.net/pdf?id=hSyW5go0v8)** | *Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection* | NeurIPS 2023 | Agent 8 — Analyst Chat |
 | **[FLARE](https://aclanthology.org/2023.emnlp-main.495/)** | *Active Retrieval Augmented Generation* | EMNLP 2023 | Agent 8 — Analyst Chat |
 
