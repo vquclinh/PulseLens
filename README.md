@@ -3,11 +3,6 @@
 ### Evidence-Backed Market Intelligence for Fast-Moving Sectors
 
 <p align="center">
-  <a href="https://pulse-lens.vercel.app"><img src="https://img.shields.io/badge/🚀%20Live%20Demo-pulse--lens.vercel.app-blue?style=for-the-badge" alt="Live Demo"/></a>
-  <a href="https://pulselens-backend.onrender.com"><img src="https://img.shields.io/badge/API-pulselens--backend.onrender.com-orange?style=for-the-badge" alt="Backend API"/></a>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python"/>
   <img src="https://img.shields.io/badge/TypeScript-5.6-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
   <img src="https://img.shields.io/badge/FastAPI-0.115-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"/>
@@ -49,6 +44,7 @@
 - [Running the Pipeline](#running-the-pipeline)
 - [Demo Limitations](#demo-limitations)
 - [Roadmap](#roadmap)
+- [Acknowledgements](#acknowledgements)
 - [License](#license)
 
 ---
@@ -63,20 +59,6 @@ PulseLens approaches this differently:
 - Claims are triangulated across multiple independent sources before scoring
 - The full pipeline audit trail — queries, document counts, quality gates, expansion rounds — is exposed in the UI
 - The grounded chat assistant cites specific facts and refuses to fabricate when evidence is insufficient
-
----
-
-## Core Infrastructure
-
-| Layer | Tools |
-|---|---|
-| Web access | **Bright Data** — SERP API, Web Unlocker, Browser API |
-| Agent orchestration | LangGraph multi-agent pipeline |
-| LLM reasoning | OpenRouter-hosted models (Google Gemini 2.5 Flash by default) |
-| Sentiment scoring | FinBERT (`ProsusAI/finbert`) |
-| Backend API | FastAPI + Uvicorn |
-| Frontend | React 18, Vite 6, TypeScript 5.6, TailwindCSS 4 |
-| Storage | Supabase / Postgres with SQLite fallback |
 
 ---
 
@@ -222,6 +204,26 @@ This is a research-grade demo, not a production system. Known limitations:
 - **Hiring momentum coverage:** The `hiring_momentum` signal type requires dedicated job-board collection that is not yet wired into the demo scope. Expect zero hiring facts.
 - **Backend is frozen for the current sprint:** The backend codebase is intentionally frozen at Sprint 8. All active development is on the frontend.
 - **Not for financial decisions:** PulseLens is a research prototype. Do not use its output for investment or trading decisions.
+
+---
+
+## 🙏 Acknowledgements
+
+PulseLens is built on top of methods from 11 peer-reviewed research papers. We sincerely thank all the authors for their outstanding contributions — their work made it possible to design a system where every architectural decision is grounded in published research.
+
+| Method | Paper | Venue | Applied in |
+|---|---|---|---|
+| **[Step-Back Prompting](https://arxiv.org/abs/2310.06117)** | *Take a Step Back: Evoking Reasoning via Abstraction in LLMs* | Google DeepMind, 2023 | Agent 1 — Query Planner |
+| **[Multi-HyDE](https://arxiv.org/abs/2509.16369)** | *Enhancing Financial RAG with Agentic AI and Multi-HyDE* | EMNLP 2025, IIT Madras | Agent 1 — Query Planner |
+| **[RASG](https://arxiv.org/abs/2405.20245)** | *RASG: Retrieval Augmented Structured Generation* | 2024 | Agent 3 — Fact Extractor |
+| **[SAFE](https://arxiv.org/abs/2403.18802)** | *Long-form Factuality in Large Language Models* | Google DeepMind, 2024 | Node — SAFE Atomic Verification |
+| **[FinBERT](https://arxiv.org/abs/1908.10063)** | *FinBERT: Financial Sentiment Analysis with Pre-trained Language Models* | HuggingFace, 2020 | Agent 4 — Sentiment Scorer |
+| **[ClaimCheck](https://aclanthology.org/2025.knowledgenlp-1.26/)** | *ClaimCheck: Automated Fact-Checking via Web Evidence* | ACL / KnowledgeNLP 2025 | Node — M4 Triangulator |
+| **[MiniCheck](https://aclanthology.org/2024.emnlp-main.499/)** | *MiniCheck: Efficient Fact-Checking of LLMs on Grounding Documents* | EMNLP 2024 | Node — M4 Triangulator |
+| **[FActScore](https://aclanthology.org/2023.emnlp-main.741/)** | *FActScore: Fine-grained Atomic Evaluation of Factual Precision* | EMNLP 2023 | Node — M4 Triangulator & M5 Scorer |
+| **[STORM](https://aclanthology.org/2024.naacl-long.347/)** | *Assisting in Writing Wikipedia-like Articles From Scratch with LLMs* | NAACL 2024, Stanford | Agent 6 — Narrative Synthesizer |
+| **[Self-RAG](https://openreview.net/pdf?id=hSyW5go0v8)** | *Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection* | NeurIPS 2023 | Agent 8 — Analyst Chat |
+| **[FLARE](https://aclanthology.org/2023.emnlp-main.495/)** | *Active Retrieval Augmented Generation* | EMNLP 2023 | Agent 8 — Analyst Chat |
 
 ---
 
