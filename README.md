@@ -35,13 +35,11 @@
 ## 📚 Table of Contents
 
 - [🎯 The Market Intelligence Gap](#-the-market-intelligence-gap)
-- [Core Infrastructure](#core-infrastructure)
 - [✨ Key Features](#-key-features)
 - [🏗️ Architecture](#️-architecture)
 - [📁 Repository Structure](#-repository-structure)
 - [🚀 Local Setup](#-local-setup)
 - [⚙️ Environment Variables](#️-environment-variables)
-- [Running the Pipeline](#running-the-pipeline)
 - [⚠️ Demo Limitations](#️-demo-limitations)
 - [🗺️ Roadmap](#️-roadmap)
 - [🙏 Acknowledgements](#-acknowledgements)
