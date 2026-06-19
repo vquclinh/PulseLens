@@ -1,4 +1,4 @@
-# 🔍 PulseLens
+# PulseLens
 
 <h3 align="center">Evidence-Backed Market Intelligence for Fast-Moving Sectors</h3>
 
@@ -23,31 +23,30 @@
 </p>
 
 <p align="center">
-  <a href="https://pulse-lens.vercel.app">🚀 Try Live Demo</a> &nbsp;·&nbsp;
-  <a href="https://github.com/vquclinh/PulseLens/issues">🐛 Report Bug</a> &nbsp;·&nbsp;
-  <a href="https://github.com/vquclinh/PulseLens/issues">✨ Request Feature</a>
+  <a href="https://github.com/vquclinh/PulseLens/issues">Report Bug</a> &nbsp;·&nbsp;
+  <a href="https://github.com/vquclinh/PulseLens/issues">Request Feature</a>
 </p>
 
 > **Research demo:** PulseLens is not production-ready and is not intended for investment or trading decisions.
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 
-- [🎯 The Market Intelligence Gap](#-the-market-intelligence-gap)
-- [✨ Key Features](#-key-features)
-- [🏗️ Architecture](#️-architecture)
-- [📁 Repository Structure](#-repository-structure)
-- [🚀 Local Setup](#-local-setup)
-- [⚙️ Environment Variables](#️-environment-variables)
-- [⚠️ Demo Limitations](#️-demo-limitations)
-- [🗺️ Roadmap](#️-roadmap)
-- [🙏 Acknowledgements](#-acknowledgements)
-- [📄 License](#-license)
+- [The Market Intelligence Gap](#-the-market-intelligence-gap)
+- [Key Features](#-key-features)
+- [Architecture](#️-architecture)
+- [Repository Structure](#-repository-structure)
+- [Local Setup](#-local-setup)
+- [Environment Variables](#️-environment-variables)
+- [Demo Limitations](#️-demo-limitations)
+- [Roadmap](#️-roadmap)
+- [Acknowledgements](#-acknowledgements)
+- [License](#-license)
 
 ---
 
-## 🎯 The Market Intelligence Gap
+## The Market Intelligence Gap
 
 Financial analysts spend most of their time locating, reading, and cross-checking sources before they can form a coherent signal. Existing tools either surface raw headlines (high noise) or output black-box scores with no traceable evidence chain — leaving analysts unable to audit or challenge the output.
 
@@ -60,7 +59,7 @@ PulseLens approaches this differently:
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 | Feature | Description |
 |---|---|
@@ -78,7 +77,7 @@ PulseLens approaches this differently:
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 PulseLens is structured as a full-stack market intelligence system: live web collection, agentic processing, source-backed fact storage, FastAPI endpoints, and a React analyst workspace.
 
@@ -86,7 +85,7 @@ PulseLens is structured as a full-stack market intelligence system: live web col
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 PulseLens/
@@ -126,7 +125,7 @@ PulseLens/
 
 ---
 
-## 🚀 Local Setup
+## Local Setup
 
 ### Prerequisites
 
@@ -171,7 +170,7 @@ npm run dev
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables
 
 Copy `backend/.env.example` to `backend/.env` and fill in the values. **Never commit `.env`.**
 
@@ -191,7 +190,7 @@ Copy `backend/.env.example` to `backend/.env` and fill in the values. **Never co
 
 ---
 
-## ⚠️ Demo Limitations
+## Demo Limitations
 
 This is a research-grade demo, not a production system. Known limitations:
 
@@ -205,7 +204,7 @@ This is a research-grade demo, not a production system. Known limitations:
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 PulseLens is built on top of methods from 11 peer-reviewed research papers. We sincerely thank all the authors for their outstanding contributions — their work made it possible to design a system where every architectural decision is grounded in published research.
 
@@ -225,7 +224,7 @@ PulseLens is built on top of methods from 11 peer-reviewed research papers. We s
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - Multi-market support (US Fintech, European Energy, etc.)
 - Persistent chat history stored in the database
@@ -239,6 +238,6 @@ PulseLens is built on top of methods from 11 peer-reviewed research papers. We s
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
